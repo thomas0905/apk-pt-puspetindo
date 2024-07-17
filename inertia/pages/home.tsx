@@ -1,19 +1,17 @@
-import { Head } from '@inertiajs/react'
-import { Button } from '~/components/ui/button'
+import { Route } from '@adonisjs/core/http'
+import { Head, Link } from '@inertiajs/react'
+import Authentication from '~/layout/authentication'
 export default function Home(props: { version: number }) {
   return (
-    <>
+    <Authentication>
       <Head title="Homepage" />
 
-      <div className="container">
-        <div className="title">AdonisJS {props.version} x Inertia x React</div>
-
-        <span>
-          Learn more about AdonisJS and Inertia.js by visiting the{' '}
-          <a href="https://docs.adonisjs.com/guides/inertia">AdonisJS documentation</a>.
-        </span>
-        <Button>Berhasil wkwkwk</Button>
+      <div className="container flex items-center gap-3 justify-center h-screen">
+       <a href='/' className='hover:text-blue-800'> Home</a>
+       <a href='' className='hover:text-blue-800'> Contact</a>
+       <Link href='/about' className='hover:text-blue-800'> About</Link>
+       <Link href='/product' className='hover:text-blue-800'> Product</Link>
       </div>
-    </>
+    </Authentication>
   )
 }
