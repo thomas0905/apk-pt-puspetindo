@@ -6,17 +6,19 @@ import { IconBuildingBank, IconBuildingStore, IconDashboard, IconDeviceLaptop, I
 export default function sidebar() {
     return (
         <Fragment>
-            <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+            <nav className="grid items-start fixed px-2 text-sm font-medium lg:px-4">
+                
                 <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 py-3 text-muted-foreground transition-all">
                     Dashboard
-                    <Link href=''
+                    <Link
+                        href="/"
                         className="pl-2 hover:text-white text-black rounded-sm hover:bg-black p-1 w-full mt-2 gap-2 text-md flex "
                     >
                         <IconDashboard size={21} />
                         Beranda
                     </Link>
 
-                    <Link href=''
+                    <Link href='/dasboard/analist'
                         className="pl-2 hover:text-white rounded-sm hover:bg-black p-1 w-full text-black gap-2 text-1sm flex "
                     >
                         <IconReportAnalytics size={21} />
@@ -24,7 +26,7 @@ export default function sidebar() {
                     </Link>
 
                     <Link
-                        href=''
+                        href='/dasboard/laporan'
                         className="pl-2 hover:text-white rounded-sm hover:bg-black p-1 w-full text-black gap-2 text-1sm flex "
                     >
                         <IconReportMoney size={21} />
@@ -36,7 +38,7 @@ export default function sidebar() {
                 <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 py-2 text-muted-foreground transition-all">
                     Keuangan
                     <Link
-                        href="/"
+                        href="/keuangan/pembelian"
                         className="pl-2 hover:text-white text-black rounded-sm hover:bg-black p-1 w-full mt-2 gap-2 text-md flex "
                     >
                         <IconBuildingStore size={21} />
@@ -44,7 +46,7 @@ export default function sidebar() {
                     </Link>
 
                     <Link
-                        href="/"
+                        href="/keuangan/penjualan"
                         className="pl-2 hover:text-white rounded-sm hover:bg-black p-1 w-full text-black gap-2 text-1sm flex"
                     >
                         <IconShoppingBag size={21} />
@@ -52,7 +54,7 @@ export default function sidebar() {
                     </Link>
 
                     <Link
-                        href="/"
+                        href="/keuangan/pengeluaran"
                         className="pl-2 hover:text-white rounded-sm hover:bg-black p-1 w-full text-black gap-2 text-1sm flex"
                     >
                         <IconBuildingBank size={21} />
@@ -63,14 +65,14 @@ export default function sidebar() {
 
                 <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 py-3 text-muted-foreground transition-all">
                     Sistem
-                    <Link href=''
+                    <Link href='/sistem/pengaturan'
                         className="pl-2 hover:text-white text-black rounded-sm hover:bg-black p-1 w-full mt-2 gap-2 text-md flex "
                     >
                         <IconSettings size={21} />
                         Pengaturan
                     </Link>
 
-                    <Link href=''
+                    <Link href='/sistem/pengguna'
                         className="pl-2 hover:text-white rounded-sm hover:bg-black p-1 w-full text-black gap-2 text-1sm flex "
                     >
                         <IconUsers size={21} />

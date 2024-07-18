@@ -1,15 +1,25 @@
-
-import ProductsController from '#controllers/products_controller'
+import DasboardsController from '#controllers/dasboards_controller'
+import KeuanganController from '#controllers/keuangan_controller'
+import SistemsController from '#controllers/sistem_controller'
 import router from '@adonisjs/core/services/router'
-const UsersController = () => import('#controllers/users_controller')
 
 
 router.on('/').renderInertia('home', { version: 6 })
 
-router.get('users', [UsersController, 'index'])
-router.get('about', [UsersController, 'about'])
+router.get('dasboard/analist',[DasboardsController,'analist'])
+router.get('dasboard/laporan',[DasboardsController,'laporan'])
 
-router.get('product', [ProductsController, 'index'])
-router.get('create', [ProductsController, 'create'])
-router.get('edit', [ProductsController, 'edit'])
+
+router.get('keuangan/penjualan',[KeuanganController,'penjualan'])
+router.get('keuangan/pembelian',[KeuanganController,'pembelian'])
+router.get('keuangan/pengeluaran',[KeuanganController,'pengeluaran'])
+
+
+router.get('sistem/pengguna',[SistemsController,'pengguna'])
+router.get('sistem/pengaturan',[SistemsController,'pengaturan'])
+
+
+
+
+
 
