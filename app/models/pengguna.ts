@@ -4,7 +4,7 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 export default class Pengguna extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
-
+ 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
