@@ -76,36 +76,36 @@ export default function Index() {
             </div>
           </div>
 
-          <Card className="mt-5 p-5">
+          <div className="mt-5 p-5">
             <div>
-              <h1 className='font-bold'>Aktivitas Terbaru</h1>
-              <p className='text-sm text-gray-600'>Lihat semua aktivitas terbaru</p>
+                <h1 className='font-bold'>Aktivitas Terbaru</h1>
+                <p className='text-sm text-gray-600'>Lihat semua aktivitas terbaru</p>
             </div>
-            <Card className="mt-3">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[100px]">RID</TableHead>
-                    <TableHead>NIK</TableHead>
-                    <TableHead>Nama</TableHead>
-                    <TableHead>Departemen</TableHead>
-                    <TableHead>Jabatan</TableHead>
-                    <TableHead>Status</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow>
-                    <TableCell className="font-medium">INV001</TableCell>
-                    <TableCell>Paid</TableCell>
-                    <TableCell>Credit Card</TableCell>
-                    <TableCell>Credit Card</TableCell>
-                    <TableCell>Credit Card</TableCell>
-                    <TableCell>$250.00</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
+            <Card className="mt-3 overflow-x-auto">
+                <Table className="min-w-full">
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead className="w-[100px]">RID</TableHead>
+                            <TableHead>NIK</TableHead>
+                            <TableHead>Nama</TableHead>
+                            <TableHead>Departemen</TableHead>
+                            <TableHead>Jabatan</TableHead>
+                            <TableHead>Status</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell className="font-medium">INV001</TableCell>
+                            <TableCell>Paid</TableCell>
+                            <TableCell>Credit Card</TableCell>
+                            <TableCell>Credit Card</TableCell>
+                            <TableCell>Credit Card</TableCell>
+                            <TableCell>$250.00</TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
             </Card>
-          </Card>
+        </div>
         </div>
       </Card>
     </Admin>
