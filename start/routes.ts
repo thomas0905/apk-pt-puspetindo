@@ -15,7 +15,8 @@ router.get('keuangan/pembelian',[KeuanganController,'pembelian'])
 router.get('keuangan/pengeluaran',[KeuanganController,'pengeluaran'])
 
 
-router.get('sistem/pengguna',[SistemsController,'pengguna'])
+router.get('sistem/pengguna/pengguna',[SistemsController,'pengguna'])
+router.get('sistem/pengguna/create',[SistemsController,'create'])
 router.get('sistem/pengaturan',[SistemsController,'pengaturan'])
 
 

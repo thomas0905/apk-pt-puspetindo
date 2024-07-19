@@ -9,9 +9,12 @@ export default class SistemsController {
 
 
     async pengguna({inertia} : HttpContext){
-        return inertia.render('admin/sistem/pengguna')
+        return inertia.render('admin/sistem/pengguna/pengguna')
     }
 
+    async create({inertia} : HttpContext){
+        return inertia.render('admin/sistem/pengguna/create')
+    }
 
 
 }

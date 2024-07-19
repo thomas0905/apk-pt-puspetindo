@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
 import { Link } from "@inertiajs/react";
 
-export default function Users() {
+export default function Pegunna() {
     return (
         <Admin>
             <Card className="p-5">
@@ -21,8 +21,8 @@ export default function Users() {
 
 
                         <div>
-                            <Link href="/">
-                                <Button className="bg-slate-900 text-white gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
+                            <Link href="/sistem/pengguna/create">
+                                <Button className="bg-slate-900 text-white btn-small    gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
                                     <IconUserPlus size={18} />
                                     Tambah Pengguna
                                 </Button>

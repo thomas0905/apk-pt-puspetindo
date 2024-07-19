@@ -72,7 +72,7 @@ export default function sidebar() {
                         Pengaturan
                     </Link>
 
-                    <Link href='/sistem/pengguna'
+                    <Link href='/sistem/pengguna/pengguna'
                         className="pl-2 hover:text-white rounded-sm hover:bg-black p-1 w-full text-black gap-2 text-1sm flex "
                     >
                         <IconUsers size={21} />
