@@ -79,7 +79,7 @@ export default function Sidebar() {
 
                             {/* Sistem Section */}
                             <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 py-3 text-muted-foreground transition-all">
-                                Sistem
+                            <span className={`${isSidebarHidden ? '' : 'judul-sidebar'}`}> Sistem</span>
                                 <Link href='/sistem/pengaturan' className="flex pl-2 hover:text-white text-black rounded-sm hover:bg-black p-1 w-full mt-2 gap-2 text-md">
                                     <IconSettings size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Pengaturan</span>
