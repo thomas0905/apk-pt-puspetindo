@@ -1,6 +1,7 @@
-import { Head, Link } from '@inertiajs/react'
+import { Head, Link, router } from '@inertiajs/react'
 import { IconHome } from '@tabler/icons-react'
-import React from 'react'
+import React, { FormEventHandler, useState } from 'react'
+import { useForm } from '@inertiajs/react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import { Command, CommandEmpty, CommandInput, CommandItem } from '~/components/ui/command'
@@ -19,9 +20,26 @@ const statuses = [
         label: "Non-Aktif",
     }
 ]
+
 export default function Create() {
-    const [open, setOpen] = React.useState(false)
-    const [value, setValue] = React.useState("")
+    const [open, setOpen] = useState(false)
+    const { data, setData, post, processing } = useForm({
+        name: '',
+        departemen: '',
+        jabatan: '',
+        status: '',
+    })
+
+    const handleChange = (e) => {
+        const key = e.target.id;
+        const value = e.target.value
+        setData(key, value)
+    }
+
+    const handleSubmit: FormEventHandler = (e) => {
+        e.preventDefault()
+        post('pengguna/create')
+    }
 
     return (
         <Admin>
@@ -45,28 +63,38 @@ export default function Create() {
                     </div>
                 </div>
 
-
-                <form className='mt-5'>
+                <form className='mt-5' onSubmit={handleSubmit}>
                     <div className='my-5'>
                         <div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">Name:</Label>
-                                <Input id="name" placeholder="Masukkan Nama " />
+                                <Input
+                                    id="name"
+                                    placeholder="Masukkan Nama"
+                                    onChange={(e) => setData('name', e.target.value)}
+                                    name='name'
+                                    value={data.name}
+                                />
                             </div>
                         </div>
 
                         <div className="grid grid-cols-3 gap-3 mt-3">
                             <div>
                                 <div className="flex flex-col space-y-1.5">
-                                    <Label htmlFor="department">Departemen:</Label>
-                                    <Input id="department" placeholder="Masukkan Nama Departemen " />
+                                    <Label htmlFor="departemen">Departemen:</Label>
+                                    <Input
+                                        id="departemen"
+                                        placeholder="Masukkan Nama Departemen"
+                                        onChange={handleChange}
+                                        name='departemen'
+                                        value={data.departemen}
+                                    />
                                 </div>
                             </div>
 
                             <div>
-
                                 <div className="flex flex-col space-y-1.5">
-                                    <Label htmlFor="status">Pilih Jabatan:</Label>
+                                    <Label htmlFor="jabatan">Pilih Jabatan:</Label>
                                     <Popover open={open} onOpenChange={setOpen}>
                                         <PopoverTrigger asChild>
                                             <Button
@@ -75,19 +103,18 @@ export default function Create() {
                                                 aria-expanded={open}
                                                 className="w-full justify-between"
                                             >
-                                                Pilih Jabatan
-                                                {/* {value
-                          ? statuses.find((status) => status.value === value)?.label
-                          : "Pilih Status"} */}
+                                                {data.jabatan || "Pilih Jabatan"}
                                                 <p className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                            </Button>                                                                                                   
+                                            </Button>
                                         </PopoverTrigger>
                                         <PopoverContent className="w-full p-0">
                                             <Command>
-                                                <CommandInput placeholder="Cari status..." />
-                                                <CommandEmpty>Status tidak ditemukan.</CommandEmpty>
+                                                <CommandInput placeholder="Cari jabatan..." />
+                                                <CommandEmpty>Jabatan tidak ditemukan.</CommandEmpty>
                                                 <CommandItem
-                                                    value={'Pelajar'}>
+                                                    value={'Pelajar'}
+                                                    onSelect={(value) => setData('jabatan', value)}
+                                                >
                                                     Pelajar
                                                 </CommandItem>
                                             </Command>
@@ -106,10 +133,7 @@ export default function Create() {
                                             aria-expanded={open}
                                             className="w-full justify-between"
                                         >
-                                            Pilih Status
-                                            {/* {value
-                          ? statuses.find((status) => status.value === value)?.label
-                          : "Pilih Status"} */}
+                                            {statuses.find(status => status.value === data.status)?.label || "Pilih Status"}
                                             <p className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                         </Button>
                                     </PopoverTrigger>
@@ -117,19 +141,23 @@ export default function Create() {
                                         <Command>
                                             <CommandInput placeholder="Cari status..." />
                                             <CommandEmpty>Status tidak ditemukan.</CommandEmpty>
-                                            <CommandItem
-                                                value={'Pelajar'}>
-                                                Pelajar
-                                            </CommandItem>
+                                            {statuses.map((status) => (
+                                                <CommandItem
+                                                    key={status.value}
+                                                    value={status.value}
+                                                    onSelect={(value) => setData('status', value)}
+                                                >
+                                                    {status.label}
+                                                </CommandItem>
+                                            ))}
                                         </Command>
                                     </PopoverContent>
                                 </Popover>
                             </div>
-
                         </div>
                     </div>
 
-                    <Button type="submit">Simpan</Button>
+                    <Button type="submit" disabled={processing}>Simpan</Button>
                 </form>
             </Card>
         </Admin>
