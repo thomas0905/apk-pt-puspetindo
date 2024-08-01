@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { IconHome, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react';
+import { IconEdit, IconHome, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react';
 import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
 import { Link } from "@inertiajs/react";
@@ -69,7 +69,7 @@ export default function Pegunna() {
                                 <TableHead>Departemen</TableHead>
                                 <TableHead>Jabatan</TableHead>
                                 <TableHead>Status</TableHead>
-                                <TableHead className="text-right">Aksi</TableHead>
+                                <TableHead className="text-">Aksi</TableHead>
 
                             </TableRow>
                         </TableHeader>
@@ -81,8 +81,14 @@ export default function Pegunna() {
                                     <TableCell>{pengguna.departemen}</TableCell>
                                     <TableCell>{pengguna.jabatan}</TableCell>
                                     <TableCell>{pengguna.status}</TableCell>
-                                    <TableCell className="text-right">
-                                        <IconTrash size={18} className="cursor:pointer"/>
+                                    <TableCell className="flex gap-3">
+                                        <span className="text-right cursor-pointer">
+                                            <IconTrash size={18} />
+                                        </span>
+
+                                        <Link href="/">
+                                        <IconEdit size={18}/>
+                                        </Link>
                                     </TableCell>
                                 </TableRow>
                             ))}
