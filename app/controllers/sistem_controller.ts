@@ -27,4 +27,8 @@ export default class SistemsController {
     async create({ inertia }: HttpContext) {
         return inertia.render('admin/sistem/pengguna/create');
     }
+
+    async edit({inertia} : HttpContext){
+        return inertia.render('admin/sistem/pengguna/edit')
+    }
 }

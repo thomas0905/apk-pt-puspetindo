@@ -17,6 +17,10 @@ export default function Pegunna() {
         },
     ]
 
+    const handleDelete = () => {
+        alert('Berfungsi')
+    }
+
     return (
         <Admin>
             <Card className="p-5">
@@ -82,12 +86,12 @@ export default function Pegunna() {
                                     <TableCell>{pengguna.jabatan}</TableCell>
                                     <TableCell>{pengguna.status}</TableCell>
                                     <TableCell className="flex gap-3">
-                                        <span className="text-right cursor-pointer">
+                                        <span onClick={handleDelete} className="text-right text-red-900 cursor-pointer">
                                             <IconTrash size={18} />
                                         </span>
 
-                                        <Link href="/">
-                                        <IconEdit size={18}/>
+                                        <Link href="sistem/pengguna/edit">
+                                            <IconEdit size={18} />
                                         </Link>
                                     </TableCell>
                                 </TableRow>

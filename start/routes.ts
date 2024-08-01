@@ -18,6 +18,7 @@ router.get('keuangan/pengeluaran',[KeuanganController,'pengeluaran'])
 router.get('sistem/pengguna/pengguna',[SistemsController,'pengguna'])
 router.get('sistem/pengguna/create',[SistemsController,'create'])
 router.post('sistem/pengguna/create',[SistemsController,'store'])
+router.get('sistem/pengguna/edit',[SistemsController,'edit'])
 router.get('sistem/pengaturan',[SistemsController,'pengaturan'])
 
 
