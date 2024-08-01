@@ -5,14 +5,62 @@ import { IconEdit, IconHome, IconSearch, IconTrash, IconUserPlus } from '@tabler
 import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
 import { Link } from "@inertiajs/react";
+import { useReactTable } from "@tanstack/react-table"
+import { useState } from "react";
+
+const columns = [
+    {
+        accecosrKey: 'task',
+        header: 'Task',
+        cell:(props) => <p>{props.getValue()}</p>
+    }
+]
 
 export default function Pegunna() {
+    const [data, setData] = useState()
+    const table = useReactTable({
+        data,
+        columns
+    });
+
     const pengguna = [
         {
-            id: "1",
+            id: "0",
             nama: "Muhammad Rois",
             departemen: "12",
+            jabatan: "It Software",
+            status: "aktif",
+        },
+
+        {
+            id: "1",
+            nama: "Abd Asis",
+            departemen: "12",
+            jabatan: "Manager",
+            status: "aktif",
+        },
+
+        {
+            id: "2",
+            nama: "Meiza Fina",
+            departemen: "12",
             jabatan: "Karyawan",
+            status: "aktif",
+        },
+
+        {
+            id: "3",
+            nama: "Indah Jihan",
+            departemen: "12",
+            jabatan: "IT Support",
+            status: "aktif",
+        },
+
+        {
+            id: "4",
+            nama: "Sohibur Riski",
+            departemen: "12",
+            jabatan: "Pejabat",
             status: "aktif",
         },
     ]

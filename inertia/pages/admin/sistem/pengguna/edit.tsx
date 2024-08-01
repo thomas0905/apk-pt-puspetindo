@@ -40,6 +40,7 @@ export default function EditPegguna() {
                                 <Label htmlFor="name">Name:</Label>
                                 <Input
                                     id="name"
+                                    placeholder='Masukkan Nama'
                                 />
                             </div>
                         </div>
