@@ -30,15 +30,9 @@ export default function Create() {
         status: '',
     })
 
-    const handleChange = (e) => {
-        const key = e.target.id;
-        const value = e.target.value
-        setData(key, value)
-    }
-
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
-        post('pengguna/create')
+        post('/sistem/pengguna/create')
     }
 
     return (
@@ -85,7 +79,6 @@ export default function Create() {
                                     <Input
                                         id="departemen"
                                         placeholder="Masukkan Nama Departemen"
-                                        onChange={handleChange}
                                         name='departemen'
                                         value={data.departemen}
                                     />

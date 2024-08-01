@@ -1,12 +1,22 @@
-import { Table } from "@/components/ui/table";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { IconHome, IconSearch, IconUserPlus } from '@tabler/icons-react';
+import { IconHome, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react';
 import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
 import { Link } from "@inertiajs/react";
 
 export default function Pegunna() {
+    const pengguna = [
+        {
+            id: "1",
+            nama: "Muhammad Rois",
+            departemen: "12",
+            jabatan: "Karyawan",
+            status: "aktif",
+        },
+    ]
+
     return (
         <Admin>
             <Card className="p-5">
@@ -51,11 +61,37 @@ export default function Pegunna() {
 
                 <Card className="mt-3">
                     <Table className="container">
+                        {/* <TableCaption>Tidak ada data yang di temukan</TableCaption> */}
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead className="w-[100px]">No</TableHead>
+                                <TableHead>Nama</TableHead>
+                                <TableHead>Departemen</TableHead>
+                                <TableHead>Jabatan</TableHead>
+                                <TableHead>Status</TableHead>
+                                <TableHead className="text-right">Aksi</TableHead>
+
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {pengguna.map((pengguna) => (
+                                <TableRow key={pengguna.id}>
+                                    <TableCell className="font-medium">{pengguna.id}</TableCell>
+                                    <TableCell>{pengguna.nama}</TableCell>
+                                    <TableCell>{pengguna.departemen}</TableCell>
+                                    <TableCell>{pengguna.jabatan}</TableCell>
+                                    <TableCell>{pengguna.status}</TableCell>
+                                    <TableCell className="text-right">
+                                        <IconTrash size={18} className="cursor:pointer"/>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
 
                     </Table>
                 </Card>
             </Card>
-        </Admin>
+        </Admin >
     );
 
 }

@@ -21,7 +21,7 @@ export default class SistemsController {
         await pengguna.save();
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
-        return response.redirect('/admin/sistem/pengguna/pengguna'); 
+        return response.redirect('/sistem/pengguna/pengguna'); 
     }
 
     async create({ inertia }: HttpContext) {
