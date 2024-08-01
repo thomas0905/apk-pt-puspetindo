@@ -28,7 +28,7 @@ export default function EditPegguna() {
                                 </Link>
                             </div>
 
-                            <h6 className='text-gray-600 text-lg font-bold'>Add Pengguna</h6>
+                            <h6 className='text-gray-600 text-lg font-bold'>Edit Pengguna</h6>
                         </div>
                     </div>
                 </div>
@@ -52,12 +52,11 @@ export default function EditPegguna() {
                                         id="departemen"
                                         placeholder="Masukkan Nama Departemen"
                                         name='departemen'
-                                        value={data.departemen}
                                     />
                                 </div>
                             </div>
 
-                            <div>
+                            {/* <div>
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="jabatan">Pilih Jabatan:</Label>
                                     <Popover open={open} onOpenChange={setOpen}>
@@ -118,11 +117,11 @@ export default function EditPegguna() {
                                         </Command>
                                     </PopoverContent>
                                 </Popover>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 
-                    <Button type="submit" disabled={processing}>Simpan</Button>
+                    <Button type="submit">Update</Button>
                 </form>
             </Card>
         </Admin>

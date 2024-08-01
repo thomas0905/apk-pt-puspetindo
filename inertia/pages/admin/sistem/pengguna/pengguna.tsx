@@ -90,7 +90,7 @@ export default function Pegunna() {
                                             <IconTrash size={18} />
                                         </span>
 
-                                        <Link href="sistem/pengguna/edit">
+                                        <Link href="/sistem/pengguna/edit">
                                             <IconEdit size={18} />
                                         </Link>
                                     </TableCell>
