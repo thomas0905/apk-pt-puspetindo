@@ -5,23 +5,12 @@ import { IconEdit, IconHome, IconSearch, IconTrash, IconUserPlus } from '@tabler
 import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
 import { Link } from "@inertiajs/react";
-import { useReactTable } from "@tanstack/react-table"
-import { useState } from "react";
 
-const columns = [
-    {
-        accecosrKey: 'task',
-        header: 'Task',
-        cell:(props) => <p>{props.getValue()}</p>
-    }
-]
+// import {useReactTable,getCoreRowModel,flexRender} from '@tanstack/react-table'
+// import { useMemo } from "react";
+
 
 export default function Pegunna() {
-    const [data, setData] = useState()
-    const table = useReactTable({
-        data,
-        columns
-    });
 
     const pengguna = [
         {
@@ -64,6 +53,37 @@ export default function Pegunna() {
             status: "aktif",
         },
     ]
+
+    // const columns = [
+    //     {
+    //         id: '1',
+    //         nama: 'Muhammad Rois',
+    //         kab:'Bangkalan'
+    //     },
+    
+    //     {
+    //         id: '2',
+    //         nama: 'Riski',
+    //         kab:'Bangkalan'
+    //     },
+    
+    //     {
+    //         id: '3',
+    //         nama: 'Finaa',
+    //         kab:'Bangkalan'
+    //     },
+    
+    //     {
+    //         id: '4',
+    //         nama: 'Faraa',
+    //         kab:'Bangkalan'
+    //     },
+    // ]
+    
+    // const table= useReactTable({data,columns})
+
+// const data= useMemo(() => pengguna,[])
+
 
     const handleDelete = () => {
         alert('Berfungsi')

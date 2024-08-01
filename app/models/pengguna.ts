@@ -5,6 +5,18 @@ export default class Pengguna extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
+  @column()
+  declare nama: string
+
+  @column()
+  declare departemen: string
+
+  @column()
+  declare jabatan: string
+
+  @column()
+  declare status: string
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

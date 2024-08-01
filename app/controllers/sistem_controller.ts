@@ -11,9 +11,11 @@ export default class SistemsController {
     }
 
     async store({ request, response, session }: HttpContext) {
+        console.log(request.all());
+        
         const pengguna = new Pengguna();
 
-        pengguna.name = request.input('name');
+        pengguna.nama = request.input('nama');
         pengguna.departemen = request.input('departemen');
         pengguna.jabatan = request.input('jabatan');
         pengguna.status = request.input('status');

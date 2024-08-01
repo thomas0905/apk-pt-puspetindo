@@ -24,7 +24,7 @@ const statuses = [
 export default function Create() {
     const [open, setOpen] = useState(false)
     const { data, setData, post, processing } = useForm({
-        name: '',
+        nama: '',
         departemen: '',
         jabatan: '',
         status: '',
@@ -65,9 +65,9 @@ export default function Create() {
                                 <Input
                                     id="name"
                                     placeholder="Masukkan Nama"
-                                    onChange={(e) => setData('name', e.target.value)}
+                                    onChange={(e) => setData('nama', e.target.value)}
                                     name='name'
-                                    value={data.name}
+                                    value={data.nama}
                                 />
                             </div>
                         </div>
