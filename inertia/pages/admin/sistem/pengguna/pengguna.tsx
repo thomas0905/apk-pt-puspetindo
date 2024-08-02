@@ -4,55 +4,17 @@ import { Button } from '@/components/ui/button';
 import { IconEdit, IconHome, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react';
 import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
+import Pengguna from "#models/pengguna";
 
 // import {useReactTable,getCoreRowModel,flexRender} from '@tanstack/react-table'
 // import { useMemo } from "react";
 
 
 export default function Pegunna() {
+    const { data_pengguna } = usePage<{ data_pengguna: Pengguna[] }>().props
 
-    const pengguna = [
-        {
-            id: "0",
-            nama: "Muhammad Rois",
-            departemen: "12",
-            jabatan: "It Software",
-            status: "aktif",
-        },
 
-        {
-            id: "1",
-            nama: "Abd Asis",
-            departemen: "12",
-            jabatan: "Manager",
-            status: "aktif",
-        },
-
-        {
-            id: "2",
-            nama: "Meiza Fina",
-            departemen: "12",
-            jabatan: "Karyawan",
-            status: "aktif",
-        },
-
-        {
-            id: "3",
-            nama: "Indah Jihan",
-            departemen: "12",
-            jabatan: "IT Support",
-            status: "aktif",
-        },
-
-        {
-            id: "4",
-            nama: "Sohibur Riski",
-            departemen: "12",
-            jabatan: "Pejabat",
-            status: "aktif",
-        },
-    ]
 
     // const columns = [
     //     {
@@ -60,33 +22,35 @@ export default function Pegunna() {
     //         nama: 'Muhammad Rois',
     //         kab:'Bangkalan'
     //     },
-    
+
     //     {
     //         id: '2',
     //         nama: 'Riski',
     //         kab:'Bangkalan'
     //     },
-    
+
     //     {
     //         id: '3',
     //         nama: 'Finaa',
     //         kab:'Bangkalan'
     //     },
-    
+
     //     {
     //         id: '4',
     //         nama: 'Faraa',
     //         kab:'Bangkalan'
     //     },
     // ]
-    
+
     // const table= useReactTable({data,columns})
 
-// const data= useMemo(() => pengguna,[])
+    // const data= useMemo(() => pengguna,[])
 
 
     const handleDelete = () => {
-        alert('Berfungsi')
+        // const { id } = params
+        // const user = await Pengguna.find(id)
+        // await user.delete()
     }
 
     return (
@@ -146,13 +110,11 @@ export default function Pegunna() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {pengguna.map((pengguna) => (
+                            {data_pengguna.map((pengguna) => (
                                 <TableRow key={pengguna.id}>
                                     <TableCell className="font-medium">{pengguna.id}</TableCell>
                                     <TableCell>{pengguna.nama}</TableCell>
                                     <TableCell>{pengguna.departemen}</TableCell>
-                                    <TableCell>{pengguna.jabatan}</TableCell>
-                                    <TableCell>{pengguna.status}</TableCell>
                                     <TableCell className="flex gap-3">
                                         <span onClick={handleDelete} className="text-right text-red-900 cursor-pointer">
                                             <IconTrash size={18} />
@@ -164,6 +126,7 @@ export default function Pegunna() {
                                     </TableCell>
                                 </TableRow>
                             ))}
+
                         </TableBody>
 
                     </Table>

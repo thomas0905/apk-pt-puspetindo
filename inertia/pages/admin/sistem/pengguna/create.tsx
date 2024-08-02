@@ -1,5 +1,5 @@
 import { Head, Link, router } from '@inertiajs/react'
-import { IconHome } from '@tabler/icons-react'
+import { IconHome, IconSolarPanel } from '@tabler/icons-react'
 import React, { FormEventHandler, useState } from 'react'
 import { useForm } from '@inertiajs/react'
 import { Button } from '~/components/ui/button'
@@ -9,6 +9,9 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 import Admin from '~/layout/admin'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '~/components/ui/select'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const statuses = [
     {
@@ -16,8 +19,8 @@ const statuses = [
         label: "Aktif",
     },
     {
-        value: "non-aktif",
-        label: "Non-Aktif",
+        value: "Tidak-aktif",
+        label: "Tidak-aktif",
     }
 ]
 
@@ -31,6 +34,7 @@ export default function Create() {
     })
 
     const handleSubmit: FormEventHandler = (e) => {
+        toast("Ada artikel baru!", {})
         e.preventDefault()
         post('/sistem/pengguna/create')
     }
@@ -38,6 +42,7 @@ export default function Create() {
     return (
         <Admin>
             <Head title='add-pengguna' />
+            <ToastContainer />
             <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
@@ -63,6 +68,7 @@ export default function Create() {
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">Name:</Label>
                                 <Input
+                                    required
                                     id="name"
                                     placeholder="Masukkan Nama"
                                     onChange={(e) => setData('nama', e.target.value)}
@@ -77,15 +83,17 @@ export default function Create() {
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="departemen">Departemen:</Label>
                                     <Input
+                                        required
                                         id="departemen"
                                         placeholder="Masukkan Nama Departemen"
+                                        onChange={(e) => setData('departemen', e.target.value)}
                                         name='departemen'
                                         value={data.departemen}
                                     />
                                 </div>
                             </div>
 
-                            <div>
+                            {/* <div>
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="jabatan">Pilih Jabatan:</Label>
                                     <Popover open={open} onOpenChange={setOpen}>
@@ -114,38 +122,25 @@ export default function Create() {
                                         </PopoverContent>
                                     </Popover>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="status">Pilih Status:</Label>
-                                <Popover open={open} onOpenChange={setOpen}>
-                                    <PopoverTrigger asChild>
-                                        <Button
-                                            variant="outline"
-                                            role="combobox"
-                                            aria-expanded={open}
-                                            className="w-full justify-between"
-                                        >
-                                            {statuses.find(status => status.value === data.status)?.label || "Pilih Status"}
-                                            <p className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                        </Button>
-                                    </PopoverTrigger>
-                                    <PopoverContent className="w-full p-0">
-                                        <Command>
-                                            <CommandInput placeholder="Cari status..." />
-                                            <CommandEmpty>Status tidak ditemukan.</CommandEmpty>
+
+                                <div>
+                                    <Select>
+                                        <SelectTrigger className="w-[180px]">
+                                            <SelectValue placeholder="Pilih Status" />
+                                        </SelectTrigger>
+                                        <SelectContent>
                                             {statuses.map((status) => (
-                                                <CommandItem
-                                                    key={status.value}
-                                                    value={status.value}
-                                                    onSelect={(value) => setData('status', value)}
-                                                >
-                                                    {status.label}
-                                                </CommandItem>
+                                                <div>
+                                                    <SelectItem value={status.value}>{status.label}</SelectItem>
+                                                </div>
                                             ))}
-                                        </Command>
-                                    </PopoverContent>
-                                </Popover>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -117,6 +117,7 @@
     "react-hook-form": "^7.52.1",
     "react-resizable-panels": "^2.0.20",
     "react-router-dom": "^6.24.1",
+    "react-toastify": "^10.0.5",
     "recharts": "^2.12.7",
     "reflect-metadata": "^0.2.2",
     "sonner": "^1.5.0",

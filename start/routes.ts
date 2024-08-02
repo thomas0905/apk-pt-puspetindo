@@ -1,8 +1,8 @@
 import DasboardsController from '#controllers/dasboards_controller'
 import KeuanganController from '#controllers/keuangan_controller'
-import SistemsController from '#controllers/sistem_controller'
 import router from '@adonisjs/core/services/router'
 
+const SistemsController =() => import('#controllers/sistem_controller')
 
 router.on('/').renderInertia('home', { version: 6 })
 
