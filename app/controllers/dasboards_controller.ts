@@ -12,8 +12,8 @@ export default class DasboardsController {
         });
     }
 
-    async proyek({ inertia }: HttpContext) {
-        return inertia.render('admin/dasboard/proyek')
+    async index({ inertia }: HttpContext) {
+        return inertia.render('admin/dasboard/proyek/index')
     }
 
     async store({ request, response, session }: HttpContext) {
@@ -29,7 +29,7 @@ export default class DasboardsController {
         await pengguna.save();
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
-        return response.redirect('/dasboard/pengguna/pengguna');
+        return response.redirect('//pengguna/pengguna');
     }
 
     async create({ inertia }: HttpContext) {

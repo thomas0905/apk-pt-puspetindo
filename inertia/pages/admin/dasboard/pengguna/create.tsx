@@ -1,15 +1,15 @@
-import { Head, Link, router } from '@inertiajs/react'
-import { IconHome, IconSolarPanel } from '@tabler/icons-react'
+import { Head, Link } from '@inertiajs/react'
+import { IconHome } from '@tabler/icons-react'
 import React, { FormEventHandler, useState } from 'react'
 import { useForm } from '@inertiajs/react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
-import { Command, CommandEmpty, CommandInput, CommandItem } from '~/components/ui/command'
+import { Command, CommandInput, CommandItem } from '~/components/ui/command'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 import Admin from '~/layout/admin'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '~/components/ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -42,7 +42,7 @@ export default function Create() {
     return (
         <Admin>
             <Head title='add-pengguna' />
-            <ToastContainer />
+
             <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
@@ -63,6 +63,7 @@ export default function Create() {
                 </div>
 
                 <form className='mt-5' onSubmit={handleSubmit}>
+                    <ToastContainer />
                     <div className='my-5'>
                         <div>
                             <div className="flex flex-col space-y-1.5">
@@ -93,40 +94,10 @@ export default function Create() {
                                 </div>
                             </div>
 
-                            {/* <div>
-                                <div className="flex flex-col space-y-1.5">
-                                    <Label htmlFor="jabatan">Pilih Jabatan:</Label>
-                                    <Popover open={open} onOpenChange={setOpen}>
-                                        <PopoverTrigger asChild>
-                                            <Button
-                                                variant="outline"
-                                                role="combobox"
-                                                aria-expanded={open}
-                                                className="w-full justify-between"
-                                            >
-                                                {data.jabatan || "Pilih Jabatan"}
-                                                <p className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                            </Button>
-                                        </PopoverTrigger>
-                                        <PopoverContent className="w-full p-0">
-                                            <Command>
-                                                <CommandInput placeholder="Cari jabatan..." />
-                                                <CommandEmpty>Jabatan tidak ditemukan.</CommandEmpty>
-                                                <CommandItem
-                                                    value={'Pelajar'}
-                                                    onSelect={(value) => setData('jabatan', value)}
-                                                >
-                                                    Pelajar
-                                                </CommandItem>
-                                            </Command>
-                                        </PopoverContent>
-                                    </Popover>
-                                </div>
-                            </div> */}
+
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="status">Pilih Status:</Label>
-
                                 <div>
                                     <Select>
                                         <SelectTrigger className="w-[180px]">
@@ -135,6 +106,7 @@ export default function Create() {
                                         <SelectContent>
                                             {statuses.map((status) => (
                                                 <div>
+
                                                     <SelectItem value={status.value}>{status.label}</SelectItem>
                                                 </div>
                                             ))}
@@ -142,6 +114,8 @@ export default function Create() {
                                     </Select>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
 
