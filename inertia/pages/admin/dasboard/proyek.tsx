@@ -2,11 +2,11 @@ import { Head } from '@inertiajs/react'
 import React from 'react'
 import Admin from '~/layout/admin'
 
-export default function Pengeluaran() {
+export default function Proyek() {
   return (
     <Admin>
-      <Head title='pengeluaran'/>
-      pengeluaran
+      <Head title='proyek'/>
+      Halaman Proyek
     </Admin>
   )
 }

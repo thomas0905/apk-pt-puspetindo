@@ -13,7 +13,7 @@ export default class DasboardsController {
     }
 
     async proyek({ inertia }: HttpContext) {
-        return inertia.render('admin')
+        return inertia.render('admin/dasboard/proyek')
     }
 
     async store({ request, response, session }: HttpContext) {

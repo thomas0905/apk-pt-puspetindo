@@ -47,7 +47,7 @@ export default function Sidebar() {
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Pengguna</span>
                                 </Link>
 
-                                <Link href='/sistem/pengguna/pengguna' className="flex pl-2 hover:text-white text-black rounded-sm hover:bg-black p-1 w-full gap-2 text-md">
+                                <Link href='/dasboard/proyek' className="flex pl-2 hover:text-white text-black rounded-sm hover:bg-black p-1 w-full gap-2 text-md">
                                     <IconBriefcase size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Proyek</span>
                                 </Link>
