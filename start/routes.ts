@@ -1,3 +1,4 @@
+import UsersController from '#controllers/users_controller'
 import router from '@adonisjs/core/services/router'
 const DasboardsController =() => import('#controllers/dasboards_controller')
 
@@ -9,5 +10,5 @@ router.post('dasboard/pengguna/create',[DasboardsController,'store'])
 router.get('dasboard/proyek',[DasboardsController,'proyek'])
 
 
-
+router.get('dasboard/users/menuprofil',[UsersController,'menuProfil'])
 
