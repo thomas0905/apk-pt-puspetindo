@@ -7,6 +7,7 @@ import {
     IconArrowBadgeLeft,
     IconBriefcase,
     IconBook2,
+    IconSettings,
 } from '@tabler/icons-react';
 import MyImageComponent from '../img/logo-puspetindo.png';
 import { Button } from "@/components/ui/button";
@@ -71,8 +72,12 @@ export default function Sidebar() {
                                     <IconBook2 size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Laporan</span>
                                 </Link>
-                            </span>
 
+                                <Link href='/sistem/pengguna/pengguna' className="flex pl-2  hover:text-white text-black rounded-sm hover:bg-black p-1 w-full gap-2 text-md">
+                                    <IconSettings size={21} />
+                                    <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Pengturan</span>
+                                </Link>
+                            </span>
 
                         </nav>
                     </div>
