@@ -6,8 +6,6 @@ export default class SistemsController {
         return inertia.render('admin/sistem/pengaturan');
     }
 
-
-
     async edit({ inertia }: HttpContext) {
         return inertia.render('admin/sistem/pengguna/edit')
     }

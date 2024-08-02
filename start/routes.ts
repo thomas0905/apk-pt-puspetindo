@@ -1,13 +1,12 @@
-import DasboardsController from '#controllers/dasboards_controller'
 import router from '@adonisjs/core/services/router'
-
+const DasboardsController =() => import('#controllers/dasboards_controller')
 const SistemsController =() => import('#controllers/sistem_controller')
 
 router.on('/').renderInertia('home', { version: 6 })
 
-router.get('sistem/pengguna/pengguna',[DasboardsController,'pengguna'])
-router.get('sistem/pengguna/create',[DasboardsController,'create'])
-router.post('sistem/pengguna/create',[DasboardsController,'store'])
+router.get('dasboard/pengguna/pengguna',[DasboardsController,'pengguna'])
+router.get('dasboard/pengguna/create',[DasboardsController,'create'])
+router.post('dasboard/pengguna/create',[DasboardsController,'store'])
 
 
 router.get('sistem/pengguna/edit',[SistemsController,'edit'])

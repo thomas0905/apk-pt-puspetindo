@@ -2,21 +2,18 @@ import Pengguna from "#models/pengguna";
 import { HttpContext } from "@adonisjs/core/http";
 
 export default class DasboardsController {
-    async analist({ inertia }: HttpContext) {
-        return inertia.render('admin/dasboard/analist')
-    }
-
-    async laporan({ inertia }: HttpContext) {
-        return inertia.render('admin/dasboard/laporan')
-    }
 
     async pengguna({ inertia }: HttpContext) {
         const pengguna = await Pengguna.all()
         console.log(pengguna);
-        
-        return inertia.render('admin/sistem/pengguna/pengguna', {
+
+        return inertia.render('admin/dasboard/pengguna/pengguna', {
             data_pengguna: pengguna
         });
+    }
+
+    async proyek({ inertia }: HttpContext) {
+        return inertia.render('admin')
     }
 
     async store({ request, response, session }: HttpContext) {
