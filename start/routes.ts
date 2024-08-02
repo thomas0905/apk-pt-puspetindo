@@ -1,7 +1,7 @@
-import UsersController from '#controllers/users_controller'
+import ManagementsController from '#controllers/managements_controller'
 import router from '@adonisjs/core/services/router'
 const DasboardsController =() => import('#controllers/dasboards_controller')
-
+const UsersController =() => import('#controllers/users_controller')
 router.on('/').renderInertia('home', { version: 6 })
 
 router.get('dasboard/pengguna/pengguna',[DasboardsController,'pengguna'])
@@ -10,5 +10,9 @@ router.post('dasboard/pengguna/create',[DasboardsController,'store'])
 router.get('dasboard/proyek',[DasboardsController,'proyek'])
 
 
-router.get('dasboard/users/menuprofil',[UsersController,'menuProfil'])
+router.get('users/menuprofil',[UsersController,'menuprofil'])
+router.get('users/minhours',[UsersController,'minhours'])
+
+
+router.get('management/laporan',[ManagementsController,'management'])
 

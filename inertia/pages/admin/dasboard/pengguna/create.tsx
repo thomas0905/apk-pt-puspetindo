@@ -36,7 +36,7 @@ export default function Create() {
     const handleSubmit: FormEventHandler = (e) => {
         toast("Ada artikel baru!", {})
         e.preventDefault()
-        post('/sistem/pengguna/create')
+        post('/dasboard/pengguna/create')
     }
 
     return (
