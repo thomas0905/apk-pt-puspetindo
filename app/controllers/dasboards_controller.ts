@@ -29,7 +29,7 @@ export default class DasboardsController {
         await pengguna.save();
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
-        return response.redirect('/sistem/pengguna/pengguna');
+        return response.redirect('/dasboard/pengguna/pengguna');
     }
 
     async create({ inertia }: HttpContext) {
