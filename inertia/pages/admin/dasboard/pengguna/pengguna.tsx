@@ -11,7 +11,7 @@ import Pengguna from "#models/pengguna";
 export default function Pegunna() {
     const { data_pengguna } = usePage<{ data_pengguna: Pengguna[] }>().props
 
-    const handleDelete = (id: any) => {
+    const handleDelete = (id:any) => {
         router.delete('/dasboard/pengguna/pengguna/' + id);
     }
 
