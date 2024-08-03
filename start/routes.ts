@@ -8,7 +8,7 @@ router.get('dasboard/pengguna/pengguna',[DasboardsController,'pengguna'])
 router.get('dasboard/pengguna/create',[DasboardsController,'create'])
 router.post('dasboard/pengguna/create',[DasboardsController,'store'])
 router.get('dasboard/proyek/index',[DasboardsController,'index'])
-
+router.delete('dasboard/pengguna/pengguna/:id',[DasboardsController,'delete'])
 
 router.get('users/menuprofil',[UsersController,'menuprofil'])
 router.get('users/minhours',[UsersController,'minhours'])

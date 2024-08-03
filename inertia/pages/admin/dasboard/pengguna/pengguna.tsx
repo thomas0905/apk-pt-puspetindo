@@ -4,16 +4,15 @@ import { Button } from '@/components/ui/button';
 import { IconEdit, IconHome, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react';
 import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
-import { Link, usePage } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 import Pengguna from "#models/pengguna";
 
 
 export default function Pegunna() {
     const { data_pengguna } = usePage<{ data_pengguna: Pengguna[] }>().props
-  
-    const handleDelete = () => {
-        // const pengguna = await Pengguna.findOrFail(1)
-        // await pengguna.delete()
+
+    const handleDelete = (id: any) => {
+        router.delete('/dasboard/pengguna/pengguna/' + id);
     }
 
     return (
@@ -61,7 +60,7 @@ export default function Pegunna() {
                 <Card className="mt-3">
                     <Table className="container">
                         {/* <TableCaption>Tidak ada data yang di temukan</TableCaption> */}
-                        <TableHeader>
+                        <TableHeader className="bg-slate-50">
                             <TableRow>
                                 <TableHead className="w-[100px]">No</TableHead>
                                 <TableHead>Nama</TableHead>
@@ -79,7 +78,7 @@ export default function Pegunna() {
                                     <TableCell>{pengguna.nama}</TableCell>
                                     <TableCell>{pengguna.departemen}</TableCell>
                                     <TableCell className="flex gap-3">
-                                        <span onClick={handleDelete} className="text-right text-red-900 cursor-pointer">
+                                        <span onClick={() => handleDelete(pengguna.id)} className="text-right text-red-900 cursor-pointer">
                                             <IconTrash size={18} />
                                         </span>
 

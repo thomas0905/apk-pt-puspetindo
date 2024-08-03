@@ -24,8 +24,18 @@ const statuses = [
     }
 ]
 
+const jabatans = [
+    {
+        value: "manager",
+        label: "Manager",
+    },
+    {
+        value: "staff",
+        label: "Staff",
+    }
+]
+
 export default function Create() {
-    const [open, setOpen] = useState(false)
     const { data, setData, post, processing } = useForm({
         nama: '',
         departemen: '',
@@ -36,8 +46,8 @@ export default function Create() {
 
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
-    
-        const validationErrors = {};
+            
+        const validationErrors: any = {};
         let isValid = true;
 
         if (data.nama.trim() === '') {
@@ -55,12 +65,22 @@ export default function Create() {
             isValid = false;
         }
 
+        if (data.jabatan.trim() === '') {
+            validationErrors.jabatan = 'Jabatan harus dipilih';
+            isValid = false;
+        }
+
         setErrors(validationErrors);
 
         if (isValid) {
             post('/dasboard/pengguna/create', {
                 onSuccess: () => {
-                    toast("Data Berhasil Di simpan!", {
+                    toast.success("Data Berhasil Disimpan!", {
+                        position: 'top-center'
+                    });
+                },
+                onError: () => {
+                    toast.error("Terjadi kesalahan saat menyimpan data.", {
                         position: 'top-center'
                     });
                 }
@@ -96,12 +116,12 @@ export default function Create() {
                     <div className='my-5'>
                         <div>
                             <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="name">Name:</Label>
+                                <Label htmlFor="nama">Nama:</Label>
                                 <Input
-                                    id="name"
+                                    id="nama"
                                     placeholder="Masukkan Nama"
                                     onChange={(e) => setData('nama', e.target.value)}
-                                    name='name'
+                                    name='nama'
                                     value={data.nama}
                                 />
                                 {errors.nama && <small className="text-red-600">{errors.nama}</small>}
@@ -120,6 +140,25 @@ export default function Create() {
                                         value={data.departemen}
                                     />
                                     {errors.departemen && <small className="text-red-600">{errors.departemen}</small>}
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="jabatan">Pilih Jabatan:</Label>
+                                <div>
+                                    <Select
+                                        onValueChange={(value) => setData('jabatan', value)}
+                                    >
+                                        <SelectTrigger className="w-[180px]">
+                                            <SelectValue placeholder="Pilih Jabatan" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {jabatans.map((jabatan) => (
+                                                <SelectItem key={jabatan.value} value={jabatan.value}>{jabatan.label}</SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                    {errors.jabatan && <small className="text-red-600">{errors.jabatan}</small>}
                                 </div>
                             </div>
 

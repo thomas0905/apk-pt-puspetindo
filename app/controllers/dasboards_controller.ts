@@ -1,5 +1,5 @@
 import Pengguna from "#models/pengguna";
-import { HttpContext } from "@adonisjs/core/http";
+import { HttpContext, Redirect } from "@adonisjs/core/http";
 
 export default class DasboardsController {
 
@@ -27,7 +27,13 @@ export default class DasboardsController {
         await pengguna.save();
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
-        return response.redirect('//pengguna/pengguna');
+        return response.redirect('/dasboard/pengguna/pengguna');
+    }
+
+    async delete({ params,response }: HttpContext) {
+        const pengguna= await Pengguna.findOrFail(params.id)
+        await pengguna.delete()
+        return response.redirect('/dasboard/pengguna/pengguna')
     }
 
     async create({ inertia }: HttpContext) {
