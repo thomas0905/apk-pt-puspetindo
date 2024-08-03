@@ -12,6 +12,7 @@ export default function Pegunna() {
     const { data_pengguna } = usePage<{ data_pengguna: Pengguna[] }>().props
 
     const handleDelete = (id:any) => {
+        const result = window.confirm('Apakah Anda ingin menghapus data?');
         router.delete('/dasboard/pengguna/pengguna/' + id);
     }
 
@@ -82,7 +83,7 @@ export default function Pegunna() {
                                             <IconTrash size={18} />
                                         </span>
 
-                                        <Link href="/sistem/pengguna/edit">
+                                        <Link href="/dasboard/pengguna/edit">
                                             <IconEdit size={18} />
                                         </Link>
                                     </TableCell>

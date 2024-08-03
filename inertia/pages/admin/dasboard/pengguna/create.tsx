@@ -46,7 +46,46 @@ export default function Create() {
 
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
-        
+    
+        const validationErrors: any = {};
+        let isValid = true;
+
+        if (data.nama.trim() === '') {
+            validationErrors.nama = 'Nama harus diisi';
+            isValid = false;
+        }
+
+        if (data.departemen.trim() === '') {
+            validationErrors.departemen = 'Departemen harus diisi';
+            isValid = false;
+        }
+
+        if (data.status.trim() === '') {
+            validationErrors.status = 'Status harus dipilih';
+            isValid = false;
+        }
+
+        if (data.jabatan.trim() === '') {
+            validationErrors.jabatan = 'Jabatan harus dipilih';
+            isValid = false;
+        }
+
+        setErrors(validationErrors);
+
+        if (isValid) {
+            post('/dasboard/pengguna/create', {
+                onSuccess: () => {
+                    toast.success("Data Berhasil Disimpan!", {
+                        position: 'top-center'
+                    });
+                },
+                onError: () => {
+                    toast.error("Terjadi kesalahan saat menyimpan data.", {
+                        position: 'top-center'
+                    });
+                }
+            });
+        }
     }
 
     return (
