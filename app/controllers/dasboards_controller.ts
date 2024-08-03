@@ -39,4 +39,8 @@ export default class DasboardsController {
     async create({ inertia }: HttpContext) {
         return inertia.render('admin/dasboard/pengguna/create');
     }
+
+    async edit({ inertia }: HttpContext) {
+        return inertia.render('admin/dasboard/pengguna/edit');
+    }
 }
