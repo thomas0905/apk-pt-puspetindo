@@ -32,11 +32,40 @@ export default function Create() {
         jabatan: '',
         status: '',
     })
+    const [errors, setErrors] = useState({});
 
     const handleSubmit: FormEventHandler = (e) => {
-        toast("Data Berhasil Di simpan!", {})
         e.preventDefault()
-        post('/dasboard/pengguna/create')
+    
+        const validationErrors = {};
+        let isValid = true;
+
+        if (data.nama.trim() === '') {
+            validationErrors.nama = 'Nama harus diisi';
+            isValid = false;
+        }
+
+        if (data.departemen.trim() === '') {
+            validationErrors.departemen = 'Departemen harus diisi';
+            isValid = false;
+        }
+
+        if (data.status.trim() === '') {
+            validationErrors.status = 'Status harus dipilih';
+            isValid = false;
+        }
+
+        setErrors(validationErrors);
+
+        if (isValid) {
+            post('/dasboard/pengguna/create', {
+                onSuccess: () => {
+                    toast("Data Berhasil Di simpan!", {
+                        position: 'top-center'
+                    });
+                }
+            });
+        }
     }
 
     return (
@@ -52,7 +81,7 @@ export default function Create() {
                                     <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                                 </Link>
                                 <span>-</span>
-                                <Link href='/sistem/pengguna/pengguna'>
+                                <Link href='/dasboard/pengguna/pengguna'>
                                     <p className="text-sm">pengguna</p>
                                 </Link>
                             </div>
@@ -69,13 +98,13 @@ export default function Create() {
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">Name:</Label>
                                 <Input
-                                    required
                                     id="name"
                                     placeholder="Masukkan Nama"
                                     onChange={(e) => setData('nama', e.target.value)}
                                     name='name'
                                     value={data.nama}
                                 />
+                                {errors.nama && <small className="text-red-600">{errors.nama}</small>}
                             </div>
                         </div>
 
@@ -84,38 +113,34 @@ export default function Create() {
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="departemen">Departemen:</Label>
                                     <Input
-                                        required
                                         id="departemen"
                                         placeholder="Masukkan Nama Departemen"
                                         onChange={(e) => setData('departemen', e.target.value)}
                                         name='departemen'
                                         value={data.departemen}
                                     />
+                                    {errors.departemen && <small className="text-red-600">{errors.departemen}</small>}
                                 </div>
                             </div>
-
-
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="status">Pilih Status:</Label>
                                 <div>
-                                    <Select>
+                                    <Select
+                                        onValueChange={(value) => setData('status', value)}
+                                    >
                                         <SelectTrigger className="w-[180px]">
                                             <SelectValue placeholder="Pilih Status" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {statuses.map((status) => (
-                                                <div>
-
-                                                    <SelectItem value={status.value}>{status.label}</SelectItem>
-                                                </div>
+                                                <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
                                             ))}
                                         </SelectContent>
                                     </Select>
+                                    {errors.status && <small className="text-red-600">{errors.status}</small>}
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
 

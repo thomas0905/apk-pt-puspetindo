@@ -7,50 +7,13 @@ import Admin from '~/layout/admin';
 import { Link, usePage } from "@inertiajs/react";
 import Pengguna from "#models/pengguna";
 
-// import {useReactTable,getCoreRowModel,flexRender} from '@tanstack/react-table'
-// import { useMemo } from "react";
-
 
 export default function Pegunna() {
     const { data_pengguna } = usePage<{ data_pengguna: Pengguna[] }>().props
-
-
-
-    // const columns = [
-    //     {
-    //         id: '1',
-    //         nama: 'Muhammad Rois',
-    //         kab:'Bangkalan'
-    //     },
-
-    //     {
-    //         id: '2',
-    //         nama: 'Riski',
-    //         kab:'Bangkalan'
-    //     },
-
-    //     {
-    //         id: '3',
-    //         nama: 'Finaa',
-    //         kab:'Bangkalan'
-    //     },
-
-    //     {
-    //         id: '4',
-    //         nama: 'Faraa',
-    //         kab:'Bangkalan'
-    //     },
-    // ]
-
-    // const table= useReactTable({data,columns})
-
-    // const data= useMemo(() => pengguna,[])
-
-
+  
     const handleDelete = () => {
-        // const { id } = params
-        // const user = await Pengguna.find(id)
-        // await user.delete()
+        // const pengguna = await Pengguna.findOrFail(1)
+        // await pengguna.delete()
     }
 
     return (
