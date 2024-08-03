@@ -34,7 +34,7 @@ export default function Create() {
     })
 
     const handleSubmit: FormEventHandler = (e) => {
-        toast("Ada artikel baru!", {})
+        toast("Data Berhasil Di simpan!", {})
         e.preventDefault()
         post('/dasboard/pengguna/create')
     }

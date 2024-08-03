@@ -17,8 +17,6 @@ export default class DasboardsController {
     }
 
     async store({ request, response, session }: HttpContext) {
-        console.log(request.all());
-
         const pengguna = new Pengguna();
 
         pengguna.nama = request.input('nama');
