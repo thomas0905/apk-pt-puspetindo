@@ -46,7 +46,7 @@ export default function Create() {
 
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
-    
+
         const validationErrors: any = {};
         let isValid = true;
 
@@ -86,6 +86,11 @@ export default function Create() {
                 }
             });
         }
+    }
+
+    const handleChange = (e) => {
+        console.log(e);
+        
     }
 
     return (
@@ -154,7 +159,7 @@ export default function Create() {
                                         </SelectTrigger>
                                         <SelectContent>
                                             {jabatans.map((jabatan) => (
-                                                <SelectItem key={jabatan.value} value={jabatan.value}>{jabatan.label}</SelectItem>
+                                                <SelectItem onChange={handleChange} key={jabatan.value} value={jabatan.value}>{jabatan.label}</SelectItem>
                                             ))}
                                         </SelectContent>
                                     </Select>
