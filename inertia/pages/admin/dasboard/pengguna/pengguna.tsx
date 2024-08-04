@@ -11,11 +11,17 @@ import Pengguna from "#models/pengguna";
 export default function Pegunna() {
     const { data_pengguna } = usePage<{ data_pengguna: Pengguna[] }>().props
 
-    const handleDelete = (id:any) => {
+    const handleDelete = async (id: any) => {
         const result = window.confirm('Apakah Anda ingin menghapus data?');
-        router.delete('/dasboard/pengguna/pengguna/' + id);
-    }
 
+        if (result) {
+            await router.delete('/dasboard/pengguna/pengguna/' + id);
+            alert('Data berhasil dihapus');
+
+        } else {
+            alert('Penghapusan data dibatalkan');
+        }
+    }
     return (
         <Admin>
             <Card className="p-5">
