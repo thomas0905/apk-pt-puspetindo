@@ -90,10 +90,6 @@ export default function Create() {
         }
     }
 
-    const handleChange = () => {
-        console.log();
-
-    }
 
     return (
         <Admin>
@@ -161,7 +157,7 @@ export default function Create() {
                                         </SelectTrigger>
                                         <SelectContent>
                                             {jabatans.map((jabatan) => (
-                                                <SelectItem onChange={handleChange} key={jabatan.value} value={jabatan.value}>{jabatan.label}</SelectItem>
+                                                <SelectItem key={jabatan.value} value={jabatan.value}>{jabatan.label}</SelectItem>
                                             ))}
                                         </SelectContent>
                                     </Select>

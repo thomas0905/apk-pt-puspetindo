@@ -4,13 +4,12 @@ import { IconHome } from '@tabler/icons-react'
 import React, { FormEventHandler } from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
-import { Command, CommandEmpty, CommandInput, CommandItem } from '~/components/ui/command'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
-import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import Admin from '~/layout/admin'
 
-export default function EditPegguna() {
+export default function EditPengguna() {
     const { pengguna } = usePage().props
     const { data, setData, put } = useForm({
         nama: pengguna.nama,
@@ -23,9 +22,32 @@ export default function EditPegguna() {
         e.preventDefault()
         put('/dasboard/pengguna/edit/' + pengguna.id)
     }
+
+    const jabatans = [
+        {
+            value: "manager",
+            label: "Manager",
+        },
+        {
+            value: "staff",
+            label: "Staff",
+        }
+    ]
+
+    const statuses = [
+        {
+            value: "aktif",
+            label: "Aktif",
+        },
+        {
+            value: "Tidak-aktif",
+            label: "Tidak-aktif",
+        }
+    ]
+
     return (
         <Admin>
-            <Head title='edit'/>
+            <Head title='Edit Pengguna' />
             <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
@@ -36,10 +58,9 @@ export default function EditPegguna() {
                                 </Link>
                                 <span>-</span>
                                 <Link href='/dasboard/pengguna/pengguna'>
-                                    <p className="text-sm">pengguna</p>
+                                    <p className="text-sm">Pengguna</p>
                                 </Link>
                             </div>
-
                             <h6 className='text-gray-600 text-lg font-bold'>Edit Pengguna</h6>
                         </div>
                     </div>
@@ -47,93 +68,66 @@ export default function EditPegguna() {
 
                 <form className='mt-5' onSubmit={handleSubmit}>
                     <div className='my-5'>
-                        <div>
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="name">Name:</Label>
-                                <Input
-                                    id="name"
-                                    name='nama'
-                                    value={data.nama}
-                                    placeholder='Masukkan Nama'
-                                    onChange={(e) => setData('nama', e.target.value)}
-                                />
-                            </div>
+                        <div className="flex flex-col space-y-1.5">
+                            <Label htmlFor="name">Name:</Label>
+                            <Input
+                                id="name"
+                                name='nama'
+                                placeholder='Masukkan Nama'
+                                value={data.nama}
+                                onChange={(e) => setData('nama', e.target.value)}
+                            />
                         </div>
 
                         <div className="grid grid-cols-3 gap-3 mt-3">
-                            <div>
-                                <div className="flex flex-col space-y-1.5">
-                                    <Label htmlFor="departemen">Departemen:</Label>
-                                    <Input
-                                        id="departemen"
-                                        placeholder="Masukkan Nama Departemen"
-                                        name='departemen'
-                                    />
-                                </div>
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="departemen">Departemen:</Label>
+                                <Input
+                                    id="departemen"
+                                    placeholder="Masukkan Nama Departemen"
+                                    name='departemen'
+                                    value={data.departemen}
+                                    onChange={(e) => setData('departemen', e.target.value)}
+                                />
                             </div>
 
-                            {/* <div>
-                                <div className="flex flex-col space-y-1.5">
-                                    <Label htmlFor="jabatan">Pilih Jabatan:</Label>
-                                    <Popover open={open} onOpenChange={setOpen}>
-                                        <PopoverTrigger asChild>
-                                            <Button
-                                                variant="outline"
-                                                role="combobox"
-                                                aria-expanded={open}
-                                                className="w-full justify-between"
-                                            >
-                                                {data.jabatan || "Pilih Jabatan"}
-                                                <p className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                            </Button>
-                                        </PopoverTrigger>
-                                        <PopoverContent className="w-full p-0">
-                                            <Command>
-                                                <CommandInput placeholder="Cari jabatan..." />
-                                                <CommandEmpty>Jabatan tidak ditemukan.</CommandEmpty>
-                                                <CommandItem
-                                                    value={'Pelajar'}
-                                                    onSelect={(value) => setData('jabatan', value)}
-                                                >
-                                                    Pelajar
-                                                </CommandItem>
-                                            </Command>
-                                        </PopoverContent>
-                                    </Popover>
-                                </div>
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="jabatan">Pilih Jabatan:</Label>
+                                <Select
+                                    value={data.jabatan}
+                                    onValueChange={(value) => setData('jabatan', value)}
+                                >
+                                    <SelectTrigger className="w-[180px]">
+                                        <SelectValue placeholder="Pilih Jabatan" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {jabatans.map((jabatan) => (
+                                            <SelectItem key={jabatan.value} value={jabatan.value}>
+                                                {jabatan.label}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="status">Pilih Status:</Label>
-                                <Popover open={open} onOpenChange={setOpen}>
-                                    <PopoverTrigger asChild>
-                                        <Button
-                                            variant="outline"
-                                            role="combobox"
-                                            aria-expanded={open}
-                                            className="w-full justify-between"
-                                        >
-                                            {statuses.find(status => status.value === data.status)?.label || "Pilih Status"}
-                                            <p className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                        </Button>
-                                    </PopoverTrigger>
-                                    <PopoverContent className="w-full p-0">
-                                        <Command>
-                                            <CommandInput placeholder="Cari status..." />
-                                            <CommandEmpty>Status tidak ditemukan.</CommandEmpty>
+                                <div>
+                                    <Select
+                                    value={data.status}
+                                    onValueChange={(value) => setData('status', value)}
+                                    >
+                                        <SelectTrigger className="w-[180px]">
+                                            <SelectValue placeholder="Pilih Status" />
+                                        </SelectTrigger>
+                                        <SelectContent>
                                             {statuses.map((status) => (
-                                                <CommandItem
-                                                    key={status.value}
-                                                    value={status.value}
-                                                    onSelect={(value) => setData('status', value)}
-                                                >
-                                                    {status.label}
-                                                </CommandItem>
+                                                <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
                                             ))}
-                                        </Command>
-                                    </PopoverContent>
-                                </Popover>
-                            </div> */}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
