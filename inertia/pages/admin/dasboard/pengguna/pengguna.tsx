@@ -21,16 +21,11 @@ export default function Pegunna() {
             confirmButtonText: 'Ya!',
             cancelButtonText: 'Tidak!',
             allowOutsideClick: false,
-            preConfirm: () => {
-                // Simulate delay by returning a promise that resolves after 5 seconds
-                return new Promise((resolve) => setTimeout(resolve, 5000));
-            },
             didOpen: () => {
                 Swal.showLoading();
             },
         });
     
-        // Wait for the confirmation dialog result
         const result = await swalInstance;
     
         if (result.isConfirmed) {
@@ -112,7 +107,7 @@ export default function Pegunna() {
                                             <IconTrash size={18} />
                                         </span>
 
-                                        <Link href="/dasboard/pengguna/edit/:id">
+                                        <Link href={"/dasboard/pengguna/edit/" + pengguna.id}>
                                             <IconEdit size={18} />
                                         </Link>
                                     </TableCell>

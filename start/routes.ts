@@ -9,7 +9,7 @@ router.get('/dasboard/pengguna/create',[DasboardsController,'create'])
 router.post('/dasboard/pengguna/create',[DasboardsController,'store'])
 router.delete('dasboard/pengguna/pengguna/:id',[DasboardsController,'delete'])
 router.get('/dasboard/pengguna/edit/:id', [DasboardsController,'edit'])
-router.post('/posts/update/:id', [DasboardsController])
+router.put('/dasboard/pengguna/edit/:id', [DasboardsController, 'update'])
 
 router.get('/dasboard/proyek/index',[DasboardsController,'index'])
 

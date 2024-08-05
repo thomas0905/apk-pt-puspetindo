@@ -1,5 +1,6 @@
 import Pengguna from "#models/pengguna";
 import { HttpContext, Redirect } from "@adonisjs/core/http";
+import inertia from "@adonisjs/inertia/client";
 import { DateTime } from "luxon";
 
 export default class DasboardsController {
@@ -46,11 +47,19 @@ export default class DasboardsController {
         return response.redirect('/dasboard/pengguna/pengguna')
     }
 
-    async edit({ params, response }: HttpContext) {
-        const pengguna = await Pengguna.findOrFail(params.id)
-        // pengguna.lastLoginAt = DateTime.local()
-        
-        await pengguna.save()
-        return response.redirect('admin/dasboard/pengguna/edit');
+    async edit({ inertia,params }: HttpContext) {
+        console.log(params.id);
+        const pengguna = await Pengguna.find(params.id)
+        return inertia.render('admin/dasboard/pengguna/edit',{
+            pengguna:pengguna
+        });
     }
+
+    async update({request,params,response}:HttpContext){
+        const pengguna = await Pengguna.findOrFail(params.id)
+        pengguna.nama = request.input('nama')
+        pengguna.save()
+        return response.redirect('admin/dasboard/pengguna/edit')
+    }
+    
 }

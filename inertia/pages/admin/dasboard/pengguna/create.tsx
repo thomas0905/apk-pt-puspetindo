@@ -42,6 +42,8 @@ export default function Create() {
         jabatan: '',
         status: '',
     })
+    console.log(data);
+    
     const [errors, setErrors] = useState({});
 
     const handleSubmit: FormEventHandler = (e) => {

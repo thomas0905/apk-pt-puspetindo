@@ -62,7 +62,7 @@ export default function Sidebar() {
 
                                 <Link href='/dasboard/users/minhours' className="flex pl-2 hover:text-white text-black rounded-sm hover:bg-black p-1 w-full gap-2 text-md">
                                     <IconBriefcase size={21} />
-                                    <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Min Hours</span>
+                                    <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Man Hours</span>
                                 </Link>
                             </span>
 

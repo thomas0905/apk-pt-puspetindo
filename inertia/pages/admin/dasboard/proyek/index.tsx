@@ -22,7 +22,7 @@ export default function IndexProyek() {
 
 
                         <div>
-                            <Link href="/dasboard/pengguna/create">
+                            <Link href="/dasboard/proyek/create">
                                 <Button className="bg-slate-900 text-white btn-small    gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
                                     <IconBriefcase size={18} />
                                     Tambah Proyek
@@ -56,7 +56,7 @@ export default function IndexProyek() {
                         <TableHeader>
                             <TableRow>
                                 <TableHead className="w-[100px]">No</TableHead>
-                                <TableHead>Nama</TableHead>
+                                <TableHead>Nama Proyek</TableHead>
                                 <TableHead>Departemen</TableHead>
                                 <TableHead>Jabatan</TableHead>
                                 <TableHead>Status</TableHead>
