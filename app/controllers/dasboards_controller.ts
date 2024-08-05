@@ -16,6 +16,12 @@ export default class DasboardsController {
         return inertia.render('admin/dasboard/proyek/index')
     }
 
+
+    async login({ inertia }: HttpContext) {
+        return inertia.render('auth/login')
+    }
+
+
     async store({ request, response, session }: HttpContext) {
         const pengguna = new Pengguna();
 

@@ -13,31 +13,27 @@ export default function Pegunna() {
     const { data_pengguna } = usePage<{ data_pengguna: Pengguna[] }>().props
 
     const handleDelete = async (id: any) => {
-        // Show the confirmation dialog
-        const result = await Swal.fire({
+        // Show the initial confirmation dialog with disabled confirm button
+        const swalInstance = Swal.fire({
             title: 'Ingin Hapus Data?',
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: 'Ya!',
             cancelButtonText: 'Tidak!',
+            allowOutsideClick: false,
+            preConfirm: () => {
+                // Simulate delay by returning a promise that resolves after 5 seconds
+                return new Promise((resolve) => setTimeout(resolve, 5000));
+            },
+            didOpen: () => {
+                Swal.showLoading();
+            },
         });
     
-        // Check if the user confirmed the deletion
+        // Wait for the confirmation dialog result
+        const result = await swalInstance;
+    
         if (result.isConfirmed) {
-            // Show a loading message
-            Swal.fire({
-                title: 'Menghapus...',
-                text: 'Data akan dihapus dalam 5 detik.',
-                icon: 'info',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                },
-            });
-    
-            // Wait for 5 seconds
-            await new Promise(resolve => setTimeout(resolve, 5000));
-    
             // Perform the delete operation
             await router.delete('/dasboard/pengguna/pengguna/' + id);
     
