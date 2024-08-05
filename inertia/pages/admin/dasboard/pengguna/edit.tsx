@@ -10,6 +10,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover
 import Admin from '~/layout/admin'
 
 export default function EditPegguna() {
+    // const { data_pengguna } = usePage<{ data_pengguna: Pengguna[] }>().props
     return (
         <Admin>
             <Head title='edit' />

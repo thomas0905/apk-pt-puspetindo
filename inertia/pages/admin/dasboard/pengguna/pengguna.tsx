@@ -112,7 +112,7 @@ export default function Pegunna() {
                                             <IconTrash size={18} />
                                         </span>
 
-                                        <Link href="/dasboard/pengguna/edit">
+                                        <Link href="/dasboard/pengguna/edit/:id">
                                             <IconEdit size={18} />
                                         </Link>
                                     </TableCell>
