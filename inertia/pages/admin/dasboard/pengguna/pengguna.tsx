@@ -84,6 +84,8 @@ export default function Pegunna() {
                                     <TableCell className="font-medium">{pengguna.id}</TableCell>
                                     <TableCell>{pengguna.nama}</TableCell>
                                     <TableCell>{pengguna.departemen}</TableCell>
+                                    <TableCell>{pengguna.jabatan}</TableCell>
+                                    <TableCell>{pengguna.status}</TableCell>
                                     <TableCell className="flex gap-3">
                                         <span onClick={() => handleDelete(pengguna.id)} className="text-right text-red-900 cursor-pointer">
                                             <IconTrash size={18} />

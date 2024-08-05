@@ -88,8 +88,9 @@ export default function Create() {
         }
     }
 
-    const handleChange = (value) => {
-        console.log(value);
+    const handleChange = () => {
+        console.log();
+        
     }
 
     return (
@@ -147,29 +148,24 @@ export default function Create() {
                                 </div>
                             </div>
 
-                         
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="jabatan">Pilih Jabatan:</Label>
                                 <div>
                                     <Select
-                                        onValueChange={(value) => {
-                                            setData('jabatan', value);
-                                            handleChange(value);
-                                        }}
+                                        onValueChange={(value) => setData('jabatan', value)}
                                     >
                                         <SelectTrigger className="w-[180px]">
                                             <SelectValue placeholder="Pilih Jabatan" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {jabatans.map((jabatan) => (
-                                                <SelectItem key={jabatan.value} value={jabatan.value}>{jabatan.label}</SelectItem>
+                                                <SelectItem onChange={handleChange} key={jabatan.value} value={jabatan.value}>{jabatan.label}</SelectItem>
                                             ))}
                                         </SelectContent>
                                     </Select>
                                     {errors.jabatan && <small className="text-red-600">{errors.jabatan}</small>}
                                 </div>
                             </div>
-
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="status">Pilih Status:</Label>
