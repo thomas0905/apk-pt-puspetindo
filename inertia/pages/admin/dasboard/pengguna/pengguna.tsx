@@ -6,22 +6,29 @@ import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
 import { Link, router, usePage } from "@inertiajs/react";
 import Pengguna from "#models/pengguna";
+import Swal from 'sweetalert2'
 
 
 export default function Pegunna() {
     const { data_pengguna } = usePage<{ data_pengguna: Pengguna[] }>().props
 
     const handleDelete = async (id: any) => {
-        const result = window.confirm('Apakah Anda ingin menghapus data?');
-
-        if (result) {
+        const result = await Swal.fire({
+            title: 'Ingin Hapus Data?',
+            // text: 'Do you want to delete this data?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ya!',
+            cancelButtonText: 'Tidak!',
+        });
+    
+        if (result.isConfirmed) {
             await router.delete('/dasboard/pengguna/pengguna/' + id);
-            alert('Data berhasil dihapus');
-
+            Swal.fire('Deleted!', 'Data berhasil di hapus.', 'success');
         } else {
-            alert('Penghapusan data dibatalkan');
+            Swal.fire('Cancelled', 'Your data is safe :)', 'error');
         }
-    }
+    };
     return (
         <Admin>
             <Card className="p-5">
