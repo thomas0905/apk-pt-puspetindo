@@ -59,7 +59,8 @@ export default class DasboardsController {
         const pengguna = await Pengguna.findOrFail(params.id)
         pengguna.nama = request.input('nama')
         pengguna.save()
-        return response.redirect('admin/dasboard/pengguna/edit')
+        return response.redirect('/dasboard/pengguna/pengguna')
+  
     }
     
 }

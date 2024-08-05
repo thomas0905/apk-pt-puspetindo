@@ -13,7 +13,6 @@ export default function Pegunna() {
     const { data_pengguna } = usePage<{ data_pengguna: Pengguna[] }>().props
 
     const handleDelete = async (id: any) => {
-        // Show the initial confirmation dialog with disabled confirm button
         const swalInstance = Swal.fire({
             title: 'Ingin Hapus Data?',
             icon: 'question',
@@ -21,18 +20,10 @@ export default function Pegunna() {
             confirmButtonText: 'Ya!',
             cancelButtonText: 'Tidak!',
             allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading();
-            },
         });
-    
         const result = await swalInstance;
-    
         if (result.isConfirmed) {
-            // Perform the delete operation
             await router.delete('/dasboard/pengguna/pengguna/' + id);
-    
-            // Show success message after deletion
             Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
         } else {
             Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
