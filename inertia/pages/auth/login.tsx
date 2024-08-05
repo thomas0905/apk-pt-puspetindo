@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { IconBrandGmail, IconLock, IconUser } from '@tabler/icons-react'
 
 export default function Login() {
     return (
@@ -18,27 +19,60 @@ export default function Login() {
                 <CardHeader>
                     <CardTitle className="text-3xl">Login</CardTitle>
                     <CardDescription>
-                    Hai 👏, Selamat Datang Kembali di PT.Pustpetindo
+                        Hai 👏, Selamat Datang Kembali di PT.Pustpetindo
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-4">
                     <div className="grid gap-2">
                         <Label htmlFor="email">Username</Label>
-                        <Input id="email" type="email" placeholder="Email" required />
+                        <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
+                            <span className="flex items-center px-3">
+                                <IconUser size={20} className="text-gray-500" />
+                            </span>
+                            <Input
+                                id="email"
+                                type="email"
+                                placeholder="Email"
+                                required
+                                className="flex-1 border-0 p-2 outline-none focus:outline-none focus:ring-0"
+                            />
+                        </div>
                     </div>
 
                     <div className="grid gap-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="Email" required />
+                        <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
+                            <span className="flex items-center px-3">
+                                <IconBrandGmail size={20} className="text-gray-500" />
+                            </span>
+                            <Input
+                                id="email"
+                                type="email"
+                                placeholder="Email"
+                                required
+                                className="flex-1 "
+                            />
+                        </div>
                     </div>
-                    
+
                     <div className="grid gap-2">
-                        <Label htmlFor="password">Password</Label>
-                        <Input id="password" type="password" required  placeholder='Password'/>
+                        <Label htmlFor="email">Password</Label>
+                        <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
+                            <span className="flex items-center px-3">
+                                <IconLock size={20} className="text-gray-500" />
+                            </span>
+                            <Input
+                                id="email"
+                                type="email"
+                                placeholder="Email"
+                                required
+                                className="flex-1 border-0 p-2 outline-none focus:outline-none focus:ring-0"
+                            />
+                        </div>
                     </div>
                 </CardContent>
                 <CardFooter>
-                    <Button className="w-full">Sign in</Button>
+                    <Button className="w-full bg-blue-500">Sign in</Button>
                 </CardFooter>
             </Card>
         </div>
