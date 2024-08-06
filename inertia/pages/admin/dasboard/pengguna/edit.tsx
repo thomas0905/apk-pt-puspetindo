@@ -2,6 +2,7 @@ import Pengguna from '#models/pengguna'
 import { Head, Link, useForm, usePage } from '@inertiajs/react'
 import { IconHome } from '@tabler/icons-react'
 import React, { FormEventHandler } from 'react'
+import Swal from 'sweetalert2'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
@@ -20,6 +21,11 @@ export default function EditPengguna() {
 
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
+        const swalInstance = Swal.fire({
+            title: 'Data Berhasil Di update!',
+            icon: 'success',
+            confirmButtonText: 'Okee',
+        });
         put('/dasboard/pengguna/edit/' + pengguna.id)
     }
 
