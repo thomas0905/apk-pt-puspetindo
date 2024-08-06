@@ -55,12 +55,11 @@ export default function IndexProyek() {
                         {/* <TableCaption>Tidak ada data yang di temukan</TableCaption> */}
                         <TableHeader>
                             <TableRow>
-                                <TableHead className="w-[100px]">No</TableHead>
+                                <TableHead className="w-[100px]">No Proyek</TableHead>
                                 <TableHead>Nama Proyek</TableHead>
-                                <TableHead>Departemen</TableHead>
-                                <TableHead>Jabatan</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead className="text-">Aksi</TableHead>
+                                <TableHead>Kode job Order</TableHead>
+                                <TableHead>Pemilik</TableHead>
+                                <TableHead >Aksi</TableHead>
 
                             </TableRow>
                         </TableHeader>

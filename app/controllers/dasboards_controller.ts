@@ -23,11 +23,11 @@ export default class DasboardsController {
         return inertia.render('auth/login')
     }
 
-    async create({ inertia }: HttpContext) {
+    async create_pengguna({ inertia }: HttpContext) {
         return inertia.render('admin/dasboard/pengguna/create');
     }
 
-    async store({ request, response, session }: HttpContext) {
+    async store_pengguna({ request, response, session }: HttpContext) {
         const pengguna = new Pengguna();
 
         pengguna.nama = request.input('nama');
@@ -41,13 +41,13 @@ export default class DasboardsController {
         return response.redirect('/dasboard/pengguna/pengguna');
     }
 
-    async delete({ params, response }: HttpContext) {
+    async delete_pengguna({ params, response }: HttpContext) {
         const pengguna = await Pengguna.findOrFail(params.id)
         await pengguna.delete()
         return response.redirect('/dasboard/pengguna/pengguna')
     }
 
-    async edit({ inertia,params }: HttpContext) {
+    async edit_pengguna({ inertia,params }: HttpContext) {
         console.log(params.id);
         const pengguna = await Pengguna.find(params.id)
         return inertia.render('admin/dasboard/pengguna/edit',{
@@ -55,12 +55,19 @@ export default class DasboardsController {
         });
     }
 
-    async update({request,params,response}:HttpContext){
+    async update_pengguna({request,params,response}:HttpContext){
         const pengguna = await Pengguna.findOrFail(params.id)
         pengguna.nama = request.input('nama')
         pengguna.save()
         return response.redirect('/dasboard/pengguna/pengguna')
   
     }
+
+
+//    proyek
+async create_proyek({ inertia }: HttpContext) {
+    return inertia.render('admin/dasboard/proyek/create');
+}
+
     
 }

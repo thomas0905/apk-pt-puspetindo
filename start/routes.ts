@@ -7,14 +7,18 @@ router.on('/').renderInertia('home', { version: 6 })
 
 router.group(() => {
     router.get('pengguna', [DasboardsController, 'pengguna'])
-    router.get('create', [DasboardsController, 'create'])
-    router.post('create', [DasboardsController, 'store'])
-    router.delete('pengguna/:id', [DasboardsController, 'delete'])
-    router.get('edit/:id', [DasboardsController, 'edit'])
-    router.put('edit/:id', [DasboardsController, 'update'])
-}).prefix('dasboard/pengguna/')
+    router.get('create', [DasboardsController, 'create_pengguna'])
+    router.post('create', [DasboardsController, 'store_pengguna'])
+    router.delete('pengguna/:id', [DasboardsController, 'delete_pengguna'])
+    router.get('edit/:id', [DasboardsController, 'edit_pengguna'])
+    router.put('edit/:id', [DasboardsController, 'update_pengguna'])
+}).prefix('/dasboard/pengguna/')
 
-router.get('/dasboard/proyek/index', [DasboardsController, 'index'])
+router.group(() => {
+    router.get('/index', [DasboardsController, 'index'])
+    router.get('/create',[DasboardsController,'create_proyek'])
+}).prefix('/dasboard/proyek')
+
 
 router.get('/auth/login', [DasboardsController, 'login'])
 
