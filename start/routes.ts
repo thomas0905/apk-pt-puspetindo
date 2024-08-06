@@ -1,7 +1,7 @@
-import ManagementsController from '#controllers/managements_controller'
+import ProyeksController from '#controllers/proyeks_controller'
 import router from '@adonisjs/core/services/router'
 const PenggunaController = () => import('#controllers/pengguna_controller')
-const UsersController = () => import('#controllers/users_controller')
+
 router.on('/').renderInertia('home', { version: 6 })
 
 
@@ -14,17 +14,10 @@ router.group(() => {
     router.put('edit/:id', [PenggunaController, 'update'])
 }).prefix('/dasboard/pengguna/')
 
-// router.group(() => {
-//     router.get('/index', [DasboardsController, 'index'])
-//     router.get('/create',[DasboardsController,'create_proyek'])
-// }).prefix('/dasboard/proyek')
+router.group(() => {
+    router.get('index', [ProyeksController, 'index'])
+    router.get('create',[ProyeksController,'create'])
+}).prefix('/dasboard/proyek/')
 
 
 // router.get('/auth/login', [DasboardsController, 'login'])
-
-router.get('/users/menuprofil', [UsersController, 'menuprofil'])
-router.get('/users/minhours', [UsersController, 'minhours'])
-
-
-router.get('/management/laporan', [ManagementsController, 'management'])
-
