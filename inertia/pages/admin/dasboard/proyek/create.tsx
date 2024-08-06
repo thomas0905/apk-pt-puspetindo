@@ -1,4 +1,4 @@
-import { Head, Link } from '@inertiajs/react'
+import { Head, Link, useForm } from '@inertiajs/react'
 import { IconHome } from '@tabler/icons-react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
@@ -8,6 +8,7 @@ import Admin from '~/layout/admin'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FormEventHandler } from 'react'
 
 
 export default function Create() {
@@ -22,6 +23,20 @@ export default function Create() {
             label: "Staff",
         }
     ]
+
+    const { data, setData, post } = useForm({
+        nama_proyek: '',
+        kode_job_order: '',
+        pemilik: ''
+    })
+
+    const handleSubmit: FormEventHandler = (e) => {
+        e.preventDefault()
+        post('/dasboard/proyek/create')
+        console.log(data);
+        
+    }
+
     return (
         <Admin>
             <Head title='add-pengguna' />
@@ -45,7 +60,7 @@ export default function Create() {
                     </div>
                 </div>
 
-                <form className='mt-5'>
+                <form className='mt-5' onSubmit={handleSubmit}>
                     <ToastContainer />
                     <div className='my-5'>
                         <div>
@@ -54,7 +69,9 @@ export default function Create() {
                                 <Input
                                     id="nama"
                                     placeholder="Masukkan Nama"
-
+                                    name='nama_proyek'
+                                    value={data.nama_proyek}
+                                    onChange={(e) => setData('nama_proyek',e.target.value)}
                                 />
                             </div>
                         </div>
@@ -66,6 +83,9 @@ export default function Create() {
                                     <Input
                                         id="departemen"
                                         placeholder="Masukkan Kode"
+                                        name='kode_job_order'
+                                        value={data.kode_job_order}
+                                        onChange={(e) => setData('kode_job_order',e.target.value)}
                                     />
 
                                 </div>
@@ -74,12 +94,12 @@ export default function Create() {
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="jabatan">Pemilik:</Label>
                                 <div>
-                                    <Select>
+                                    <Select onValueChange={(value) => setData('pemilik',value)}>
                                         <SelectTrigger className="w-[180px]">
                                             <SelectValue placeholder="Pilih Pemilik" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                        {pemiliks.map((pemilik) => (
+                                            {pemiliks.map((pemilik) => (
                                                 <SelectItem key={pemilik.value} value={pemilik.value}>{pemilik.label}</SelectItem>
                                             ))}
                                         </SelectContent>

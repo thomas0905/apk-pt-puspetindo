@@ -17,6 +17,7 @@ router.group(() => {
 router.group(() => {
     router.get('index', [ProyeksController, 'index'])
     router.get('create',[ProyeksController,'create'])
+    router.post('create',[ProyeksController,'store'])
 }).prefix('/dasboard/proyek/')
 
 
