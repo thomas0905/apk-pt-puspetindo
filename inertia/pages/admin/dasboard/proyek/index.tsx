@@ -6,35 +6,103 @@ import Swal from 'sweetalert2'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
+// import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 import Admin from '~/layout/admin'
-
+import DataTable from '~/components/dataTable/dataTable'
+import { createColumnHelper } from '@tanstack/react-table'
 export default function IndexProyek() {
-    const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
-console.log(data_proyek);
+    //     const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
+    // console.log(data_proyek);
 
-    const handleDelete = async (id: any) => {
-        const swalInstance = Swal.fire({
-            title: 'Ingin Hapus Data?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Ya!',
-            cancelButtonText: 'Tidak!',
-            allowOutsideClick: false,
-        });
-        const result = await swalInstance;
-        if (result.isConfirmed) {
-            await router.delete('/dasboard/proyek/proyek/' + id);
-            Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
-        } else {
-            Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
-        }
-    };
-
+    //     const handleDelete = async (id: any) => {
+    //         const swalInstance = Swal.fire({
+    //             title: 'Ingin Hapus Data?',
+    //             icon: 'question',
+    //             showCancelButton: true,
+    //             confirmButtonText: 'Ya!',
+    //             cancelButtonText: 'Tidak!',
+    //             allowOutsideClick: false,
+    //         });
+    //         const result = await swalInstance;
+    //         if (result.isConfirmed) {
+    //             await router.delete('/dasboard/proyek/proyek/' + id);
+    //             Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
+    //         } else {
+    //             Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
+    //         }
+    //     };
+    type Person = {
+        firstName: string
+        lastName: string
+        age: number
+        visits: number
+        status: string
+        progress: number
+      }
+      
+      const defaultData: Person[] = [
+        {
+          firstName: 'tanner',
+          lastName: 'linsley',
+          age: 24,
+          visits: 100,
+          status: 'In Relationship',
+          progress: 50,
+        },
+        {
+          firstName: 'tandy',
+          lastName: 'miller',
+          age: 40,
+          visits: 40,
+          status: 'Single',
+          progress: 80,
+        },
+        {
+          firstName: 'joe',
+          lastName: 'dirte',
+          age: 45,
+          visits: 20,
+          status: 'Complicated',
+          progress: 10,
+        },
+      ]
+      
+      const columnHelper = createColumnHelper<Person>()
+      
+      const columns = [
+        columnHelper.accessor('firstName', {
+          cell: info => info.getValue(),
+          footer: info => info.column.id,
+        }),
+        columnHelper.accessor(row => row.lastName, {
+          id: 'lastName',
+          cell: info => <i>{info.getValue()}</i>,
+          header: () => <span>Last Name</span>,
+          footer: info => info.column.id,
+        }),
+        columnHelper.accessor('age', {
+          header: () => 'Age',
+          cell: info => info.renderValue(),
+          footer: info => info.column.id,
+        }),
+        columnHelper.accessor('visits', {
+          header: () => <span>Visits</span>,
+          footer: info => info.column.id,
+        }),
+        columnHelper.accessor('status', {
+          header: 'Status',
+          footer: info => info.column.id,
+        }),
+        columnHelper.accessor('progress', {
+          header: 'Profile Progress',
+          footer: info => info.column.id,
+        }),
+      ]
     return (
+
         <Admin>
             <Card className="p-5">
-                <div className="border-b border-gray-200 pb-4">
+                {/* <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
                         <div>
                             <Link href="/">
@@ -68,10 +136,10 @@ console.log(data_proyek);
                             </Button>
                         </Link>
                     </div>
-                </div>
+                </div> */}
 
                 <Card className="mt-3">
-                    <Table className="container">
+                    {/* <Table className="container">
                         <TableHeader>
                             <TableRow>
                                 <TableHead className="w-[100px]">No Proyek</TableHead>
@@ -99,7 +167,8 @@ console.log(data_proyek);
                                 </TableRow>
                             ))}
                         </TableBody>
-                    </Table>
+                    </Table> */}
+                    <DataTable data={defaultData} columns={columns}/>
                 </Card>
             </Card>
         </Admin>
