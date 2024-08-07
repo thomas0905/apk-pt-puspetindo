@@ -21,6 +21,7 @@ router.group(() => {
     router.post('create',[ProyeksController,'store'])
     router.delete('proyek/:id', [ProyeksController, 'delete'])
     router.get('edit/:id', [ProyeksController, 'edit'])
+    router.put('edit/:id', [ProyeksController, 'update'])
 }).prefix('/dasboard/proyek/')
 
 

@@ -41,4 +41,12 @@ export default class ProyeksController {
             proyek: proyek
         });
     }
+
+    async update({ request, params, response }: HttpContext) {
+        const proyek = await Proyek.findOrFail(params.id)
+        proyek.namaProyek = request.input('namaProyek')
+        proyek.save()
+        return response.redirect('/dasboard/proyek/index')
+
+    }
 }

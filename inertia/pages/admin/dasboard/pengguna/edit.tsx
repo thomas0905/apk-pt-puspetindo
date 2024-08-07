@@ -1,4 +1,3 @@
-import Pengguna from '#models/pengguna'
 import { Head, Link, useForm, usePage } from '@inertiajs/react'
 import { IconHome } from '@tabler/icons-react'
 import React, { FormEventHandler } from 'react'

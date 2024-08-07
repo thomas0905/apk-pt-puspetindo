@@ -1,12 +1,116 @@
-import { Head } from '@inertiajs/react'
-import React from 'react'
+import { Head, Link, useForm, usePage } from '@inertiajs/react'
+import { IconHome } from '@tabler/icons-react'
+import React, { FormEventHandler } from 'react'
+import Swal from 'sweetalert2'
+import { Button } from '~/components/ui/button'
+import { Card } from '~/components/ui/card'
+import { Input } from '~/components/ui/input'
+import { Label } from '~/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import Admin from '~/layout/admin'
 
 export default function Edit() {
-  return (
-    <Admin>
-      <Head title='edit'/>
-      Halaman Edit
-    </Admin>
-  )
+    const { proyek } = usePage().props
+    const { data, setData, put } = useForm({
+        namaProyek: proyek.namaProyek,
+        kodeJobOrder: proyek.kodeJobOrder,
+        pemilik: proyek.pemilik
+    })
+
+    const handleSubmit: FormEventHandler = async (e) => {
+        e.preventDefault()
+        await put('/dasboard/proyek/edit/' + proyek.id, {
+            onSuccess: () => {
+                Swal.fire({
+                    title: 'Data Berhasil Diupdate!',
+                    icon: 'success',
+                    confirmButtonText: 'Okee',
+                });
+            }
+        });
+    }
+
+    const pemiliks = [
+        {
+            value: "manager",
+            label: "Manager",
+        },
+        {
+            value: "staff",
+            label: "Staff",
+        }
+    ]
+
+    return (
+        <Admin>
+            <Head title='Edit Proyek' />
+            <Card className="p-5">
+                <div className="border-b border-gray-200 pb-4">
+                    <div className='flex justify-between'>
+                        <div>
+                            <div className='flex gap-1'>
+                                <Link href="/">
+                                    <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
+                                </Link>
+                                <span>-</span>
+                                <Link href='/dasboard/proyek/index'>
+                                    <p className="text-sm">Proyek</p>
+                                </Link>
+                            </div>
+                            <h6 className='text-gray-600 text-lg font-bold'>Edit Proyek</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <form className='mt-5' onSubmit={handleSubmit}>
+                    <div className='my-5'>
+                        <div className="flex flex-col space-y-1.5">
+                            <Label htmlFor="namaProyek">Nama Proyek:</Label>
+                            <Input
+                                id="namaProyek"
+                                placeholder='Edit Nama Proyek'
+                                name='namaProyek'
+                                value={data.namaProyek}
+                                onChange={(e) => setData('namaProyek', e.target.value)}
+                            />
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-3 mt-3">
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="kodeJobOrder">Kode Proyek:</Label>
+                                <Input
+                                    id="kodeJobOrder"
+                                    placeholder="Edit Kode Proyek"
+                                    name='kodeJobOrder'
+                                    value={data.kodeJobOrder}
+                                    onChange={(e) => setData('kodeJobOrder', e.target.value)}
+                                />
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="pemilik">Pilih Pemilik:</Label>
+                                <Select
+                                    value={data.pemilik}
+                                    onValueChange={(value) => setData('pemilik', value)}
+                                >
+                                    <SelectTrigger className="w-[180px]">
+                                        <SelectValue placeholder="Pilih Pemilik" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {pemiliks.map((pemilik) => (
+                                            <SelectItem key={pemilik.value} value={pemilik.value}>
+                                                {pemilik.label}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <Button type="submit">Update</Button>
+                </form>
+            </Card>
+        </Admin>
+    )
 }
