@@ -138,7 +138,7 @@ export default function EditPengguna() {
                         </div>
                     </div>
 
-                    <Button type="submit">Update</Button>
+                    <Button className='bg-blue-600' type="submit">Update</Button>
                 </form>
             </Card>
         </Admin>

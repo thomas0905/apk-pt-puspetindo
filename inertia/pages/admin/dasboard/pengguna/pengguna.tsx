@@ -43,7 +43,7 @@ export default function Pegunna() {
 
                         <div>
                             <Link href="/dasboard/pengguna/create">
-                                <Button className="bg-slate-900 text-white btn-small    gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
+                                <Button className="bg-blue-600 text-white btn-small    gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
                                     <IconUserPlus size={18} />
                                     Tambah Pengguna
                                 </Button>
