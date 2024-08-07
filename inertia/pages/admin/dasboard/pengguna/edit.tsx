@@ -18,14 +18,16 @@ export default function EditPengguna() {
         status: pengguna.status,
     })
 
-    const handleSubmit: FormEventHandler = (e) => {
+    const handleSubmit: FormEventHandler =async (e) => {
         e.preventDefault()
-        const swalInstance = Swal.fire({
-            title: 'Data Berhasil Di update!',
-            icon: 'success',
-            confirmButtonText: 'Okee',
-        });
-        put('/dasboard/pengguna/edit/' + pengguna.id)
+        await put('/dasboard/pengguna/edit/' + pengguna.id)
+        onSuccess: () => {
+            Swal.fire({
+                title: 'Data Berhasil Diupdate!',
+                icon: 'success',
+                confirmButtonText: 'Okee',
+            });
+        }
     }
 
     const jabatans = [
