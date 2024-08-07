@@ -1,13 +1,36 @@
-import { Head, Link } from '@inertiajs/react'
-import { IconBriefcase, IconHome, IconSearch, IconUserPlus } from '@tabler/icons-react'
+import Proyek from '#models/proyek'
+import { Head, Link, router, usePage } from '@inertiajs/react'
+import { IconBriefcase, IconEdit, IconHome, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react'
 import React from 'react'
+import Swal from 'sweetalert2'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
-import { Table, TableBody, TableHead, TableHeader, TableRow } from '~/components/ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 import Admin from '~/layout/admin'
 
 export default function IndexProyek() {
+    const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
+console.log(data_proyek);
+
+    const handleDelete = async (id: any) => {
+        const swalInstance = Swal.fire({
+            title: 'Ingin Hapus Data?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ya!',
+            cancelButtonText: 'Tidak!',
+            allowOutsideClick: false,
+        });
+        const result = await swalInstance;
+        if (result.isConfirmed) {
+            await router.delete('/dasboard/proyek/proyek/' + id);
+            Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
+        } else {
+            Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
+        }
+    };
+
     return (
         <Admin>
             <Card className="p-5">
@@ -19,11 +42,9 @@ export default function IndexProyek() {
                             </Link>
                             <h6 className='text-gray-600 text-lg font-bold'>Proyek</h6>
                         </div>
-
-
                         <div>
                             <Link href="/dasboard/proyek/create">
-                                <Button className="bg-slate-900 text-white btn-small    gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
+                                <Button className="bg-slate-900 text-white btn-small gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
                                     <IconBriefcase size={18} />
                                     Tambah Proyek
                                 </Button>
@@ -39,7 +60,6 @@ export default function IndexProyek() {
                             <IconSearch size={16} />
                         </div>
                     </div>
-
                     <div>
                         <Link href="/">
                             <Button className="bg-slate-100 text-white gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
@@ -52,22 +72,33 @@ export default function IndexProyek() {
 
                 <Card className="mt-3">
                     <Table className="container">
-                        {/* <TableCaption>Tidak ada data yang di temukan</TableCaption> */}
                         <TableHeader>
                             <TableRow>
                                 <TableHead className="w-[100px]">No Proyek</TableHead>
                                 <TableHead>Nama Proyek</TableHead>
-                                <TableHead>Kode job Order</TableHead>
+                                <TableHead>Kode Job Order</TableHead>
                                 <TableHead>Pemilik</TableHead>
-                                <TableHead >Aksi</TableHead>
-
+                                <TableHead>Aksi</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-
-
+                            {data_proyek.map((proyek) => (
+                                <TableRow key={proyek.id}>
+                                    <TableCell className="font-medium">{proyek.id}</TableCell>
+                                    <TableCell>{proyek.namaProyek}</TableCell>
+                                    <TableCell>{proyek.kodeJobOrder}</TableCell>
+                                    <TableCell>{proyek.pemilik}</TableCell>
+                                    <TableCell className="flex gap-3">
+                                        <span onClick={() => handleDelete(proyek.id)} className="text-red-900 cursor-pointer">
+                                            <IconTrash size={18} />
+                                        </span>
+                                        <Link href={"/dasboard/proyek/edit/" + proyek.id}>
+                                            <IconEdit size={18} />
+                                        </Link>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
                         </TableBody>
-
                     </Table>
                 </Card>
             </Card>

@@ -6,10 +6,10 @@ export default class Proyek extends BaseModel {
   declare id: number
 
   @column()
-  declare nama_proyek: string
+  declare namaProyek: string
 
   @column()
-  declare kode_job_order: string
+  declare kodeJobOrder: string
 
   @column()
   declare pemilik: string

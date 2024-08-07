@@ -4,8 +4,10 @@ import type { HttpContext } from '@adonisjs/core/http'
 export default class ProyeksController {
     async index({inertia}:HttpContext){
         const proyek = await Proyek.all() 
+        console.log(proyek);
+        
         return inertia.render('admin/dasboard/proyek/index',{
-            proyek:proyek
+            data_proyek:proyek
         })
     }
 
@@ -24,5 +26,19 @@ export default class ProyeksController {
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
         return response.redirect('/dasboard/proyek/index');
+    }
+
+    async delete({ params, response }: HttpContext) {
+        const proyek = await Proyek.findOrFail(params.id)
+        await proyek.delete()
+        return response.redirect('/dasboard/proyek/index')
+    } 
+
+    async edit({ inertia, params }: HttpContext) {
+        console.log(params.id);
+        const proyek = await Proyek.find(params.id)
+        return inertia.render('admin/dasboard/proyek/edit', {
+            proyek: proyek
+        });
     }
 }
