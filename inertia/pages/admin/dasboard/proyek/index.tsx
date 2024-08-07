@@ -91,7 +91,7 @@ export default function IndexProyek() {
                         </div>
                         <div>
                             <Link href="/dasboard/proyek/create">
-                                <Button className="bg-slate-900 text-white btn-small gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
+                                <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2  hover:text-white" variant="outline">
                                     <IconBriefcase size={18} />
                                     Tambah Proyek
                                 </Button>

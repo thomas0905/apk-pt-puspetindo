@@ -138,7 +138,7 @@ export default function EditPengguna() {
                         </div>
                     </div>
 
-                    <Button className='bg-blue-600' type="submit">Update</Button>
+                    <Button className='bg-blue-600 hover:bg-blue-500' type="submit">Update</Button>
                 </form>
             </Card>
         </Admin>

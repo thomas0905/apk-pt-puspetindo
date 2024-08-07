@@ -109,7 +109,7 @@ export default function Create() {
                         </div>
                     </div>
 
-                    <Button type="submit">Simpan</Button>
+                    <Button className='bg-blue-600 hover:bg-blue-500' type="submit">Simpan</Button>
                 </form>
             </Card>
         </Admin>

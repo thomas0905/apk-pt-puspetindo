@@ -186,7 +186,7 @@ export default function Create() {
                         </div>
                     </div>
 
-                    <Button className='bg-blue-600' type="submit" disabled={processing}>Simpan</Button>
+                    <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>Simpan</Button>
                 </form>
             </Card>
         </Admin>
