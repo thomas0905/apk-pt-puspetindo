@@ -30,6 +30,7 @@ import {
     compareItems,
 } from '@tanstack/match-sorter-utils'
 import { Input } from '../ui/input'
+import { Card } from '../ui/card'
 
 declare module '@tanstack/react-table' {
     //add fuzzy filter to the filterFns
@@ -101,43 +102,45 @@ export default function dataTable({ data, columns }) {
     })
     return (
         <Fragment>
-            <div>
+            <div className='mt-2'>
                 <Input value={globalFilter ?? ''}
                     onChange={e => setGlobalFilter(String(e.target.value))}
-                    className="p-2 font-lg shadow border border-block"
-                    placeholder="Search all columns..."
+                    className="p-2 font-lg shadow border border-block w-75"
+                    placeholder="Search Proyek..."
                 />
             </div>
-            <Table className='mt-4'>
-                <TableCaption>A list of your recent invoices.</TableCaption>
-                <TableHeader>
-                    {table.getHeaderGroups().map(headerGroup => (
-                        <TableRow key={headerGroup.id}>
-                            {headerGroup.headers.map(header => (
-                                <TableHead key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                            header.column.columnDef.header,
-                                            header.getContext()
-                                        )}
-                                </TableHead>
-                            ))}
-                        </TableRow>
-                    ))}
-                </TableHeader>
-                <TableBody>
-                    {table.getRowModel().rows.map(row => (
-                        <TableRow key={row.id}>
-                            {row.getVisibleCells().map(cell => (
-                                <TableCell key={cell.id}>
-                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+            <Card className='mt-2'>
+                <Table className='mt-4'>
+                    <TableCaption>A list of your recent invoices.</TableCaption>
+                    <TableHeader>
+                        {table.getHeaderGroups().map(headerGroup => (
+                            <TableRow key={headerGroup.id}>
+                                {headerGroup.headers.map(header => (
+                                    <TableHead key={header.id}>
+                                        {header.isPlaceholder
+                                            ? null
+                                            : flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext()
+                                            )}
+                                    </TableHead>
+                                ))}
+                            </TableRow>
+                        ))}
+                    </TableHeader>
+                    <TableBody>
+                        {table.getRowModel().rows.map(row => (
+                            <TableRow key={row.id}>
+                                {row.getVisibleCells().map(cell => (
+                                    <TableCell key={cell.id}>
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </Card>
 
         </Fragment>
     )

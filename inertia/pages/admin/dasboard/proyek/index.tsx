@@ -9,6 +9,7 @@ import { Input } from '~/components/ui/input'
 import Admin from '~/layout/admin'
 import DataTable from '~/components/dataTable/dataTable'
 import { createColumnHelper } from '@tanstack/react-table'
+import { Car } from 'lucide-react'
 
 export default function IndexProyek() {
     const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
@@ -100,9 +101,8 @@ console.log(data_proyek);
                         </div>
                     </div>
                 </div>
-                <Card className="mt-3">
+                
                     <DataTable data={data_proyek} columns={columns} />
-                </Card>
             </Card>
         </Admin>
     )
