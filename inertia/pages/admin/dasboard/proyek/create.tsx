@@ -6,7 +6,7 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import Admin from '~/layout/admin'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FormEventHandler } from 'react'
 
@@ -25,8 +25,8 @@ export default function Create() {
     ]
 
     const { data, setData, post } = useForm({
-        nama_proyek: '',
-        kode_job_order: '',
+        namaProyek: '',
+        kodeJobOrder: '',
         pemilik: ''
     })
 
@@ -69,9 +69,9 @@ export default function Create() {
                                 <Input
                                     id="nama"
                                     placeholder="Masukkan Nama"
-                                    name='nama_proyek'
-                                    value={data.nama_proyek}
-                                    onChange={(e) => setData('nama_proyek',e.target.value)}
+                                    name='namaProyek'
+                                    value={data.namaProyek}
+                                    onChange={(e) => setData('namaProyek',e.target.value)}
                                 />
                             </div>
                         </div>
@@ -83,9 +83,9 @@ export default function Create() {
                                     <Input
                                         id="departemen"
                                         placeholder="Masukkan Kode"
-                                        name='kode_job_order'
-                                        value={data.kode_job_order}
-                                        onChange={(e) => setData('kode_job_order',e.target.value)}
+                                        name='kodeJobOrder'
+                                        value={data.kodeJobOrder}
+                                        onChange={(e) => setData('kodeJobOrder',e.target.value)}
                                     />
 
                                 </div>

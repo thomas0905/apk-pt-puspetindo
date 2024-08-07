@@ -9,11 +9,6 @@ export default function MenuProfil() {
   return (
     <Admin>
       <Head title='menu-profil' />
-      <div>
-        <Link href='/'>
-          <IconArrowLeft className='bg-blue-600 text-white rounded-sm' />
-        </Link>
-      </div>
       <Card className='p-2 bg-gray-100'>
         <Card className='relative bg-blue-600 p-4 h-40 sm:h-64'>
           <span className='absolute top-2 right-2'>

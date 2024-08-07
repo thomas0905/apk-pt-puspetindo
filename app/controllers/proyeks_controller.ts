@@ -18,8 +18,8 @@ export default class ProyeksController {
     async store({ request, response, session }: HttpContext) {
         const pengguna = new Proyek();
 
-        pengguna.nama_proyek = request.input('nama_proyek');
-        pengguna.kode_job_order = request.input('kode_job_order');
+        pengguna.namaProyek = request.input('namaProyek');
+        pengguna.kodeJobOrder = request.input('kodeJobOrder');
         pengguna.pemilik = request.input('pemilik');
 
         await pengguna.save();

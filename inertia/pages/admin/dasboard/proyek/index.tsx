@@ -12,6 +12,7 @@ import { createColumnHelper } from '@tanstack/react-table'
 
 export default function IndexProyek() {
     const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
+console.log(data_proyek);
 
     const handleDelete = async (id: any) => {
         const swalInstance = Swal.fire({
@@ -31,14 +32,8 @@ export default function IndexProyek() {
         }
     };
 
-    type Person = {
-        id: number,
-        namaProyek: string,
-        kodeOrderJob: string,
-        pemilik: string
-    }
 
-    const columnHelper = createColumnHelper<Person>()
+    const columnHelper = createColumnHelper<Proyek>()
 
     const columns = [
         columnHelper.accessor('id', {
@@ -51,7 +46,7 @@ export default function IndexProyek() {
             cell: info => info.renderValue(),
             footer: info => info.column.id,
         }),
-        columnHelper.accessor('kodeOrderJob', {
+        columnHelper.accessor('kodeJobOrder', {
             header: () => 'Kode Job Order',
             cell: info => info.renderValue(),
             footer: info => info.column.id,
