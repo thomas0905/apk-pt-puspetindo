@@ -37,17 +37,17 @@ export default function Sidebar() {
                             {/* Dashboard Section */}
                             <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 py-3 text-muted-foreground transition-all">
                                 <span className={`${isSidebarHidden ? '' : 'judul-sidebar'}`}> Dashboard</span>
-                                <Link href='/' className="flex pl-2 mt-2 hover:text-white text-black rounded-sm hover:bg-black p-1 w-full gap-2 text-md">
+                                <Link href='/' className="flex pl-2 mt-2 hover:text-white text-black rounded-sm hover:bg-blue-600 p-1 w-full gap-2 text-md">
                                     <IconDashboard size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Beranda</span>
                                 </Link>
 
-                                <Link href='/dasboard/pengguna/pengguna' className="flex pl-2  hover:text-white text-black rounded-sm hover:bg-black p-1 w-full gap-2 text-md">
+                                <Link href='/dasboard/pengguna/pengguna' className="flex pl-2  hover:text-white text-black rounded-sm hover:bg-blue-600 p-1 w-full gap-2 text-md">
                                     <IconUsers size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Pengguna</span>
                                 </Link>
 
-                                <Link href='/dasboard/proyek/index' className="flex pl-2 hover:text-white text-black rounded-sm hover:bg-black p-1 w-full gap-2 text-md">
+                                <Link href='/dasboard/proyek/index' className="flex pl-2 hover:text-white text-black rounded-sm hover:bg-blue-600 p-1 w-full gap-2 text-md">
                                     <IconBriefcase size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Proyek</span>
                                 </Link>
@@ -55,12 +55,12 @@ export default function Sidebar() {
 
                             <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 text-muted-foreground transition-all">
                                 <span className={`${isSidebarHidden ? '' : 'judul-sidebar'}`}> Users</span>
-                                <Link href='c/menuProfil' className="flex pl-2 mt-2 hover:text-white text-black rounded-sm hover:bg-black p-1 w-full gap-2 text-md">
+                                <Link href='/users/menuProfil' className="flex pl-2 mt-2 hover:text-white text-black rounded-sm hover:bg-blue-600 p-1 w-full gap-2 text-md">
                                     <IconUsers size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Menu Profil</span>
                                 </Link>
 
-                                <Link href='/dasboard/users/minhours' className="flex pl-2 hover:text-white text-black rounded-sm hover:bg-black p-1 w-full gap-2 text-md">
+                                <Link href='/dasboard/users/minhours' className="flex pl-2 hover:text-white text-black rounded-sm hover:bg-blue-600 p-1 w-full gap-2 text-md">
                                     <IconBriefcase size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Man Hours</span>
                                 </Link>
@@ -68,12 +68,12 @@ export default function Sidebar() {
 
                             <span className="flex text-xm flex-col items-start gap-1 mt-3 rounded-lg px-2 text-muted-foreground transition-all">
                                 <span className={`${isSidebarHidden ? '' : 'judul-sidebar'}`}> Management</span>
-                                <Link href='/management/laporan' className="flex pl-2 mt-2 hover:text-white text-black rounded-sm hover:bg-black p-1 w-full gap-2 text-md">
+                                <Link href='/management/laporan' className="flex pl-2 mt-2 hover:text-white text-black rounded-sm hover:bg-blue-600 p-1 w-full gap-2 text-md">
                                     <IconBook2 size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Laporan</span>
                                 </Link>
 
-                                <Link href='/sistem/pengguna/pengguna' className="flex pl-2  hover:text-white text-black rounded-sm hover:bg-black p-1 w-full gap-2 text-md">
+                                <Link href='/sistem/pengguna/pengguna' className="flex pl-2  hover:text-white text-black rounded-sm hover:bg-blue-600 p-1 w-full gap-2 text-md">
                                     <IconSettings size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Pengturan</span>
                                 </Link>

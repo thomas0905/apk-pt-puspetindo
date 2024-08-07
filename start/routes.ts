@@ -25,8 +25,8 @@ router.group(() => {
 }).prefix('/dasboard/proyek/')
 
 
-// router.group(()=> {
-//     router.get('menuProfil',[MenuProfilsController,'menuProfil'])
-// }).prefix('/users/')
+router.group(()=> {
+    router.get('menuProfil',[MenuProfilsController,'menuProfil'])
+}).prefix('/users/')
 
 // router.get('/auth/login', [, 'login'])
