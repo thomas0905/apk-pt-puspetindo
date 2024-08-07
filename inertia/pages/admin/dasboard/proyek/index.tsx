@@ -51,6 +51,12 @@ console.log(data_proyek);
             cell: info => info.renderValue(),
             footer: info => info.column.id,
         }),
+
+        columnHelper.accessor('status', {
+            header: () => 'Status',
+            cell: info => info.renderValue(),
+            footer: info => info.column.id,
+        }),
         columnHelper.accessor('pemilik', {
             header: () => 'Pemilik',
             cell: info => info.renderValue(),

@@ -24,9 +24,21 @@ export default function Create() {
         }
     ]
 
+    const statuses = [
+        {
+            value: "Selesai",
+            label: "Selesai",
+        },
+        {
+            value: "Tidak-Selesai",
+            label: "Tidak-Selesai",
+        }
+    ]
+
     const { data, setData, post } = useForm({
         namaProyek: '',
         kodeJobOrder: '',
+        status: '',
         pemilik: ''
     })
 
@@ -88,6 +100,22 @@ export default function Create() {
                                         onChange={(e) => setData('kodeJobOrder',e.target.value)}
                                     />
 
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="jabatan">Status:</Label>
+                                <div>
+                                    <Select onValueChange={(value) => setData('status',value)}>
+                                        <SelectTrigger className="w-[180px]">
+                                            <SelectValue placeholder="Pilih Status" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {statuses.map((status) => (
+                                                <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
                                 </div>
                             </div>
 

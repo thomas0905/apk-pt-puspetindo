@@ -16,13 +16,14 @@ export default class ProyeksController {
     }
 
     async store({ request, response, session }: HttpContext) {
-        const pengguna = new Proyek();
+        const proyek = new Proyek();
 
-        pengguna.namaProyek = request.input('namaProyek');
-        pengguna.kodeJobOrder = request.input('kodeJobOrder');
-        pengguna.pemilik = request.input('pemilik');
+        proyek.namaProyek = request.input('namaProyek');
+        proyek.kodeJobOrder = request.input('kodeJobOrder');
+        proyek.status = request.input('status');
+        proyek.pemilik = request.input('pemilik');
 
-        await pengguna.save();
+        await proyek.save();
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
         return response.redirect('/dasboard/proyek/index');

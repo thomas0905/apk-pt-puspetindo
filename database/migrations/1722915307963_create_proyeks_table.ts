@@ -8,6 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('nama_proyek').notNullable()
       table.string('kode_job_order').notNullable()
+      table.string('status').notNullable()
       table.string('pemilik').notNullable()
       table.timestamp('created_at')
       table.timestamp('updated_at')

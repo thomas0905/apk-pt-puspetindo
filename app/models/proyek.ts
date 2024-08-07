@@ -12,6 +12,9 @@ export default class Proyek extends BaseModel {
   declare kodeJobOrder: string
 
   @column()
+  declare status: string
+
+  @column()
   declare pemilik: string
   
   @column.dateTime({ autoCreate: true })
