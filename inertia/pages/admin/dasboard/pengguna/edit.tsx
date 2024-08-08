@@ -51,7 +51,6 @@ export default function EditPengguna() {
             label: "Tidak-aktif",
         }
     ]
-a
     return (
         <Admin>
             <Head title='Edit Pengguna' />

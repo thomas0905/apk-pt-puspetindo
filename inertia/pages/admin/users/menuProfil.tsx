@@ -3,7 +3,7 @@ import React from 'react'
 import { Card } from '~/components/ui/card'
 import Admin from '~/layout/admin'
 import ImgMenuProfil from '../../../img/rois.jpeg'
-import { IconArrowLeft, IconEdit } from '@tabler/icons-react'
+import { IconEdit } from '@tabler/icons-react'
 
 export default function MenuProfil() {
   return (

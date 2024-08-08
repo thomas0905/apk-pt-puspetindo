@@ -31,6 +31,7 @@ import {
 } from '@tanstack/match-sorter-utils'
 import { Input } from '../ui/input'
 import { Card } from '../ui/card'
+import { IconSearch } from '@tabler/icons-react'
 
 declare module '@tanstack/react-table' {
     //add fuzzy filter to the filterFns
@@ -102,16 +103,20 @@ export default function dataTable({ data, columns }) {
     })
     return (
         <Fragment>
-            <div className='mt-2'>
-                <Input value={globalFilter ?? ''}
+            <div className="relative ml-auto flex-1 md:grow-0 mt-3">
+                <IconSearch className="absolute mt-1 left-2.5  top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                    value={globalFilter ?? ''}
                     onChange={e => setGlobalFilter(String(e.target.value))}
-                    className="p-2 font-lg shadow border border-block w-75"
-                    placeholder="Search Proyek..."
+                    type="search"
+                    placeholder="Search..."
+                    className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
                 />
             </div>
+
             <Card className='mt-2'>
                 <Table>
-                    <TableCaption>A list of your recent invoices.</TableCaption>
+                    {/* <TableCaption>Tidak Ada Data </TableCaption> */}
                     <TableHeader>
                         {table.getHeaderGroups().map(headerGroup => (
                             <TableRow key={headerGroup.id}>

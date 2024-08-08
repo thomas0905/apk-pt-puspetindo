@@ -29,7 +29,7 @@ router.group(() => {
 
 router.group(()=> {
     router.get('menuProfil',[MenuProfilsController,'menuProfil'])
-    router.get('manHours',[ManHoursController,'manHours'])
-}).prefix('/users/')
+    router.get('index',[ManHoursController,'index'])
+}).prefix('/users/manHours/')
 
 router.get('/auth/login', [LoginController, 'login'])

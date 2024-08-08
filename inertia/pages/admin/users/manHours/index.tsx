@@ -4,35 +4,35 @@ import React from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import Admin from '~/layout/admin'
-import DataTable from '~/components/dataTable/dataTable'
+// import DataTable from '~/components/dataTable/dataTable'
 // import { createColumnHelper } from '@tanstack/react-table'
 // import Proyek from '#models/proyek'
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
 
-export default function ManHours() {
+export default function Index() {
   // const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
   // console.log(data_proyek);
 
   // const columnHelper = createColumnHelper<Proyek>()
 
-  const handleDelete = async (id: any) => {
-    const swalInstance = Swal.fire({
-      title: 'Ingin Hapus Data?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Ya!',
-      cancelButtonText: 'Tidak!',
-      allowOutsideClick: false,
-    });
-    const result = await swalInstance;
-    if (result.isConfirmed) {
-      await router.delete('/dasboard/proyek/proyek/' + id);
-      Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
-    } else {
-      Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
-    }
-  };
+  // const handleDelete = async (id: any) => {
+  //   const swalInstance = Swal.fire({
+  //     title: 'Ingin Hapus Data?',
+  //     icon: 'question',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Ya!',
+  //     cancelButtonText: 'Tidak!',
+  //     allowOutsideClick: false,
+  //   });
+  //   const result = await swalInstance;
+  //   if (result.isConfirmed) {
+  //     await router.delete('/dasboard/proyek/proyek/' + id);
+  //     Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
+  //   } else {
+  //     Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
+  //   }
+  // };
 
 
   // const columns = [
@@ -101,7 +101,7 @@ export default function ManHours() {
           </div>
         </div>
 
-        {/* <DataTable data={data_proyek} columns={columns} /> */}
+        {/* <DataTable  columns={columns} /> */}
       </Card>
     </Admin>
   )
