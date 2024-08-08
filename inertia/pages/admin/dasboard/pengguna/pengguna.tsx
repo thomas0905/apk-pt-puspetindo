@@ -5,12 +5,12 @@ import { IconEdit, IconHome, IconLock, IconSearch, IconTrash, IconUserPlus } fro
 import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
 import { Link, router, usePage } from "@inertiajs/react";
-import Pengguna from "#models/pengguna";
 import Swal from 'sweetalert2'
+import Karyawan from "#models/karyawan";
 
 
 export default function Pegunna() {
-    const { data_pengguna } = usePage<{ data_pengguna: Pengguna[] }>().props
+    const { data_karyawan } = usePage<{ data_karyawan: Karyawan[] }>().props
     const handleDelete = async (id: any) => {
         const swalInstance = Swal.fire({
             title: 'Ingin Hapus Data?',
@@ -37,7 +37,7 @@ export default function Pegunna() {
                             <Link href="/">
                                 <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                             </Link>
-                            <h6 className='text-gray-600 text-lg font-bold'>Data Pengguna</h6>
+                            <h6 className='text-gray-600 text-lg font-bold'>Data Karyawan</h6>
                         </div>
 
 
@@ -45,7 +45,7 @@ export default function Pegunna() {
                             <Link href="/dasboard/pengguna/create">
                                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
                                     <IconUserPlus size={18} />
-                                    Tambah Pengguna
+                                    Tambah Karyawan
                                 </Button>
                             </Link>
                         </div>
@@ -80,45 +80,40 @@ export default function Pegunna() {
                                 <TableHead>Departemen</TableHead>
                                 <TableHead>Jabatan</TableHead>
                                 <TableHead>Status</TableHead>
-                                <TableHead>Email</TableHead>
-                                <TableHead>Password</TableHead>
                                 <TableHead >Aksi</TableHead>
-                                <TableHead>Permission</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {data_pengguna.map((pengguna) => (
-                                <TableRow key={pengguna.id}>
-                                    <TableCell className="font-medium">{pengguna.id}</TableCell>
-                                    <TableCell>{pengguna.nama}</TableCell>
-                                    <TableCell>{pengguna.departemen}</TableCell>
-                                    <TableCell>{pengguna.jabatan}</TableCell>
+                            {data_karyawan.map((karyawan) => (
+                                <TableRow key={karyawan.id}>
+                                    <TableCell className="font-medium">{karyawan.id}</TableCell>
+                                    <TableCell>{karyawan.nama}</TableCell>
+                                    <TableCell>{karyawan.departemen}</TableCell>
+                                    <TableCell>{karyawan.jabatan}</TableCell>
                                     <TableCell >
-                                        <span className={`w-20 text-center ${pengguna.status === 'aktif' ? 'bg-blue-300 py-1 pl-1 pr-1 rounded-md border-black' : 'bg-yellow-300 py-1 pl-1 pr-1 rounded-md'}`}>
-                                            {pengguna.status}
+                                        <span className={`w-20 text-center ${karyawan.status === 'aktif' ? 'bg-blue-300 py-1 pl-1 pr-1 rounded-md border-black' : 'bg-yellow-300 py-1 pl-1 pr-1 rounded-md'}`}>
+                                            {karyawan.status}
                                         </span>
                                     </TableCell>
-                                    <TableCell>{pengguna.email}</TableCell>
-                                    <TableCell>{pengguna.password}</TableCell>
                                     <TableCell className="flex gap-3">
-                                        <span onClick={() => handleDelete(pengguna.id)} className="text-right text-red-900 cursor-pointer">
+                                        <span onClick={() => handleDelete(karyawan.id)} className="text-right text-red-900 cursor-pointer">
                                             <IconTrash size={18} />
                                         </span>
 
-                                        <Link href={"/dasboard/pengguna/edit/" + pengguna.id}>
+                                        <Link href={"/dasboard/pengguna/edit/" + karyawan.id}>
                                             <IconEdit size={18} />
                                         </Link>
 
 
                                     </TableCell>
-                                    <TableCell>
+                                    {/* <TableCell>
                                         <Link href="/dasboard/pengguna/permission">
                                             <span className="bg-blue-200 py-1 pl-1 pr-1 w-[135px] rounded-md flex" >
                                                 <IconLock size={18} />
                                                 Atur Permission
                                             </span>
                                         </Link>
-                                    </TableCell>
+                                    </TableCell> */}
                                 </TableRow>
                             ))}
 

@@ -51,7 +51,7 @@ export default function Sidebar() {
                                 <Link href='/dasboard/pengguna/pengguna' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/dasboard/pengguna/pengguna') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600'
                                     }`}>
                                     <IconUsers size={21} />
-                                    <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Pengguna</span>
+                                    <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Karyawan</span>
                                 </Link>
 
                                 <Link href='/dasboard/proyek/index'className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/dasboard/proyek/index') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600'

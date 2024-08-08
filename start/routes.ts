@@ -1,22 +1,22 @@
 import AuthController from '#controllers/auth_controller'
+import KaryawansKontroller from '#controllers/karyawans_controller'
 import LaporansController from '#controllers/laporans_controller'
 import ManHoursController from '#controllers/man_hours_controller'
 import MenuProfilsController from '#controllers/menu_profils_controller'
 import ProyeksController from '#controllers/proyeks_controller'
 import router from '@adonisjs/core/services/router'
-const PenggunaController = () => import('#controllers/pengguna_controller')
 
 router.on('/').renderInertia('home', { version: 6 })
 
 
 router.group(() => {
-    router.get('pengguna', [PenggunaController, 'pengguna'])
-    router.get('create', [PenggunaController, 'create'])
-    router.post('create', [PenggunaController, 'store'])
-    router.delete('pengguna/:id', [PenggunaController, 'delete'])
-    router.get('edit/:id', [PenggunaController, 'edit'])
-    router.put('edit/:id', [PenggunaController, 'update'])
-    router.get('permission',[PenggunaController,'permission'])
+    router.get('pengguna', [KaryawansKontroller, 'pengguna'])
+    router.get('create', [KaryawansKontroller, 'create'])
+    router.post('create', [KaryawansKontroller, 'store'])
+    router.delete('pengguna/:id', [KaryawansKontroller, 'delete'])
+    router.get('edit/:id', [KaryawansKontroller, 'edit'])
+    router.put('edit/:id', [KaryawansKontroller, 'update'])
+    router.get('permission',[KaryawansKontroller,'permission'])
 }).prefix('/dasboard/pengguna/')
 
 router.group(() => {
