@@ -47,6 +47,9 @@ export default class DasboardsController {
     async update({ request, params, response }: HttpContext) {
         const pengguna = await Pengguna.findOrFail(params.id)
         pengguna.nama = request.input('nama')
+        pengguna.departemen = request.input('departemen')
+        pengguna.jabatan = request.input('jabatan')
+        pengguna.status = request.input('status')
         pengguna.save()
         return response.redirect('/dasboard/pengguna/pengguna')
 

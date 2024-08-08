@@ -46,6 +46,9 @@ export default class ProyeksController {
     async update({ request, params, response }: HttpContext) {
         const proyek = await Proyek.findOrFail(params.id)
         proyek.namaProyek = request.input('namaProyek')
+        proyek.kodeJobOrder = request.input('kodeJobOrder')
+        proyek.status = request.input('status')
+        proyek.pemilik = request.input('pemilik')
         proyek.save()
         return response.redirect('/dasboard/proyek/index')
 

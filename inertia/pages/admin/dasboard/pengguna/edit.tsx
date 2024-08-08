@@ -17,6 +17,8 @@ export default function EditPengguna() {
         jabatan: pengguna.jabatan,
         status: pengguna.status,
     })
+    console.log(pengguna);
+    
 
     const handleSubmit: FormEventHandler =async (e) => {
         e.preventDefault()

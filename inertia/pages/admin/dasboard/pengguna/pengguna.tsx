@@ -109,7 +109,7 @@ export default function Pegunna() {
                                     </TableCell>
                                     <TableCell>
                                         <Link href="/dasboard/pengguna/permission">
-                                            <span className="bg-blue-300 py-1 pl-1 pr-1 w-[135px] rounded-md flex" >
+                                            <span className="bg-blue-200 py-1 pl-1 pr-1 w-[135px] rounded-md flex" >
                                                 <IconLock size={18} />
                                                 Atur Permission
                                             </span>
