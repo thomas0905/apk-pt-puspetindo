@@ -16,6 +16,7 @@ router.group(() => {
     router.delete('pengguna/:id', [PenggunaController, 'delete'])
     router.get('edit/:id', [PenggunaController, 'edit'])
     router.put('edit/:id', [PenggunaController, 'update'])
+    router.get('permission',[PenggunaController,'permission'])
 }).prefix('/dasboard/pengguna/')
 
 router.group(() => {

@@ -12,11 +12,6 @@ export default class DasboardsController {
         });
     }
 
-
-    async login({ inertia }: HttpContext) {
-        return inertia.render('auth/login')
-    }
-
     async create({ inertia }: HttpContext) {
         return inertia.render('admin/dasboard/pengguna/create');
     }
@@ -55,6 +50,10 @@ export default class DasboardsController {
         pengguna.save()
         return response.redirect('/dasboard/pengguna/pengguna')
 
+    }
+
+    async permission({inertia}:HttpContext){
+        return inertia.render('admin/dasboard/pengguna/permission')
     }
 
 }

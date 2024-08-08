@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { IconEdit, IconHome, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react';
+import { IconEdit, IconHome, IconLock, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react';
 import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
 import { Link, router, usePage } from "@inertiajs/react";
@@ -37,7 +37,7 @@ export default function Pegunna() {
                             <Link href="/">
                                 <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                             </Link>
-                            <h6 className='text-gray-600 text-lg font-bold'>Data Kontak</h6>
+                            <h6 className='text-gray-600 text-lg font-bold'>Data Pengguna</h6>
                         </div>
 
 
@@ -80,8 +80,8 @@ export default function Pegunna() {
                                 <TableHead>Departemen</TableHead>
                                 <TableHead>Jabatan</TableHead>
                                 <TableHead>Status</TableHead>
-                                <TableHead className="text-">Aksi</TableHead>
-
+                                <TableHead >Aksi</TableHead>
+                                <TableHead>Permission</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -92,9 +92,9 @@ export default function Pegunna() {
                                     <TableCell>{pengguna.departemen}</TableCell>
                                     <TableCell>{pengguna.jabatan}</TableCell>
                                     <TableCell >
-                                        <p className={`w-20 text-center ${pengguna.status === 'aktif' ? 'bg-blue-300 py-1 rounded-md border-black' : 'bg-yellow-300 py-1 rounded-md'}`}>
+                                        <span className={`w-20 text-center ${pengguna.status === 'aktif' ? 'bg-blue-300 py-1 pl-1 pr-1 rounded-md border-black' : 'bg-yellow-300 py-1 pl-1 pr-1 rounded-md'}`}>
                                             {pengguna.status}
-                                        </p>
+                                        </span>
                                     </TableCell>
                                     <TableCell className="flex gap-3">
                                         <span onClick={() => handleDelete(pengguna.id)} className="text-right text-red-900 cursor-pointer">
@@ -103,6 +103,16 @@ export default function Pegunna() {
 
                                         <Link href={"/dasboard/pengguna/edit/" + pengguna.id}>
                                             <IconEdit size={18} />
+                                        </Link>
+
+
+                                    </TableCell>
+                                    <TableCell>
+                                        <Link href="/dasboard/pengguna/permission">
+                                            <span className="bg-blue-300 py-1 pl-1 pr-1 w-[135px] rounded-md flex" >
+                                                <IconLock size={18} />
+                                                Atur Permission
+                                            </span>
                                         </Link>
                                     </TableCell>
                                 </TableRow>
