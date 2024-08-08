@@ -91,7 +91,7 @@ export default function Index() {
               <h6 className='text-gray-600 text-lg font-bold'>Man Hours</h6>
             </div>
             <div>
-              <Link href="/users/manHours">
+              <Link href="/users/manhours/create">
                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2  hover:text-white" variant="outline">
                   <IconBriefcase size={18} />
                   Tambah man haours

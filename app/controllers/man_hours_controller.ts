@@ -4,4 +4,8 @@ export default class ManHoursController {
     async index({ inertia }: HttpContext) {
         return inertia.render('admin/users/manHours/index')
     }
+
+    async create({ inertia }: HttpContext) {
+        return inertia.render('admin/users/manHours/create')
+    }
 }
