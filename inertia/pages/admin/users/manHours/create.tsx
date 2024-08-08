@@ -1,25 +1,18 @@
-import { Head, Link } from '@inertiajs/react'
-import { IconHome, IconSearch } from '@tabler/icons-react'
-import React from 'react'
-import { ToastContainer } from 'react-toastify'
-import { Button } from '~/components/ui/button'
-import { Card } from '~/components/ui/card'
-import { Input } from '~/components/ui/input'
-import { Label } from '~/components/ui/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
-import Admin from '~/layout/admin'
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
+import { IconHome, IconSearch } from '@tabler/icons-react';
+import React, { FormEventHandler } from 'react';
+import { ToastContainer } from 'react-toastify';
+import { Button } from '~/components/ui/button';
+import { Card } from '~/components/ui/card';
+import { Input } from '~/components/ui/input';
+import { Label } from '~/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
+import Admin from '~/layout/admin';
 
-const statuses = [
-  {
-    value: "Selesai",
-    label: "Selesai",
-  },
-  {
-    value: "Tidak-Selesai",
-    label: "Tidak-Selesai",
-  }
-]
 export default function Create() {
+  const { data_karyawan } = usePage().props
+  console.log(data_karyawan);
+  
   return (
     <Admin>
       <Head title='manhours' />
@@ -45,11 +38,19 @@ export default function Create() {
           <ToastContainer />
           <div className='my-5'>
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor='manhours'> Nama Karyawan:</Label>
-              <Input
-                id="manhours"
-                placeholder="Masukkan Nama Karyawan"
-              />
+              <Label>Pilih Karyawan:</Label>
+              <Select >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Pilih Karyawan" />
+                </SelectTrigger>
+                <SelectContent>
+                  {/* {data_karyawan.map((kar) => (
+                    <SelectItem key={kar.id} value={kar.nama}>
+                      {kar.nama}
+                    </SelectItem>
+                  ))} */}
+                </SelectContent>
+              </Select>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
@@ -60,17 +61,15 @@ export default function Create() {
                     <SelectValue placeholder="Pilih Proyek" />
                   </SelectTrigger>
                   <SelectContent>
-                    <div className="relative ml-auto flex-1 md:grow-0 ">
-                      <IconSearch className="absolute mt-1 left-2.5  top-2.5 h-4 w-4 text-muted-foreground" />
+                    <div className="relative ml-auto flex-1 md:grow-0">
+                      <IconSearch className="absolute mt-1 left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                       <Input
                         type="search"
                         placeholder="Search..."
                         className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
                       />
                     </div>
-                    {statuses.map((status) => (
-                      <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
-                    ))}
+                    {/* Map proyek di sini */}
                   </SelectContent>
                 </Select>
               </div>
@@ -82,17 +81,9 @@ export default function Create() {
                     <SelectValue placeholder="Pilih Status" />
                   </SelectTrigger>
                   <SelectContent>
-                    <div className="relative ml-auto flex-1 md:grow-0 p-3">
-                      <IconSearch className="absolute mt-1 left-2.5  top-2.5 h-4 w-4 text-muted-foreground" />
-                      <Input
-                        type="search"
-                        placeholder="Search..."
-                        className=" rounded-lg bg-background pl-8 md:w-full lg:w-[320px]"
-                      />
-                    </div>
-                    {statuses.map((status) => (
+                    {/* {statuses.map((status) => (
                       <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
-                    ))}
+                    ))} */}
                   </SelectContent>
                 </Select>
               </div>
@@ -103,11 +94,7 @@ export default function Create() {
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Pilih Pemilik" />
                   </SelectTrigger>
-                  {/* <SelectContent>
-                    {pemiliks.map((pemilik) => (
-                      <SelectItem key={pemilik.value} value={pemilik.value}>{pemilik.label}</SelectItem>
-                    ))}
-                  </SelectContent> */}
+                  {/* Map pemilik di sini */}
                 </Select>
               </div>
             </div>
@@ -117,5 +104,5 @@ export default function Create() {
         </form>
       </Card>
     </Admin>
-  )
+  );
 }

@@ -10,19 +10,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import Admin from '~/layout/admin'
 
 export default function EditPengguna() {
-    const { pengguna } = usePage().props
+    const { karyawan } = usePage().props
     const { data, setData, put } = useForm({
-        nama: pengguna.nama,
-        departemen: pengguna.departemen,
-        jabatan: pengguna.jabatan,
-        status: pengguna.status,
+        nama: karyawan.nama,
+        departemen: karyawan.departemen,
+        jabatan: karyawan.jabatan,
+        status: karyawan.status,
     })
-    console.log(pengguna);
+    console.log(karyawan);
     
 
     const handleSubmit: FormEventHandler =async (e) => {
         e.preventDefault()
-        await put('/dasboard/pengguna/edit/' + pengguna.id)
+        await put('/dasboard/pengguna/edit/' + karyawan.id)
         onSuccess: () => {
             Swal.fire({
                 title: 'Data Berhasil Diupdate!',
