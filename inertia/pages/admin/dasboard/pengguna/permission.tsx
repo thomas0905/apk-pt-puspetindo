@@ -6,6 +6,7 @@ export default function Permission() {
   return (
     <Admin>
       <Head title='permission'/>
+      Halaman Permission
     </Admin>
   )
 }
