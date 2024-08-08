@@ -1,3 +1,4 @@
+import LaporansController from '#controllers/laporans_controller'
 import LoginController from '#controllers/login_controller'
 import ManHoursController from '#controllers/man_hours_controller'
 import MenuProfilsController from '#controllers/menu_profils_controller'
@@ -33,4 +34,5 @@ router.group(()=> {
     router.get('create',[ManHoursController,'create'])
 }).prefix('/users/manhours/')
 
+router.get('/management/laporan',[LaporansController,'laporan'])
 router.get('/auth/login', [LoginController, 'login'])
