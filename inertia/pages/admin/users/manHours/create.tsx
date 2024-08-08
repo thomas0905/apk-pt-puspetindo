@@ -1,14 +1,24 @@
 import { Head, Link } from '@inertiajs/react'
-import { IconHome } from '@tabler/icons-react'
+import { IconHome, IconSearch } from '@tabler/icons-react'
 import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
-import { Select, SelectTrigger, SelectValue } from '~/components/ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import Admin from '~/layout/admin'
 
+const statuses = [
+  {
+    value: "Selesai",
+    label: "Selesai",
+  },
+  {
+    value: "Tidak-Selesai",
+    label: "Tidak-Selesai",
+  }
+]
 export default function Create() {
   return (
     <Admin>
@@ -49,11 +59,19 @@ export default function Create() {
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Pilih Proyek" />
                   </SelectTrigger>
-                  {/* <SelectContent>
+                  <SelectContent>
+                    <div className="relative ml-auto flex-1 md:grow-0 ">
+                      <IconSearch className="absolute mt-1 left-2.5  top-2.5 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        type="search"
+                        placeholder="Search..."
+                        className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
+                      />
+                    </div>
                     {statuses.map((status) => (
                       <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
                     ))}
-                  </SelectContent> */}
+                  </SelectContent>
                 </Select>
               </div>
 
@@ -63,11 +81,19 @@ export default function Create() {
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Pilih Status" />
                   </SelectTrigger>
-                  {/* <SelectContent>
+                  <SelectContent>
+                    <div className="relative ml-auto flex-1 md:grow-0 p-3">
+                      <IconSearch className="absolute mt-1 left-2.5  top-2.5 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        type="search"
+                        placeholder="Search..."
+                        className=" rounded-lg bg-background pl-8 md:w-full lg:w-[320px]"
+                      />
+                    </div>
                     {statuses.map((status) => (
                       <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
                     ))}
-                  </SelectContent> */}
+                  </SelectContent>
                 </Select>
               </div>
 
