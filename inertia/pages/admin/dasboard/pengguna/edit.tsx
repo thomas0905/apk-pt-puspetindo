@@ -85,7 +85,7 @@ export default function EditPengguna() {
                             />
                         </div>
 
-                        <div className="grid grid-cols-3 gap-3 mt-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="departemen">Departemen:</Label>
                                 <Input
@@ -100,10 +100,10 @@ export default function EditPengguna() {
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="jabatan">Pilih Jabatan:</Label>
                                 <Select
-                                    value={data.jabatan}
                                     onValueChange={(value) => setData('jabatan', value)}
+                                    value={data.jabatan}
                                 >
-                                    <SelectTrigger className="w-[180px]">
+                                    <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Pilih Jabatan" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -118,21 +118,21 @@ export default function EditPengguna() {
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="status">Pilih Status:</Label>
-                                <div>
-                                    <Select
-                                    value={data.status}
+                                <Select
                                     onValueChange={(value) => setData('status', value)}
-                                    >
-                                        <SelectTrigger className="w-[180px]">
-                                            <SelectValue placeholder="Pilih Status" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {statuses.map((status) => (
-                                                <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
+                                    value={data.status}
+                                >
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Pilih Status" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {statuses.map((status) => (
+                                            <SelectItem key={status.value} value={status.value}>
+                                                {status.label}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
                     </div>

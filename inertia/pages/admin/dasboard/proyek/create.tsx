@@ -10,7 +10,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FormEventHandler } from 'react'
 
-
 export default function Create() {
 
     const pemiliks = [
@@ -46,7 +45,6 @@ export default function Create() {
         e.preventDefault()
         post('/dasboard/proyek/create')
         console.log(data);
-        
     }
 
     return (
@@ -75,64 +73,55 @@ export default function Create() {
                 <form className='mt-5' onSubmit={handleSubmit}>
                     <ToastContainer />
                     <div className='my-5'>
-                        <div>
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="nama"> Nama Proyek:</Label>
-                                <Input
-                                    id="nama"
-                                    placeholder="Masukkan Nama"
-                                    name='namaProyek'
-                                    value={data.namaProyek}
-                                    onChange={(e) => setData('namaProyek',e.target.value)}
-                                />
-                            </div>
+                        <div className="flex flex-col space-y-1.5">
+                            <Label htmlFor="nama"> Nama Proyek:</Label>
+                            <Input
+                                id="nama"
+                                placeholder="Masukkan Nama"
+                                name='namaProyek'
+                                value={data.namaProyek}
+                                onChange={(e) => setData('namaProyek', e.target.value)}
+                            />
                         </div>
 
-                        <div className="grid grid-cols-3 gap-3 mt-3">
-                            <div>
-                                <div className="flex flex-col space-y-1.5">
-                                    <Label htmlFor="departemen">Kode Job order:</Label>
-                                    <Input
-                                        id="departemen"
-                                        placeholder="Masukkan Kode"
-                                        name='kodeJobOrder'
-                                        value={data.kodeJobOrder}
-                                        onChange={(e) => setData('kodeJobOrder',e.target.value)}
-                                    />
-
-                                </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="kodeJobOrder">Kode Job Order:</Label>
+                                <Input
+                                    id="kodeJobOrder"
+                                    placeholder="Masukkan Kode"
+                                    name='kodeJobOrder'
+                                    value={data.kodeJobOrder}
+                                    onChange={(e) => setData('kodeJobOrder', e.target.value)}
+                                />
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="jabatan">Status:</Label>
-                                <div>
-                                    <Select onValueChange={(value) => setData('status',value)}>
-                                        <SelectTrigger className="w-[180px]">
-                                            <SelectValue placeholder="Pilih Status" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {statuses.map((status) => (
-                                                <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
+                                <Label htmlFor="status">Status:</Label>
+                                <Select onValueChange={(value) => setData('status', value)}>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Pilih Status" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {statuses.map((status) => (
+                                            <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="jabatan">Pemilik:</Label>
-                                <div>
-                                    <Select onValueChange={(value) => setData('pemilik',value)}>
-                                        <SelectTrigger className="w-[180px]">
-                                            <SelectValue placeholder="Pilih Pemilik" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {pemiliks.map((pemilik) => (
-                                                <SelectItem key={pemilik.value} value={pemilik.value}>{pemilik.label}</SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
+                                <Label htmlFor="pemilik">Pemilik:</Label>
+                                <Select onValueChange={(value) => setData('pemilik', value)}>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Pilih Pemilik" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {pemiliks.map((pemilik) => (
+                                            <SelectItem key={pemilik.value} value={pemilik.value}>{pemilik.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
                     </div>
