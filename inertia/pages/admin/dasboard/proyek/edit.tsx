@@ -14,6 +14,7 @@ export default function Edit() {
     const { data, setData, put } = useForm({
         namaProyek: proyek.namaProyek,
         kodeJobOrder: proyek.kodeJobOrder,
+        status: proyek.status,
         pemilik: proyek.pemilik
     })
 
@@ -38,6 +39,17 @@ export default function Edit() {
         {
             value: "staff",
             label: "Staff",
+        }
+    ]
+
+    const statuses = [
+        {
+            value: "Selesai",
+            label: "Selesai",
+        },
+        {
+            value: "Tidak-Selesai",
+            label: "Tidak-Selesai",
         }
     ]
 
@@ -88,6 +100,25 @@ export default function Edit() {
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="status">Pilih Status:</Label>
+                                <Select
+                                    value={data.status}
+                                    onValueChange={(value) => setData('status', value)}
+                                >
+                                    <SelectTrigger className="w-[180px]">
+                                        <SelectValue placeholder="Pilih Status" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {statuses.map((status) => (
+                                            <SelectItem key={status.value} value={status.value}>
+                                                {status.label}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="pemilik">Pilih Pemilik:</Label>
                                 <Select
                                     value={data.pemilik}
@@ -107,7 +138,6 @@ export default function Edit() {
                             </div>
                         </div>
                     </div>
-
                     <Button className='bg-blue-600 hover:bg-blue-500' type="submit">Update</Button>
                 </form>
             </Card>

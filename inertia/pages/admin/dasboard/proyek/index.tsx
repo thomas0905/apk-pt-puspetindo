@@ -13,7 +13,7 @@ import { Car } from 'lucide-react'
 
 export default function IndexProyek() {
     const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
-console.log(data_proyek);
+    console.log(data_proyek);
 
     const handleDelete = async (id: any) => {
         const swalInstance = Swal.fire({
@@ -101,8 +101,8 @@ console.log(data_proyek);
                         </div>
                     </div>
                 </div>
-                
-                    <DataTable data={data_proyek} columns={columns} />
+
+                <DataTable data={data_proyek} columns={columns} />
             </Card>
         </Admin>
     )

@@ -110,7 +110,7 @@ export default function dataTable({ data, columns }) {
                 />
             </div>
             <Card className='mt-2'>
-                <Table className='mt-4'>
+                <Table>
                     <TableCaption>A list of your recent invoices.</TableCaption>
                     <TableHeader>
                         {table.getHeaderGroups().map(headerGroup => (

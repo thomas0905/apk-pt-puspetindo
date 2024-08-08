@@ -1,4 +1,5 @@
 import LoginController from '#controllers/login_controller'
+import ManHoursController from '#controllers/man_hours_controller'
 import MenuProfilsController from '#controllers/menu_profils_controller'
 import ProyeksController from '#controllers/proyeks_controller'
 import router from '@adonisjs/core/services/router'
@@ -28,6 +29,7 @@ router.group(() => {
 
 router.group(()=> {
     router.get('menuProfil',[MenuProfilsController,'menuProfil'])
+    router.get('manHours',[ManHoursController,'manHours'])
 }).prefix('/users/')
 
 router.get('/auth/login', [LoginController, 'login'])
