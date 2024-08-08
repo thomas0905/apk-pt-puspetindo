@@ -40,8 +40,17 @@ export default function EditPengguna() {
         {
             value: "staff",
             label: "Staff",
+        },
+        {
+            value: "IT Software",
+            label: "IT Software",
+        },
+        {
+            value: "HR IT",
+            label: "HR IT",
         }
     ]
+    
 
     const statuses = [
         {
