@@ -80,6 +80,8 @@ export default function Pegunna() {
                                 <TableHead>Departemen</TableHead>
                                 <TableHead>Jabatan</TableHead>
                                 <TableHead>Status</TableHead>
+                                <TableHead>Email</TableHead>
+                                <TableHead>Password</TableHead>
                                 <TableHead >Aksi</TableHead>
                                 <TableHead>Permission</TableHead>
                             </TableRow>
@@ -96,6 +98,8 @@ export default function Pegunna() {
                                             {pengguna.status}
                                         </span>
                                     </TableCell>
+                                    <TableCell>{pengguna.email}</TableCell>
+                                    <TableCell>{pengguna.password}</TableCell>
                                     <TableCell className="flex gap-3">
                                         <span onClick={() => handleDelete(pengguna.id)} className="text-right text-red-900 cursor-pointer">
                                             <IconTrash size={18} />

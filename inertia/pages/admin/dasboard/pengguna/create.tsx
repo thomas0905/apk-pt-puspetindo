@@ -47,6 +47,8 @@ export default function Create() {
         departemen: '',
         jabatan: '',
         status: '',
+        email:'',
+        password:''
     })
     const [errors, setErrors] = useState({});
 
@@ -75,6 +77,17 @@ export default function Create() {
             validationErrors.jabatan = 'Jabatan harus dipilih';
             isValid = false;
         }
+
+        if (data.email.trim() === '') {
+            validationErrors.email = 'Email harus di lengkapi';
+            isValid = false;
+        }
+
+        if (data.password.trim() === '') {
+            validationErrors.password = 'password harus di lengkapi';
+            isValid = false;
+        }
+
 
         setErrors(validationErrors);
 
@@ -173,6 +186,35 @@ export default function Create() {
                                     </SelectContent>
                                 </Select>
                                 {errors.status && <small className="text-red-600">{errors.status}</small>}
+                            </div>
+
+
+                            <div className='mt-2'>
+                                <h6 className='text-gray-600 text-md font-bold'>Data Pengguna</h6>
+                                <div className="flex flex-col space-y-1.5 mt-3">
+                                    <Label htmlFor="jabatan">Email:</Label>
+                                   <Input 
+                                   type='email'
+                                    placeholder='Masukkan Alamat Email'
+                                    onChange={(e) => setData('email', e.target.value)}
+                                    name='email'
+                                    value={data.email}
+                                    >
+                                   </Input>
+                                    {errors.email && <small className="text-red-600">{errors.email}</small>}
+                                </div>
+                                <div className="flex flex-col space-y-1.5 mt-3">
+                                    <Label htmlFor="jabatan">Password:</Label>
+                                   <Input 
+                                   type='password'
+                                    placeholder='Masukkan Alamat Email'
+                                    onChange={(e) => setData('password', e.target.value)}
+                                    name='password'
+                                    value={data.password}
+                                    >
+                                   </Input>
+                                    {errors.password && <small className="text-red-600">{errors.password}</small>}
+                                </div>
                             </div>
                         </div>
                     </div>

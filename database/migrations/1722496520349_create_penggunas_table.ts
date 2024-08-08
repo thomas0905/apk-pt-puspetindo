@@ -10,6 +10,8 @@ export default class extends BaseSchema {
       table.string('departemen')
       table.string('jabatan')
       table.string('status')
+      table.string('email')
+      table.string('password')
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })

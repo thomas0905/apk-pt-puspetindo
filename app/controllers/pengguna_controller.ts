@@ -23,6 +23,8 @@ export default class DasboardsController {
         pengguna.departemen = request.input('departemen');
         pengguna.jabatan = request.input('jabatan');
         pengguna.status = request.input('status');
+        pengguna.email = request.input('email');
+        pengguna.password = request.input('password');
 
         await pengguna.save();
 
@@ -50,6 +52,8 @@ export default class DasboardsController {
         pengguna.departemen = request.input('departemen')
         pengguna.jabatan = request.input('jabatan')
         pengguna.status = request.input('status')
+        pengguna.email = request.input('email');
+        pengguna.password = request.input('password');
         pengguna.save()
         return response.redirect('/dasboard/pengguna/pengguna')
 

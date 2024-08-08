@@ -17,6 +17,12 @@ export default class Pengguna extends BaseModel {
   @column()
   declare status: string
 
+  @column()
+  declare email: string
+
+  @column()
+  declare password: string
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
