@@ -87,7 +87,7 @@ export default function Edit() {
                             />
                         </div>
 
-                        <div className="grid grid-cols-3 gap-3 mt-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="kodeJobOrder">Kode Proyek:</Label>
                                 <Input
@@ -105,7 +105,7 @@ export default function Edit() {
                                     value={data.status}
                                     onValueChange={(value) => setData('status', value)}
                                 >
-                                    <SelectTrigger className="w-[180px]">
+                                    <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Pilih Status" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -124,7 +124,7 @@ export default function Edit() {
                                     value={data.pemilik}
                                     onValueChange={(value) => setData('pemilik', value)}
                                 >
-                                    <SelectTrigger className="w-[180px]">
+                                    <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Pilih Pemilik" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -138,6 +138,7 @@ export default function Edit() {
                             </div>
                         </div>
                     </div>
+
                     <Button className='bg-blue-600 hover:bg-blue-500' type="submit">Update</Button>
                 </form>
             </Card>
