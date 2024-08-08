@@ -91,7 +91,11 @@ export default function Pegunna() {
                                     <TableCell>{pengguna.nama}</TableCell>
                                     <TableCell>{pengguna.departemen}</TableCell>
                                     <TableCell>{pengguna.jabatan}</TableCell>
-                                    <TableCell>{pengguna.status}</TableCell>
+                                    <TableCell >
+                                        <p className={`w-20 text-center ${pengguna.status === 'aktif' ? 'bg-blue-300 py-1 rounded-md border-black' : 'bg-yellow-300 py-1 rounded-md'}`}>
+                                            {pengguna.status}
+                                        </p>
+                                    </TableCell>
                                     <TableCell className="flex gap-3">
                                         <span onClick={() => handleDelete(pengguna.id)} className="text-right text-red-900 cursor-pointer">
                                             <IconTrash size={18} />
