@@ -10,8 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import Admin from '~/layout/admin';
 
 export default function Create() {
-  const { data_karyawan } = usePage().props
-  console.log(data_karyawan);
+  const { data_karyawan,data_proyek } = usePage().props
+  console.log(data_proyek);
   
   return (
     <Admin>
@@ -44,35 +44,31 @@ export default function Create() {
                   <SelectValue placeholder="Pilih Karyawan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {/* {data_karyawan.map((kar) => (
-                    <SelectItem key={kar.id} value={kar.nama}>
+                  {data_karyawan.map((kar) => (
+                    <SelectItem key={kar.id} value={kar.id}>
                       {kar.nama}
                     </SelectItem>
-                  ))} */}
+                  ))}
                 </SelectContent>
               </Select>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
-              <div className="flex flex-col space-y-1.5">
-                <Label>Pilih Proyek:</Label>
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Pilih Proyek" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <div className="relative ml-auto flex-1 md:grow-0">
-                      <IconSearch className="absolute mt-1 left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                      <Input
-                        type="search"
-                        placeholder="Search..."
-                        className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
-                      />
-                    </div>
-                    {/* Map proyek di sini */}
-                  </SelectContent>
-                </Select>
-              </div>
+            <div className="flex flex-col space-y-1.5">
+              <Label>Pilih Proyek:</Label>
+              <Select >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Pilih Proyek" />
+                </SelectTrigger>
+                <SelectContent>
+                  {data_proyek.map((proyek) => (
+                    <SelectItem key={proyek.id} value={proyek.id}>
+                      {proyek.namaProyek}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
               <div className="flex flex-col space-y-1.5">
                 <Label>Status:</Label>
@@ -81,10 +77,12 @@ export default function Create() {
                     <SelectValue placeholder="Pilih Status" />
                   </SelectTrigger>
                   <SelectContent>
-                    {/* {statuses.map((status) => (
-                      <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
-                    ))} */}
-                  </SelectContent>
+                  {data_karyawan.map((kar) => (
+                    <SelectItem key={kar.id} value={kar.id}>
+                      {kar.status}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
                 </Select>
               </div>
 
@@ -95,6 +93,13 @@ export default function Create() {
                     <SelectValue placeholder="Pilih Pemilik" />
                   </SelectTrigger>
                   {/* Map pemilik di sini */}
+                  <SelectContent>
+                  {data_karyawan.map((kar) => (
+                    <SelectItem key={kar.id} value={kar.id}>
+                      {kar.nama}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
                 </Select>
               </div>
             </div>

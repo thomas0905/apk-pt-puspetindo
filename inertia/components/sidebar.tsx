@@ -63,13 +63,13 @@ export default function Sidebar() {
 
                             <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 text-muted-foreground transition-all">
                                 <span className={`${isSidebarHidden ? '' : 'judul-sidebar'}`}> Users</span>
-                                <Link href='/users/manhours/menuProfil'className={`flex pl-2 mt-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/users/menuProfil') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600'
+                                <Link href='/manhours/menuProfil'className={`flex pl-2 mt-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/users/menuProfil') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600'
                                     }`}>
                                     <IconUsers size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Menu Profil</span>
                                 </Link>
 
-                                <Link href='/users/manhours/index' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/dasboard/users/minHours') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600 w-full'
+                                <Link href='/manhours/index' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/dasboard/users/minHours') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600 w-full'
                                     }`}>
                                     <IconBriefcase size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Man Hours</span>

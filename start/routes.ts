@@ -1,8 +1,7 @@
 import AuthController from '#controllers/auth_controller'
 const KaryawansController = () => import('#controllers/karyawans_controller')
 import LaporansController from '#controllers/laporans_controller'
-import ManHoursController from '#controllers/man_hours_controller'
-import MenuProfilsController from '#controllers/menu_profils_controller'
+const ManHoursController = () => import('#controllers/man_hours_controller')
 import ProyeksController from '#controllers/proyeks_controller'
 import router from '@adonisjs/core/services/router'
 
@@ -29,11 +28,12 @@ router.group(() => {
 }).prefix('/dasboard/proyek/')
 
 
+
 router.group(() => {
-    router.get('menuProfil', [MenuProfilsController, 'menuProfil'])
+    router.get('menuProfil', [ManHoursController, 'menuProfil'])
     router.get('index', [ManHoursController, 'index'])
     router.get('create', [ManHoursController, 'create'])
-}).prefix('/users/manhours/')
+}).prefix('/manhours/')
 
 router.group(() => {
     router.get('index', [AuthController, 'auth'])

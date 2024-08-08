@@ -1,4 +1,5 @@
 import Karyawan from '#models/karyawan';
+import Proyek from '#models/proyek';
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ManHoursController {
@@ -6,11 +7,16 @@ export default class ManHoursController {
         return inertia.render('admin/users/manHours/index')
     }
 
+    async menuProfil({ inertia }: HttpContext) {
+        return inertia.render('admin/users/manHours/menuProfil')
+    }
+
     async create({ inertia }: HttpContext) {
         const karyawan = await Karyawan.all()
-        console.log(karyawan);
-        return inertia.render('admin/users/manHours/create',{
-            data_karyawan: karyawan
+        const proyek = await Proyek.all()
+        return inertia.render('admin/users/manHours/create', {
+            data_karyawan: karyawan,
+            data_proyek: proyek
         })
     }
 }
