@@ -35,10 +35,7 @@ router.group(() => {
     router.get('create', [ManHoursController, 'create'])
 }).prefix('/manhours/')
 
-router.group(() => {
-    router.get('login', [AuthController, 'login'])
-    // router.post('login', [AuthController, 'login'])
-}).prefix('/auth/')
+router.get('/auth/login',[AuthController,'login'])
 
 router.get('/sistem/pengguna',[PenggunasController,'pengguna'])
 

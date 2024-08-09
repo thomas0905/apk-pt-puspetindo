@@ -1,9 +1,8 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import inertia from '@adonisjs/inertia/client'
 
 export default class AuthController {
     async login({inertia}:HttpContext){
-        return inertia.render('/auth/login')
+        return inertia.render('admin/auth/login')
     }
 
     // async login({request,auth,session,response}){
