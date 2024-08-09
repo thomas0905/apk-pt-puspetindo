@@ -31,7 +31,7 @@ import {
 } from '@tanstack/match-sorter-utils'
 import { Input } from '../ui/input'
 import { Card } from '../ui/card'
-import { IconSearch } from '@tabler/icons-react'
+import { IconDatabaseOff, IconSearch } from '@tabler/icons-react'
 
 declare module '@tanstack/react-table' {
     //add fuzzy filter to the filterFns
@@ -146,7 +146,10 @@ export default function dataTable({ data, columns }) {
                         ) : (
                             <TableRow>
                                 <TableCell colSpan={columns.length} className="text-center">
-                                    Tidak Ada Data
+                                    <div className="flex justify-center items-center gap-2">
+                                        <IconDatabaseOff size={40} className="text-gray-400" />
+                                        <span className="text-gray-600">Tidak Ada Data</span>
+                                    </div>
                                 </TableCell>
                             </TableRow>
                         )}
