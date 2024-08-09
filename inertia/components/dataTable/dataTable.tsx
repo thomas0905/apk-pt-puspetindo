@@ -116,7 +116,7 @@ export default function dataTable({ data, columns }) {
 
             <Card className='mt-2'>
                 <Table>
-                    {/* <TableCaption>Tidak Ada Data </TableCaption> */}
+                    <TableCaption>Tidak Ada Data </TableCaption>
                     <TableHeader>
                         {table.getHeaderGroups().map(headerGroup => (
                             <TableRow key={headerGroup.id}>

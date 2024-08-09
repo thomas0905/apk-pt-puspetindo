@@ -41,7 +41,7 @@ export default function Sidebar() {
                                 <span className={`${isSidebarHidden ? '' : 'judul-sidebar'}`}> Dashboard</span>
                                 <Link
                                     href='/'
-                                    className={`flex pl-2 mt-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600'
+                                    className={`flex pl-2 text-black rounded-sm mt-1 p-1 gap-2 text-md transition-all duration-200 ${isActive('/') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600 w-full'
                                         }`}
                                 >
                                     <IconDashboard size={21} />
@@ -49,13 +49,13 @@ export default function Sidebar() {
                                 </Link>
 
 
-                                <Link href='/dasboard/karyawan/index' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/dasboard/karyawan/index') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600'
+                                <Link href='/dasboard/karyawan/index' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/dasboard/karyawan/index') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600 w-full'
                                     }`}>
                                     <IconUsers size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Karyawan</span>
                                 </Link>
 
-                                <Link href='/dasboard/proyek/index'className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/dasboard/proyek/index') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600'
+                                <Link href='/dasboard/proyek/index'className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/dasboard/proyek/index') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600 w-full'
                                     }`}>
                                     <IconBriefcase size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Proyek</span>
@@ -64,7 +64,7 @@ export default function Sidebar() {
 
                             <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 text-muted-foreground transition-all">
                                 <span className={`${isSidebarHidden ? '' : 'judul-sidebar'}`}> Users</span>
-                                <Link href='/manhours/menuProfil'className={`flex pl-2 mt-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/manhours/menuProfil') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600'
+                                <Link href='/manhours/menuProfil' className={`flex pl-2 text-black rounded-sm mt-1 p-1 gap-2 text-md transition-all duration-200 ${isActive('/manhours/menuProfil') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600 w-full'
                                     }`}>
                                     <IconUsers size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Menu Profil</span>
