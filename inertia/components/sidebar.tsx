@@ -8,6 +8,7 @@ import {
     IconBriefcase,
     IconBook2,
     IconSettings,
+    IconUserSquare,
 } from '@tabler/icons-react';
 import MyImageComponent from '../img/logo-puspetindo.png';
 import { Button } from "@/components/ui/button";
@@ -87,7 +88,7 @@ export default function Sidebar() {
                             <span className="flex text-xm flex-col items-start gap-1 mt-3 rounded-lg px-2 text-muted-foreground transition-all">
                                 <span className={`${isSidebarHidden ? '' : 'judul-sidebar'}`}>Sistem</span>
                                 <Link href='/' className="flex pl-2 mt-2 hover:text-white text-black rounded-sm hover:bg-blue-600 hover:w-[190px] p-1 w-full gap-2 text-md">
-                                    <IconBook2 size={21} />
+                                    <IconUserSquare size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Pengguna</span>
                                 </Link>
 
