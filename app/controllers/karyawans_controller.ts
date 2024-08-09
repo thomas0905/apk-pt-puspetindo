@@ -4,17 +4,17 @@ import { HttpContext, Redirect } from "@adonisjs/core/http";
 
 export default class KaryawansKontroller {
 
-    async pengguna({ inertia }: HttpContext) {
+    async index({ inertia }: HttpContext) {
         const karyawan = await Karyawan.all()
         console.log(karyawan);
 
-        return inertia.render('admin/dasboard/pengguna/pengguna', {
+        return inertia.render('admin/dasboard/karyawan/index', {
             data_karyawan: karyawan
         });
     }
 
     async create({ inertia }: HttpContext) {
-        return inertia.render('admin/dasboard/pengguna/create');
+        return inertia.render('admin/dasboard/karyawan/create');
     }
 
 
@@ -37,19 +37,19 @@ export default class KaryawansKontroller {
         await karyawan.save();
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
-        return response.redirect('/dasboard/pengguna/pengguna');
+        return response.redirect('/dasboard/karyawan/index');
     }
 
     async delete({ params, response }: HttpContext) {
         const karyawan = await Karyawan.findOrFail(params.id)
         await karyawan.delete()
-        return response.redirect('/dasboard/pengguna/pengguna')
+        return response.redirect('/dasboard/karyawan/index')
     }
 
     async edit({ inertia, params }: HttpContext) {
         console.log(params.id);
         const karyawan = await Karyawan.find(params.id)
-        return inertia.render('admin/dasboard/pengguna/edit', {
+        return inertia.render('admin/dasboard/karyawan/edit', {
             karyawan: karyawan
         });
     }
@@ -61,12 +61,8 @@ export default class KaryawansKontroller {
         karyawan.jabatan = request.input('jabatan')
         karyawan.status = request.input('status')
         karyawan.save()
-        return response.redirect('/dasboard/pengguna/pengguna')
+        return response.redirect('/dasboard/karyawan/index')
 
-    }
-
-    async permission({ inertia }: HttpContext) {
-        return inertia.render('admin/dasboard/pengguna/permission')
     }
 
 }

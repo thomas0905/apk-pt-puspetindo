@@ -92,7 +92,7 @@ export default function Create() {
         setErrors(validationErrors);
 
         if (isValid) {
-            post('/dasboard/pengguna/create', {
+            post('/dasboard/karyawan/create', {
                 onSuccess: () => {
                     toast.success("Data Berhasil Disimpan!", {
                         position: 'top-center'
