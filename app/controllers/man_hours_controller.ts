@@ -12,7 +12,7 @@ export default class ManHoursController {
     }
 
     async menuProfil({ inertia }: HttpContext) {
-        return inertia.render('admin/users/manHours/menuProfil')
+        return inertia.render('admin/users/menuProfil')
     }
 
     async create({ inertia }: HttpContext) {
