@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from "@/components/ui/button"
+import './login.css'
 import {
     Card,
     CardContent,
@@ -10,69 +11,64 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { IconBrandGmail, IconLock, IconUser } from '@tabler/icons-react'
-
+import { IconBrandGmail, IconLock, IconMail, IconSearch, IconUser } from '@tabler/icons-react'
+import logoLogin from '../../../img/logo-puspetindo.png'
 export default function Login() {
     return (
         <div className='flex justify-center items-center h-screen'>
-            <Card className="w-full max-w-md border-0 shadow-md">
+            <Card className="w-full max-w-md border-0 shadow-md hover-card">
+                <div className='justify-center flex mt-3'>
+                    <img className='justify-center' src={logoLogin} alt="" />
+                </div>
                 <CardHeader>
-                    <CardTitle className="text-3xl">Login</CardTitle>
+                    <CardTitle className="text-3xl text-blue-500 ">Login</CardTitle>
                     <CardDescription>
                         Hai 👏, Selamat Datang Kembali di PT.Pustpetindo
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-4">
                     <div className="grid gap-2">
-                        <Label htmlFor="email">Username</Label>
-                        <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
-                            <span className="flex items-center px-3">
-                                <IconUser size={20} className="text-gray-500" />
-                            </span>
+                        <Label htmlFor="email">Username:</Label>
+                        <div className="relative">
+                            <IconUser className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                             <Input
-                                id="email"
-                                type="email"
-                                placeholder="Email"
-                                required
-                                className="flex-1 border-0 p-2 outline-none focus:outline-none focus:ring-0"
+                                type="text"
+                                placeholder="Username"
+                                className="w-full rounded-lg bg-background pl-8 focus:outline-blue-500"
                             />
                         </div>
                     </div>
 
                     <div className="grid gap-2">
                         <Label htmlFor="email">Email</Label>
-                        <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
-                            <span className="flex items-center px-3">
-                                <IconBrandGmail size={20} className="text-gray-500" />
-                            </span>
+                        <div className="relative">
+                            <IconMail className="absolute icon-login  left-2.5 top-2.5 h-4 w-4 text-gray-500" />
                             <Input
                                 id="email"
                                 type="email"
                                 placeholder="Email"
                                 required
-                                className="flex-1 "
+                                className="w-full rounded-lg bg-background pl-8"
                             />
                         </div>
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="email">Password</Label>
-                        <div className="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
-                            <span className="flex items-center px-3">
-                                <IconLock size={20} className="text-gray-500" />
-                            </span>
+                        <Label htmlFor="password">Password</Label>
+                        <div className="relative">
+                            <IconLock className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-gray-500" />
                             <Input
-                                id="email"
-                                type="email"
-                                placeholder="Email"
+                                id="password"
+                                type="password"
+                                placeholder="Password"
                                 required
-                                className="flex-1 border-0 p-2 outline-none focus:outline-none focus:ring-0"
+                                className="w-full rounded-lg bg-background pl-8"
                             />
                         </div>
                     </div>
                 </CardContent>
                 <CardFooter>
-                    <Button className="w-full bg-blue-500">Sign in</Button>
+                    <Button className="w-full bg-blue-500 hover:bg-blue-400">Sign in</Button>
                 </CardFooter>
             </Card>
         </div>
