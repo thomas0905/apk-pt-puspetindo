@@ -4,80 +4,81 @@ import React from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import Admin from '~/layout/admin'
-// import DataTable from '~/components/dataTable/dataTable'
-// import { createColumnHelper } from '@tanstack/react-table'
-// import Proyek from '#models/proyek'
-// import Swal from 'sweetalert2'
+import DataTable from '~/components/dataTable/dataTable'
+import { createColumnHelper } from '@tanstack/react-table'
+import Proyek from '#models/proyek'
+import Swal from 'sweetalert2'
+import ManHour from '#models/man_hour'
 
 
 export default function Index() {
-  // const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
+  const { data_manHours } = usePage<{ data_manHours: ManHour[] }>().props
   // console.log(data_proyek);
 
-  // const columnHelper = createColumnHelper<Proyek>()
+  const columnHelper = createColumnHelper<Proyek>()
 
-  // const handleDelete = async (id: any) => {
-  //   const swalInstance = Swal.fire({
-  //     title: 'Ingin Hapus Data?',
-  //     icon: 'question',
-  //     showCancelButton: true,
-  //     confirmButtonText: 'Ya!',
-  //     cancelButtonText: 'Tidak!',
-  //     allowOutsideClick: false,
-  //   });
-  //   const result = await swalInstance;
-  //   if (result.isConfirmed) {
-  //     await router.delete('/dasboard/proyek/proyek/' + id);
-  //     Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
-  //   } else {
-  //     Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
-  //   }
-  // };
+  const handleDelete = async (id: any) => {
+    const swalInstance = Swal.fire({
+      title: 'Ingin Hapus Data?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Ya!',
+      cancelButtonText: 'Tidak!',
+      allowOutsideClick: false,
+    });
+    const result = await swalInstance;
+    if (result.isConfirmed) {
+      await router.delete('/dasboard/proyek/proyek/' + id);
+      Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
+    } else {
+      Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
+    }
+  };
 
 
-  // const columns = [
-  //   columnHelper.accessor('id', {
-  //     header: () => 'No',
-  //     cell: info => info.getValue(),
-  //     footer: info => info.column.id,
-  //   }),
-  //   columnHelper.accessor('namaProyek', {
-  //     header: () => 'Nama Proyek',
-  //     cell: info => info.renderValue(),
-  //     footer: info => info.column.id,
-  //   }),
-  //   columnHelper.accessor('kodeJobOrder', {
-  //     header: () => 'Kode Job Order',
-  //     cell: info => info.renderValue(),
-  //     footer: info => info.column.id,
-  //   }),
+  const columns = [
+    columnHelper.accessor('id', {
+      header: () => 'No',
+      cell: info => info.getValue(),
+      footer: info => info.column.id,
+    }),
+    columnHelper.accessor('namaProyek', {
+      header: () => 'Nama Proyek',
+      cell: info => info.renderValue(),
+      footer: info => info.column.id,
+    }),
+    columnHelper.accessor('kodeJobOrder', {
+      header: () => 'Kode Job Order',
+      cell: info => info.renderValue(),
+      footer: info => info.column.id,
+    }),
 
-  //   columnHelper.accessor('status', {
-  //     header: () => 'Status',
-  //     cell: info => info.renderValue(),
-  //     footer: info => info.column.id,
-  //   }),
-  //   columnHelper.accessor('pemilik', {
-  //     header: () => 'Pemilik',
-  //     cell: info => info.renderValue(),
-  //     footer: info => info.column.id,
-  //   }),
-  //   columnHelper.display({
-  //     id: 'aksi',
-  //     header: () => 'Aksi',
-  //     cell: info => (
-  //       <div className="flex gap-3">
-  //         <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
-  //           <IconTrash size={18} />
-  //         </span>
-  //         <Link href={"/dasboard/proyek/edit/" + info.row.original.id}>
-  //           <IconEdit size={18} />
-  //         </Link>
-  //       </div>
-  //     ),
-  //     footer: info => info.column.id,
-  //   }),
-  // ]
+    columnHelper.accessor('status', {
+      header: () => 'Status',
+      cell: info => info.renderValue(),
+      footer: info => info.column.id,
+    }),
+    columnHelper.accessor('pemilik', {
+      header: () => 'Pemilik',
+      cell: info => info.renderValue(),
+      footer: info => info.column.id,
+    }),
+    columnHelper.display({
+      id: 'aksi',
+      header: () => 'Aksi',
+      cell: info => (
+        <div className="flex gap-3">
+          <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
+            <IconTrash size={18} />
+          </span>
+          <Link href={"/dasboard/proyek/edit/" + info.row.original.id}>
+            <IconEdit size={18} />
+          </Link>
+        </div>
+      ),
+      footer: info => info.column.id,
+    }),
+  ]
   return (
     <Admin>
       <Head title='man-hours'/>
@@ -101,7 +102,7 @@ export default function Index() {
           </div>
         </div>
 
-        {/* <DataTable  columns={columns} /> */}
+        <DataTable  columns={columns} />
       </Card>
     </Admin>
   )
