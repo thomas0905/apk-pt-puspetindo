@@ -1,21 +1,18 @@
-import { Head, Link, router, usePage } from '@inertiajs/react'
-import { IconBriefcase, IconEdit, IconHome, IconTrash } from '@tabler/icons-react'
-import React from 'react'
-import { Button } from '~/components/ui/button'
-import { Card } from '~/components/ui/card'
-import Admin from '~/layout/admin'
-import DataTable from '~/components/dataTable/dataTable'
-import { createColumnHelper } from '@tanstack/react-table'
-import Proyek from '#models/proyek'
-import Swal from 'sweetalert2'
-import ManHour from '#models/man_hour'
-
+import { Head, Link, router, usePage } from '@inertiajs/react';
+import { IconBriefcase, IconEdit, IconHome, IconTrash } from '@tabler/icons-react';
+import React from 'react';
+import { Button } from '~/components/ui/button';
+import { Card } from '~/components/ui/card';
+import Admin from '~/layout/admin';
+import DataTable from '~/components/dataTable/dataTable';
+import { createColumnHelper } from '@tanstack/react-table';
+import Swal from 'sweetalert2';
+import ManHour from '#models/man_hour';
 
 export default function Index() {
-  const { data_manHours } = usePage<{ data_manHours: ManHour[] }>().props
-  // console.log(data_proyek);
+  const { data_manHours } = usePage<{ data_manHours: ManHour[] }>().props;
 
-  const columnHelper = createColumnHelper<Proyek>()
+  const columnHelper = createColumnHelper<ManHour>();
 
   const handleDelete = async (id: any) => {
     const swalInstance = Swal.fire({
@@ -28,40 +25,33 @@ export default function Index() {
     });
     const result = await swalInstance;
     if (result.isConfirmed) {
-      await router.delete('/dasboard/proyek/proyek/' + id);
+      await router.delete('/dashboard/manhours/' + id);
       Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
     } else {
       Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
     }
   };
 
-
   const columns = [
     columnHelper.accessor('id', {
       header: () => 'No',
+      cell: info => info.row.index + 1, 
+    }),
+    columnHelper.accessor('karyawan.nama', {
+      header: () => 'Nama Karyawan',
       cell: info => info.getValue(),
-      footer: info => info.column.id,
     }),
-    columnHelper.accessor('namaProyek', {
+    columnHelper.accessor('proyek.namaProyek', {
       header: () => 'Nama Proyek',
-      cell: info => info.renderValue(),
-      footer: info => info.column.id,
+      cell: info => info.getValue(),
     }),
-    columnHelper.accessor('kodeJobOrder', {
-      header: () => 'Kode Job Order',
-      cell: info => info.renderValue(),
-      footer: info => info.column.id,
+    columnHelper.accessor('tanggal', {
+      header: () => 'Tanggal',
+      cell: info => new Date(info.getValue()).toLocaleDateString(),
     }),
-
-    columnHelper.accessor('status', {
-      header: () => 'Status',
-      cell: info => info.renderValue(),
-      footer: info => info.column.id,
-    }),
-    columnHelper.accessor('pemilik', {
-      header: () => 'Pemilik',
-      cell: info => info.renderValue(),
-      footer: info => info.column.id,
+    columnHelper.accessor('jamKerja', {
+      header: () => 'Jam Kerja',
+      cell: info => `${info.getValue()} jam`,
     }),
     columnHelper.display({
       id: 'aksi',
@@ -71,14 +61,14 @@ export default function Index() {
           <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
             <IconTrash size={18} />
           </span>
-          <Link href={"/dasboard/proyek/edit/" + info.row.original.id}>
+          <Link href={"/dashboard/manhours/edit/" + info.row.original.id}>
             <IconEdit size={18} />
           </Link>
         </div>
       ),
-      footer: info => info.column.id,
     }),
-  ]
+  ];
+
   return (
     <Admin>
       <Head title='man-hours'/>
@@ -93,17 +83,17 @@ export default function Index() {
             </div>
             <div>
               <Link href="/manhours/create">
-                <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2  hover:text-white" variant="outline">
+                <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
                   <IconBriefcase size={18} />
-                  Tambah man haours
+                  Tambah man hours
                 </Button>
               </Link>
             </div>
           </div>
         </div>
 
-        <DataTable  columns={columns} />
+        <DataTable data={data_manHours} columns={columns} />
       </Card>
     </Admin>
-  )
+  );
 }
