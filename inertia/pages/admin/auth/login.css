@@ -1,8 +1,10 @@
 .icon-login{
     margin-top: 2px;
+    outline: #3A82F6;
 }
+
 
 .hover-card{
     box-shadow: 0px 1px 10px 1px #3A82F6;
-    transition: 1s ease-out;
+    transition:box-shadow 1s ease-out;
 }

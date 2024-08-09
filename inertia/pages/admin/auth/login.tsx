@@ -11,12 +11,13 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { IconBrandGmail, IconLock, IconMail, IconSearch, IconUser } from '@tabler/icons-react'
+import { IconLock, IconMail, IconUser } from '@tabler/icons-react'
 import logoLogin from '../../../img/logo-puspetindo.png'
+import { Link } from '@inertiajs/react'
 export default function Login() {
     return (
-        <div className='flex justify-center items-center h-screen'>
-            <Card className="w-full max-w-md border-0 shadow-md hover-card">
+        <div className='flex justify-center items-center h-screen p-3 sm:p-0'>
+            <Card className="w-full max-w-md border-0 shadow-md hover-card sm:p-1 ">
                 <div className='justify-center flex mt-3'>
                     <img className='justify-center' src={logoLogin} alt="" />
                 </div>
@@ -67,9 +68,11 @@ export default function Login() {
                         </div>
                     </div>
                 </CardContent>
-                <CardFooter>
-                    <Button className="w-full bg-blue-500 hover:bg-blue-400">Sign in</Button>
-                </CardFooter>
+                <Link href='/'>
+                    <CardFooter>
+                        <Button className="w-full bg-blue-500 hover:bg-blue-400">Login</Button>
+                    </CardFooter>
+                </Link>
             </Card>
         </div>
     )
