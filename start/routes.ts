@@ -27,12 +27,11 @@ router.group(() => {
     router.put('edit/:id', [ProyeksController, 'update'])
 }).prefix('/dasboard/proyek/')
 
-
-
 router.group(() => {
     router.get('menuProfil', [ManHoursController, 'menuProfil'])
     router.get('index', [ManHoursController, 'index'])
     router.get('create', [ManHoursController, 'create'])
+    router.post('create', [ManHoursController, 'store'])
 }).prefix('/manhours/')
 
 router.get('/auth/login',[AuthController,'login'])

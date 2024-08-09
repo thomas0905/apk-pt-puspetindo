@@ -10,9 +10,23 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import Admin from '~/layout/admin';
 
 export default function Create() {
-  const { data_karyawan,data_proyek } = usePage().props
+  const { data_karyawan, data_proyek } = usePage().props
   console.log(data_proyek);
-  
+
+  const { data, setData, post, processing } = useForm({
+    Karyawan_id: '',
+    proyek_id: '',
+    tanggal: '',
+    jam_kerja: ''
+  })
+
+  const handleSubmit: FormEventHandler = (e) => {
+    e.preventDefault()
+    post('/manhours/create')
+    console.log(data);
+  }
+
+
   return (
     <Admin>
       <Head title='manhours' />
@@ -34,12 +48,12 @@ export default function Create() {
           </div>
         </div>
 
-        <form className='mt-5'>
+        <form className='mt-5' onSubmit={handleSubmit}>
           <ToastContainer />
           <div className='my-5'>
             <div className="flex flex-col space-y-1.5">
               <Label>Pilih Karyawan:</Label>
-              <Select >
+              <Select onValueChange={(value) => setData('karyawan_id', value)}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Pilih Karyawan" />
                 </SelectTrigger>
@@ -54,21 +68,21 @@ export default function Create() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
-            <div className="flex flex-col space-y-1.5">
-              <Label>Pilih Proyek:</Label>
-              <Select >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Pilih Proyek" />
-                </SelectTrigger>
-                <SelectContent>
-                  {data_proyek.map((proyek) => (
-                    <SelectItem key={proyek.id} value={proyek.id}>
-                      {proyek.namaProyek}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+              <div className="flex flex-col space-y-1.5">
+                <Label>Pilih Proyek:</Label>
+                <Select >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Pilih Proyek" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {data_proyek.map((proyek) => (
+                      <SelectItem key={proyek.id} value={proyek.id}>
+                        {proyek.namaProyek}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
 
               <div className="flex flex-col space-y-1.5">
                 <Label>Status:</Label>
@@ -77,12 +91,12 @@ export default function Create() {
                     <SelectValue placeholder="Pilih Status" />
                   </SelectTrigger>
                   <SelectContent>
-                  {data_karyawan.map((kar) => (
-                    <SelectItem key={kar.id} value={kar.id}>
-                      {kar.status}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
+                    {data_karyawan.map((kar) => (
+                      <SelectItem key={kar.id} value={kar.id}>
+                        {kar.status}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
                 </Select>
               </div>
 
@@ -94,12 +108,12 @@ export default function Create() {
                   </SelectTrigger>
                   {/* Map pemilik di sini */}
                   <SelectContent>
-                  {data_karyawan.map((kar) => (
-                    <SelectItem key={kar.id} value={kar.id}>
-                      {kar.nama}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
+                    {data_karyawan.map((kar) => (
+                      <SelectItem key={kar.id} value={kar.id}>
+                        {kar.nama}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
                 </Select>
               </div>
             </div>

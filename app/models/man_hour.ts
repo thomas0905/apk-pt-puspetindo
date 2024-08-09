@@ -1,15 +1,24 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column, hasOne } from '@adonisjs/lucid/orm'
+import Karyawan from './karyawan.js'
+import type {BelongsTo, HasOne} from '@adonisjs/lucid/types/relations'
+import Proyek from './proyek.js'
 
 export default class ManHour extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
+  @belongsTo(() => Karyawan)
+  declare karyawan: BelongsTo<typeof Karyawan>
+
+  @hasOne(() => Proyek)
+  declare proyek: HasOne<typeof Proyek>
+  
   @column()
-  declare namaKaryawan: string
+  declare karyawanId: string
 
   @column()
-  declare namaProyek: string
+  declare proyek_id: string
 
   @column()
   declare kodeJobOrder: string
@@ -18,7 +27,7 @@ export default class ManHour extends BaseModel {
   declare tanggal: number
 
   @column()
-  declare kerjaJam: number
+  declare jam_kerja: number
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

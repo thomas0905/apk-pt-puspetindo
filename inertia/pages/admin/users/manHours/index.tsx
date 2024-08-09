@@ -14,6 +14,7 @@ export default function Index() {
 
   const columnHelper = createColumnHelper<ManHour>();
 
+  console.log(data_manHours)
   const handleDelete = async (id: any) => {
     const swalInstance = Swal.fire({
       title: 'Ingin Hapus Data?',
@@ -37,9 +38,9 @@ export default function Index() {
       header: () => 'No',
       cell: info => info.row.index + 1, 
     }),
-    columnHelper.accessor('karyawan.nama', {
+    columnHelper.accessor('karyawanId', {
       header: () => 'Nama Karyawan',
-      cell: info => info.getValue(),
+      cell: info => info.row.original.karyawan.nama,
     }),
     columnHelper.accessor('proyek.namaProyek', {
       header: () => 'Nama Proyek',
