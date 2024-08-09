@@ -79,7 +79,8 @@ export default function Sidebar() {
 
                             <span className="flex text-xm flex-col items-start gap-1 mt-3 rounded-lg px-2 text-muted-foreground transition-all">
                                 <span className={`${isSidebarHidden ? '' : 'judul-sidebar'}`}> Management</span>
-                                <Link href='/management/laporan' className="flex pl-2 mt-2 hover:text-white text-black rounded-sm hover:bg-blue-600 hover:w-[190px] p-1 w-full gap-2 text-md">
+                                <Link href='/management/laporan' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/management/laporan') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600 w-full'
+                                    }`}>
                                     <IconBook2 size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Laporan</span>
                                 </Link>
