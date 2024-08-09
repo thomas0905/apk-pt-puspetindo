@@ -18,18 +18,20 @@ export default function EditPengguna() {
         status: karyawan.status,
     })
     console.log(karyawan);
-    
 
-    const handleSubmit: FormEventHandler =async (e) => {
+
+    const handleSubmit: FormEventHandler = async (e) => {
         e.preventDefault()
-        await put('/dasboard/karyawan/edit/' + karyawan.id)
-        onSuccess: () => {
-            Swal.fire({
-                title: 'Data Berhasil Diupdate!',
-                icon: 'success',
-                confirmButtonText: 'Okee',
-            });
-        }
+        await put('/dasboard/karyawan/edit/' + karyawan.id, {
+            onSuccess: () => {
+                Swal.fire({
+                    title: 'Data Berhasil Diupdate!',
+                    icon: 'success',
+                    confirmButtonText: 'Okee',
+                });
+            }
+        })
+
     }
 
     const jabatans = [
@@ -50,7 +52,7 @@ export default function EditPengguna() {
             label: "HR IT",
         }
     ]
-    
+
 
     const statuses = [
         {
