@@ -52,10 +52,13 @@ export default function IndexProyek() {
             cell: info => info.renderValue(),
             footer: info => info.column.id,
         }),
-
         columnHelper.accessor('status', {
             header: () => 'Status',
-            cell: info => info.renderValue(),
+            cell: info => {
+                const status = info.getValue();
+                const statusClass = status === 'Selesai' ? 'bg-blue-300 text-black' : 'bg-yellow-300 text-black';
+                return <span className={`px-2 py-1 rounded ${statusClass}`}>{status}</span>;
+            },
             footer: info => info.column.id,
         }),
         columnHelper.accessor('pemilik', {
@@ -78,7 +81,8 @@ export default function IndexProyek() {
             ),
             footer: info => info.column.id,
         }),
-    ]
+    ];
+    
 
     return (
         <Admin>
