@@ -66,7 +66,9 @@ export default function Permission() {
             </TableHeader>
             <TableBody>
               <TableRow>
-                <TableCell className="font-medium">Muhammad Rois</TableCell>
+                <TableCell className="font-medium">
+                  <p className='text-lg'>Muhammad Rois</p>
+                </TableCell>
                 <TableCell className="font-medium text-center">
                   <Label className="flex mx-2 justify-center items-center bg-gray-100 w-6 h-6">
                     <Input type="checkbox" id=""></Input>
