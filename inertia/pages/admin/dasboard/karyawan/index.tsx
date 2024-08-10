@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { IconEdit, IconHome, IconLock, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react';
+import { IconEdit, IconHome, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react';
 import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
 import { Link, router, usePage } from "@inertiajs/react";
@@ -22,7 +22,7 @@ export default function Index() {
         });
         const result = await swalInstance;
         if (result.isConfirmed) {
-            await router.delete('/dasboard/karyawan/index/' + id);
+            await router.delete('/dasboard/karyawan/delete/' + id);
             Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
         } else {
             Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');

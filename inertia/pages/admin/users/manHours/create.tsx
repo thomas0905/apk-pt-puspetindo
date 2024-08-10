@@ -1,6 +1,6 @@
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
-import { IconHome, IconSearch } from '@tabler/icons-react';
-import React, { FormEventHandler } from 'react';
+import { IconHome } from '@tabler/icons-react';
+import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import { Button } from '~/components/ui/button';
 import { Card } from '~/components/ui/card';
@@ -10,26 +10,23 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import Admin from '~/layout/admin';
 
 export default function Create() {
-  const { data_karyawan, data_proyek } = usePage().props
-  console.log(data_proyek);
+  const { data_karyawan, data_proyek } = usePage().props;
 
   const { data, setData, post, processing } = useForm({
-    Karyawan_id: '',
+    karyawan_id: '',
     proyek_id: '',
     tanggal: '',
     jam_kerja: ''
-  })
+  });
 
-  const handleSubmit: FormEventHandler = (e) => {
-    e.preventDefault()
-    post('/manhours/create')
-    console.log(data);
-  }
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    post('/manhours/create');
+  };
 
   return (
     <Admin>
-      <Head title='manhours' />
+      <Head title='Man Hours' />
       <Card className="p-5">
         <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
@@ -40,7 +37,7 @@ export default function Create() {
                 </Link>
                 <span>-</span>
                 <Link href='/dasboard/proyek/index'>
-                  <p className="text-sm">man-hours</p>
+                  <p className="text-sm">Man Hours</p>
                 </Link>
               </div>
               <h6 className='text-gray-600 text-lg font-bold'>Man Hours</h6>
@@ -70,7 +67,7 @@ export default function Create() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
               <div className="flex flex-col space-y-1.5">
                 <Label>Pilih Proyek:</Label>
-                <Select >
+                <Select onValueChange={(value) => setData('proyek_id', value)}>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Pilih Proyek" />
                   </SelectTrigger>
@@ -85,41 +82,31 @@ export default function Create() {
               </div>
 
               <div className="flex flex-col space-y-1.5">
-                <Label>Status:</Label>
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Pilih Status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {data_karyawan.map((kar) => (
-                      <SelectItem key={kar.id} value={kar.id}>
-                        {kar.status}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Label>Tanggal:</Label>
+                <Input
+                  type="date"
+                  value={data.tanggal}
+                  onChange={(e) => setData('tanggal', e.target.value)}
+                  className="w-full"
+                />
               </div>
 
               <div className="flex flex-col space-y-1.5">
-                <Label>Pemilik:</Label>
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Pilih Pemilik" />
-                  </SelectTrigger>
-                  {/* Map pemilik di sini */}
-                  <SelectContent>
-                    {data_karyawan.map((kar) => (
-                      <SelectItem key={kar.id} value={kar.id}>
-                        {kar.nama}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Label>Jam Kerja:</Label>
+                <Input
+                  type="number"
+                  placeholder="Jam Kerja"
+                  value={data.jam_kerja}
+                  onChange={(e) => setData('jam_kerja', e.target.value)}
+                  className="w-full"
+                />
               </div>
             </div>
           </div>
 
-          <Button className='bg-blue-600 hover:bg-blue-500' type="submit">Simpan</Button>
+          <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>
+            Simpan
+          </Button>
         </form>
       </Card>
     </Admin>

@@ -13,7 +13,7 @@ router.group(() => {
     router.get('index', [KaryawansController, 'index'])
     router.get('create', [KaryawansController, 'create'])
     router.post('create', [KaryawansController, 'store'])
-    router.delete('pengguna/:id', [KaryawansController, 'delete'])
+    router.delete('delete/:id', [KaryawansController, 'delete'])
     router.get('edit/:id', [KaryawansController, 'edit'])
     router.put('edit/:id', [KaryawansController, 'update'])
 }).prefix('/dasboard/karyawan/')
