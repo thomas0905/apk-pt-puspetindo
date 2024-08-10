@@ -13,13 +13,28 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { IconLock, IconMail, IconUser } from '@tabler/icons-react'
 import logoLogin from '../../../img/logo-puspetindo.png'
-import { Link } from '@inertiajs/react'
+import Swal from 'sweetalert2'
+
 export default function Login() {
+    const handleLogin = async () => {
+        const loginSuccess = true;
+
+        if (loginSuccess) {
+            await Swal.fire({
+                title: 'Sukses!',
+                text: 'Anda berhasil login.',
+                icon: 'success',
+                confirmButtonText: 'OK',
+            });
+            window.location.href = '/';
+        }
+    }
+
     return (
         <div className='flex justify-center items-center h-screen p-3 sm:p-0'>
             <Card className="w-full max-w-md border-0 shadow-md hover-card sm:p-1 ">
                 <div className='justify-center flex mt-3'>
-                    <img className='justify-center' src={logoLogin} alt="" />
+                    <img className='justify-center' src={logoLogin} alt="Logo" />
                 </div>
                 <CardHeader>
                     <CardTitle className="text-3xl text-blue-500 ">Login</CardTitle>
@@ -68,11 +83,14 @@ export default function Login() {
                         </div>
                     </div>
                 </CardContent>
-                <Link href='/'>
-                    <CardFooter>
-                        <Button className="w-full bg-blue-500 hover:bg-blue-400">Login</Button>
-                    </CardFooter>
-                </Link>
+                <CardFooter>
+                    <Button
+                        onClick={handleLogin}
+                        className="w-full bg-blue-500 hover:bg-blue-400"
+                    >
+                        Login
+                    </Button>
+                </CardFooter>
             </Card>
         </div>
     )
