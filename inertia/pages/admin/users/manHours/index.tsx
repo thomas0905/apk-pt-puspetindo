@@ -11,10 +11,10 @@ import ManHour from '#models/man_hour';
 
 export default function Index() {
   const { data_manHours } = usePage<{ data_manHours: ManHour[] }>().props;
+  console.log(data_manHours)
 
   const columnHelper = createColumnHelper<ManHour>();
 
-  console.log(data_manHours)
   const handleDelete = async (id: any) => {
     const swalInstance = Swal.fire({
       title: 'Ingin Hapus Data?',
@@ -40,11 +40,11 @@ export default function Index() {
     }),
     columnHelper.accessor('karyawanId', {
       header: () => 'Nama Karyawan',
-      cell: info => info.row.original?.karyawan?.nama,
+      cell: info => info.row.original?.karyawan?.namaKaryawan
     }),
     columnHelper.accessor('proyek.namaProyek', {
       header: () => 'Nama Proyek',
-      cell: info => info.row.original?.proyek?.namaProyek,  // Pastikan akses ke nama proyek benar
+      cell: info => info.row.original?.proyek?.namaProyek,
     }),
     columnHelper.accessor('tanggal', {
       header: () => 'Tanggal',

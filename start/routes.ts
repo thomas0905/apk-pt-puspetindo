@@ -1,7 +1,7 @@
 import AuthController from '#controllers/auth_controller'
 const KaryawansController = () => import('#controllers/karyawans_controller')
 import LaporansController from '#controllers/laporans_controller'
-const PenggunasController =() => import ('#controllers/penggunas_controller')
+const PenggunasController = () => import('#controllers/penggunas_controller')
 const ManHoursController = () => import('#controllers/man_hours_controller')
 import ProyeksController from '#controllers/proyeks_controller'
 import router from '@adonisjs/core/services/router'
@@ -34,8 +34,11 @@ router.group(() => {
     router.post('create', [ManHoursController, 'store'])
 }).prefix('/manhours/')
 
-router.get('/auth/login',[AuthController,'login'])
+router.get('/auth/login', [AuthController, 'login'])
 
-router.get('/sistem/pengguna',[PenggunasController,'pengguna'])
 
 router.get('/management/laporan', [LaporansController, 'laporan'])
+
+router.group(() => {
+    router.get('index', [PenggunasController, 'index'])
+}).prefix('/sistem/pengguna/')

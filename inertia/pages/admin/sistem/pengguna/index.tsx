@@ -8,7 +8,7 @@ import { Input } from '~/components/ui/input'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 import Admin from '~/layout/admin'
 
-export default function Pengguna() {
+export default function Index() {
     // const { data_karyawan } = usePage<{ data_karyawan: Karyawan[] }>().props
 
     return (
@@ -60,7 +60,6 @@ export default function Pengguna() {
                             <TableRow>
                                 <TableHead className="w-[100px]">No</TableHead>
                                 <TableHead>Nama</TableHead>
-                                <TableHead>Departemen</TableHead>
                                 <TableHead>Jabatan</TableHead>
                                 <TableHead>Status</TableHead>
                                 <TableHead>Email</TableHead>
@@ -88,11 +87,14 @@ export default function Pengguna() {
                                         {/* <Link href={"/dasboard/pengguna/edit/" + karyawan.id}>
                                             <IconEdit size={18} />
                                         </Link> */}
-
-
                                     </TableCell>
+                                    <TableCell>Leper</TableCell>
+                                    <TableCell>Leper</TableCell>
+                                    <TableCell>Leper</TableCell>
+                                    <TableCell>Leper</TableCell>
+                                    <TableCell>Leper</TableCell>
                                     <TableCell>
-                                        <Link href="/dasboard/pengguna/permission">
+                                        <Link href="/sistem/pengguna/permission">
                                             <span className="bg-blue-200 py-1 pl-1 pr-1 w-[135px] rounded-md flex" >
                                                 <IconLock size={18} />
                                                 Atur Permission
