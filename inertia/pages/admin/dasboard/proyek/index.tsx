@@ -39,7 +39,7 @@ export default function IndexProyek() {
     const columns = [
         columnHelper.accessor('id', {
             header: () => 'No',
-            cell: info => info.getValue(),
+            cell: info => info.row.index + 1,
             footer: info => info.column.id,
         }),
         columnHelper.accessor('namaProyek', {
