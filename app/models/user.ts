@@ -1,10 +1,11 @@
 import { DateTime } from 'luxon'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeSave, column, hasOne } from '@adonisjs/lucid/orm'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import Karyawan from './karyawan.js'
 import type {HasOne} from '@adonisjs/lucid/types/relations'
+import { Hash } from '@adonisjs/core/hash'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -34,4 +35,11 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
+
+  // @beforeSave()
+  // public static async hashPassword(user: User) {
+  //   if (user.$dirty.password) {
+  //     user.password = await Hash.make(user.password);
+  //   }
+  // }
 }
