@@ -4,4 +4,8 @@ export default class PenggunasController {
     async index({inertia}:HttpContext){
         return inertia.render('admin/sistem/pengguna/index')
     }
+
+    async permission({inertia}:HttpContext){
+        return inertia.render('admin/sistem/pengguna/permission')
+    }
 }

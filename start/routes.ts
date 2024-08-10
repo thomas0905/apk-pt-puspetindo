@@ -41,4 +41,5 @@ router.get('/management/laporan', [LaporansController, 'laporan'])
 
 router.group(() => {
     router.get('index', [PenggunasController, 'index'])
+    router.get('permission',[PenggunasController,'permission'])
 }).prefix('/sistem/pengguna/')
