@@ -85,6 +85,7 @@ export default function Create() {
                 <Label>Tanggal:</Label>
                 <Input
                   type="date"
+                  name='tanggal'
                   value={data.tanggal}
                   onChange={(e) => setData('tanggal', e.target.value)}
                   className="w-full"
@@ -96,6 +97,7 @@ export default function Create() {
                 <Input
                   type="number"
                   placeholder="Jam Kerja"
+                  name='jam_kerja'
                   value={data.jam_kerja}
                   onChange={(e) => setData('jam_kerja', e.target.value)}
                   className="w-full"

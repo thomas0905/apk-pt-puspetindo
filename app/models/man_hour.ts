@@ -24,7 +24,7 @@ export default class ManHour extends BaseModel {
   declare kodeJobOrder: string
 
   @column()
-  declare tanggal: Date
+  declare tanggal: DateTime
 
   @column()
   declare jam_kerja: number

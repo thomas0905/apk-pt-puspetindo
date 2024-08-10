@@ -44,13 +44,13 @@ export default function Index() {
     }),
     columnHelper.accessor('proyek.namaProyek', {
       header: () => 'Nama Proyek',
-      cell: info => info.getValue(),
+      cell: info => info.row.original?.proyek?.namaProyek,  // Pastikan akses ke nama proyek benar
     }),
     columnHelper.accessor('tanggal', {
       header: () => 'Tanggal',
       cell: info => new Date(info.getValue()).toLocaleDateString(),
     }),
-    columnHelper.accessor('jam_Kerja', {
+    columnHelper.accessor('jam_kerja', {
       header: () => 'Jam Kerja',
       cell: info => `${info.getValue()} jam`,
     }),
