@@ -50,7 +50,7 @@ export default function Create() {
           <div className='my-5'>
             <div className="flex flex-col space-y-1.5">
               <Label>Pilih Karyawan:</Label>
-              <Select onValueChange={(value) => setData('karyawan_id', value)}>
+              <Select onValueChange={(value) => setData('karyawanId', value)}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Pilih Karyawan" />
                 </SelectTrigger>
