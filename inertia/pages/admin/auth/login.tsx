@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label"
 import { IconLock, IconMail, IconUser } from '@tabler/icons-react'
 import logoLogin from '../../../img/logo-puspetindo.png'
 import Swal from 'sweetalert2'
+import 'animate.css';
 
 export default function Login() {
     const handleLogin = async () => {
@@ -32,7 +33,7 @@ export default function Login() {
 
     return (
         <div className='flex justify-center items-center h-screen p-3 sm:p-0'>
-            <Card className="w-full max-w-md border-0 shadow-md hover-card sm:p-1 ">
+            <Card  className="w-full max-w-md border-0 shadow-md hover-card sm:p-1 animate__animated animate__fadeIn">
                 <div className='justify-center flex mt-3'>
                     <img className='justify-center' src={logoLogin} alt="Logo" />
                 </div>

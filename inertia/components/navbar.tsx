@@ -1,14 +1,32 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import { Button } from './ui/button'
-import { Icon123, IconFileAnalytics, IconHome, IconSearch, IconShoppingBag, IconUser, IconUsers } from '@tabler/icons-react'
+import { Icon123, IconFileAnalytics, IconHome, IconSearch, IconShoppingBag, IconUser, IconUsers, IconLoader } from '@tabler/icons-react'
 import { Input } from './ui/input'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
 import { Link } from '@inertiajs/react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
+
 export default function Navbar() {
+  const [loading, setLoading] = useState(false);
+
+  const handleLogout = async () => {
+    setLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    setLoading(false);
+    window.location.href = '/auth/login';
+  }
+
   return (
     <Fragment>
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/50">
+          <div className="flex flex-col items-center">
+            <IconLoader className="h-12 w-12 animate-spin text-white" />
+            <p className="text-white mt-2">Logging Out...</p>
+          </div>
+        </div>
+      )}
       <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
         <Sheet>
           <SheetTrigger asChild>
@@ -112,7 +130,9 @@ export default function Navbar() {
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout} disabled={loading}>
+              <span>Logout</span>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </header>
