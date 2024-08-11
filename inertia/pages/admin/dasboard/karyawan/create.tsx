@@ -1,5 +1,5 @@
 import { Head, Link } from '@inertiajs/react'
-import { IconHome } from '@tabler/icons-react'
+import { IconEye, IconEyeOff, IconHome } from '@tabler/icons-react'
 import React, { FormEventHandler, useState } from 'react'
 import { useForm } from '@inertiajs/react'
 import { Button } from '~/components/ui/button'
@@ -47,8 +47,8 @@ export default function Create() {
         departemen: '',
         jabatan: '',
         status: '',
-        email:'',
-        password:''
+        email: '',
+        password: ''
     })
     const [errors, setErrors] = useState({});
 
@@ -106,6 +106,11 @@ export default function Create() {
             });
         }
     }
+    const [showPassword, setShowPassword] = useState(false); // State untuk mengatur visibilitas password
+
+    const handleTogglePassword = () => {
+        setShowPassword(!showPassword);
+    };
 
     return (
         <Admin>
@@ -193,26 +198,35 @@ export default function Create() {
                                 <h6 className='text-gray-600 text-md font-bold'>Data Pengguna</h6>
                                 <div className="flex flex-col space-y-1.5 mt-3">
                                     <Label htmlFor="jabatan">Email:</Label>
-                                   <Input 
-                                   type='email'
-                                    placeholder='Masukkan Alamat Email'
-                                    onChange={(e) => setData('email', e.target.value)}
-                                    name='email'
-                                    value={data.email}
+                                    <Input
+                                        type='email'
+                                        placeholder='Masukkan Alamat Email'
+                                        onChange={(e) => setData('email', e.target.value)}
+                                        name='email'
+                                        value={data.email}
                                     >
-                                   </Input>
+                                    </Input>
                                     {errors.email && <small className="text-red-600">{errors.email}</small>}
                                 </div>
                                 <div className="flex flex-col space-y-1.5 mt-3">
-                                    <Label htmlFor="jabatan">Password:</Label>
-                                   <Input 
-                                   type='password'
-                                    placeholder='Masukkan Alamat Email'
-                                    onChange={(e) => setData('password', e.target.value)}
-                                    name='password'
-                                    value={data.password}
-                                    >
-                                   </Input>
+                                    <Label htmlFor="password">Password:</Label>
+                                    <div className="relative">
+                                        <Input
+                                            type={showPassword ? 'text' : 'password'}
+                                            placeholder='Masukkan Password'
+                                            onChange={(e) => setData('password', e.target.value)}
+                                            name='password'
+                                            value={data.password}
+                                            className="w-full pr-10"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={handleTogglePassword}
+                                            className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                                        >
+                                            {showPassword ? <IconEyeOff className="h-5 w-5 text-gray-500" /> : <IconEye className="h-5 w-5 text-gray-500" />}
+                                        </button>
+                                    </div>
                                     {errors.password && <small className="text-red-600">{errors.password}</small>}
                                 </div>
                             </div>
