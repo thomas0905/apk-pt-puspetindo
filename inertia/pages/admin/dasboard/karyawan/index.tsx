@@ -58,7 +58,7 @@ export default function Index() {
             header: 'Status',
             cell: info => {
                 const status = info.getValue();
-                const statusClass = status === 'Aktif' ? 'bg-blue-300 text-black' : 'bg-yellow-300 text-black';
+                const statusClass = status === 'Aktif' ? 'bg-blue-300 ' : 'bg-yellow-300 text-black';
                 return (
                     <span className={`px-2 py-1 rounded ${statusClass}`}>
                         {status}
