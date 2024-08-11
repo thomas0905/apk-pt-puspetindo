@@ -34,8 +34,12 @@ router.group(() => {
     router.post('create', [ManHoursController, 'store'])
 }).prefix('/manhours/')
 
-router.get('/auth/login', [AuthController, 'login'])
+// router.get('/', async ({ response }) => {
+//     return response.redirect('/auth/login')
+// })
 
+// Route to login page
+router.get('/auth/login', [AuthController,'login'])
 
 router.get('/management/laporan', [LaporansController, 'laporan'])
 
