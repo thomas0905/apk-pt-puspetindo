@@ -13,7 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Head, Link } from "@inertiajs/react"
-import { IconBuildingStore, IconHome, IconReceipt, IconShoppingBag } from '@tabler/icons-react'
+import { IconBook2, IconBuildingStore, IconHome, IconReceipt, IconShoppingBag } from '@tabler/icons-react'
 import Admin from '~/layout/admin'
 
 export default function Index() {
@@ -36,14 +36,14 @@ export default function Index() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
             <div>
-              <Link href="/keuangan/pembelian">
+              <Link href="/management/laporan">
                 <Card className="relative border-2 border-sky-500">
                   <CardHeader>
                     <div className='flex items-center gap-2'>
-                      <IconBuildingStore size={40} />
-                      <CardTitle className="text-xl">Faktur Pembelian</CardTitle>
+                      <IconBook2 size={40}/>
+                      <CardTitle className="text-xl">Laporan</CardTitle>
                     </div>
-                    <CardDescription>Kamu dapat membuat faktur pembelian secara otomatis.</CardDescription>
+                    <CardDescription>Kamu dapat melihat laporan dari kayawan.</CardDescription>
                   </CardHeader>
                 </Card>
               </Link>
