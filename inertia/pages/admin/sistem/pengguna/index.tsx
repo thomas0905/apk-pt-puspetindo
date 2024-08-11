@@ -60,11 +60,9 @@ export default function Index() {
                             <TableRow>
                                 <TableHead className="w-[100px]">No</TableHead>
                                 <TableHead>Nama</TableHead>
-                                <TableHead>Jabatan</TableHead>
-                                <TableHead>Status</TableHead>
                                 <TableHead>Email</TableHead>
                                 <TableHead>Password</TableHead>
-                                <TableHead >Aksi</TableHead>
+                                <TableHead className='text-right'>Aksi</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -88,12 +86,10 @@ export default function Index() {
                                             <IconEdit size={18} />
                                         </Link> */}
                                     </TableCell>
+                                    <TableCell>Muhammad Rois</TableCell>
                                     <TableCell>Leper</TableCell>
                                     <TableCell>Leper</TableCell>
-                                    <TableCell>Leper</TableCell>
-                                    <TableCell>Leper</TableCell>
-                                    <TableCell>Leper</TableCell>
-                                    <TableCell>
+                                    <TableCell className='text-right'>
                                         <Link href="/sistem/pengguna/permission">
                                             <span className="bg-blue-200 py-1 border pl-1 pr-1 w-[135px] rounded-md flex" >
                                                 <IconLock size={18} />
