@@ -55,15 +55,11 @@ export default function Index() {
             footer: info => info.column.id,
         }),
         columnHelper.accessor('status', {
-            header: 'Status',
+            header: () => 'Status',
             cell: info => {
                 const status = info.getValue();
-                const statusClass = status === 'Aktif' ? 'bg-blue-300 ' : 'bg-yellow-300 text-black';
-                return (
-                    <span className={`px-2 py-1 rounded ${statusClass}`}>
-                        {status}
-                    </span>
-                );
+                const statusClass = status === 'aktif' ? 'bg-blue-300 text-black' : 'bg-yellow-300 text-black';
+                return <span className={`px-2 py-1 rounded ${statusClass}`}>{status}</span>;
             },
             footer: info => info.column.id,
         }),
