@@ -34,7 +34,7 @@ export default function Index() {
             <p className='text-gray-600 text-sm'>Aktivitas apa yang akan kamu lakukan hari ini?</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
             <div>
               <Link href="/keuangan/pembelian">
                 <Card className="relative border-2 border-sky-500">
@@ -44,20 +44,6 @@ export default function Index() {
                       <CardTitle className="text-xl">Faktur Pembelian</CardTitle>
                     </div>
                     <CardDescription>Kamu dapat membuat faktur pembelian secara otomatis.</CardDescription>
-                  </CardHeader>
-                </Card>
-              </Link>
-            </div>
-
-            <div>
-              <Link href="/keuangan/penjualan">
-                <Card className="relative border-2 border-red-500">
-                  <CardHeader>
-                    <div className='flex items-center gap-2'>
-                      <IconShoppingBag size={40} />
-                      <CardTitle className="text-xl">Faktur Penjualan</CardTitle>
-                    </div>
-                    <CardDescription>Kamu dapat membuat faktur penjualan secara otomatis.</CardDescription>
                   </CardHeader>
                 </Card>
               </Link>
@@ -76,7 +62,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="mt-5 p-5">
+          <div className="mt-5 ">
             <div>
                 <h1 className='font-bold'>Aktivitas Terbaru</h1>
                 <p className='text-sm text-gray-600'>Lihat semua aktivitas terbaru</p>
