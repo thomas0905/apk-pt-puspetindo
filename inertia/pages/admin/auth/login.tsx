@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import './login.css'
 import {
@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { IconLock, IconMail, IconUser } from '@tabler/icons-react'
+import { IconEye, IconEyeOff, IconLock, IconMail, IconUser } from '@tabler/icons-react'
 import logoLogin from '../../../img/logo-puspetindo.png'
 import Swal from 'sweetalert2'
 import 'animate.css';
@@ -30,10 +30,14 @@ export default function Login() {
             window.location.href = '/';
         }
     }
+    const [showPassword, setShowPassword] = useState(false); 
 
+    const handleTogglePassword = () => {
+        setShowPassword(!showPassword);
+    };
     return (
         <div className='flex justify-center items-center h-screen p-3 sm:p-0'>
-            <Card  className="w-full max-w-md border-0 shadow-md hover-card sm:p-1 animate__animated animate__fadeIn">
+            <Card className="w-full max-w-md border-0 shadow-md hover-card sm:p-1 animate__animated animate__fadeIn">
                 <div className='justify-center flex mt-3'>
                     <img className='justify-center' src={logoLogin} alt="Logo" />
                 </div>
@@ -76,11 +80,18 @@ export default function Login() {
                             <IconLock className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-gray-500" />
                             <Input
                                 id="password"
-                                type="password"
+                                type={showPassword ? 'text' : 'password'}
                                 placeholder="Password"
                                 required
                                 className="w-full rounded-lg bg-background pl-8"
                             />
+                            <button
+                                type="button"
+                                onClick={handleTogglePassword}
+                                className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                            >
+                                {showPassword ? <IconEyeOff className="h-5 w-5 text-gray-500" /> : <IconEye className="h-5 w-5 text-gray-500" />}
+                            </button>
                         </div>
                     </div>
                 </CardContent>
