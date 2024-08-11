@@ -10,6 +10,7 @@ import Admin from '~/layout/admin'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2'
 
 const statuses = [
     {
@@ -94,13 +95,10 @@ export default function Create() {
         if (isValid) {
             post('/dasboard/karyawan/create', {
                 onSuccess: () => {
-                    toast.success("Data Berhasil Disimpan!", {
-                        position: 'top-center'
-                    });
-                },
-                onError: () => {
-                    toast.error("Terjadi kesalahan saat menyimpan data.", {
-                        position: 'top-center'
+                    Swal.fire({
+                        title: 'Data Berhasil Di Tambah!',
+                        icon: 'success',
+                        confirmButtonText: 'Okee',
                     });
                 }
             });
