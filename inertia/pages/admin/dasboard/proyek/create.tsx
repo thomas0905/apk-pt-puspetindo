@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FormEventHandler } from 'react'
+import Swal from 'sweetalert2'
 
 export default function Create() {
 
@@ -43,8 +44,16 @@ export default function Create() {
 
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
-        post('/dasboard/proyek/create')
-        console.log(data);
+        post('/dasboard/proyek/create', {
+            onSuccess: () => {
+                Swal.fire({
+                    title: 'Data Berhasil Di Tambah!',
+                    icon: 'success',
+                    confirmButtonText: 'Okee',
+                });
+            }
+        })
+
     }
 
     return (
