@@ -1,5 +1,5 @@
 import { Head, Link } from '@inertiajs/react'
-import { IconHome } from '@tabler/icons-react'
+import { IconHome, IconPrinter } from '@tabler/icons-react'
 import React from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
@@ -17,12 +17,19 @@ export default function Laporan() {
           </div>
           <div className='flex justify-between'>
             <div>
-              <Link href="/">
+              {/* <Link href="/">
                 <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
-              </Link>
+              </Link> */}
               <h6 className='text-gray-600 text-lg font-bold'>Laporan</h6>
             </div>
           </div>
+
+        </div>
+        <div className='flex justify-end mt-3'>
+          <Button className='bg-blue-500 flex gap-1 hover:bg-blue-400'>
+            <IconPrinter />
+            Print
+          </Button>
         </div>
       </Card>
     </Admin>
