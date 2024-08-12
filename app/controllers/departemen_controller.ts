@@ -10,9 +10,9 @@ export default class DepartemenController {
         return inertia.render('admin/dasboard/departemen/create')
     }
 
-    async store({request,response,session}:HttpContext){
-        console.log(request);
-        
+    async store({ request, response, session }: HttpContext) {
+        console.log(request.all());
+
         const departemen = new Departemen()
         departemen.namaDepartemen = request.input('namaDepartemen')
         departemen.namaPegawai = request.input('namaPegawai')

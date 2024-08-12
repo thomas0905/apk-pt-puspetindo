@@ -1,9 +1,9 @@
 import React, { FormEventHandler, useState } from 'react';
 import Admin from '~/layout/admin';
 import { Link, useForm, usePage } from '@inertiajs/react';
-import { IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react';
+import { IconBuildingArch, IconHome } from '@tabler/icons-react';
 import { Card } from '~/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
+import { Table, TableBody, TableHead, TableHeader, TableRow } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
 import {
     AlertDialog,
@@ -41,17 +41,8 @@ export default function Index() {
                     title: 'Data Berhasil Ditambahkan!',
                     icon: 'success',
                     confirmButtonText: 'Okee',
-                }).then(() => {
-                    window.location.href = '/dasboard/departemen/index'; // Redirect to index page
-                });
+                })
             },
-            onError: () => {
-                Swal.fire({
-                    title: 'Gagal Menambahkan Data!',
-                    icon: 'error',
-                    confirmButtonText: 'Okee',
-                });
-            }
         });
     };
 
