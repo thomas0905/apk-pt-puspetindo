@@ -1,4 +1,5 @@
 import AuthController from '#controllers/auth_controller'
+import DepartemenController from '#controllers/departemen_controller'
 const KaryawansController = () => import('#controllers/karyawans_controller')
 import LaporansController from '#controllers/laporans_controller'
 const PenggunasController = () => import('#controllers/penggunas_controller')
@@ -17,6 +18,10 @@ router.group(() => {
     router.get('edit/:id', [KaryawansController, 'edit'])
     router.put('edit/:id', [KaryawansController, 'update'])
 }).prefix('/dasboard/karyawan/')
+
+router.group(() => {
+    router.get('index',[DepartemenController,'index'])
+}).prefix('/dasboard/departemen/')
 
 router.group(() => {
     router.get('index', [ProyeksController, 'index'])

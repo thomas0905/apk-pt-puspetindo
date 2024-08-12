@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { IconEdit, IconHome, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react';
+import { IconBuildingArch, IconEdit, IconHome, IconTrash, IconUserPlus } from '@tabler/icons-react';
 import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
 import { Link, router, usePage } from "@inertiajs/react";
@@ -94,7 +94,14 @@ export default function Index() {
                             </Link>
                             <h6 className='text-gray-600 text-lg font-bold'>Data Karyawan</h6>
                         </div>
+                        
                         <div>
+                        <Link href="/dasboard/departemen/index">
+                                <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
+                                    <IconBuildingArch size={18} />
+                                     Departemen
+                                </Button>
+                            </Link>
                             <Link href="/dasboard/karyawan/create">
                                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
                                     <IconUserPlus size={18} />

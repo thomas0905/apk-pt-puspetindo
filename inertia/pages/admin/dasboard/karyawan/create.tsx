@@ -43,12 +43,12 @@ const jabatans = [
 ]
 
 export default function Create() {
-    const {data_departemen} = usePage().props
-    console.log(data_departemen);
+    // const {data_departemen} = usePage().props
+    // console.log(data_departemen);
     
     const { data, setData, post, processing } = useForm({
         nama: '',
-        nama_Departemen: '',
+        namaDepartemen: '',
         jabatan: '',
         status: '',
         email: '',
@@ -67,7 +67,7 @@ export default function Create() {
             isValid = false;
         }
 
-        if (data.nama_Departemen.trim() === '') {
+        if (data.namaDepartemen.trim() === '') {
             validationErrors.namaDepartemen = 'namaDepartemen harus diisi';
             isValid = false;
         }
@@ -157,11 +157,11 @@ export default function Create() {
                                 <Input
                                     id="departemen"
                                     placeholder="Masukkan Nama Departemen"
-                                    onChange={(e) => setData('nama_Departemen', e.target.value)}
-                                    name='nama_Departemen'
-                                    value={data.nama_Departemen}
+                                    onChange={(e) => setData('namaDepartemen', e.target.value)}
+                                    name='namaDepartemen'
+                                    value={data.namaDepartemen}
                                 />
-                                {errors.nama_Departemen && <small className="text-red-600">{errors.nama_Departemen}</small>}
+                                {errors.namaDepartemen && <small className="text-red-600">{errors.namaDepartemen}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">

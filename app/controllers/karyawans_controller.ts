@@ -21,7 +21,6 @@ export default class KaryawansKontroller {
 
     async store({ request, response, session }: HttpContext) {
         const users = new User()
-
         users.fullName = request.input('fullName');
         users.email = request.input('email');
         users.password = request.input('password');
@@ -62,7 +61,7 @@ export default class KaryawansKontroller {
     async update({ request, params, response }: HttpContext) {
         const karyawan = await Karyawan.findOrFail(params.id)
         karyawan.nama = request.input('nama')
-        karyawan.departemen = request.input('departemen')
+        // karyawan.departemen = request.input('departemen')
         karyawan.jabatan = request.input('jabatan')
         karyawan.status = request.input('status')
         karyawan.save()
