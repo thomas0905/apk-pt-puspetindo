@@ -36,7 +36,6 @@ export default class KaryawansKontroller {
         const karyawan = new Karyawan();
         karyawan.user_id =users.id;
         karyawan.nama = request.input('nama');
-        karyawan.departemen = request.input('departemen');
         karyawan.jabatan = request.input('jabatan');
         karyawan.status = request.input('status');
 

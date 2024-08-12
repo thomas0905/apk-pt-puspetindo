@@ -23,9 +23,6 @@ export default class Karyawan extends BaseModel {
   declare nama:string
 
   @column()
-  declare departemen:string
-
-  @column()
   declare jabatan:string
 
   @column()

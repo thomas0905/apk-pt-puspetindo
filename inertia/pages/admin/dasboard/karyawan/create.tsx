@@ -1,4 +1,4 @@
-import { Head, Link } from '@inertiajs/react'
+import { Head, Link, usePage } from '@inertiajs/react'
 import { IconEye, IconEyeOff, IconHome } from '@tabler/icons-react'
 import React, { FormEventHandler, useState } from 'react'
 import { useForm } from '@inertiajs/react'
@@ -8,7 +8,7 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import Admin from '~/layout/admin'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2'
 
@@ -43,9 +43,12 @@ const jabatans = [
 ]
 
 export default function Create() {
+    const {data_departemen} = usePage().props
+    console.log(data_departemen);
+    
     const { data, setData, post, processing } = useForm({
         nama: '',
-        departemen: '',
+        nama_Departemen: '',
         jabatan: '',
         status: '',
         email: '',
@@ -64,8 +67,8 @@ export default function Create() {
             isValid = false;
         }
 
-        if (data.departemen.trim() === '') {
-            validationErrors.departemen = 'Departemen harus diisi';
+        if (data.nama_Departemen.trim() === '') {
+            validationErrors.namaDepartemen = 'namaDepartemen harus diisi';
             isValid = false;
         }
 
@@ -112,7 +115,7 @@ export default function Create() {
 
     return (
         <Admin>
-            <Head title='add-pengguna' />
+            <Head title='add-karyawan' />
 
             <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">
@@ -123,12 +126,12 @@ export default function Create() {
                                     <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                                 </Link>
                                 <span>-</span>
-                                <Link href='/dasboard/pengguna/pengguna'>
-                                    <p className="text-sm">pengguna</p>
+                                <Link href='/dasboard/karyawan/index'>
+                                    <p className="text-sm">karyawan</p>
                                 </Link>
                             </div>
 
-                            <h6 className='text-gray-600 text-lg font-bold'>Add Pengguna</h6>
+                            <h6 className='text-gray-600 text-lg font-bold'>Add karyawan</h6>
                         </div>
                     </div>
                 </div>
@@ -154,11 +157,11 @@ export default function Create() {
                                 <Input
                                     id="departemen"
                                     placeholder="Masukkan Nama Departemen"
-                                    onChange={(e) => setData('departemen', e.target.value)}
-                                    name='departemen'
-                                    value={data.departemen}
+                                    onChange={(e) => setData('nama_Departemen', e.target.value)}
+                                    name='nama_Departemen'
+                                    value={data.nama_Departemen}
                                 />
-                                {errors.departemen && <small className="text-red-600">{errors.departemen}</small>}
+                                {errors.nama_Departemen && <small className="text-red-600">{errors.nama_Departemen}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
