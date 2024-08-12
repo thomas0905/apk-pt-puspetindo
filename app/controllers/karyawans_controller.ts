@@ -29,7 +29,7 @@ export default class KaryawansKontroller {
 
 
         const departemen = new Departeman()
-        departemen.nama = request.input('nama')
+        departemen.namaDepartemen = request.input('namaDepartemen')
         await departemen.save()
 
 
