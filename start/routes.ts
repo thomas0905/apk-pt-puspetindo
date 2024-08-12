@@ -1,5 +1,5 @@
 import AuthController from '#controllers/auth_controller'
-import DepartemenController from '#controllers/departemen_controller'
+const DepartemenController =() => import ('#controllers/departemen_controller')
 const KaryawansController = () => import('#controllers/karyawans_controller')
 import LaporansController from '#controllers/laporans_controller'
 const PenggunasController = () => import('#controllers/penggunas_controller')

@@ -11,7 +11,6 @@ export default class DepartemenController {
     }
 
     async store({ request, response, session }: HttpContext) {
-        console.log(request.all());
 
         const departemen = new Departemen()
         departemen.namaDepartemen = request.input('namaDepartemen')

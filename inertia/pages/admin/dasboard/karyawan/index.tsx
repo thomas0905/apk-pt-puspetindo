@@ -1,11 +1,9 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { IconBuildingArch, IconEdit, IconHome, IconTrash, IconUserPlus } from '@tabler/icons-react';
-import { Input } from '@/components/ui/input';
 import Admin from '~/layout/admin';
 import { Link, router, usePage } from "@inertiajs/react";
 import Swal from 'sweetalert2'
-import Karyawan from "#models/karyawan";
 import DataTable from '~/components/dataTable/dataTable'
 import { createColumnHelper } from "@tanstack/react-table";
 
@@ -13,9 +11,8 @@ export default function Index() {
     const { data_karyawan, data_departemen } = usePage().props;
     console.log(data_departemen);
 
-
-    const handleDelete = async (id: any) => {
-        const swalInstance = Swal.fire({
+    const handleDelete = async (id) => {
+        const result = await Swal.fire({
             title: 'Ingin Hapus Data?',
             icon: 'question',
             showCancelButton: true,
@@ -23,21 +20,23 @@ export default function Index() {
             cancelButtonText: 'Tidak!',
             allowOutsideClick: false,
         });
-        const result = await swalInstance;
+
         if (result.isConfirmed) {
-            await router.delete('/dasboard/karyawan/delete/' + id);
-            Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
-        } else {
-            Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
+            try {
+                await router.delete(`/dasboard/karyawan/delete/${id}`);
+                Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
+            } catch (error) {
+                Swal.fire('Error', 'Gagal menghapus data.', 'error');
+            }
         }
     };
 
-    const columnHelper = createColumnHelper<Karyawan>();
+    const columnHelper = createColumnHelper();
 
     const columns = [
         columnHelper.accessor('id', {
             header: 'No',
-            cell: info => info.row.index + 1,  // Menampilkan nomor urut
+            cell: info => info.row.index + 1,
             footer: info => info.column.id,
         }),
         columnHelper.accessor('nama', {
@@ -45,10 +44,10 @@ export default function Index() {
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-        columnHelper.accessor('namaDepartemen', {
+        columnHelper.accessor('nama_departemen', {
             header: 'Departemen',
             cell: info => info.getValue(),
-            footer: info => info.row.original?.departemen?.namaDepartemen
+            footer: info => info.row.original?.departemen?.nama_departemen
         }),
         columnHelper.accessor('jabatan', {
             header: 'Jabatan',
@@ -56,7 +55,7 @@ export default function Index() {
             footer: info => info.column.id,
         }),
         columnHelper.accessor('status', {
-            header: () => 'Status',
+            header: 'Status',
             cell: info => {
                 const status = info.getValue();
                 const statusClass = status === 'aktif' ? 'bg-blue-300 text-black' : 'bg-yellow-300 text-black';
@@ -88,15 +87,15 @@ export default function Index() {
         <Admin>
             <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between items-center'>
                         <div>
                             <Link href="/">
-                                <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
+                                <p className='text-sm flex gap-1 items-center'><IconHome size={18} />Home</p>
                             </Link>
-                            <h6 className='text-gray-600 text-lg font-bold'>Data Karyawan</h6>
+                            <h6 className='text-gray-600 text-lg font-bold mt-2'>Data Karyawan</h6>
                         </div>
 
-                        <div>
+                        <div className="flex gap-2">
                             <Link href="/dasboard/departemen/index">
                                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
                                     <IconBuildingArch size={18} />
@@ -113,7 +112,9 @@ export default function Index() {
                     </div>
                 </div>
 
-                <DataTable data={data_karyawan} columns={columns} />
+                <div className="mt-4">
+                    <DataTable data={data_karyawan} columns={columns} />
+                </div>
             </Card>
         </Admin>
     );

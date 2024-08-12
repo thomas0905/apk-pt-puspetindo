@@ -11,7 +11,6 @@ import Admin from '~/layout/admin';
 
 export default function Create() {
   const { data_karyawan, data_proyek } = usePage().props;
-  console.log(data_karyawan);
 
   const { data, setData, post, processing } = useForm({
     karyawan_id: '',
@@ -51,7 +50,10 @@ export default function Create() {
           <div className='my-5'>
             <div className="flex flex-col space-y-1.5">
               <Label>Pilih Karyawan:</Label>
-              <Select onValueChange={(value) => setData('karyawanId', value)}>
+              <Select
+                value={data.karyawan_id}
+                onValueChange={(value) => setData('karyawan_id', value)}
+              >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Pilih Karyawan" />
                 </SelectTrigger>
@@ -68,7 +70,10 @@ export default function Create() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
               <div className="flex flex-col space-y-1.5">
                 <Label>Pilih Proyek:</Label>
-                <Select onValueChange={(value) => setData('proyek_id', value)}>
+                <Select
+                  value={data.proyek_id}
+                  onValueChange={(value) => setData('proyek_id', value)}
+                >
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Pilih Proyek" />
                   </SelectTrigger>

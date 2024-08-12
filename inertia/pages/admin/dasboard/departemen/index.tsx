@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
 
 export default function Index() {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-  
+
     const { data, setData, post, processing } = useForm({
         namaDepartemen: '',
         namaPegawai: ''
@@ -48,7 +48,7 @@ export default function Index() {
 
     return (
         <Admin>
-            <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            {/* <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <form onSubmit={handleSubmit}>
                     <AlertDialogContent>
                         <AlertDialogHeader>
@@ -96,7 +96,7 @@ export default function Index() {
                         </AlertDialogFooter>
                     </AlertDialogContent>
                 </form>
-            </AlertDialog>
+            </AlertDialog> */}
 
             <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">
@@ -108,14 +108,16 @@ export default function Index() {
                             <h6 className='text-gray-600 text-lg font-bold'>Menu Departemen</h6>
                         </div>
                         <div>
-                            <Button
-                                className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
-                                variant="outline"
-                                onClick={handleAddDepartemenClick}
-                            >
-                                <IconBuildingArch size={18} />
-                                Tambah Departemen
-                            </Button>
+                            <Link href='/dasboard/departemen/create'>
+                                <Button
+                                    className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
+                                    variant="outline"
+                                    onClick={handleAddDepartemenClick}
+                                >
+                                    <IconBuildingArch size={18} />
+                                    Tambah Departemen
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>
