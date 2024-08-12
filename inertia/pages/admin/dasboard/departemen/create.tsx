@@ -28,10 +28,10 @@ export default function Create() {
             isValid = false;
         }
 
-        if (data.namaPegawai.trim() === '') {
-            validationErrors.namaPegawai = 'Nama pegawai harus diisi';
-            isValid = false;
-        }
+        // if (data.namaPegawai.trim() === '') {
+        //     validationErrors.namaPegawai = 'Nama pegawai harus diisi';
+        //     isValid = false;
+        // }
 
         setErrors(validationErrors);
 
@@ -87,7 +87,7 @@ export default function Create() {
                                 {errors.namaDepartemen && <small className="text-red-600">{errors.namaDepartemen}</small>}
                             </div>
 
-                            <div className="flex flex-col space-y-1.5">
+                            {/* <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="namaPegawai">Nama Pegawai:</Label>
                                 <Input
                                     id="namaPegawai"
@@ -97,7 +97,7 @@ export default function Create() {
                                     value={data.namaPegawai}
                                 />
                                 {errors.namaPegawai && <small className="text-red-600">{errors.namaPegawai}</small>}
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 

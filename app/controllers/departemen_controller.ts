@@ -2,7 +2,9 @@ import type { HttpContext } from '@adonisjs/core/http'
 import Departemen from '#models/departemen'
 export default class DepartemenController {
     async index({ inertia }: HttpContext) {
-        return inertia.render('admin/dasboard/departemen/index')
+        const departemen = await Departemen.all() 
+        return inertia.render('admin/dasboard/departemen/index',{
+            data_departemen:departemen       })
     }
 
 
@@ -14,7 +16,6 @@ export default class DepartemenController {
 
         const departemen = new Departemen()
         departemen.namaDepartemen = request.input('namaDepartemen')
-        departemen.namaPegawai = request.input('namaPegawai')
 
         await departemen.save();
 
