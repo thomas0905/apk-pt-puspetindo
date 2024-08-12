@@ -1,3 +1,4 @@
+import Departeman from "#models/departeman";
 import Karyawan from "#models/karyawan";
 import User from "#models/user";
 import { HttpContext, Redirect } from "@adonisjs/core/http";
@@ -25,6 +26,11 @@ export default class KaryawansKontroller {
         users.email = request.input('email');
         users.password = request.input('password');
         await users.save();
+
+
+        const departemen = new Departeman()
+        departemen.nama = request.input('nama')
+        await departemen.save()
 
 
         const karyawan = new Karyawan();

@@ -6,7 +6,7 @@ export default class Departeman extends BaseModel {
   declare id: number
 
   @column()
-  declare departemen:string
+  declare nama:string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
