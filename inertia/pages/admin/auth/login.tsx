@@ -49,7 +49,7 @@ export default function Login() {
                 </CardHeader>
                 <CardContent className="grid gap-4">
                     <div className="grid gap-2">
-                        <Label htmlFor="email">Username:</Label>
+                        <Label htmlFor="email">Username</Label>
                         <div className="relative">
                             <IconUser className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                             <Input

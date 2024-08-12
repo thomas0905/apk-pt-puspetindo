@@ -1,16 +1,72 @@
-import Karyawan from '#models/karyawan'
 import { Link, usePage } from '@inertiajs/react'
 import { IconEdit, IconHome, IconLock, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react'
 import React from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
+// import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 import Admin from '~/layout/admin'
 
-export default function Index() {
-    // const { data_karyawan } = usePage<{ data_karyawan: Karyawan[] }>().props
+import Karyawan from "#models/karyawan";
+import DataTable from '~/components/dataTable/dataTable'
+import { createColumnHelper } from "@tanstack/react-table"
 
+export default function Index() {
+    const { data_karyawan } = usePage<{ data_karyawan: Karyawan[] }>().props
+    const columnHelper = createColumnHelper<Karyawan>();
+
+    const columns= [
+        columnHelper.accessor('id', {
+            header: 'No',
+            cell: info => info.row.index + 1,  // Menampilkan nomor urut
+            footer: info => info.column.id,
+        }),
+        columnHelper.accessor('nama', {
+            header: 'Nama',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
+
+        columnHelper.accessor('jabatan', {
+            header: 'Jabatan',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
+        columnHelper.accessor('status', {
+            header: () => 'Status',
+            cell: info => {
+                const status = info.getValue();
+                const statusClass = status === 'aktif' ? 'bg-blue-300 text-black' : 'bg-yellow-300 text-black';
+                return <span className={`px-2 py-1 rounded ${statusClass}`}>{status}</span>;
+            },
+            footer: info => info.column.id,
+        }),
+        columnHelper.display({
+            id: 'aksi',
+            header: 'Aksi',
+            cell: info => (
+                <div className="flex gap-3">
+                    {/* <span
+                        onClick={() => handleDelete(info.row.original.id)}
+                        className="text-red-900 cursor-pointer"
+                    >
+                        <IconTrash size={18} />
+                    </span> */}
+                    <Link href={`/sistem/pengguna/edit/${info.row.original.id}`}>
+                        <IconEdit size={18} />
+                    </Link>
+
+                    <Link href="/sistem/pengguna/permission">
+                        <span className="bg-blue-200 py-1 border pl-1 pr-1 w-[135px] rounded-md flex" >
+                            <IconLock size={18} />
+                            Atur Permission
+                        </span>
+                    </Link>
+                </div>
+            ),
+            footer: info => info.column.id,
+        }),
+    ];
     return (
         <Admin>
             <Card className="p-5">
@@ -43,66 +99,10 @@ export default function Index() {
                         </div>
                     </div>
 
-                    <div>
-                        <Link href="/">
-                            <Button className="bg-slate-100 text-white gap-2 hover:bg-slate-800 hover:text-white" variant="outline">
-                                <IconUserPlus size={18} />
-                                Kolom
-                            </Button>
-                        </Link>
-                    </div>
+
                 </div>
 
-                <Card className="mt-3">
-                    <Table className="container">
-                        {/* <TableCaption>Tidak ada data yang di temukan</TableCaption> */}
-                        <TableHeader className="bg-slate-50">
-                            <TableRow>
-                                <TableHead className="w-[100px]">No</TableHead>
-                                <TableHead>Nama</TableHead>
-                                <TableHead>Email</TableHead>
-                                <TableHead>Password</TableHead>
-                                <TableHead className='text-right'>Aksi</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                 
-                                <TableRow >
-                                    {/* <TableCell className="font-medium">{karyawan.id}</TableCell>
-                                    <TableCell>{karyawan.nama}</TableCell>
-                                    <TableCell>{karyawan.departemen}</TableCell>
-                                    <TableCell>{karyawan.jabatan}</TableCell>
-                                    <TableCell >
-                                        <span className={`w-20 text-center ${karyawan.status === 'aktif' ? 'bg-blue-300 py-1 pl-1 pr-1 rounded-md border-black' : 'bg-yellow-300 py-1 pl-1 pr-1 rounded-md'}`}>
-                                            {karyawan.status}
-                                        </span>
-                                    </TableCell> */}
-                                    <TableCell className="flex gap-3">
-                                        {/* <span onClick={() => handleDelete(karyawan.id)} className="text-right text-red-900 cursor-pointer">
-                                            <IconTrash size={18} />
-                                        </span> */}
-
-                                        {/* <Link href={"/dasboard/pengguna/edit/" + karyawan.id}>
-                                            <IconEdit size={18} />
-                                        </Link> */}
-                                    </TableCell>
-                                    <TableCell>Muhammad Rois</TableCell>
-                                    <TableCell>Leper</TableCell>
-                                    <TableCell>Leper</TableCell>
-                                    <TableCell className='text-right '>
-                                        <Link href="/sistem/pengguna/permission">
-                                            <span className="bg-blue-200 py-1 border pl-1 pr-1 w-[135px] rounded-md flex" >
-                                                <IconLock size={18} />
-                                                Atur Permission
-                                            </span>
-                                        </Link>
-                                    </TableCell>
-                                </TableRow>
-                     
-                        </TableBody>
-
-                    </Table>
-                </Card>
+           <DataTable data={data_karyawan} columns={columns}/>
             </Card>
         </Admin>
     )
