@@ -1,31 +1,50 @@
-import { Head, Link, usePage } from '@inertiajs/react';
-import { IconEye, IconEyeOff, IconHome } from '@tabler/icons-react';
-import React, { FormEventHandler, useState } from 'react';
-import { useForm } from '@inertiajs/react';
-import { Button } from '~/components/ui/button';
-import { Card } from '~/components/ui/card';
-import { Input } from '~/components/ui/input';
-import { Label } from '~/components/ui/label';
-import Admin from '~/layout/admin';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
+import { Head, Link, usePage } from '@inertiajs/react'
+import { IconEye, IconEyeOff, IconHome } from '@tabler/icons-react'
+import React, { FormEventHandler, useState } from 'react'
+import { useForm } from '@inertiajs/react'
+import { Button } from '~/components/ui/button'
+import { Card } from '~/components/ui/card'
+import { Input } from '~/components/ui/input'
+import { Label } from '~/components/ui/label'
+import Admin from '~/layout/admin'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'
 
 const statuses = [
-    { value: "aktif", label: "Aktif" },
-    { value: "Tidak-aktif", label: "Tidak-aktif" }
-];
+    {
+        value: "aktif",
+        label: "Aktif",
+    },
+    {
+        value: "Tidak-aktif",
+        label: "Tidak-aktif",
+    }
+]
 
 const jabatans = [
-    { value: "manager", label: "Manager" },
-    { value: "staff", label: "Staff" },
-    { value: "IT Software", label: "IT Software" },
-    { value: "HR IT", label: "HR IT" }
-];
+    {
+        value: "manager",
+        label: "Manager",
+    },
+    {
+        value: "staff",
+        label: "Staff",
+    },
+    {
+        value: "IT Software",
+        label: "IT Software",
+    },
+    {
+        value: "HR IT",
+        label: "HR IT",
+    }
+]
 
 export default function Create() {
-    const { data_departemen } = usePage().props;
+    const { data_departemen } = usePage().props
+    console.log(data_departemen);
 
     const { data, setData, post, processing } = useForm({
         nama: '',
@@ -34,12 +53,11 @@ export default function Create() {
         status: '',
         email: '',
         password: ''
-    });
+    })
     const [errors, setErrors] = useState({});
-    const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit: FormEventHandler = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         const validationErrors: any = {};
         let isValid = true;
@@ -50,7 +68,7 @@ export default function Create() {
         }
 
         if (data.namaDepartemen.trim() === '') {
-            validationErrors.namaDepartemen = 'Departemen harus dipilih';
+            validationErrors.namaDepartemen = 'namaDepartemen harus diisi';
             isValid = false;
         }
 
@@ -65,14 +83,15 @@ export default function Create() {
         }
 
         if (data.email.trim() === '') {
-            validationErrors.email = 'Email harus diisi';
+            validationErrors.email = 'Email harus di lengkapi';
             isValid = false;
         }
 
         if (data.password.trim() === '') {
-            validationErrors.password = 'Password harus diisi';
+            validationErrors.password = 'password harus di lengkapi';
             isValid = false;
         }
+
 
         setErrors(validationErrors);
 
@@ -80,14 +99,15 @@ export default function Create() {
             post('/dasboard/karyawan/create', {
                 onSuccess: () => {
                     Swal.fire({
-                        title: 'Data Berhasil Ditambah!',
+                        title: 'Data Berhasil Di Tambah!',
                         icon: 'success',
-                        confirmButtonText: 'Oke',
+                        confirmButtonText: 'Okee',
                     });
                 }
             });
         }
-    };
+    }
+    const [showPassword, setShowPassword] = useState(false); // State untuk mengatur visibilitas password
 
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
@@ -95,43 +115,44 @@ export default function Create() {
 
     return (
         <Admin>
-            <Head title="add-karyawan" />
+            <Head title='add-karyawan' />
 
             <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">
-                    <div className="flex justify-between">
+                    <div className='flex justify-between'>
                         <div>
-                            <div className="flex gap-1">
+                            <div className='flex gap-1'>
                                 <Link href="/">
-                                    <p className="text-sm flex gap-1"><IconHome size={18} />Home</p>
+                                    <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                                 </Link>
                                 <span>-</span>
-                                <Link href="/dasboard/karyawan/index">
-                                    <p className="text-sm">Karyawan</p>
+                                <Link href='/dasboard/karyawan/index'>
+                                    <p className="text-sm">karyawan</p>
                                 </Link>
                             </div>
-                            <h6 className="text-gray-600 text-lg font-bold">Add Karyawan</h6>
+
+                            <h6 className='text-gray-600 text-lg font-bold'>Add karyawan</h6>
                         </div>
                     </div>
                 </div>
 
-                <form className="mt-5" onSubmit={handleSubmit}>
+                <form className='mt-5' onSubmit={handleSubmit}>
                     <ToastContainer />
-                    <div className="my-5">
+                    <div className='my-5'>
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="nama">Nama:</Label>
                             <Input
                                 id="nama"
                                 placeholder="Masukkan Nama"
                                 onChange={(e) => setData('nama', e.target.value)}
-                                name="nama"
+                                name='nama'
                                 value={data.nama}
                             />
                             {errors.nama && <small className="text-red-600">{errors.nama}</small>}
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
-                            <div className="flex flex-col space-y-1.5">
+                        <div className="flex flex-col space-y-1.5">
                                 <Label>Pilih Departemen:</Label>
                                 <Select
                                     value={data.namaDepartemen}
@@ -153,9 +174,7 @@ export default function Create() {
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="jabatan">Pilih Jabatan:</Label>
-                                <Select
-                                    onValueChange={(value) => setData('jabatan', value)}
-                                >
+                                <Select onValueChange={(value) => setData('jabatan', value)}>
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Pilih Jabatan" />
                                     </SelectTrigger>
@@ -170,9 +189,7 @@ export default function Create() {
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="status">Pilih Status:</Label>
-                                <Select
-                                    onValueChange={(value) => setData('status', value)}
-                                >
+                                <Select onValueChange={(value) => setData('status', value)}>
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Pilih Status" />
                                     </SelectTrigger>
@@ -184,48 +201,50 @@ export default function Create() {
                                 </Select>
                                 {errors.status && <small className="text-red-600">{errors.status}</small>}
                             </div>
-                        </div>
 
-                        <div className="mt-2">
-                            <h6 className="text-gray-600 text-md font-bold">Data Pengguna</h6>
-                            <div className="flex flex-col space-y-1.5 mt-3">
-                                <Label htmlFor="email">Email:</Label>
-                                <Input
-                                    type="email"
-                                    placeholder="Masukkan Alamat Email"
-                                    onChange={(e) => setData('email', e.target.value)}
-                                    name="email"
-                                    value={data.email}
-                                />
-                                {errors.email && <small className="text-red-600">{errors.email}</small>}
-                            </div>
-                            <div className="flex flex-col space-y-1.5 mt-3">
-                                <Label htmlFor="password">Password:</Label>
-                                <div className="relative">
+
+                            <div className='mt-2'>
+                                <h6 className='text-gray-600 text-md font-bold'>Data Pengguna</h6>
+                                <div className="flex flex-col space-y-1.5 mt-3">
+                                    <Label htmlFor="jabatan">Email:</Label>
                                     <Input
-                                        type={showPassword ? 'text' : 'password'}
-                                        placeholder="Masukkan Password"
-                                        onChange={(e) => setData('password', e.target.value)}
-                                        name="password"
-                                        value={data.password}
-                                        className="w-full pr-10"
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={handleTogglePassword}
-                                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                                        type='email'
+                                        placeholder='Masukkan Alamat Email'
+                                        onChange={(e) => setData('email', e.target.value)}
+                                        name='email'
+                                        value={data.email}
                                     >
-                                        {showPassword ? <IconEyeOff className="h-5 w-5 text-gray-500" /> : <IconEye className="h-5 w-5 text-gray-500" />}
-                                    </button>
+                                    </Input>
+                                    {errors.email && <small className="text-red-600">{errors.email}</small>}
                                 </div>
-                                {errors.password && <small className="text-red-600">{errors.password}</small>}
+                                <div className="flex flex-col space-y-1.5 mt-3">
+                                    <Label htmlFor="password">Password:</Label>
+                                    <div className="relative">
+                                        <Input
+                                            type={showPassword ? 'text' : 'password'}
+                                            placeholder='Masukkan Password'
+                                            onChange={(e) => setData('password', e.target.value)}
+                                            name='password'
+                                            value={data.password}
+                                            className="w-full pr-10"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={handleTogglePassword}
+                                            className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                                        >
+                                            {showPassword ? <IconEyeOff className="h-5 w-5 text-gray-500" /> : <IconEye className="h-5 w-5 text-gray-500" />}
+                                        </button>
+                                    </div>
+                                    {errors.password && <small className="text-red-600">{errors.password}</small>}
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <Button className="bg-blue-600 hover:bg-blue-500" type="submit" disabled={processing}>Simpan</Button>
+                    <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>Simpan</Button>
                 </form>
             </Card>
         </Admin>
-    );
+    )
 }

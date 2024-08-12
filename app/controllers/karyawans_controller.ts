@@ -8,15 +8,16 @@ export default class KaryawansKontroller {
     async index({ inertia }: HttpContext) {
         const karyawan = await Karyawan.all()
         console.log(karyawan);
-
+        const departemen = await Departeman.all()
         return inertia.render('admin/dasboard/karyawan/index', {
-            data_karyawan: karyawan
+            data_karyawan: karyawan,
+            data_departemen: departemen
         });
     }
 
     async create({ inertia }: HttpContext) {
         const departemen = await Departeman.all()
-        return inertia.render('admin/dasboard/karyawan/create',{
+        return inertia.render('admin/dasboard/karyawan/create', {
             data_departemen: departemen
         });
     }
@@ -32,12 +33,12 @@ export default class KaryawansKontroller {
 
         const departemen = new Departeman()
         departemen.namaDepartemen = request.input('namaDepartemen')
-        departemen.namaPegawai=request.input('namaPegawai')
+        departemen.namaPegawai = request.input('namaPegawai')
         await departemen.save()
 
 
         const karyawan = new Karyawan();
-        karyawan.user_id =users.id;
+        karyawan.user_id = users.id;
         karyawan.nama = request.input('nama');
         karyawan.jabatan = request.input('jabatan');
         karyawan.status = request.input('status');

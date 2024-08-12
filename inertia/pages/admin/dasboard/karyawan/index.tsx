@@ -44,10 +44,10 @@ export default function Index() {
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-        columnHelper.accessor('nama_departemen', {
+        columnHelper.accessor('namaDepartemen', {
             header: 'Departemen',
             cell: info => info.getValue(),
-            footer: info => info.row.original?.departemen?.nama_departemen
+            footer: info => info.row.original?.departemen?.namaDepartemen
         }),
         columnHelper.accessor('jabatan', {
             header: 'Jabatan',
