@@ -13,16 +13,6 @@ import Swal from 'sweetalert2'
 
 export default function Create() {
 
-    const pemiliks = [
-        {
-            value: "manager",
-            label: "Manager",
-        },
-        {
-            value: "staff",
-            label: "Staff",
-        }
-    ]
 
     const statuses = [
         {
@@ -120,17 +110,14 @@ export default function Create() {
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="pemilik">Pemilik:</Label>
-                                <Select onValueChange={(value) => setData('pemilik', value)}>
-                                    <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Pilih Pemilik" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {pemiliks.map((pemilik) => (
-                                            <SelectItem key={pemilik.value} value={pemilik.value}>{pemilik.label}</SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
+                                <Label htmlFor="kodeJobOrder">Pemilik:</Label>
+                                <Input
+                                    id="kodeJobOrder"
+                                    placeholder="Masukkan Pemilik"
+                                    name='kodeJobOrder'
+                                    value={data.pemilik}
+                                    onChange={(e) => setData('pemilik', e.target.value)}
+                                />
                             </div>
                         </div>
                     </div>
