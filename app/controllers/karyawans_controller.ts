@@ -1,4 +1,4 @@
-import Departeman from "#models/departeman";
+import Departeman from "#models/departemen";
 import Karyawan from "#models/karyawan";
 import User from "#models/user";
 import { HttpContext, Redirect } from "@adonisjs/core/http";
