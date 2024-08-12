@@ -23,6 +23,7 @@ router.group(() => {
     router.get('index',[DepartemenController,'index'])
     router.get('edit/:id', [DepartemenController, 'edit'])
     router.get('create', [DepartemenController, 'create'])
+    router.post('create', [DepartemenController, 'store'])
 }).prefix('/dasboard/departemen/')
 
 router.group(() => {
