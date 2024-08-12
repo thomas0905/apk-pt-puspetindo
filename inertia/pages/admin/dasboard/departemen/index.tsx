@@ -1,6 +1,6 @@
 import React, { FormEventHandler, useState } from 'react';
 import Admin from '~/layout/admin';
-import { Link, useForm } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import { IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react';
 import { Card } from '~/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
 
 export default function Index() {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-
+  
     const { data, setData, post, processing } = useForm({
         namaDepartemen: '',
         namaPegawai: ''
@@ -82,9 +82,9 @@ export default function Index() {
                             <Input
                                 type='text'
                                 placeholder='Masukkan nama pegawai'
-                                onChange={(e) => setData('namaDepartemen', e.target.value)}
-                                name='namaDepartemen'
-                                value={data.namaDepartemen}
+                                onChange={(e) => setData('namaPegawai', e.target.value)}
+                                name='namaPegawai'
+                                value={data.namaPegawai}
                             />
                         </div>
                         <AlertDialogFooter>

@@ -14,6 +14,11 @@ export default class DepartemenController {
         const departemen = new Departemen()
         departemen.namaDepartemen = request.input('namaDepartemen')
         departemen.namaPegawai = request.input('namaPegawai')
+
+        await departemen.save();
+
+        session.flash({ notification: 'Data Berhasil Disimpan!' });
+        return response.redirect('/dasboard/departemen/create');
     }
 
     async edit({ inertia }: HttpContext) {

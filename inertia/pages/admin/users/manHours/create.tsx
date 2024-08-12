@@ -11,7 +11,7 @@ import Admin from '~/layout/admin';
 
 export default function Create() {
   const { data_karyawan, data_proyek } = usePage().props;
-console.log(data_karyawan);
+  console.log(data_karyawan);
 
   const { data, setData, post, processing } = useForm({
     karyawan_id: '',

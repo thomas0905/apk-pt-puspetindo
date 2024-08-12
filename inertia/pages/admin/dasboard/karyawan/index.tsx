@@ -11,7 +11,9 @@ import DataTable from '~/components/dataTable/dataTable'
 import { createColumnHelper } from "@tanstack/react-table";
 
 export default function Index() {
-    const { data_karyawan } = usePage<{ data_karyawan: Karyawan[] }>().props;
+    const { data_karyawan, data_departemen } = usePage().props;
+    console.log(data_departemen);
+
 
     const handleDelete = async (id: any) => {
         const swalInstance = Swal.fire({
@@ -44,10 +46,10 @@ export default function Index() {
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-        columnHelper.accessor('departemen', {
+        columnHelper.accessor('namaDepartemen', {
             header: 'Departemen',
             cell: info => info.getValue(),
-            footer: info => info.column.id,
+            footer: info => info.row.original?.departemen?.namaDepartemen
         }),
         columnHelper.accessor('jabatan', {
             header: 'Jabatan',
@@ -82,7 +84,7 @@ export default function Index() {
             footer: info => info.column.id,
         }),
     ];
-    
+
     return (
         <Admin>
             <Card className="p-5">
@@ -94,12 +96,12 @@ export default function Index() {
                             </Link>
                             <h6 className='text-gray-600 text-lg font-bold'>Data Karyawan</h6>
                         </div>
-                        
+
                         <div>
-                        <Link href="/dasboard/departemen/index">
+                            <Link href="/dasboard/departemen/index">
                                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
                                     <IconBuildingArch size={18} />
-                                     Departemen
+                                    Departemen
                                 </Button>
                             </Link>
                             <Link href="/dasboard/karyawan/create">
