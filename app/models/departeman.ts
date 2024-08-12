@@ -5,6 +5,9 @@ export default class Departeman extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
+  @column()
+  declare departemen:string
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
