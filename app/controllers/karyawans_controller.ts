@@ -1,6 +1,6 @@
-import Departeman from "#models/departemen";
 import Karyawan from "#models/karyawan";
 import User from "#models/user";
+import Departeman from "#models/departemen";
 import { HttpContext, Redirect } from "@adonisjs/core/http";
 
 export default class KaryawansKontroller {
@@ -15,7 +15,10 @@ export default class KaryawansKontroller {
     }
 
     async create({ inertia }: HttpContext) {
-        return inertia.render('admin/dasboard/karyawan/create');
+        const departemen = await Departeman.all()
+        return inertia.render('admin/dasboard/karyawan/create',{
+            data_departemen: departemen
+        });
     }
 
 
