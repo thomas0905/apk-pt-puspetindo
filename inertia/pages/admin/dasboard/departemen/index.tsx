@@ -54,8 +54,8 @@ export default function Index() {
                         />
                     </div>
                     <AlertDialogFooter>
-                        <Button className='bg-white text-black border' onClick={handleCloseDialog}>Cancel</Button>
-                        <Button className='bg-blue-500' onClick={handleConfirmAddDepartemen}>Simpan</Button>
+                        <Button className='bg-white text-black border hover:bg-slate-50' onClick={handleCloseDialog}>Cancel</Button>
+                        <Button className='bg-blue-500 hover:bg-blue-400' onClick={handleConfirmAddDepartemen}>Simpan</Button>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
