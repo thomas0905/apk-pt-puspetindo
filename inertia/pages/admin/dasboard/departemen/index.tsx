@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
+import React, { FormEventHandler, useState } from 'react';
 import Admin from '~/layout/admin';
-import { Link } from '@inertiajs/react';
+import { Link, useForm } from '@inertiajs/react';
 import { IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react';
 import { Card } from '~/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
 import {
     AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
-    AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Label } from '~/components/ui/label';
 import { Input } from '~/components/ui/input';
+import Swal from 'sweetalert2';
 
 export default function Index() {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+    const { data, setData, post, processing } = useForm({
+        namaDepartemen: '',
+        namaPegawai: ''
+    });
 
     const handleAddDepartemenClick = () => {
         setIsDialogOpen(true);
@@ -30,34 +33,78 @@ export default function Index() {
         setIsDialogOpen(false);
     };
 
-    const handleConfirmAddDepartemen = () => {
-        window.location.href = "/dasboard/departemen/index";
+    const handleSubmit: FormEventHandler = (e) => {
+        e.preventDefault();
+        post('/dasboard/departemen/create', {
+            onSuccess: () => {
+                Swal.fire({
+                    title: 'Data Berhasil Ditambahkan!',
+                    icon: 'success',
+                    confirmButtonText: 'Okee',
+                }).then(() => {
+                    window.location.href = '/dasboard/departemen/index'; // Redirect to index page
+                });
+            },
+            onError: () => {
+                Swal.fire({
+                    title: 'Gagal Menambahkan Data!',
+                    icon: 'error',
+                    confirmButtonText: 'Okee',
+                });
+            }
+        });
     };
 
     return (
         <Admin>
             <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                <AlertDialogTrigger asChild>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>Tambah Departemen</AlertDialogTitle>
-                        <AlertDialogDescription>
-                            Apakah Anda yakin ingin menambah departemen baru?
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <div>
-                        <Label>Nama Departemen</Label>
-                        <Input
-                            type='Text'
-                            placeholder='Masukkan nama departemen'
-                        />
-                    </div>
-                    <AlertDialogFooter>
-                        <Button className='bg-white text-black border hover:bg-slate-50' onClick={handleCloseDialog}>Cancel</Button>
-                        <Button className='bg-blue-500 hover:bg-blue-400' onClick={handleConfirmAddDepartemen}>Simpan</Button>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
+                <form onSubmit={handleSubmit}>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>Tambah Departemen</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                Apakah Anda yakin ingin menambah departemen baru?
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <div>
+                            <Label>Nama Departemen:</Label>
+                            <Input
+                                type='text'
+                                placeholder='Masukkan nama departemen'
+                                onChange={(e) => setData('namaDepartemen', e.target.value)}
+                                name='namaDepartemen'
+                                value={data.namaDepartemen}
+                            />
+                        </div>
+
+                        <div>
+                            <Label>Nama Pegawai:</Label>
+                            <Input
+                                type='text'
+                                placeholder='Masukkan nama pegawai'
+                                onChange={(e) => setData('namaDepartemen', e.target.value)}
+                                name='namaDepartemen'
+                                value={data.namaDepartemen}
+                            />
+                        </div>
+                        <AlertDialogFooter>
+                            <Button
+                                type='button'
+                                className='bg-white text-black border hover:bg-slate-50'
+                                onClick={handleCloseDialog}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                type='submit'
+                                className='bg-blue-500 hover:bg-blue-400'
+                                disabled={processing}
+                            >
+                                Simpan
+                            </Button>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </form>
             </AlertDialog>
 
             <Card className="p-5">
@@ -92,19 +139,7 @@ export default function Index() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            <TableRow>
-                                <TableCell className="flex gap-3">
-                                    {/* <span onClick={() => handleDelete(karyawan.id)} className="text-right text-red-900 cursor-pointer">
-                                        <IconTrash size={18} />
-                                    </span> */}
-                                </TableCell>
-                                <TableCell>Muhammad Rois</TableCell>
-                                <TableCell>
-                                    <Link href={"/dasboard/departemen/edit"}>
-                                        <IconEdit size={18} />
-                                    </Link>
-                                </TableCell>
-                            </TableRow>
+                            {/* Data departemen yang sudah ada */}
                         </TableBody>
                     </Table>
                 </Card>
