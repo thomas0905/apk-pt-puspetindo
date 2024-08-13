@@ -71,7 +71,7 @@ export default function Permission() {
                 </TableCell>
                 <TableCell className="font-medium text-center">
                   <Label className="flex mx-2 justify-center items-center bg-gray-100 w-6 h-6">
-                    <Input type="checkbox" id=""></Input>
+                    <Input type="checkbox" className='rounded-lg' id=""></Input>
                   </Label>
                 </TableCell>
                 <TableCell className="text-center">
