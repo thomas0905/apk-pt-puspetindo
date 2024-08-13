@@ -4,7 +4,6 @@ import React from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
-// import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 import Admin from '~/layout/admin'
 
 import Karyawan from "#models/karyawan";
@@ -13,12 +12,13 @@ import { createColumnHelper } from "@tanstack/react-table"
 
 export default function Index() {
     const { data_karyawan } = usePage<{ data_karyawan: Karyawan[] }>().props
+    console.log(data_karyawan)
     const columnHelper = createColumnHelper<Karyawan>();
 
-    const columns= [
+    const columns = [
         columnHelper.accessor('id', {
             header: 'No',
-            cell: info => info.row.index + 1,  // Menampilkan nomor urut
+            cell: info => info.row.index + 1,
             footer: info => info.column.id,
         }),
         columnHelper.accessor('nama', {
@@ -46,12 +46,12 @@ export default function Index() {
             header: 'Aksi',
             cell: info => (
                 <div className="flex gap-3">
-                    {/* <span
+                    <span
                         onClick={() => handleDelete(info.row.original.id)}
                         className="text-red-900 cursor-pointer"
                     >
                         <IconTrash size={18} />
-                    </span> */}
+                    </span>
                     <Link href={`/sistem/pengguna/edit/${info.row.original.id}`}>
                         <IconEdit size={18} />
                     </Link>
@@ -67,6 +67,7 @@ export default function Index() {
             footer: info => info.column.id,
         }),
     ];
+    
     return (
         <Admin>
             <Card className="p-5">
@@ -91,18 +92,9 @@ export default function Index() {
                     </div>
                 </div>
 
-                <div className='flex justify-between mt-6'>
-                    <div className="relative flex flex-col space-y-1.3">
-                        <Input id="name" placeholder="Search..." className="pl-10" />
-                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <IconSearch size={16} />
-                        </div>
-                    </div>
+            
 
-
-                </div>
-
-           <DataTable data={data_karyawan} columns={columns}/>
+                <DataTable data={data_karyawan} columns={columns} />
             </Card>
         </Admin>
     )
