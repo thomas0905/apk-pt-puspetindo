@@ -30,7 +30,7 @@ export default class DepartemenController {
         return response.redirect('/dasboard/departemen/create');
     }
 
- 
+
     async edit({ inertia, params }: HttpContext) {
         console.log(params.id);
         const departemen = await Departemen.find(params.id)
@@ -38,5 +38,12 @@ export default class DepartemenController {
             departemen: departemen
         });
     }
-    
+
+    async update({ request, params, response }: HttpContext) {
+        const departemen = await Departemen.findOrFail(params.id)
+        departemen.namaDepartemen = request.input('namaDepartemen')
+        return response.redirect('/dasboard/departemen/index')
+
+    }
+
 }
