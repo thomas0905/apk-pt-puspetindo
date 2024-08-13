@@ -67,7 +67,7 @@ export default function Create() {
             isValid = false;
         }
 
-        if (data.departemen_id === '') { // Ubah validasi untuk departemen_id
+        if (data.departemen_id === '') { 
             validationErrors.departemen_id = 'Departemen harus dipilih';
             isValid = false;
         }
@@ -155,7 +155,7 @@ export default function Create() {
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Pilih Departemen:</Label>
                                 <Select
-                                    value={data.departemen_id}
+                                    // value={data.departemen_id}
                                     onValueChange={(value) => setData('departemen_id', value)}
                                 >
                                     <SelectTrigger className="w-full">

@@ -36,7 +36,7 @@ export default class KaryawansKontroller {
         
         karyawan.user_id = users.id;
         karyawan.nama = request.input('nama');
-        karyawan.departemenId = request.input('departemenId');
+        karyawan.departemen_id = request.input('departemen_id');
         karyawan.jabatan = request.input('jabatan');
         karyawan.status = request.input('status');
 
