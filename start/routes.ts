@@ -1,5 +1,5 @@
 import AuthController from '#controllers/auth_controller'
-const DepartemenController =() => import ('#controllers/departemen_controller')
+const DepartemenController = () => import('#controllers/departemen_controller')
 const KaryawansController = () => import('#controllers/karyawans_controller')
 import LaporansController from '#controllers/laporans_controller'
 const PenggunasController = () => import('#controllers/penggunas_controller')
@@ -20,7 +20,7 @@ router.group(() => {
 }).prefix('/dasboard/karyawan/')
 
 router.group(() => {
-    router.get('index',[DepartemenController,'index'])
+    router.get('index', [DepartemenController, 'index'])
     router.get('create', [DepartemenController, 'create'])
     router.post('create', [DepartemenController, 'store'])
     router.get('edit/:id', [DepartemenController, 'edit'])
@@ -48,11 +48,13 @@ router.group(() => {
 // })
 
 // Route to login page
-router.get('/auth/login', [AuthController,'login'])
+router.get('/auth/login', [AuthController, 'login'])
+router.post('/auth/login', [AuthController, 'loginAuth'])
+
 
 router.get('/management/laporan', [LaporansController, 'laporan'])
 
 router.group(() => {
     router.get('index', [PenggunasController, 'index'])
-    router.get('permission',[PenggunasController,'permission'])
+    router.get('permission', [PenggunasController, 'permission'])
 }).prefix('/sistem/pengguna/')
