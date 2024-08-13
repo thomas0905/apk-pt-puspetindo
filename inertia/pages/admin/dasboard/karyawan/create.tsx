@@ -155,7 +155,6 @@ export default function Create() {
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Pilih Departemen:</Label>
                                 <Select
-                                    // value={data.departemen_id}
                                     onValueChange={(value) => setData('departemen_id', value)}
                                 >
                                     <SelectTrigger className="w-full">
