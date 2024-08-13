@@ -65,6 +65,8 @@ export default function Create() {
                   ))}
                 </SelectContent>
               </Select>
+           
+              {/* {errors.namaDepartemen && <small className="text-red-600">{errors.namaDepartemen}</small>} */}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
@@ -111,7 +113,6 @@ export default function Create() {
               </div>
             </div>
           </div>
-
           <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>
             Simpan
           </Button>

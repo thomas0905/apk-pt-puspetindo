@@ -139,6 +139,7 @@ export default function Create() {
                 <form className='mt-5' onSubmit={handleSubmit}>
                     <ToastContainer />
                     <div className='my-5'>
+
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="nama">Nama:</Label>
                             <Input
@@ -150,9 +151,8 @@ export default function Create() {
                             />
                             {errors.nama && <small className="text-red-600">{errors.nama}</small>}
                         </div>
-
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
-                        <div className="flex flex-col space-y-1.5">
+                            <div className="flex flex-col space-y-1.5">
                                 <Label>Pilih Departemen:</Label>
                                 <Select
                                     value={data.namaDepartemen}
