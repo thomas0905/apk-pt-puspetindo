@@ -3,6 +3,7 @@ import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
 import User from './user.js'
 import type {HasOne} from '@adonisjs/lucid/types/relations'
 import ManHour from './man_hour.js'
+import Departeman from './departemen.js'
 
 export default class Karyawan extends BaseModel {
   @hasOne(() => User)
@@ -11,6 +12,10 @@ export default class Karyawan extends BaseModel {
   @hasOne(() => ManHour, {
     foreignKey: 'karyawanId', // defaults to userId
   })
+
+  // @hasOne(() => Departeman {
+  //   foreignKey: 'departemenId', // defaults to userId
+  // })
   declare manHour: HasOne<typeof ManHour>
 
   @column({ isPrimary: true })
