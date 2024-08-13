@@ -10,13 +10,12 @@ export default class Karyawan extends BaseModel {
   declare user: HasOne<typeof User>
 
   @hasOne(() => ManHour, {
-    foreignKey: 'karyawanId', // defaults to userId
+    foreignKey: 'karyawanId', 
   })
-
-  // @hasOne(() => Departeman {
-  //   foreignKey: 'departemenId', // defaults to userId
-  // })
   declare manHour: HasOne<typeof ManHour>
+
+  @hasOne(() => Departeman)
+  declare departemen: HasOne<typeof Departeman>
 
   @column({ isPrimary: true })
   declare id: number
