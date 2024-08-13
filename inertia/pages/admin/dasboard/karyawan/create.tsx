@@ -48,7 +48,7 @@ export default function Create() {
 
     const { data, setData, post, processing } = useForm({
         nama: '',
-        namaDepartemen: '',
+        departemen_id: '',
         jabatan: '',
         status: '',
         email: '',
@@ -67,8 +67,8 @@ export default function Create() {
             isValid = false;
         }
 
-        if (data.namaDepartemen.trim() === '') {
-            validationErrors.namaDepartemen = 'namaDepartemen harus diisi';
+        if (data.departemen_id === '') { // Ubah validasi untuk departemen_id
+            validationErrors.departemen_id = 'Departemen harus dipilih';
             isValid = false;
         }
 
@@ -155,21 +155,21 @@ export default function Create() {
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Pilih Departemen:</Label>
                                 <Select
-                                    value={data.namaDepartemen}
-                                    onValueChange={(value) => setData('namaDepartemen', value)}
+                                    value={data.departemen_id}
+                                    onValueChange={(value) => setData('departemen_id', value)}
                                 >
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Pilih Departemen" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         {data_departemen.map((dep) => (
-                                            <SelectItem key={dep.id} value={dep.namaDepartemen}>
+                                            <SelectItem key={dep.id} value={dep.id.toString()}> {/* Ubah value menjadi id departemen */}
                                                 {dep.namaDepartemen}
                                             </SelectItem>
                                         ))}
                                     </SelectContent>
                                 </Select>
-                                {errors.namaDepartemen && <small className="text-red-600">{errors.namaDepartemen}</small>}
+                                {errors.departemen_id && <small className="text-red-600">{errors.departemen_id}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">

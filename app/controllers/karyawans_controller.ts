@@ -17,6 +17,7 @@ export default class KaryawansKontroller {
 
     async create({ inertia }: HttpContext) {
         const departemen = await Departeman.all()
+        
         return inertia.render('admin/dasboard/karyawan/create', {
             data_departemen: departemen
         });
@@ -30,15 +31,12 @@ export default class KaryawansKontroller {
         users.password = request.input('password');
         await users.save();
 
-
-        const departemen = new Departeman()
-        departemen.namaDepartemen = request.input('namaDepartemen')
-        await departemen.save()
-
-
         const karyawan = new Karyawan();
+        console.log(request.all());
+        
         karyawan.user_id = users.id;
         karyawan.nama = request.input('nama');
+        karyawan.departemenId = request.input('departemenId');
         karyawan.jabatan = request.input('jabatan');
         karyawan.status = request.input('status');
 

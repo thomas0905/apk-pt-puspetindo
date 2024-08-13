@@ -11,8 +11,7 @@ import DataTable from '~/components/dataTable/dataTable'
 import { createColumnHelper } from "@tanstack/react-table"
 
 export default function Index() {
-    const { data_karyawan } = usePage<{ data_karyawan: Karyawan[] }>().props
-    console.log(data_karyawan)
+    const { data_karyawan,data_user } = usePage().props
     const columnHelper = createColumnHelper<Karyawan>();
 
     const columns = [
@@ -23,6 +22,12 @@ export default function Index() {
         }),
         columnHelper.accessor('nama', {
             header: 'Nama',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
+
+        columnHelper.accessor('email', {
+            header: 'Email',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
@@ -47,12 +52,12 @@ export default function Index() {
             header: 'Aksi',
             cell: info => (
                 <div className="flex gap-3">
-                    <span
+                    {/* <span
                         onClick={() => handleDelete(info.row.original.id)}
                         className="text-red-900 cursor-pointer"
                     >
                         <IconTrash size={18} />
-                    </span>
+                    </span> */}
                     <Link href={`/sistem/pengguna/edit/${info.row.original.id}`}>
                         <IconEdit size={18} />
                     </Link>

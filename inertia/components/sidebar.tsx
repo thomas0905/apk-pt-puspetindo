@@ -94,7 +94,7 @@ export default function Sidebar() {
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Pengguna</span>
                                 </Link>
 
-                                <Link href='/auth/login' className="flex pl-2  hover:text-white text-black rounded-sm hover:bg-blue-600 hover:w-[190px] p-1 w-full gap-2 text-md">
+                                <Link href='#' className="flex pl-2  hover:text-white text-black rounded-sm hover:bg-blue-600 hover:w-[190px] p-1 w-full gap-2 text-md">
                                     <IconSettings size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Pengturan</span>
                                 </Link>
