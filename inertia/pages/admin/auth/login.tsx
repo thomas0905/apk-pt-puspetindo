@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import './login.css'
+import React, { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import './login.css';
 import {
     Card,
     CardContent,
@@ -8,33 +8,31 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { IconEye, IconEyeOff, IconLock, IconMail, IconUser } from '@tabler/icons-react'
-import logoLogin from '../../../img/logo-puspetindo.png'
-import Swal from 'sweetalert2'
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { IconEye, IconEyeOff, IconLock, IconMail, IconUser } from '@tabler/icons-react';
+import logoLogin from '../../../img/logo-puspetindo.png';
 import 'animate.css';
+import { useForm } from '@inertiajs/react';
 
 export default function Login() {
-    const handleLogin = async () => {
-        const loginSuccess = true;
+    const { data, setData, post, processing, errors } = useForm({
+        email: '',
+        password: '',
+    });
 
-        if (loginSuccess) {
-            await Swal.fire({
-                title: 'Sukses!',
-                text: 'Anda berhasil login.',
-                icon: 'success',
-                confirmButtonText: 'OK',
-            });
-            window.location.href = '/';
-        }
-    }
-    const [showPassword, setShowPassword] = useState(false); 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        post('/auth/login');
+    };
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
     };
+
     return (
         <div className='flex justify-center items-center h-screen p-3 sm:p-0'>
             <Card className="w-full max-w-md border-0 shadow-md hover-card sm:p-1 animate__animated animate__fadeIn">
@@ -47,63 +45,70 @@ export default function Login() {
                         Hai 👏, Selamat Datang Kembali di PT.Pustpetindo
                     </CardDescription>
                 </CardHeader>
-                <CardContent className="grid gap-4">
-                    <div className="grid gap-2">
-                        <Label htmlFor="email">Username</Label>
-                        <div className="relative">
-                            <IconUser className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                            <Input
-                                type="text"
-                                placeholder="Username"
-                                className="w-full rounded-lg bg-background pl-8 focus:outline-blue-500"
-                            />
+                <form onSubmit={handleSubmit}>
+                    <CardContent className="grid gap-4">
+                        <div className="grid gap-2">
+                            <Label htmlFor="username">Username</Label>
+                            <div className="relative">
+                                <IconUser className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                                <Input
+                                    type="text"
+                                    placeholder="Username"
+                                    className="w-full rounded-lg bg-background pl-8 focus:outline-blue-500"
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="grid gap-2">
-                        <Label htmlFor="email">Email</Label>
-                        <div className="relative">
-                            <IconMail className="absolute icon-login  left-2.5 top-2.5 h-4 w-4 text-gray-500" />
-                            <Input
-                                id="email"
-                                type="email"
-                                placeholder="Email"
-                                required
-                                className="w-full rounded-lg bg-background pl-8"
-                            />
+                        <div className="grid gap-2">
+                            <Label htmlFor="email">Email</Label>
+                            <div className="relative">
+                                <IconMail className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+                                <Input
+                                    type="email"
+                                    className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                                    name="email"
+                                    placeholder="Masukkan Email"
+                                    value={data.email}
+                                    onChange={(e) => setData('email', e.target.value)}
+                                />
+                                {errors.email && <span className="text-red-600">{errors.email}</span>}
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="grid gap-2">
-                        <Label htmlFor="password">Password</Label>
-                        <div className="relative">
-                            <IconLock className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-gray-500" />
-                            <Input
-                                id="password"
-                                type={showPassword ? 'text' : 'password'}
-                                placeholder="Password"
-                                required
-                                className="w-full rounded-lg bg-background pl-8"
-                            />
-                            <button
-                                type="button"
-                                onClick={handleTogglePassword}
-                                className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
-                            >
-                                {showPassword ? <IconEyeOff className="h-5 w-5 text-gray-500" /> : <IconEye className="h-5 w-5 text-gray-500" />}
-                            </button>
+                        <div className="grid gap-2">
+                            <Label htmlFor="password">Password</Label>
+                            <div className="relative">
+                                <IconLock className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+                                <Input
+                                    type={showPassword ? 'text' : 'password'}
+                                    className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                                    name="password"
+                                    placeholder="Masukkan Password"
+                                    value={data.password}
+                                    onChange={(e) => setData('password', e.target.value)}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={handleTogglePassword}
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                                >
+                                    {showPassword ? <IconEyeOff className="h-5 w-5 text-gray-500" /> : <IconEye className="h-5 w-5 text-gray-500" />}
+                                </button>
+                                {errors.password && <span className="text-red-600">{errors.password}</span>}
+                            </div>
                         </div>
-                    </div>
-                </CardContent>
-                <CardFooter>
-                    <Button
-                        onClick={handleLogin}
-                        className="w-full bg-blue-500 hover:bg-blue-400"
-                    >
-                        Login
-                    </Button>
-                </CardFooter>
+                    </CardContent>
+                    <CardFooter>
+                        <Button
+                            className="w-full bg-blue-500 hover:bg-blue-400"
+                            type="submit"
+                            disabled={processing}
+                        >
+                            Login
+                        </Button>
+                    </CardFooter>
+                </form>
             </Card>
         </div>
-    )
+    );
 }
