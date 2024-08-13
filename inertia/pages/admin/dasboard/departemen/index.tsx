@@ -1,7 +1,7 @@
 import React from 'react';
 import Admin from '~/layout/admin';
 import { Link, usePage } from '@inertiajs/react';
-import { IconBuildingArch, IconHome } from '@tabler/icons-react';
+import { IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react';
 import { Card } from '~/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
@@ -52,7 +52,7 @@ export default function Index() {
                                     <TableCell>
                                         {/* Tempatkan aksi seperti tombol edit atau delete di sini */}
                                         <Link href={`/dasboard/departemen/edit/${dep.id}`} className="text-blue-500 hover:underline">
-                                            Edit
+                                            <IconEdit size={18} />
                                         </Link>
                                     </TableCell>
                                 </TableRow>

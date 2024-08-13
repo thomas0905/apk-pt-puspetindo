@@ -30,8 +30,13 @@ export default class DepartemenController {
         return response.redirect('/dasboard/departemen/create');
     }
 
-    async edit({ inertia }: HttpContext) {
-        return inertia.render('admin/dasboard/departemen/edit')
+ 
+    async edit({ inertia, params }: HttpContext) {
+        console.log(params.id);
+        const departemen = await Departemen.find(params.id)
+        return inertia.render('admin/dasboard/departemen/edit', {
+            departemen: departemen
+        });
     }
-
+    
 }
