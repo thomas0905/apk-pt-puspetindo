@@ -41,6 +41,7 @@ export default function Index() {
             },
             footer: info => info.column.id,
         }),
+
         columnHelper.display({
             id: 'aksi',
             header: 'Aksi',
@@ -55,7 +56,16 @@ export default function Index() {
                     <Link href={`/sistem/pengguna/edit/${info.row.original.id}`}>
                         <IconEdit size={18} />
                     </Link>
+                </div>
+            ),
+            footer: info => info.column.id,
+        }),
 
+        columnHelper.display({
+            id: 'aksi',
+            header: 'Permission',
+            cell: info => (
+                <div className="flex gap-3">
                     <Link href="/sistem/pengguna/permission">
                         <span className="bg-blue-200 py-1 border pl-1 pr-1 w-[135px] rounded-md flex" >
                             <IconLock size={18} />
@@ -67,7 +77,7 @@ export default function Index() {
             footer: info => info.column.id,
         }),
     ];
-    
+
     return (
         <Admin>
             <Card className="p-5">
@@ -92,7 +102,7 @@ export default function Index() {
                     </div>
                 </div>
 
-            
+
 
                 <DataTable data={data_karyawan} columns={columns} />
             </Card>
