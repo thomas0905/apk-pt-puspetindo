@@ -8,7 +8,7 @@ import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 const AuthController = () => import('#controllers/auth_controller')
 
-router.on('/').renderInertia('home', { version: 6 })
+router.on('/').renderInertia('home', { version: 6 }).use(middleware.auth())
 
 
 router.group(() => {
@@ -26,7 +26,7 @@ router.group(() => {
     router.post('create', [DepartemenController, 'store'])
     router.get('edit/:id', [DepartemenController, 'edit'])
     router.put('edit/:id', [KaryawansController, 'update'])
-}).prefix('/dasboard/departemen/')
+}).prefix('/dasboard/departemen/').use(middleware.auth())
 
 router.group(() => {
     router.get('index', [ProyeksController, 'index'])
@@ -35,7 +35,7 @@ router.group(() => {
     router.delete('proyek/:id', [ProyeksController, 'delete'])
     router.get('edit/:id', [ProyeksController, 'edit'])
     router.put('edit/:id', [ProyeksController, 'update'])
-}).prefix('/dasboard/proyek/')
+}).prefix('/dasboard/proyek/').use(middleware.auth())
 
 router.group(() => {
     router.get('menuProfil', [ManHoursController, 'menuProfil'])
@@ -43,7 +43,7 @@ router.group(() => {
     router.get('create', [ManHoursController, 'create'])
     router.post('create', [ManHoursController, 'store'])
     router.delete('delete', [ManHoursController, 'delete'])
-}).prefix('/users/manhours/')
+}).prefix('/users/manhours/').use(middleware.auth())
 
 
 
@@ -51,10 +51,15 @@ router.group(() => {
 router.get('/login', [AuthController, 'login'])
 router.post('/auth/login', [AuthController, 'loginAuth'])
 
+router.post('logout', async ({ auth, response }) => {
+    await auth.use('web').logout()
+    return response.redirect('/login')
+}).use(middleware.auth())
 
-router.get('/management/laporan', [LaporansController, 'laporan'])
+
+router.get('/management/laporan', [LaporansController, 'laporan']).use(middleware.auth())
 
 router.group(() => {
     router.get('index', [PenggunasController, 'index'])
     router.get('permission', [PenggunasController, 'permission'])
-}).prefix('/sistem/pengguna/')
+}).prefix('/sistem/pengguna/').use(middleware.auth())

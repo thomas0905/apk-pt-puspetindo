@@ -4,18 +4,12 @@ import { Button } from './ui/button'
 import { Icon123, IconFileAnalytics, IconHome, IconSearch, IconShoppingBag, IconUser, IconUsers, IconLoader } from '@tabler/icons-react'
 import { Input } from './ui/input'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
-import { Link } from '@inertiajs/react'
+import { Link, router } from '@inertiajs/react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
+import { middleware } from '#start/kernel'
 
 export default function Navbar() {
   const [loading, setLoading] = useState(false);
-
-  const handleLogout = async () => {
-    setLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setLoading(false);
-    window.location.href = '/auth/login';
-  }
 
   return (
     <Fragment>
@@ -130,8 +124,10 @@ export default function Navbar() {
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout} disabled={loading}>
-              <span>Logout</span>
+            <DropdownMenuItem  disabled={loading}>
+              <Link href="/logout" method='post'>
+                <span>Logout</span>
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
