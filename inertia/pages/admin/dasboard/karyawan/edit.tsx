@@ -13,7 +13,7 @@ export default function EditPengguna() {
     const { karyawan } = usePage().props
     const { data, setData, put } = useForm({
         nama: karyawan.nama,
-        departemen_id: karyawan.departemen_id,
+        namaDepartemen: karyawan.namaDepartemen,
         jabatan: karyawan.jabatan,
         status: karyawan.status,
     })
@@ -105,8 +105,8 @@ export default function EditPengguna() {
                                     id="departemen"
                                     placeholder="Masukkan Nama Departemen"
                                     name='departemen_id'
-                                    value={data.departemen_id}
-                                    onChange={(e) => setData('departemen_id', e.target.value)}
+                                    value={data.namaDepartemen}
+                                    onChange={(e) => setData('namaDepartemen', e.target.value)}
                                 />
                             </div>
 
