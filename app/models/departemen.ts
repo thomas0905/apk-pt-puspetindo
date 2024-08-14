@@ -10,6 +10,7 @@ export default class Departeman extends BaseModel {
   @belongsTo(() => Karyawan)
   declare karyawan: BelongsTo<typeof Karyawan>
 
+  
   @column()
   declare namaDepartemen:string
   

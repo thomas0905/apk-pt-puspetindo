@@ -7,13 +7,12 @@ import Admin from '~/layout/admin';
 import DataTable from '~/components/dataTable/dataTable';
 import { createColumnHelper } from '@tanstack/react-table';
 import Swal from 'sweetalert2';
-import ManHour from '#models/man_hour';
 
 export default function Index() {
-  const { data_manHours } = usePage<{ data_manHours: ManHour[] }>().props;
-  console.log(data_manHours)
+  const { data_manHours } = usePage<{ data_manHours: any[] }>().props;
+  console.log(data_manHours);
 
-  const columnHelper = createColumnHelper<ManHour>();
+  const columnHelper = createColumnHelper<any>();
 
   const handleDelete = async (id: any) => {
     const swalInstance = Swal.fire({
@@ -38,13 +37,13 @@ export default function Index() {
       header: () => 'No',
       cell: info => info.row.index + 1,
     }),
-    columnHelper.accessor('karyawanId', {
+    columnHelper.accessor('karyawan.nama', {
       header: () => 'Nama Karyawan',
-      cell: info => info.row.original?.karyawan?.namaKaryawan
+      cell: info => info.row.original?.karyawan?.nama || 'data tidak ada'
     }),
     columnHelper.accessor('proyek.namaProyek', {
       header: () => 'Nama Proyek',
-      cell: info => info.row.original?.proyek?.namaProyek,
+      cell: info => info.row.original?.proyek?.namaProyek || 'data tidak ada',
     }),
     columnHelper.accessor('tanggal', {
       header: () => 'Tanggal',
@@ -52,7 +51,7 @@ export default function Index() {
     }),
     columnHelper.accessor('jam_kerja', {
       header: () => 'Jam Kerja',
-      cell: info => `${info.getValue()} jam_kerja`,
+      cell: info => `${info.getValue()} jam`,
     }),
     columnHelper.display({
       id: 'aksi',

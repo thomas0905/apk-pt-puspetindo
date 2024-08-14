@@ -13,7 +13,9 @@ export default class ManHour extends BaseModel {
   })
   declare karyawan: BelongsTo<typeof Karyawan>
 
-  @hasOne(() => Proyek)
+  @hasOne(() => Proyek,{
+    foreignKey:'proyek_id'
+  })
   declare proyek: HasOne<typeof Proyek>
   
   @column()
