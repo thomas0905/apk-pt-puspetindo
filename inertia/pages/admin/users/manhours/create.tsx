@@ -21,7 +21,13 @@ export default function Create() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    post('/manhours/create');
+
+    if (isNaN(data.jam_kerja)) {
+      alert("Jam kerja harus berupa angka");
+      return;
+    }
+
+    post('/users/manhours/create');
   };
 
   return (
@@ -65,8 +71,6 @@ export default function Create() {
                   ))}
                 </SelectContent>
               </Select>
-           
-              {/* {errors.namaDepartemen && <small className="text-red-600">{errors.namaDepartemen}</small>} */}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
@@ -103,7 +107,7 @@ export default function Create() {
               <div className="flex flex-col space-y-1.5">
                 <Label>Jam Kerja:</Label>
                 <Input
-                  type="number"
+                  type="text"
                   placeholder="Jam Kerja"
                   name='jam_kerja'
                   value={data.jam_kerja}

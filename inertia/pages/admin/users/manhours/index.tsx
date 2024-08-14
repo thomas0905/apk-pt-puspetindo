@@ -26,7 +26,7 @@ export default function Index() {
     });
     const result = await swalInstance;
     if (result.isConfirmed) {
-      await router.delete('/dashboard/manhours/delete/' + id);
+      await router.delete('/users/manhours/delete/' + id);
       Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
     } else {
       Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
@@ -62,7 +62,7 @@ export default function Index() {
           <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
             <IconTrash size={18} />
           </span>
-          <Link href={"/dashboard/manhours/edit/" + info.row.original.id}>
+          <Link href={"/users/manhours/edit/" + info.row.original.id}>
             <IconEdit size={18} />
           </Link>
         </div>
@@ -80,10 +80,12 @@ export default function Index() {
               <Link href="/">
                 <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
               </Link>
-              <h6 className='text-gray-600 text-lg font-bold'>Man Hours</h6>
+              <Link href="/users/manhours/index">
+                <h6 className='text-gray-600 text-lg font-bold'>Man Hours</h6>
+              </Link>
             </div>
             <div>
-              <Link href="/manhours/create">
+              <Link href="/users/manHours/create">
                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
                   <IconBriefcase size={18} />
                   Tambah man hours

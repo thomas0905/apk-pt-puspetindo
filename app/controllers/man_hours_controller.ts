@@ -6,7 +6,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 export default class ManHoursController {
     async index({ inertia }: HttpContext) {
         const manHours = await ManHour.query().preload('karyawan')
-        return inertia.render('admin/users/manHours/index',{
+        return inertia.render('admin/users/manhours/index',{
             data_manHours:manHours
         })
     }
@@ -18,7 +18,7 @@ export default class ManHoursController {
     async create({ inertia }: HttpContext) {
         const karyawan = await Karyawan.all()
         const proyek = await Proyek.all()
-        return inertia.render('admin/users/manHours/create', {
+        return inertia.render('admin/users/manhours/create', {
             data_karyawan: karyawan,
             data_proyek: proyek
         })
@@ -34,6 +34,13 @@ export default class ManHoursController {
         await manHours.save()
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
-        return response.redirect('/manhours/index')
+        return response.redirect('/users/manhours/index')
+    }
+
+
+    async delete({ params, response }: HttpContext) {
+        const manHours = await ManHour.findOrFail(params.id)
+        await manHours.delete()
+        return response.redirect('/users/manhours/index')
     }
 }

@@ -41,7 +41,8 @@ router.group(() => {
     router.get('index', [ManHoursController, 'index'])
     router.get('create', [ManHoursController, 'create'])
     router.post('create', [ManHoursController, 'store'])
-}).prefix('/manhours/')
+    router.delete('delete', [ManHoursController, 'delete'])
+}).prefix('/users/manhours/')
 
 // router.get('/', async ({ response }) => {
 //     return response.redirect('/auth/login')
