@@ -22,10 +22,6 @@ export default function Create() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (isNaN(data.jam_kerja)) {
-      console.log("Jam kerja harus berupa angka");
-    }
-
     post('/users/manhours/create');
   };
 
