@@ -5,9 +5,9 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ManHoursController {
     async index({ inertia }: HttpContext) {
-        const manHours = await ManHour.query().preload('karyawan')
+        const manhours = await ManHour.query().preload('karyawan')
         return inertia.render('admin/users/manhours/index',{
-            data_manHours:manHours
+            data_manHours:manhours
         })
     }
 
@@ -25,13 +25,13 @@ export default class ManHoursController {
     }
 
     async store({request ,response,session}:HttpContext){
-        const manHours = new ManHour()
-        manHours.karyawan_id = request.input('karyawan_id')
-        manHours.proyek_id = request.input('proyek_id')
-        manHours.tanggal = request.input('tanggal')
-        manHours.jam_kerja = request.input('jam_Kerja')
+        const manhours = new ManHour()
+        manhours.karyawan_id = request.input('karyawan_id')
+        manhours.proyek_id = request.input('proyek_id')
+        manhours.tanggal = request.input('tanggal')
+        manhours.jam_kerja = request.input('jam_Kerja')
 
-        await manHours.save()
+        await manhours.save()
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
         return response.redirect('/users/manhours/index')
@@ -39,8 +39,17 @@ export default class ManHoursController {
 
 
     async delete({ params, response }: HttpContext) {
-        const manHours = await ManHour.findOrFail(params.id)
-        await manHours.delete()
+        const manhours = await ManHour.findOrFail(params.id)
+        await manhours.delete()
         return response.redirect('/users/manhours/index')
     }
+
+    async edit({ inertia, params }: HttpContext) {
+        console.log(params.id);
+        const manhours = await ManHour.find(params.id)
+        return inertia.render('admin/users/manhours/edit', {
+            manhours:manhours
+        });
+    }
+
 }

@@ -26,7 +26,7 @@ export default function Index() {
     });
     const result = await swalInstance;
     if (result.isConfirmed) {
-      await router.delete('/users/manhours/delete/' + id);
+      await router.delete('/users/manhours/delete' + id);
       Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
     } else {
       Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
@@ -85,7 +85,7 @@ export default function Index() {
               </Link>
             </div>
             <div>
-              <Link href="/users/manHours/create">
+              <Link href="/users/manhours/create">
                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
                   <IconBriefcase size={18} />
                   Tambah man hours
