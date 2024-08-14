@@ -1,4 +1,3 @@
-import AuthController from '#controllers/auth_controller'
 const DepartemenController = () => import('#controllers/departemen_controller')
 const KaryawansController = () => import('#controllers/karyawans_controller')
 import LaporansController from '#controllers/laporans_controller'
@@ -6,6 +5,8 @@ const PenggunasController = () => import('#controllers/penggunas_controller')
 const ManHoursController = () => import('#controllers/man_hours_controller')
 import ProyeksController from '#controllers/proyeks_controller'
 import router from '@adonisjs/core/services/router'
+import { middleware } from './kernel.js'
+const AuthController = () => import('#controllers/auth_controller')
 
 router.on('/').renderInertia('home', { version: 6 })
 
@@ -17,7 +18,7 @@ router.group(() => {
     router.delete('delete/:id', [KaryawansController, 'delete'])
     router.get('edit/:id', [KaryawansController, 'edit'])
     router.put('edit/:id', [KaryawansController, 'update'])
-}).prefix('/dasboard/karyawan/')
+}).prefix('/dasboard/karyawan/').use(middleware.auth())
 
 router.group(() => {
     router.get('index', [DepartemenController, 'index'])
@@ -44,12 +45,10 @@ router.group(() => {
     router.delete('delete', [ManHoursController, 'delete'])
 }).prefix('/users/manhours/')
 
-// router.get('/', async ({ response }) => {
-//     return response.redirect('/auth/login')
-// })
+
 
 // Route to login page
-router.get('/auth/login', [AuthController, 'login'])
+router.get('/login', [AuthController, 'login'])
 router.post('/auth/login', [AuthController, 'loginAuth'])
 
 

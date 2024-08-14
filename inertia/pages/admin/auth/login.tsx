@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { IconEye, IconEyeOff, IconLock, IconMail, IconUser } from '@tabler/icons-react';
+import { IconEye, IconEyeOff, IconLock, IconMail } from '@tabler/icons-react';
 import logoLogin from '../../../img/logo-puspetindo.png';
 import 'animate.css';
 import { useForm } from '@inertiajs/react';
@@ -48,26 +48,18 @@ export default function Login() {
                 <form onSubmit={handleSubmit}>
                     <CardContent className="grid gap-4">
                         <div className="grid gap-2">
-                            <Label htmlFor="username">Username</Label>
-                            <div className="relative">
-                                <IconUser className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                                <Input
-                                    type="text"
-                                    placeholder="Username"
-                                    className="w-full rounded-lg bg-background pl-8 focus:outline-blue-500"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="grid gap-2">
                             <Label htmlFor="email">Email</Label>
                             <div className="relative">
                                 <IconMail className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                                 <Input
                                     type="text"
                                     placeholder="Email"
+                                    name='email'
+                                    value={data.email}
+                                    onChange={(e) => setData('email', e.target.value)}
                                     className="w-full rounded-lg bg-background pl-8 focus:outline-blue-500"
                                 />
+                                {errors.email && <span className="text-red-600">{errors.email}</span>}
                             </div>
                         </div>
 
@@ -76,8 +68,11 @@ export default function Login() {
                             <div className="relative">
                                 <IconLock className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                                 <Input
-                                    type="text"
+                                    type={showPassword ? "text" : "password"}
                                     placeholder="Password"
+                                    name='password'
+                                    value={data.password}
+                                    onChange={(e) => setData('password', e.target.value)}
                                     className="w-full rounded-lg bg-background pl-8 focus:outline-blue-500"
                                 />
                                 <button
