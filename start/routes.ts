@@ -48,7 +48,7 @@ router.group(() => {
 
 
 // Route to login page
-router.get('/login', [AuthController, 'login'])
+router.get('/login', [AuthController, 'login']).use(middleware.guest())
 router.post('/auth/login', [AuthController, 'loginAuth'])
 
 router.post('logout', async ({ auth, response }) => {

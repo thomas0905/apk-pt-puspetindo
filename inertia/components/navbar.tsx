@@ -1,15 +1,26 @@
-import React, { Fragment, useState } from 'react'
-import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
-import { Button } from './ui/button'
-import { Icon123, IconFileAnalytics, IconHome, IconSearch, IconShoppingBag, IconUser, IconUsers, IconLoader } from '@tabler/icons-react'
-import { Input } from './ui/input'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
-import { Link, router } from '@inertiajs/react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
-import { middleware } from '#start/kernel'
+import React, { Fragment, useState } from 'react';
+import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
+import { Button } from './ui/button';
+import { Icon123, IconFileAnalytics, IconHome, IconSearch, IconShoppingBag, IconUser, IconUsers, IconLoader } from '@tabler/icons-react';
+import { Input } from './ui/input';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { Link, router } from '@inertiajs/react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 
 export default function Navbar() {
   const [loading, setLoading] = useState(false);
+
+  const handleLogout = async () => {
+    setLoading(true);
+    try {
+      await router.post('/logout', {}, {
+        onFinish: () => setLoading(false),
+      });
+    } catch (error) {
+      console.error("Logout failed:", error);
+      setLoading(false);
+    }
+  };
 
   return (
     <Fragment>
@@ -24,59 +35,37 @@ export default function Navbar() {
       <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
         <Sheet>
           <SheetTrigger asChild>
-            <Button
-              variant="outline"
-              size="icon"
-              className="shrink-0 md:hidden"
-            >
+            <Button variant="outline" size="icon" className="shrink-0 md:hidden">
               <p className="h-5 w-5" />
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="flex flex-col">
             <nav className="grid gap-2 text-lg font-medium">
-              <Link
-                href="#"
-                className="flex items-center gap-2 text-lg font-semibold"
-              >
+              <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
                 <Icon123 className="h-6 w-6" />
                 <span className="sr-only">Acme Inc</span>
               </Link>
-              <Link
-                href="#"
-                className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-              >
+              <Link href="#" className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground">
                 <IconHome className="h-5 w-5" />
                 Dashboard
               </Link>
-              <Link
-                href="#"
-                className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
-              >
+              <Link href="#" className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground">
                 <IconShoppingBag className="h-5 w-5" />
                 Orders
                 <p className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
                   6
                 </p>
               </Link>
-              <Link
-                href="#"
-                className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-              >
+              <Link href="#" className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground">
                 <p className="h-5 w-5" />
                 Products
               </Link>
-              <Link
-                href="#"
-                className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-              >
+              <Link href="#" className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground">
                 <IconUsers className="h-5 w-5" />
                 Customers
               </Link>
-              <Link
-                href="#"
-                className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-              >
+              <Link href="#" className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground">
                 <IconFileAnalytics className="h-5 w-5" />
                 Analytics
               </Link>
@@ -86,8 +75,7 @@ export default function Navbar() {
                 <CardHeader>
                   <CardTitle>Upgrade to Pro</CardTitle>
                   <CardDescription>
-                    Unlock all features and get unlimited access to our
-                    support team.
+                    Unlock all features and get unlimited access to our support team.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -124,14 +112,14 @@ export default function Navbar() {
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem  disabled={loading}>
-              <Link href="/logout" method='post'>
-                <span>Logout</span>
+            <DropdownMenuItem onClick={handleLogout} disabled={loading}>
+              <Link href='/login' method='post'>
+              Logout
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </header>
     </Fragment>
-  )
+  );
 }
