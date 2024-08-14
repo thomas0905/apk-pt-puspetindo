@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column, hasOne } from '@adonisjs/lucid/orm'
 import User from './user.js'
-import type {HasOne} from '@adonisjs/lucid/types/relations'
+import type {BelongsTo, HasOne} from '@adonisjs/lucid/types/relations'
 import ManHour from './man_hour.js'
 import Departeman from './departemen.js'
 
@@ -14,8 +14,10 @@ export default class Karyawan extends BaseModel {
   })
   declare manHour: HasOne<typeof ManHour>
 
-  @hasOne(() => Departeman)
-  declare departemen: HasOne<typeof Departeman>
+  @belongsTo(() => Departeman,{
+    foreignKey: 'departemen_Id'
+  })
+  declare departemen: BelongsTo<typeof Departeman>
 
   @column({ isPrimary: true })
   declare id: number
@@ -28,7 +30,7 @@ export default class Karyawan extends BaseModel {
 
 
   @column()
-  declare departemen_id:number
+  declare departemen_Id:number
 
   @column()
   declare jabatan:string

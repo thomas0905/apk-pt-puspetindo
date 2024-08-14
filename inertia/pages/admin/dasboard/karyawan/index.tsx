@@ -8,8 +8,8 @@ import DataTable from '~/components/dataTable/dataTable'
 import { createColumnHelper } from "@tanstack/react-table";
 
 export default function Index() {
-    const { data_karyawan, data_departemen } = usePage().props;
-    console.log(data_departemen);
+    const { data_karyawan } = usePage().props;
+    console.log(data_karyawan);
 
     const handleDelete = async (id) => {
         const result = await Swal.fire({
@@ -44,9 +44,9 @@ export default function Index() {
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-        columnHelper.accessor('namaDepartemen', {
+        columnHelper.accessor('departemen', {
             header: 'Departemen',
-            cell: info => info.getValue(),
+            cell: info => info.getValue().namaDepartemen,
             footer: info => info.column.id,
         }),
         columnHelper.accessor('jabatan', {

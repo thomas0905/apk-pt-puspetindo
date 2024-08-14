@@ -6,12 +6,9 @@ import { HttpContext, Redirect } from "@adonisjs/core/http";
 export default class KaryawansKontroller {
 
     async index({ inertia }: HttpContext) {
-        const karyawan = await Karyawan.all()
-        console.log(karyawan);
-        const departemen = await Departeman.all()
+        const karyawan = await Karyawan.query().preload('departemen')
         return inertia.render('admin/dasboard/karyawan/index', {
             data_karyawan: karyawan,
-            data_departemen: departemen
         });
     }
 
