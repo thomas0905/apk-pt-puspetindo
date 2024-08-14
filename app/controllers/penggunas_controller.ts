@@ -12,6 +12,10 @@ export default class PenggunasController {
         })
     }
 
+    // async store({request,response,session}:HttpContext){
+    //     const penggunas =new Pengguna() 
+    // }
+
     async permission({inertia}:HttpContext){
         return inertia.render('admin/sistem/pengguna/permission')
     }
