@@ -13,7 +13,7 @@ export default function EditPengguna() {
     const { karyawan } = usePage().props
     const { data, setData, put } = useForm({
         nama: karyawan.nama,
-        departemen: karyawan.departemen,
+        departemen_id: karyawan.departemen_id,
         jabatan: karyawan.jabatan,
         status: karyawan.status,
     })
@@ -76,8 +76,8 @@ export default function EditPengguna() {
                                     <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                                 </Link>
                                 <span>-</span>
-                                <Link href='/dasboard/karyawan/karyawan'>
-                                    <p className="text-sm">Pengguna</p>
+                                <Link href='/dasboard/karyawan/index'>
+                                    <p className="text-sm">karyawan</p>
                                 </Link>
                             </div>
                             <h6 className='text-gray-600 text-lg font-bold'>Edit Pengguna</h6>
@@ -104,9 +104,9 @@ export default function EditPengguna() {
                                 <Input
                                     id="departemen"
                                     placeholder="Masukkan Nama Departemen"
-                                    name='departemen'
-                                    value={data.departemen}
-                                    onChange={(e) => setData('departemen', e.target.value)}
+                                    name='departemen_id'
+                                    value={data.departemen_id}
+                                    onChange={(e) => setData('departemen_id', e.target.value)}
                                 />
                             </div>
 
