@@ -1,14 +1,16 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column, hasOne } from '@adonisjs/lucid/orm'
 import type {BelongsTo, HasOne} from '@adonisjs/lucid/types/relations'
-import { belongsTo } from '@adonisjs/lucid/orm'
+import ManHour from './man_hour.js'
 
 export default class Proyek extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  @belongsTo(() => Proyek)
-  declare departemen: BelongsTo<typeof Proyek>
+  @belongsTo(() => ManHour,{
+    localKey:'id'
+  })
+  declare manHour: BelongsTo<typeof ManHour>
 
   @column()
   declare namaProyek: string

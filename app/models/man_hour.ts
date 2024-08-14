@@ -13,10 +13,10 @@ export default class ManHour extends BaseModel {
   })
   declare karyawan: BelongsTo<typeof Karyawan>
 
-  @hasOne(() => Proyek,{
+  @belongsTo(() => Proyek,{
     foreignKey:'proyek_id'
   })
-  declare proyek: HasOne<typeof Proyek>
+  declare proyek: BelongsTo<typeof Proyek>
   
   @column()
   declare karyawan_id: string
