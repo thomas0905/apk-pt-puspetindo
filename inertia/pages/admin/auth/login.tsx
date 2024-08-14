@@ -62,30 +62,23 @@ export default function Login() {
                         <div className="grid gap-2">
                             <Label htmlFor="email">Email</Label>
                             <div className="relative">
-                                <IconMail className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+                                <IconMail className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                                 <Input
-                                    type="email"
-                                    className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-                                    name="email"
-                                    placeholder="Masukkan Email"
-                                    value={data.email}
-                                    onChange={(e) => setData('email', e.target.value)}
+                                    type="text"
+                                    placeholder="Email"
+                                    className="w-full rounded-lg bg-background pl-8 focus:outline-blue-500"
                                 />
-                                {errors.email && <span className="text-red-600">{errors.email}</span>}
                             </div>
                         </div>
 
                         <div className="grid gap-2">
                             <Label htmlFor="password">Password</Label>
                             <div className="relative">
-                                <IconLock className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+                                <IconLock className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                                 <Input
-                                    type={showPassword ? 'text' : 'password'}
-                                    className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-                                    name="password"
-                                    placeholder="Masukkan Password"
-                                    value={data.password}
-                                    onChange={(e) => setData('password', e.target.value)}
+                                    type="text"
+                                    placeholder="Password"
+                                    className="w-full rounded-lg bg-background pl-8 focus:outline-blue-500"
                                 />
                                 <button
                                     type="button"
