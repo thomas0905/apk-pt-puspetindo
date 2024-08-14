@@ -48,7 +48,7 @@ export default function Create() {
 
     const { data, setData, post, processing } = useForm({
         nama: '',
-        departemen_id: '',
+        departemen_Id: '',
         jabatan: '',
         status: '',
         email: '',
@@ -67,8 +67,8 @@ export default function Create() {
             isValid = false;
         }
 
-        if (data.departemen_id === '') { 
-            validationErrors.departemen_id = 'Departemen harus dipilih';
+        if (data.departemen_Id === '') { 
+            validationErrors.departemen_Id = 'Departemen harus dipilih';
             isValid = false;
         }
 
@@ -155,7 +155,7 @@ export default function Create() {
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Pilih Departemen:</Label>
                                 <Select
-                                    onValueChange={(value) => setData('departemen_id', value)}
+                                    onValueChange={(value) => setData('departemen_Id', value)}
                                 >
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Pilih Departemen" />
@@ -168,7 +168,7 @@ export default function Create() {
                                         ))}
                                     </SelectContent>
                                 </Select>
-                                {errors.departemen_id && <small className="text-red-600">{errors.departemen_id}</small>}
+                                {errors.departemen_Id && <small className="text-red-600">{errors.departemen_Id}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
