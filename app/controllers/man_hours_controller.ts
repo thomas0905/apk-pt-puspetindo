@@ -29,7 +29,7 @@ export default class ManHoursController {
         manhours.karyawan_id = request.input('karyawan_id')
         manhours.proyek_id = request.input('proyek_id')
         manhours.tanggal = request.input('tanggal')
-        manhours.jam_kerja = request.input('jam_Kerja')
+        manhours.jamKerja = request.input('jam_Kerja')
 
         await manhours.save()
 

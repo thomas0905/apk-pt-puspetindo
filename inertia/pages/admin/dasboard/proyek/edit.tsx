@@ -121,7 +121,7 @@ export default function Edit() {
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="pemilik">Pilih Pemilik:</Label>
                                 <Select
-                                    value={data.pemilik}
+                                    // value={data.pemilik}
                                     onValueChange={(value) => setData('pemilik', value)}
                                 >
                                     <SelectTrigger className="w-full">

@@ -27,7 +27,7 @@ export default class ManHour extends BaseModel {
   declare tanggal: DateTime
 
   @column()
-  declare jam_kerja: DateTime
+  declare jamKerja: DateTime
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

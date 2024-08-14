@@ -26,7 +26,7 @@ export default function Index() {
     });
     const result = await swalInstance;
     if (result.isConfirmed) {
-      await router.delete('/users/manhours/delete' + id);
+      await router.delete('/users/manhours/delete/' + id);
       Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
     } else {
       Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');

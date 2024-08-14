@@ -23,8 +23,7 @@ export default function Create() {
     e.preventDefault();
 
     if (isNaN(data.jam_kerja)) {
-      alert("Jam kerja harus berupa angka");
-      return;
+      console.log("Jam kerja harus berupa angka");
     }
 
     post('/users/manhours/create');
