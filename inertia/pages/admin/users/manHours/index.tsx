@@ -26,7 +26,7 @@ export default function Index() {
     });
     const result = await swalInstance;
     if (result.isConfirmed) {
-      await router.delete('/dashboard/manhours/' + id);
+      await router.delete('/dashboard/manhours/delete/' + id);
       Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
     } else {
       Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
@@ -36,7 +36,7 @@ export default function Index() {
   const columns = [
     columnHelper.accessor('id', {
       header: () => 'No',
-      cell: info => info.row.index + 1, 
+      cell: info => info.row.index + 1,
     }),
     columnHelper.accessor('karyawanId', {
       header: () => 'Nama Karyawan',
@@ -72,7 +72,7 @@ export default function Index() {
 
   return (
     <Admin>
-      <Head title='man-hours'/>
+      <Head title='man-hours' />
       <Card className="p-5">
         <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
