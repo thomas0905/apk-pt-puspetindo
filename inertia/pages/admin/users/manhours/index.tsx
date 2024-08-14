@@ -52,7 +52,7 @@ export default function Index() {
     }),
     columnHelper.accessor('jam_kerja', {
       header: () => 'Jam Kerja',
-      cell: info => `${info.getValue()} jam`,
+      cell: info => `${info.getValue()} jam_kerja`,
     }),
     columnHelper.display({
       id: 'aksi',
