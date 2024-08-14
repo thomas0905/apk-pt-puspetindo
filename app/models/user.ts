@@ -14,7 +14,7 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
 
 export default class User extends compose(BaseModel, AuthFinder) {
   @hasOne(() => Karyawan, {
-    foreignKey: 'karyawan_id', // defaults to userId
+    foreignKey: 'karyawan_id',
   })
   declare profile: HasOne<typeof Karyawan>
 
