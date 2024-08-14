@@ -28,11 +28,6 @@ export default function Create() {
             isValid = false;
         }
 
-        // if (data.namaPegawai.trim() === '') {
-        //     validationErrors.namaPegawai = 'Nama pegawai harus diisi';
-        //     isValid = false;
-        // }
-
         setErrors(validationErrors);
 
         if (isValid) {
@@ -43,8 +38,7 @@ export default function Create() {
                         icon: 'success',
                         confirmButtonText: 'Oke',
                     }).then(() => {
-                        // Redirect ke halaman indeks
-                        window.location.href = '/dasboard/departemen/index';
+                        window.location.href = '/dasboard/karyawan/index';
                     });
                 }
             });
@@ -86,18 +80,6 @@ export default function Create() {
                                 />
                                 {errors.namaDepartemen && <small className="text-red-600">{errors.namaDepartemen}</small>}
                             </div>
-
-                            {/* <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="namaPegawai">Nama Pegawai:</Label>
-                                <Input
-                                    id="namaPegawai"
-                                    placeholder="Masukkan Nama Pegawai"
-                                    onChange={(e) => setData('namaPegawai', e.target.value)}
-                                    name='namaPegawai'
-                                    value={data.namaPegawai}
-                                />
-                                {errors.namaPegawai && <small className="text-red-600">{errors.namaPegawai}</small>}
-                            </div> */}
                         </div>
                     </div>
 
