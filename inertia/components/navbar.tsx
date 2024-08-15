@@ -108,7 +108,7 @@ export default function Navbar() {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>
-              <Link href='/users/menuProfil'>My Account</Link>
+              <Link href='/manhours/menuProfil'>My Account</Link>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Settings</DropdownMenuItem>
