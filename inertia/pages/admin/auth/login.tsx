@@ -17,17 +17,41 @@ import 'animate.css';
 import { useForm } from '@inertiajs/react';
 
 export default function Login() {
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post, processing } = useForm({
         email: '',
         password: '',
     });
 
+    const [errors, setErrors] = useState({});
+    const [showPassword, setShowPassword] = useState(false);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        post('/auth/login');
-    };
 
-    const [showPassword, setShowPassword] = useState(false);
+        const validationErrors = {};
+        let isValid = true;
+
+        // Validasi email
+        if (data.email.trim() === '') {
+            validationErrors.email = 'Email harus di lengkapi';
+            isValid = false;
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email)) {
+            validationErrors.email = 'Format email tidak valid';
+            isValid = false;
+        }
+
+        // Validasi password
+        if (data.password.trim() === '') {
+            validationErrors.password = 'Password harus di lengkapi';
+            isValid = false;
+        }
+
+        setErrors(validationErrors);
+
+        if (isValid) {
+            post('/auth/login');
+        }
+    };
 
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
@@ -40,9 +64,9 @@ export default function Login() {
                     <img className='justify-center' src={logoLogin} alt="Logo" />
                 </div>
                 <CardHeader>
-                    <CardTitle className="text-3xl text-blue-500 ">Login</CardTitle>
+                    <CardTitle className="text-3xl text-blue-500">Login</CardTitle>
                     <CardDescription>
-                        Hai 👏, Selamat Datang Kembali di PT.Pustpetindo
+                        Hai 👏, Selamat Datang Kembali di PT.Puspetindo
                     </CardDescription>
                 </CardHeader>
                 <form onSubmit={handleSubmit}>
@@ -59,7 +83,7 @@ export default function Login() {
                                     onChange={(e) => setData('email', e.target.value)}
                                     className="w-full rounded-lg bg-background pl-8 focus:outline-blue-500"
                                 />
-                                {errors.email && <span className="text-red-600">{errors.email}</span>}
+                                {errors.email && <small className="text-red-600">{errors.email}</small>}
                             </div>
                         </div>
 
@@ -82,7 +106,7 @@ export default function Login() {
                                 >
                                     {showPassword ? <IconEyeOff className="h-5 w-5 text-gray-500" /> : <IconEye className="h-5 w-5 text-gray-500" />}
                                 </button>
-                                {errors.password && <span className="text-red-600">{errors.password}</span>}
+                                {errors.password && <small className="text-red-600">{errors.password}</small>}
                             </div>
                         </div>
                     </CardContent>
