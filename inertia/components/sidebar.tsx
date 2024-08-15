@@ -70,7 +70,7 @@ export default function Sidebar() {
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Menu Profil</span>
                                 </Link>
 
-                                <Link href='/users/manhours/index' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/users/manhours/index') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600 w-full'
+                                <Link href='/manhours' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/manhours') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600 w-full'
                                     }`}>
                                     <IconBriefcase size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Man Hours</span>

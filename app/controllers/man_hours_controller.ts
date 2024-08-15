@@ -34,14 +34,14 @@ export default class ManHoursController {
         await manhours.save()
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
-        return response.redirect('/users/manhours/index')
+        return response.redirect('/manhours')
     }
 
 
     async delete({ params, response }: HttpContext) {
         const manhours = await ManHour.findOrFail(params.id)
         await manhours.delete()
-        return response.redirect('/users/manhours/index')
+        return response.redirect('/manhours')
     }
 
     async edit({ inertia, params }: HttpContext) {

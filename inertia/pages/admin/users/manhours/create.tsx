@@ -2,6 +2,7 @@ import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { IconHome } from '@tabler/icons-react';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
+import Swal from 'sweetalert2';
 import { Button } from '~/components/ui/button';
 import { Card } from '~/components/ui/card';
 import { Input } from '~/components/ui/input';
@@ -21,8 +22,16 @@ export default function Create() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    post('/manhours/create', {
+      onSuccess: () => {
+        Swal.fire({
+          title: 'Data Berhasil Di Tambah!',
+          icon: 'success',
+          confirmButtonText: 'Okee',
+        });
+      }
+    })
 
-    post('/users/manhours/create');
   };
 
   return (
@@ -37,7 +46,7 @@ export default function Create() {
                   <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                 </Link>
                 <span>-</span>
-                <Link href='/dasboard/proyek/index'>
+                <Link href='/proyek'>
                   <p className="text-sm">Man Hours</p>
                 </Link>
               </div>
