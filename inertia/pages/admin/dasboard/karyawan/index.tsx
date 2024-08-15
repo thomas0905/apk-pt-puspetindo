@@ -23,7 +23,7 @@ export default function Index() {
 
         if (result.isConfirmed) {
             try {
-                await router.delete(`/dasboard/karyawan/delete/${id}`);
+                await router.delete(`/karyawan/delete/${id}`);
                 Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
             } catch (error) {
                 Swal.fire('Error', 'Gagal menghapus data.', 'error');
@@ -74,7 +74,7 @@ export default function Index() {
                     >
                         <IconTrash size={18} />
                     </span>
-                    <Link href={`/dasboard/karyawan/edit/${info.row.original.id}`}>
+                    <Link href={`/karyawan/edit/${info.row.original.id}`}>
                         <IconEdit size={18} />
                     </Link>
                 </div>
@@ -96,13 +96,13 @@ export default function Index() {
                         </div>
 
                         <div className="flex gap-2">
-                            <Link href="/dasboard/departemen/index">
+                            <Link href="/departemen/index">
                                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
                                     <IconBuildingArch size={18} />
                                     Departemen
                                 </Button>
                             </Link>
-                            <Link href="/dasboard/karyawan/create">
+                            <Link href="/karyawan/create">
                                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
                                     <IconUserPlus size={18} />
                                     Tambah Karyawan

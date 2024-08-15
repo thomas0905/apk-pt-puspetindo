@@ -40,7 +40,7 @@ export default class KaryawansKontroller {
         await karyawan.save();
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
-        return response.redirect('/dasboard/karyawan/index');
+        return response.redirect('/karyawan');
     }
 
     async delete({ params, response }: HttpContext) {

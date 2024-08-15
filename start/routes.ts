@@ -12,13 +12,13 @@ router.on('/').renderInertia('home', { version: 6 }).use(middleware.auth())
 
 
 router.group(() => {
-    router.get('index', [KaryawansController, 'index'])
+    router.get('/', [KaryawansController, 'index'])
     router.get('create', [KaryawansController, 'create'])
     router.post('create', [KaryawansController, 'store'])
     router.delete('delete/:id', [KaryawansController, 'delete'])
     router.get('edit/:id', [KaryawansController, 'edit'])
     router.put('edit/:id', [KaryawansController, 'update'])
-}).prefix('/dasboard/karyawan/').use(middleware.auth())
+}).prefix('/karyawan/').use(middleware.auth())
 
 router.group(() => {
     router.get('index', [DepartemenController, 'index'])

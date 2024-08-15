@@ -96,7 +96,7 @@ export default function Create() {
         setErrors(validationErrors);
 
         if (isValid) {
-            post('/dasboard/karyawan/create', {
+            post('/karyawan/create', {
                 onSuccess: () => {
                     Swal.fire({
                         title: 'Data Berhasil Di Tambah!',
@@ -126,7 +126,7 @@ export default function Create() {
                                     <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                                 </Link>
                                 <span>-</span>
-                                <Link href='/dasboard/karyawan/index'>
+                                <Link href='/karyawan'>
                                     <p className="text-sm">karyawan</p>
                                 </Link>
                             </div>

@@ -108,6 +108,8 @@ export default function Login() {
                                 </button>
                                 {errors.password && <small className="text-red-600">{errors.password}</small>}
                             </div>
+
+                            {/* <a href=""><small className='text-blue-600 outline='>Forget to Password??</small></a> */}
                         </div>
                     </CardContent>
                     <CardFooter>

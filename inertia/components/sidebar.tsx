@@ -49,7 +49,7 @@ export default function Sidebar() {
                                 </Link>
 
 
-                                <Link href='/dasboard/karyawan/index' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/dasboard/karyawan/index') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600 w-full'
+                                <Link href='/karyawan' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/karyawan') ? 'bg-blue-600 text-white w-[190px]' : 'hover:text-white hover:w-[190px] hover:bg-blue-600 w-full'
                                     }`}>
                                     <IconUsers size={21} />
                                     <span className={`${isSidebarHidden ? '' : 'hidden'}`}>Karyawan</span>
