@@ -1,13 +1,13 @@
 const DepartemenController = () => import('#controllers/departemen_controller')
 const KaryawansController = () => import('#controllers/karyawans_controller')
-const LaporansController =() => import ('#controllers/laporans_controller')
+const LaporansController = () => import('#controllers/laporans_controller')
 const PenggunasController = () => import('#controllers/penggunas_controller')
 const ManHoursController = () => import('#controllers/man_hours_controller')
-const ProyeksController =() =>  ('#controllers/proyeks_controller')
+const ProyeksController = () => import('#controllers/proyeks_controller')
+const PermissionsController = () => import('#controllers/permissions_controller')
+const AuthController = () => import('#controllers/auth_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-const  PermissionsController =() =>  ('#controllers/permissions_controller')
-const AuthController = () => import('#controllers/auth_controller')
 
 router.on('/').renderInertia('home', { version: 6 }).use(middleware.auth())
 
@@ -66,5 +66,5 @@ router.group(() => {
 }).prefix('/pengguna/').use(middleware.auth())
 
 router.group(() => {
-    router.get('/', [PermissionsController,'index'])
+    router.get('/', [PermissionsController, 'index'])
 }).prefix('/permission')
