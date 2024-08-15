@@ -1,9 +1,8 @@
 import { Head, Link, usePage } from '@inertiajs/react'
-import { IconEdit, IconHome, IconLock, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react'
+import { IconEdit, IconHome, IconLock, IconUserPlus } from '@tabler/icons-react'
 import React from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
-import { Input } from '~/components/ui/input'
 import Admin from '~/layout/admin'
 
 import Karyawan from "#models/karyawan";
@@ -11,8 +10,8 @@ import DataTable from '~/components/dataTable/dataTable'
 import { createColumnHelper } from "@tanstack/react-table"
 
 export default function Index() {
-    const { data_karyawan,data_user } = usePage().props
-    console.log(data_user);
+    const {data_karyawan } = usePage().props
+    console.log(data_karyawan);
     
     const columnHelper = createColumnHelper<Karyawan>();
 
@@ -28,11 +27,12 @@ export default function Index() {
             footer: info => info.column.id,
         }),
 
-        columnHelper.accessor('email', {
+        columnHelper.accessor(row => row.user?.email, {
             header: 'Email',
-            cell: info => info.getValue(),
+            cell: info => info.getValue() || 'Tidak Ada Email',
             footer: info => info.column.id,
         }),
+        
 
         columnHelper.accessor('jabatan', {
             header: 'Jabatan',
