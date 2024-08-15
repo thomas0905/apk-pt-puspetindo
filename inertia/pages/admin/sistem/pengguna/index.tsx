@@ -73,7 +73,7 @@ export default function Index() {
             header: 'Permission',
             cell: info => (
                 <div className="flex gap-3">
-                    <Link href="/sistem/pengguna/permission">
+                    <Link href="/permission">
                         <span className="bg-blue-200 py-1 border pl-1 pr-1 w-[135px] rounded-md flex" >
                             <IconLock size={18} />
                             Atur Permission

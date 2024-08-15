@@ -17,7 +17,7 @@ import {
 import { Label } from '~/components/ui/label'
 import { Input } from '~/components/ui/input'
 
-export default function Permission() {
+export default function Index() {
   return (
     <Admin>
       <Head title='permission' />

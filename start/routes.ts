@@ -43,6 +43,7 @@ router.group(() => {
     router.get('create', [ManHoursController, 'create'])
     router.post('create', [ManHoursController, 'store'])
     router.delete('delete/:id', [ManHoursController, 'delete'])
+    router.get('edit/:id', [ManHoursController, 'edit'])
 }).prefix('/manhours/').use(middleware.auth())
 
 
@@ -61,5 +62,8 @@ router.get('/management/laporan', [LaporansController, 'laporan']).use(middlewar
 
 router.group(() => {
     router.get('/', [PenggunasController, 'index'])
-    router.get('permission', [PenggunasController, 'permission'])
 }).prefix('/pengguna/').use(middleware.auth())
+
+router.group(() => {
+    router.get('/', [PenggunasController, 'permission'])
+}).prefix('/permission')
