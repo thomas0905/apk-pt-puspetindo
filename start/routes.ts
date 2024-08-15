@@ -21,21 +21,21 @@ router.group(() => {
 }).prefix('/karyawan/').use(middleware.auth())
 
 router.group(() => {
-    router.get('index', [DepartemenController, 'index'])
+    router.get('/', [DepartemenController, 'index'])
     router.get('create', [DepartemenController, 'create'])
     router.post('create', [DepartemenController, 'store'])
     router.get('edit/:id', [DepartemenController, 'edit'])
     router.put('edit/:id', [KaryawansController, 'update'])
-}).prefix('/dasboard/departemen/').use(middleware.auth())
+}).prefix('/departemen/').use(middleware.auth())
 
 router.group(() => {
-    router.get('index', [ProyeksController, 'index'])
+    router.get('/', [ProyeksController, 'index'])
     router.get('create', [ProyeksController, 'create'])
     router.post('create', [ProyeksController, 'store'])
-    router.delete('proyek/:id', [ProyeksController, 'delete'])
+    router.delete('delete/:id', [ProyeksController, 'delete'])
     router.get('edit/:id', [ProyeksController, 'edit'])
     router.put('edit/:id', [ProyeksController, 'update'])
-}).prefix('/dasboard/proyek/').use(middleware.auth())
+}).prefix('/proyek/').use(middleware.auth())
 
 router.group(() => {
     router.get('menuProfil', [ManHoursController, 'menuProfil'])

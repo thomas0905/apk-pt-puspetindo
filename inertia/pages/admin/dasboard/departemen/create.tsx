@@ -31,14 +31,14 @@ export default function Create() {
         setErrors(validationErrors);
 
         if (isValid) {
-            post('/dasboard/departemen/create', {
+            post('/departemen/create', {
                 onSuccess: () => {
                     Swal.fire({
                         title: 'Data Berhasil Ditambahkan!',
                         icon: 'success',
                         confirmButtonText: 'Oke',
                     }).then(() => {
-                        window.location.href = '/dasboard/karyawan/index';
+                        window.location.href = '/departemen';
                     });
                 }
             });
@@ -56,7 +56,7 @@ export default function Create() {
                                     <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                                 </Link>
                                 <span>-</span>
-                                <Link href='/dasboard/karyawan/index'>
+                                <Link href='/karyawan'>
                                     <p className="text-sm">Departemen</p>
                                 </Link>
                             </div>

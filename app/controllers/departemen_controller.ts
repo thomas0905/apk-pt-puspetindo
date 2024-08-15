@@ -27,7 +27,7 @@ export default class DepartemenController {
         await departemen.save();
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
-        return response.redirect('/dasboard/departemen/create');
+        return response.redirect('/departemen/create');
     }
 
 
@@ -42,7 +42,7 @@ export default class DepartemenController {
     async update({ request, params, response }: HttpContext) {
         const departemen = await Departemen.findOrFail(params.id)
         departemen.namaDepartemen = request.input('namaDepartemen')
-        return response.redirect('/dasboard/departemen/index')
+        return response.redirect('/departemen')
 
     }
 

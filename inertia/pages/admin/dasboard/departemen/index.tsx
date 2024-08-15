@@ -15,13 +15,13 @@ export default function Index() {
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
                         <div>
-                            <Link href="/dasboard/karyawan/index">
+                            <Link href="/karyawan">
                                 <p className='text-sm flex gap-1'><IconHome size={18} />Karyawan</p>
                             </Link>
                             <h6 className='text-gray-600 text-lg font-bold'>Menu Departemen</h6>
                         </div>
                         <div>
-                            <Link href='/dasboard/departemen/create'>
+                            <Link href='/departemen/create'>
                                 <Button
                                     className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
                                     variant="outline"
@@ -51,7 +51,7 @@ export default function Index() {
                                     <TableCell>{dep.namaDepartemen}</TableCell>
                                     <TableCell>
                                         {/* Tempatkan aksi seperti tombol edit atau delete di sini */}
-                                        <Link href={`/dasboard/departemen/edit/${dep.id}`} className="text-blue-500 hover:underline">
+                                        <Link href={`/departemen/edit/${dep.id}`} className="text-blue-500 hover:underline">
                                             <IconEdit size={18} />
                                         </Link>
                                     </TableCell>

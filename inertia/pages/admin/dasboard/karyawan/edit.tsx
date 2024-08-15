@@ -22,7 +22,7 @@ export default function EditPengguna() {
 
     const handleSubmit: FormEventHandler = async (e) => {
         e.preventDefault()
-        await put('/dasboard/karyawan/edit/' + karyawan.id, {
+        await put('/karyawan/edit/' + karyawan.id, {
             onSuccess: () => {
                 Swal.fire({
                     title: 'Data Berhasil Diupdate!',

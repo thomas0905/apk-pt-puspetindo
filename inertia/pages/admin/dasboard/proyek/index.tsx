@@ -26,7 +26,7 @@ export default function IndexProyek() {
         });
         const result = await swalInstance;
         if (result.isConfirmed) {
-            await router.delete('/dasboard/proyek/proyek/' + id);
+            await router.delete('/proyek/delete/' + id);
             Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
         } else {
             Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
@@ -74,7 +74,7 @@ export default function IndexProyek() {
                     <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
                         <IconTrash size={18} />
                     </span>
-                    <Link href={"/dasboard/proyek/edit/" + info.row.original.id}>
+                    <Link href={"/proyek/edit/" + info.row.original.id}>
                         <IconEdit size={18} />
                     </Link>
                 </div>
@@ -82,7 +82,7 @@ export default function IndexProyek() {
             footer: info => info.column.id,
         }),
     ];
-    
+
 
     return (
         <Admin>
@@ -96,7 +96,7 @@ export default function IndexProyek() {
                             <h6 className='text-gray-600 text-lg font-bold'>Proyek</h6>
                         </div>
                         <div>
-                            <Link href="/dasboard/proyek/create">
+                            <Link href="/proyek/create">
                                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2  hover:text-white" variant="outline">
                                     <IconBriefcase size={18} />
                                     Tambah Proyek

@@ -26,13 +26,13 @@ export default class ProyeksController {
         await proyek.save();
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
-        return response.redirect('/dasboard/proyek/index');
+        return response.redirect('/proyek');
     }
 
     async delete({ params, response }: HttpContext) {
         const proyek = await Proyek.findOrFail(params.id)
         await proyek.delete()
-        return response.redirect('/dasboard/proyek/index')
+        return response.redirect('/proyek')
     } 
 
     async edit({ inertia, params }: HttpContext) {
@@ -50,7 +50,7 @@ export default class ProyeksController {
         proyek.status = request.input('status')
         proyek.pemilik = request.input('pemilik')
         proyek.save()
-        return response.redirect('/dasboard/proyek/index')
+        return response.redirect('/proyek')
 
     }
 }

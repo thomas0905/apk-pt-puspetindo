@@ -46,7 +46,7 @@ export default class KaryawansKontroller {
     async delete({ params, response }: HttpContext) {
         const karyawan = await Karyawan.findOrFail(params.id)
         await karyawan.delete()
-        return response.redirect('/dasboard/karyawan/index')
+        return response.redirect('/karyawan')
     }
 
     async edit({ inertia, params }: HttpContext) {
@@ -64,7 +64,7 @@ export default class KaryawansKontroller {
         karyawan.jabatan = request.input('jabatan')
         karyawan.status = request.input('status')
         karyawan.save()
-        return response.redirect('/dasboard/karyawan/index')
+        return response.redirect('/karyawan')
 
     }
 

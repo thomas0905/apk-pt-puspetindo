@@ -20,7 +20,7 @@ export default function Edit() {
 
     const handleSubmit: FormEventHandler = async (e) => {
         e.preventDefault()
-        await put('/dasboard/proyek/edit/' + proyek.id, {
+        await put('/proyek/edit/' + proyek.id, {
             onSuccess: () => {
                 Swal.fire({
                     title: 'Data Berhasil Diupdate!',
@@ -65,7 +65,7 @@ export default function Edit() {
                                     <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                                 </Link>
                                 <span>-</span>
-                                <Link href='/dasboard/proyek/index'>
+                                <Link href='/proyek'>
                                     <p className="text-sm">Proyek</p>
                                 </Link>
                             </div>

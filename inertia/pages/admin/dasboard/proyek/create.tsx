@@ -34,7 +34,7 @@ export default function Create() {
 
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
-        post('/dasboard/proyek/create', {
+        post('/proyek/create', {
             onSuccess: () => {
                 Swal.fire({
                     title: 'Data Berhasil Di Tambah!',
@@ -59,7 +59,7 @@ export default function Create() {
                                     <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                                 </Link>
                                 <span>-</span>
-                                <Link href='/dasboard/proyek/index'>
+                                <Link href='/proyek'>
                                     <p className="text-sm">proyek</p>
                                 </Link>
                             </div>

@@ -17,7 +17,7 @@ export default function Edit() {
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault()
-    put('/dasboard/departemen/edit/' + departemen.id, {
+    put('/departemen/edit/' + departemen.id, {
       onSuccess: () => {
         Swal.fire({
           title: 'Data Berhasil Diupdate!',
