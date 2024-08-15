@@ -60,6 +60,6 @@ router.post('logout', async ({ auth, response }) => {
 router.get('/management/laporan', [LaporansController, 'laporan']).use(middleware.auth())
 
 router.group(() => {
-    router.get('index', [PenggunasController, 'index'])
+    router.get('/', [PenggunasController, 'index'])
     router.get('permission', [PenggunasController, 'permission'])
-}).prefix('/sistem/pengguna/').use(middleware.auth())
+}).prefix('/pengguna/').use(middleware.auth())
