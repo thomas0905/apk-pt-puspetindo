@@ -12,6 +12,8 @@ import { createColumnHelper } from "@tanstack/react-table"
 
 export default function Index() {
     const { data_karyawan,data_user } = usePage().props
+    console.log(data_user);
+    
     const columnHelper = createColumnHelper<Karyawan>();
 
     const columns = [
@@ -67,7 +69,7 @@ export default function Index() {
         }),
 
         columnHelper.display({
-            id: 'aksi',
+            id: 'permission',
             header: 'Permission',
             cell: info => (
                 <div className="flex gap-3">
