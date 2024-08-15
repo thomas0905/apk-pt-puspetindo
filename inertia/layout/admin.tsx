@@ -1,10 +1,15 @@
+import { Head } from '@inertiajs/react'
 import React, { Fragment } from 'react'
 import Navbar from '~/components/navbar'
 import Sidebar from '~/components/sidebar'
-
+import favIcon from '../img/logo-kecil.png'
 export default function Admin({ children }) {
   return (
     <Fragment>
+      <Head>
+        <title>Admin Dashboard</title>
+        <link rel="icon" href={favIcon} type="image/x-icon" />
+      </Head>
       <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[230px_1fr]">
         <Sidebar />
         <div className="flex flex-col">

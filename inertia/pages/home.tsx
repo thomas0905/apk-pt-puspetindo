@@ -16,9 +16,11 @@ import { Head, Link } from "@inertiajs/react"
 import { IconBook2, IconBuildingStore, IconHome, IconReceipt, IconShoppingBag } from '@tabler/icons-react'
 import Admin from '~/layout/admin'
 import 'animate.css';
+
 export default function Index() {
   return (
     <Admin>
+   
       <Head title="beranda" />
       <Card className="p-5 animate__animated animate__fadeIn">
         <div className="">
@@ -40,7 +42,7 @@ export default function Index() {
                 <Card className="relative border-2 border-sky-500">
                   <CardHeader>
                     <div className='flex items-center gap-2'>
-                      <IconBook2 size={40}/>
+                      <IconBook2 size={40} />
                       <CardTitle className="text-xl">Laporan</CardTitle>
                     </div>
                     <CardDescription>Kamu dapat melihat laporan dari kayawan.</CardDescription>
@@ -64,34 +66,34 @@ export default function Index() {
 
           <div className="mt-5 ">
             <div>
-                <h1 className='font-bold'>Aktivitas Terbaru</h1>
-                <p className='text-sm text-gray-600'>Lihat semua aktivitas terbaru</p>
+              <h1 className='font-bold'>Aktivitas Terbaru</h1>
+              <p className='text-sm text-gray-600'>Lihat semua aktivitas terbaru</p>
             </div>
             <Card className="mt-3 overflow-x-auto">
-                <Table className="min-w-full">
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="w-[100px]">RID</TableHead>
-                            <TableHead>NIK</TableHead>
-                            <TableHead>Nama</TableHead>
-                            <TableHead>Departemen</TableHead>
-                            <TableHead>Jabatan</TableHead>
-                            <TableHead>Status</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        <TableRow>
-                            <TableCell className="font-medium">INV001</TableCell>
-                            <TableCell>Paid</TableCell>
-                            <TableCell>Credit Card</TableCell>
-                            <TableCell>Credit Card</TableCell>
-                            <TableCell>Credit Card</TableCell>
-                            <TableCell>$250.00</TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
+              <Table className="min-w-full">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[100px]">RID</TableHead>
+                    <TableHead>NIK</TableHead>
+                    <TableHead>Nama</TableHead>
+                    <TableHead>Departemen</TableHead>
+                    <TableHead>Jabatan</TableHead>
+                    <TableHead>Status</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-medium">INV001</TableCell>
+                    <TableCell>Paid</TableCell>
+                    <TableCell>Credit Card</TableCell>
+                    <TableCell>Credit Card</TableCell>
+                    <TableCell>Credit Card</TableCell>
+                    <TableCell>$250.00</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </Card>
-        </div>
+          </div>
         </div>
       </Card>
     </Admin>
