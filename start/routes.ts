@@ -67,4 +67,5 @@ router.group(() => {
 
 router.group(() => {
     router.get('/', [PermissionsController, 'index'])
-}).prefix('/permission')
+    router.get('create', [PermissionsController, 'create'])
+}).prefix('/permission/')
