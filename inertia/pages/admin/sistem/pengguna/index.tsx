@@ -1,4 +1,4 @@
-import { Link, usePage } from '@inertiajs/react'
+import { Head, Link, usePage } from '@inertiajs/react'
 import { IconEdit, IconHome, IconLock, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react'
 import React from 'react'
 import { Button } from '~/components/ui/button'
@@ -85,6 +85,7 @@ export default function Index() {
 
     return (
         <Admin>
+            <Head title="pengguna" />
             <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>

@@ -13,14 +13,13 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Head, Link } from "@inertiajs/react"
-import { IconBook2, IconBuildingStore, IconHome, IconReceipt, IconShoppingBag } from '@tabler/icons-react'
+import { IconBook2, IconHome, IconReceipt } from '@tabler/icons-react'
 import Admin from '~/layout/admin'
 import 'animate.css';
 
 export default function Index() {
   return (
     <Admin>
-   
       <Head title="beranda" />
       <Card className="p-5 animate__animated animate__fadeIn">
         <div className="">

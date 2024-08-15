@@ -7,7 +7,6 @@ export default function Admin({ children }) {
   return (
     <Fragment>
       <Head>
-        <title>Admin Dashboard</title>
         <link rel="icon" href={favIcon} type="image/x-icon" />
       </Head>
       <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[230px_1fr]">

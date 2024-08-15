@@ -48,7 +48,7 @@ export default function Create() {
 
     return (
         <Admin>
-            <Head title='add-pengguna' />
+            <Head title='add-proyek' />
 
             <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">

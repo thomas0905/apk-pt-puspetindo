@@ -2,7 +2,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { IconBuildingArch, IconEdit, IconHome, IconTrash, IconUserPlus } from '@tabler/icons-react';
 import Admin from '~/layout/admin';
-import { Link, router, usePage } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import Swal from 'sweetalert2'
 import DataTable from '~/components/dataTable/dataTable'
 import { createColumnHelper } from "@tanstack/react-table";
@@ -85,6 +85,7 @@ export default function Index() {
 
     return (
         <Admin>
+            <Head title="karyawan" />
             <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between items-center'>
