@@ -49,40 +49,40 @@ export default function Index() {
             footer: info => info.column.id,
         }),
 
-        columnHelper.display({
-            id: 'aksi',
-            header: 'Aksi',
-            cell: info => (
-                <div className="flex gap-3">
-                    {/* <span
-                        onClick={() => handleDelete(info.row.original.id)}
-                        className="text-red-900 cursor-pointer"
-                    >
-                        <IconTrash size={18} />
-                    </span> */}
-                    <Link href={`/sistem/pengguna/edit/${info.row.original.id}`}>
-                        <IconEdit size={18} />
-                    </Link>
-                </div>
-            ),
-            footer: info => info.column.id,
-        }),
+        // columnHelper.display({
+        //     id: 'aksi',
+        //     header: 'Aksi',
+        //     cell: info => (
+        //         <div className="flex gap-3">
+        //             {/* <span
+        //                 onClick={() => handleDelete(info.row.original.id)}
+        //                 className="text-red-900 cursor-pointer"
+        //             >
+        //                 <IconTrash size={18} />
+        //             </span> */}
+        //             <Link href={`/sistem/pengguna/edit/${info.row.original.id}`}>
+        //                 <IconEdit size={18} />
+        //             </Link>
+        //         </div>
+        //     ),
+        //     footer: info => info.column.id,
+        // }),
 
-        columnHelper.display({
-            id: 'permission',
-            header: 'Permission',
-            cell: info => (
-                <div className="flex gap-3">
-                    <Link href="/permission">
-                        <span className="bg-blue-200 py-1 border pl-1 pr-1 w-[135px] rounded-md flex" >
-                            <IconLock size={18} />
-                            Atur Permission
-                        </span>
-                    </Link>
-                </div>
-            ),
-            footer: info => info.column.id,
-        }),
+        // columnHelper.display({
+        //     id: 'permission',
+        //     header: 'Permission',
+        //     cell: info => (
+        //         <div className="flex gap-3">
+        //             <Link href="/permission">
+        //                 <span className="bg-blue-200 py-1 border pl-1 pr-1 w-[135px] rounded-md flex" >
+        //                     <IconLock size={18} />
+        //                     Atur Permission
+        //                 </span>
+        //             </Link>
+        //         </div>
+        //     ),
+        //     footer: info => info.column.id,
+        // }),
     ];
 
     return (

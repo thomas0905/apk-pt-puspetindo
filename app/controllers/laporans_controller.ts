@@ -7,7 +7,6 @@ export default class LaporansController {
         const karyawan = await Karyawan.query().where('user_id', user?.id).first()
         if(karyawan?.jabatan !== 'IT Software'){
             response.abort('Kamu tidak memiliki kewenangan untuk melihat halaman ini', 403)
-            
         }
         return inertia.render('admin/management/laporan')
     }
