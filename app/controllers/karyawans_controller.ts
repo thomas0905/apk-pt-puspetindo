@@ -4,16 +4,35 @@ import Departeman from "#models/departemen";
 import { HttpContext, Redirect } from "@adonisjs/core/http";
 export default class KaryawansKontroller {
 
-    async index({ inertia }: HttpContext) {
-        const karyawan = await Karyawan.query().preload('departemen')
+    async index({ inertia, auth }: HttpContext) {
+        // Mendapatkan user yang terotentikasi
+        const user = auth.user;
+
+        // Periksa apakah user terotentikasi
+        if (!user) {
+            return inertia.render('admin/error/404');
+        }
+
+        // Mendapatkan data karyawan berdasarkan user yang sedang login
+        const karyawanUser = await Karyawan.query().where('user_id', user.id).first();
+
+        // Pengecekan jabatan user
+        if (karyawanUser?.jabatan !== 'IT Software') {
+            return inertia.render('admin/error/404');
+        }
+
+        // Memuat semua data karyawan dengan preload departemen
+        const semuaKaryawan = await Karyawan.query().preload('departemen');
+
+        // Kirim data ke view
         return inertia.render('admin/dasboard/karyawan/index', {
-            data_karyawan: karyawan,
+            data_karyawan: semuaKaryawan,
         });
     }
 
     async create({ inertia }: HttpContext) {
         const departemen = await Departeman.all()
-        
+
         return inertia.render('admin/dasboard/karyawan/create', {
             data_departemen: departemen
         });
@@ -29,7 +48,7 @@ export default class KaryawansKontroller {
 
         const karyawan = new Karyawan();
         console.log(request.all());
-        
+
         karyawan.user_id = users.id;
         karyawan.nama = request.input('nama');
         karyawan.departemen_Id = request.input('departemen_Id');
