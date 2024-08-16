@@ -2,7 +2,6 @@ import Karyawan from "#models/karyawan";
 import User from "#models/user";
 import Departeman from "#models/departemen";
 import { HttpContext, Redirect } from "@adonisjs/core/http";
-
 export default class KaryawansKontroller {
 
     async index({ inertia }: HttpContext) {
