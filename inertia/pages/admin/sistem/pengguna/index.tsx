@@ -99,14 +99,14 @@ export default function Index() {
                         </div>
 
 
-                        <div>
+                        {/* <div>
                             <Link href="/permission/create">
                                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
                                     <IconUserPlus size={18} />
                                     Tambah Pengguna
                                 </Button>
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 
