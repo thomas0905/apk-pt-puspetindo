@@ -6,7 +6,7 @@ import img404 from '../../../img/404.png'
 export default function No_akses() {
     return (
         <Admin>
-            <div className="flex flex-col items-center justify-center ">
+            <div className="flex flex-col items-center justify-center  animate__animated animate__fadeIn">
                 <div className="text-center atur-text">
                     {/* <p className='text-6xl'>Oops...</p> */}
                     <img src={img404} id='img' alt="404 Not Found" className="object-cover w-full max-w-lg h-auto" />
