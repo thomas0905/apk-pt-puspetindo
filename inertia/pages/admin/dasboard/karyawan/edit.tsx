@@ -1,6 +1,6 @@
 import { Head, Link, useForm, usePage } from '@inertiajs/react'
-import { IconHome } from '@tabler/icons-react'
-import React, { FormEventHandler } from 'react'
+import { IconEye, IconEyeOff, IconHome } from '@tabler/icons-react'
+import React, { FormEventHandler, useState } from 'react'
 import Swal from 'sweetalert2'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
@@ -16,11 +16,15 @@ export default function EditPengguna() {
         namaDepartemen: karyawan.namaDepartemen,
         jabatan: karyawan.jabatan,
         status: karyawan.status,
+        email:karyawan.email,
+        password:karyawan.password
     })
     console.log(karyawan);
 
 
     const handleSubmit: FormEventHandler = async (e) => {
+    
+
         e.preventDefault()
         await put('/karyawan/edit/' + karyawan.id, {
             onSuccess: () => {
@@ -64,6 +68,14 @@ export default function EditPengguna() {
             label: "Tidak-aktif",
         }
     ]
+
+    const [showPassword, setShowPassword] = useState(false); // State untuk mengatur visibilitas password
+
+    const handleTogglePassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+
     return (
         <Admin>
             <Head title='Edit Pengguna' />
@@ -80,7 +92,7 @@ export default function EditPengguna() {
                                     <p className="text-sm">karyawan</p>
                                 </Link>
                             </div>
-                            <h6 className='text-gray-600 text-lg font-bold'>Edit Pengguna</h6>
+                            <h6 className='text-gray-600 text-lg font-bold'>Edit Karyawan</h6>
                         </div>
                     </div>
                 </div>
@@ -146,6 +158,43 @@ export default function EditPengguna() {
                                         ))}
                                     </SelectContent>
                                 </Select>
+                            </div>
+
+                            <div className='mt-2'>
+                                <h6 className='text-gray-600 text-md font-bold'>Data Pengguna</h6>
+                                <div className="flex flex-col space-y-1.5 mt-3">
+                                    <Label htmlFor="jabatan">Email:</Label>
+                                    <Input
+                                        type='email'
+                                        placeholder='Masukkan Alamat Email'
+                                        onChange={(e) => setData('email', e.target.value)}
+                                        name='email'
+                                        value={data.email}
+                                    >
+                                    </Input>
+                    
+                                </div>
+                                <div className="flex flex-col space-y-1.5 mt-3">
+                                    <Label htmlFor="password">Password:</Label>
+                                    <div className="relative">
+                                        <Input
+                                            type={showPassword ? 'text' : 'password'}
+                                            placeholder='Masukkan Password'
+                                            onChange={(e) => setData('password', e.target.value)}
+                                            name='password'
+                                            value={data.password}
+                                            className="w-full pr-10"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={handleTogglePassword}
+                                            className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                                        >
+                                            {showPassword ? <IconEyeOff className="h-5 w-5 text-gray-500" /> : <IconEye className="h-5 w-5 text-gray-500" />}
+                                        </button>
+                                    </div>
+                    
+                                </div>
                             </div>
                         </div>
                     </div>
