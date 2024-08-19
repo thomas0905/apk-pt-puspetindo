@@ -119,23 +119,16 @@ export default function Edit() {
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="pemilik">Pilih Pemilik:</Label>
-                                <Select
-                                    // value={data.pemilik}
-                                    onValueChange={(value) => setData('pemilik', value)}
-                                >
-                                    <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Pilih Pemilik" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {pemiliks.map((pemilik) => (
-                                            <SelectItem key={pemilik.value} value={pemilik.value}>
-                                                {pemilik.label}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
+                                <Label htmlFor="kodeJobOrder">Kode Proyek:</Label>
+                                <Input
+                                    id="pemilik"
+                                    placeholder="Edit Kode Proyek"
+                                    name='pemilik'
+                                    value={data.pemilik}
+                                    onChange={(e) => setData('pemilik', e.target.value)}
+                                />
                             </div>
+
                         </div>
                     </div>
 

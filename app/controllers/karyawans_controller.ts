@@ -5,29 +5,20 @@ import { HttpContext, Redirect } from "@adonisjs/core/http";
 export default class KaryawansKontroller {
 
     async index({ inertia, auth }: HttpContext) {
-        // Mendapatkan user yang terotentikasi
         const user = auth.user;
-    
-        // Periksa apakah user terotentikasi
         if (!user) {
             return inertia.render('admin/error/404');
         }
-    
-        // Mendapatkan data karyawan berdasarkan user yang sedang login
         const karyawanUser = await Karyawan.query().where('user_id', user.id).first();
-    
-        // Pengecekan jabatan user
         if (karyawanUser?.jabatan !== 'IT Software') {
             return inertia.render('admin/error/404');
         }
-    
-        // Memuat semua data karyawan dengan preload departemen
-        const semuaKaryawan = await Karyawan.query().preload('departemen');
-        
-        // Memuat semua data user tanpa preload
+
+        const semuaKaryawan = await Karyawan.query().preload('departemen')
+
+
         const semuaUser = await User.all();
-    
-        // Kirim data ke view
+
         return inertia.render('admin/dasboard/karyawan/index', {
             data_karyawan: semuaKaryawan,
             data_user: semuaUser
@@ -82,7 +73,7 @@ export default class KaryawansKontroller {
     async update({ request, params, response }: HttpContext) {
         const karyawan = await Karyawan.findOrFail(params.id)
         karyawan.nama = request.input('nama')
-        // karyawan.departemen = request.input('departemen')
+        karyawan.departemen = request.input('departemen')
         karyawan.jabatan = request.input('jabatan')
         karyawan.status = request.input('status')
         karyawan.save()
