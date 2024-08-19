@@ -32,10 +32,10 @@ export default function Index() {
 
           <div className='mt-5'>
             <h1 className='text-2xl font-bold '>Halo 👏 RoisDev .</h1>
-            <p className='text-gray-600 text-sm'>Aktivitas apa yang akan kamu lakukan hari ini?</p>
+            {/* <p className='text-gray-600 text-sm'>Aktivitas apa yang akan kamu lakukan hari ini?</p> */}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
             <div>
               <Link href="/management/laporan">
                 <Card className="relative border-2 border-sky-500">
@@ -61,9 +61,9 @@ export default function Index() {
                 </CardHeader>
               </Card>
             </div>
-          </div>
+          </div> */}
 
-          <div className="mt-5 ">
+          {/* <div className="mt-5 ">
             <div>
               <h1 className='font-bold'>Aktivitas Terbaru</h1>
               <p className='text-sm text-gray-600'>Lihat semua aktivitas terbaru</p>
@@ -92,7 +92,7 @@ export default function Index() {
                 </TableBody>
               </Table>
             </Card>
-          </div>
+          </div> */}
         </div>
       </Card>
     </Admin>
