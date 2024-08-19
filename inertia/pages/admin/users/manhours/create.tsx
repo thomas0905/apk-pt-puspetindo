@@ -78,24 +78,24 @@ export default function Create() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
-            <div className="flex flex-col space-y-1.5">
-              <Label>Pilih Proyek:</Label>
-              <Select
-                onValueChange={(value) => setData('proyek_id', value)}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Pilih Proyek" />
-                </SelectTrigger>
-                <SelectContent>
-                  {data_proyek.map((pro) => (
-                    <SelectItem key={pro.id} value={pro.id.toString()}> {/* Ubah value menjadi id departemen */}
-                      {pro.namaProyek}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {/* {errors.departemen_Id && <small className="text-red-600">{errors.departemen_Id}</small>} */}
-            </div>
+              <div className="flex flex-col space-y-1.5">
+                <Label>Pilih Proyek:</Label>
+                <Select
+                  onValueChange={(value) => setData('proyek_id', value)}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Pilih Proyek" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {data_proyek.map((pro) => (
+                      <SelectItem key={pro.id} value={pro.id.toString()}> {/* Ubah value menjadi id departemen */}
+                        {pro.namaProyek}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {/* {errors.departemen_Id && <small className="text-red-600">{errors.departemen_Id}</small>} */}
+              </div>
 
               <div className="flex flex-col space-y-1.5">
                 <Label>Tanggal:</Label>

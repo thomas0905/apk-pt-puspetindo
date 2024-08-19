@@ -46,7 +46,7 @@ export default function Index() {
         }),
         columnHelper.accessor('departemen', {
             header: 'Departemen',
-            cell: info => info.getValue().namaDepartemen,
+            cell: info => info.row.original?.departemen?.namaDepartemen,
             footer: info => info.column.id,
         }),
         columnHelper.accessor('jabatan', {
