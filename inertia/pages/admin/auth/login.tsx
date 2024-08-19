@@ -14,8 +14,8 @@ import { Label } from "@/components/ui/label";
 import { IconEye, IconEyeOff, IconLock, IconMail } from '@tabler/icons-react';
 import logoLogin from '../../../img/logo-puspetindo.png';
 import 'animate.css';
-import { useForm } from '@inertiajs/react';
-
+import { Head, useForm } from '@inertiajs/react';
+import favIcon from '../../../img/logo-kecil.png'
 export default function Login() {
     const { data, setData, post, processing } = useForm({
         email: '',
@@ -59,6 +59,10 @@ export default function Login() {
 
     return (
         <div className='flex justify-center items-center h-screen p-3 sm:p-0'>
+            <Head>
+                <title>login</title>
+                <link rel="icon" href={favIcon} type="image/x-icon" />
+            </Head>
             <Card className="w-full max-w-md border-0 shadow-md hover-card sm:p-1 animate__animated animate__fadeIn">
                 <div className='justify-center flex mt-3'>
                     <img className='justify-center' src={logoLogin} alt="Logo" />
