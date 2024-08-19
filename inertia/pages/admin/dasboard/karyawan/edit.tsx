@@ -88,7 +88,7 @@ export default function EditPengguna() {
                                     <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                                 </Link>
                                 <span>-</span>
-                                <Link href='/dasboard/karyawan/index'>
+                                <Link href='/karyawan'>
                                     <p className="text-sm">karyawan</p>
                                 </Link>
                             </div>
@@ -163,13 +163,14 @@ export default function EditPengguna() {
                             <div className='mt-2'>
                                 <h6 className='text-gray-600 text-md font-bold'>Data Pengguna</h6>
                                 <div className="flex flex-col space-y-1.5 mt-3">
-                                    <Label htmlFor="jabatan">Email:</Label>
+                                    <Label htmlFor="email">Email:</Label>
                                     <Input
                                         type='email'
+                                        id='email'
                                         placeholder='Masukkan Alamat Email'
-                                        onChange={(e) => setData('email', e.target.value)}
                                         name='email'
                                         value={data.email}
+                                        onChange={(e) => setData('email', e.target.value)}
                                     >
                                     </Input>
                     
