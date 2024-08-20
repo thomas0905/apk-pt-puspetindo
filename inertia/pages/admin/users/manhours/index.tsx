@@ -49,7 +49,7 @@ export default function Index() {
       header: () => 'Tanggal',
       cell: info => new Date(info.getValue()).toLocaleDateString(),
     }),
-    columnHelper.accessor('jam_kerja', {
+    columnHelper.accessor('jamKerja', {
       header: () => 'Jam Kerja',
       cell: info => `${info.getValue()} jam`,
     }),

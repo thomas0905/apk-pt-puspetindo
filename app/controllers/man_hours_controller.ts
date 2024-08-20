@@ -4,12 +4,12 @@ import Proyek from '#models/proyek';
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ManHoursController {
-    async index({ inertia ,auth}: HttpContext) {
+    async index({ inertia, auth }: HttpContext) {
         const user = auth.user
-        const karyawan = await Karyawan.query().where('user_id',user.id).first()
+        const karyawan = await Karyawan.query().where('user_id', user.id).first()
         console.log(karyawan);
-        
-        const manhours = await ManHour.query().preload('karyawan').preload('proyek').where('karyawan_id',karyawan.id)
+
+        const manhours = await ManHour.query().preload('karyawan').preload('proyek').where('karyawan_id', karyawan.id)
         return inertia.render('admin/users/manhours/index', {
             data_manHours: manhours
         })
@@ -29,11 +29,12 @@ export default class ManHoursController {
     }
 
     async store({ request, response, session }: HttpContext) {
+        console.log(request.all());
         const manhours = new ManHour()
         manhours.karyawan_id = request.input('karyawan_id')
         manhours.proyek_id = request.input('proyek_id')
         manhours.tanggal = request.input('tanggal')
-        manhours.jam_kerja = request.input('jam_Kerja')
+        manhours.jam_kerja = request.input('jam_kerja')
 
         await manhours.save()
 
@@ -58,9 +59,9 @@ export default class ManHoursController {
 
     async update({ request, params, response }: HttpContext) {
         const manhours = await ManHour.findByOrFail(params.id)
-        manhours.karyawan_id=request.input('karyawan_id')
+        manhours.karyawan_id = request.input('karyawan_id')
         manhours.proyek_id = request.input('proyek_id')
-        manhours.tanggal = request.input('jam_kerja')
+        manhours.jam_kerja = request.input('jam_kerja')
         manhours.save()
         return response.redirect('/manhours')
     }

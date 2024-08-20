@@ -20,7 +20,7 @@ export default function Create() {
     jam_kerja: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {    
     e.preventDefault();
     post('/manhours/create', {
       onSuccess: () => {
