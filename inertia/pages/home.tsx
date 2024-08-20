@@ -12,12 +12,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Head, Link } from "@inertiajs/react"
+import { Head, Link, usePage } from "@inertiajs/react"
 import { IconBook2, IconHome, IconReceipt } from '@tabler/icons-react'
 import Admin from '~/layout/admin'
 import 'animate.css';
 
 export default function Index() {
+  const {data_user} = usePage().props
+  console.log(data_user);
+  
   return (
     <Admin>
       <Head title="beranda" />

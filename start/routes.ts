@@ -8,8 +8,9 @@ const PermissionsController = () => import('#controllers/permissions_controller'
 const AuthController = () => import('#controllers/auth_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+const  HomeController = () => import ('#controllers/home_controller')
 
-router.on('/').renderInertia('home', { version: 6 }).use(middleware.auth())
+router.get('/',[HomeController,'index']).use(middleware.auth())
 
 
 router.group(() => {
