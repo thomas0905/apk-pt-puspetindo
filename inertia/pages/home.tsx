@@ -18,8 +18,8 @@ import Admin from '~/layout/admin'
 import 'animate.css';
 
 export default function Index() {
-  const {data_user} = usePage().props
-  console.log(data_user);
+  const {data_karyawan} = usePage().props
+  console.log(data_karyawan);
   
   return (
     <Admin>
@@ -34,7 +34,7 @@ export default function Index() {
           </div>
 
           <div className='mt-5'>
-            <h1 className='text-2xl font-bold '>Halo 👏 RoisDev .</h1>
+            <h1 className='text-2xl font-bold '>Halo 👏 {data_karyawan.nama} .</h1>
             {/* <p className='text-gray-600 text-sm'>Aktivitas apa yang akan kamu lakukan hari ini?</p> */}
           </div>
 
