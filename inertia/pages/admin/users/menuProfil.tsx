@@ -1,4 +1,4 @@
-import { Head, Link } from '@inertiajs/react'
+import { Head, Link, usePage } from '@inertiajs/react'
 import React from 'react'
 import { Card } from '~/components/ui/card'
 import Admin from '~/layout/admin'
@@ -6,6 +6,9 @@ import ImgMenuProfil from '../../../img/rois.jpeg'
 import { IconEdit } from '@tabler/icons-react'
 
 export default function MenuProfil() {
+  const {data_karyawan} =usePage().props
+  console.log(data_karyawan);
+  
   return (
     <Admin>
       <Head title='menu-profil' />
