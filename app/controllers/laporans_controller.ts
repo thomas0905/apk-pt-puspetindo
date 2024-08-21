@@ -12,12 +12,11 @@ export default class LaporansController {
 
    
         const karyawan = await Karyawan.query().where('user_id', user.id).first();
-
         if (!karyawan || karyawan.jabatan !== 'IT Software') {
             return inertia.render('admin/error/404');
         }
 
-        const manhours = await ManHour.query().where('karyawan_id', karyawan.id).first();
+        const manhours = await ManHour.query().preload('karyawan')
         return inertia.render('admin/management/laporan', {
             data_manhours: manhours
         });
