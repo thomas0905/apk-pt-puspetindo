@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react'
+import { Head, usePage } from '@inertiajs/react'
 import { IconPrinter } from '@tabler/icons-react'
 import React, { useRef } from 'react'
 import { Button } from '~/components/ui/button'
@@ -9,6 +9,9 @@ import ReactToPrint from 'react-to-print';
 import Swal from 'sweetalert2'
 
 export default function Laporan() {
+  const {data_manhours} = usePage().props
+  console.log(data_manhours);
+  
   const componentRef = useRef(null);
 
   const handlePrint = () => {
