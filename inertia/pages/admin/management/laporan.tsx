@@ -77,9 +77,10 @@ export default function Laporan() {
               <Table className='mt-2'>
                 <TableHeader className='bg-blue-300'>
                   <TableRow className='border-t'>
-                    <TableHead className="w-[100px]">Invoice</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Method</TableHead>
+                    <TableHead className="w-[100px]">No</TableHead>
+                    <TableHead>Karyawan</TableHead>
+                    <TableHead>Proyek</TableHead>
+                    <TableHead>No_JE</TableHead>
                     <TableHead className="text-right">Amount</TableHead>
                   </TableRow>
                 </TableHeader>
