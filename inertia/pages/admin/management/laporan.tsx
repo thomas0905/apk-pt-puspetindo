@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/table"
 
 
+
 export default function Laporan() {
   const { data_manhours } = usePage().props
   console.log(data_manhours);
