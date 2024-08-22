@@ -10,7 +10,6 @@ import Swal from 'sweetalert2'
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableFooter,
   TableHead,
@@ -19,10 +18,9 @@ import {
 } from "@/components/ui/table"
 
 
-
 export default function Laporan() {
-  const { data_manhours } = usePage<{ data_manHours: any[] }>().props;
-  console.log(data_manhours);
+  const { data_manhours } = usePage().props;
+console.log(data_manhours);
 
   const componentRef = useRef(null);
 
@@ -33,20 +31,20 @@ export default function Laporan() {
       confirmButtonText: 'Okee',
     });
   }
+
   return (
     <Admin>
       <Head title='Laporan' />
       <div ref={componentRef}>
-        <Card className="p-5  shadow-md">
+        <Card className="p-5 shadow-md bg-s">
           <div className="border-b border-gray-200 pb-4">
             <div className='flex justify-center'>
               <img src={logoPuspetindo} alt="Logo Puspetindo" />
             </div>
             <h6 className='text-gray-600 text-lg font-bold'>Laporan</h6>
             <div className='flex justify-between'>
-              <div>
-              </div>
-              <Table className='mt-2'>
+              <div></div>
+              <Table className='mt-2 bg-slate-50'>
                 <TableHeader className='bg-blue-300'>
                   <TableRow className='border-t'>
                     <TableHead className="w-[100px]">No</TableHead>
@@ -56,10 +54,14 @@ export default function Laporan() {
                     <TableHead className="text-right">Total</TableHead>
                   </TableRow>
                 </TableHeader>
+                
                 <TableBody>
                   {data_manhours.map((manhours) => (
                     <TableRow key={manhours.id}>
-                      <TableCell className="font-medium">{manhours.nama}</TableCell>
+                      <TableCell>{manhours.id}</TableCell>
+                      <TableCell>{manhours.karyawan?.nama}</TableCell>
+                      <TableCell>{manhours.proyek?.namaProyek}</TableCell>
+                      <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
