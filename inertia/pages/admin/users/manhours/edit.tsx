@@ -38,7 +38,7 @@ export default function Edit() {
     <Admin>
       <Head title="manhours" />
       Halaman Man Hours Edit
-      <Card className="p-5">
+      <Card className="p-5  shadow-md">
         <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
             <div>
