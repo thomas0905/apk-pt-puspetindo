@@ -8,18 +8,22 @@ export default class LaporansController {
         const user = auth.user;
 
         if (!user) {
-            return response.redirect('/login'); 
+            return response.redirect('/login');
         }
 
-   
+
         const karyawan = await Karyawan.query().where('user_id', user.id).first();
         if (!karyawan || karyawan.jabatan !== 'IT Software') {
             return inertia.render('admin/error/404');
         }
 
-        const manhours = await ManHour.query().preload('karyawan').preload('proyek')
+        const manhours = await ManHour.query()
+            .preload('karyawan')
+            .preload('proyek')
+            .where('karyawan_id', karyawan.id)
+        // const manhours = await ManHour.query().preload('karyawan').preload('proyek')
         console.log(manhours);
-        
+
         return inertia.render('admin/management/laporan', {
             data_manhours: manhours
         });

@@ -21,7 +21,7 @@ import {
 
 
 export default function Laporan() {
-  const { data_manhours } = usePage().props
+  const { data_manhours } = usePage<{ data_manHours: any[] }>().props;
   console.log(data_manhours);
 
   const componentRef = useRef(null);
@@ -35,16 +35,14 @@ export default function Laporan() {
   }
   return (
     <Admin>
-
       <Head title='Laporan' />
-      {/* Pastikan Card atau elemen DOM lainnya yang menerima ref */}
       <div ref={componentRef}>
         <Card className="p-5">
           <div className="border-b border-gray-200 pb-4">
             <div className='flex justify-center'>
               <img src={logoPuspetindo} alt="Logo Puspetindo" />
             </div>
-            <h6 className='text-gray-600 mx-3 text-lg font-bold'>Laporan</h6>
+            <h6 className='text-gray-600 text-lg font-bold'>Laporan</h6>
             <div className='flex justify-between'>
               <div>
               </div>
@@ -62,9 +60,6 @@ export default function Laporan() {
                   {data_manhours.map((manhours) => (
                     <TableRow key={manhours.id}>
                       <TableCell className="font-medium">{manhours.nama}</TableCell>
-                      {/* <TableCell>{invoice.paymentStatus}</TableCell>
-                      <TableCell>{invoice.paymentMethod}</TableCell>
-                      <TableCell className="text-right">{invoice.totalAmount}</TableCell> */}
                     </TableRow>
                   ))}
                 </TableBody>
