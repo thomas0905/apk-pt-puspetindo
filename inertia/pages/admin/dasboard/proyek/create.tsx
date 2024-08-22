@@ -50,7 +50,7 @@ export default function Create() {
         <Admin>
             <Head title='add-proyek' />
 
-            <Card className="p-5">
+            <Card className="p-5 shadow-md">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
                         <div>
