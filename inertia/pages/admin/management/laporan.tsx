@@ -17,15 +17,12 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
-import { Input } from '~/components/ui/input'
-import { Label } from '~/components/ui/label'
-import { Textarea } from '~/components/ui/textarea'
 
 export default function Laporan() {
   const { data_manhours } = usePage().props;
   const componentRef = useRef(null);
 
-  const [selectedTanggal, setSelectedTanggal] = useState("");
+  const [selectedTanggal, setSelectedTanggal] = useState("Semua Tanggal");
 
   const handlePrint = () => {
     Swal.fire({
@@ -35,9 +32,16 @@ export default function Laporan() {
     });
   };
 
-  const filteredData = selectedTanggal
+
+  const filteredData = selectedTanggal !== "Semua Tanggal"
     ? data_manhours.filter(manhours => manhours.tanggal === selectedTanggal)
     : data_manhours;
+
+
+  const formatDate = (date) => {
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return new Date(date).toLocaleDateString('id-ID', options);
+  };
 
   return (
     <Admin>
@@ -57,9 +61,10 @@ export default function Laporan() {
                     <SelectValue placeholder="Pilih Tanggal" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="Semua Tanggal">Semua Tanggal</SelectItem>
                     {data_manhours.map((manhours) => (
                       <SelectItem key={manhours.id} value={manhours.tanggal}>
-                        {manhours.tanggal}
+                        {formatDate(manhours.tanggal)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -76,6 +81,7 @@ export default function Laporan() {
                     <TableHead>Karyawan</TableHead>
                     <TableHead>Proyek</TableHead>
                     <TableHead>No_JE</TableHead>
+                    <TableHead>Tanggal</TableHead>
                     <TableHead className="text-right">Total</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -88,6 +94,7 @@ export default function Laporan() {
                         <TableCell>{manhours.karyawan?.nama}</TableCell>
                         <TableCell>{manhours.proyek?.namaProyek}</TableCell>
                         <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
+                        <TableCell>{formatDate(manhours.tanggal)}</TableCell>
                       </TableRow>
                     ))
                   ) : (
