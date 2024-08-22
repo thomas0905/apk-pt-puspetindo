@@ -79,7 +79,7 @@ export default function EditPengguna() {
     return (
         <Admin>
             <Head title='Edit Pengguna' />
-            <Card className="p-5">
+            <Card className="p-5 shadow-md">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
                         <div>
