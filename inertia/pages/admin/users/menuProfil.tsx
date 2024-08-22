@@ -10,9 +10,9 @@ export default function MenuProfil() {
   console.log(data_karyawan);
   
   return (
-    <Admin>
+    <Admin> 
       <Head title='menu-profil' />
-      <Card className='p-2 bg-gray-100'>
+      <Card className='p-2 bg-gray-100 shadow-md'>
         <Card className='relative bg-blue-600 p-4 h-40 sm:h-64'>
           <span className='absolute top-2 right-2'>
             <IconEdit className='text-white cursor-pointer' />
