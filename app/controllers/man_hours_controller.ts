@@ -5,11 +5,11 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ManHoursController {
     async index({ inertia, auth }: HttpContext) {
-        const user = auth.user
-        const karyawan = await Karyawan.query().where('user_id', user.id).first()
-        console.log(karyawan);
+        // const user = auth.user
+        // const karyawan = await Karyawan.query().where('user_id', user.id).first()
+        // console.log(karyawan);
 
-        const manhours = await ManHour.query().preload('karyawan').preload('proyek').where('karyawan_id', karyawan.id)
+        const manhours = await ManHour.query().preload('karyawan').preload('proyek')
         return inertia.render('admin/users/manhours/index', {
             data_manHours: manhours
         })
