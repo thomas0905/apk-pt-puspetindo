@@ -55,25 +55,19 @@ export default function Laporan() {
                     <TableHead>Karyawan</TableHead>
                     <TableHead>Proyek</TableHead>
                     <TableHead>No_JE</TableHead>
-                    <TableHead className="text-right">Amount</TableHead>
+                    <TableHead className="text-right">Total</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {data_manhours.map((manhours) => (
                     <TableRow key={manhours.id}>
-                      <TableCell className="font-medium">{manhours.jam_kerja}</TableCell>
+                      <TableCell className="font-medium">{manhours.nama}</TableCell>
                       {/* <TableCell>{invoice.paymentStatus}</TableCell>
                       <TableCell>{invoice.paymentMethod}</TableCell>
                       <TableCell className="text-right">{invoice.totalAmount}</TableCell> */}
                     </TableRow>
                   ))}
                 </TableBody>
-                <TableFooter>
-                  <TableRow>
-                    <TableCell colSpan={3}>Total</TableCell>
-                    <TableCell className="text-right">$2,500.00</TableCell>
-                  </TableRow>
-                </TableFooter>
               </Table>
             </div>
           </div>

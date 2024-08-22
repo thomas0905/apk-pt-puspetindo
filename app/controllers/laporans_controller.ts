@@ -1,6 +1,7 @@
 import Karyawan from '#models/karyawan';
 import ManHour from '#models/man_hour';
 import type { HttpContext } from '@adonisjs/core/http'
+import { request } from 'http';
 
 export default class LaporansController {
     async laporan({ inertia, auth, response }: HttpContext) {
@@ -16,7 +17,9 @@ export default class LaporansController {
             return inertia.render('admin/error/404');
         }
 
-        const manhours = await ManHour.query().preload('karyawan')
+        const manhours = await ManHour.query().preload('karyawan').preload('proyek')
+        console.log(manhours);
+        
         return inertia.render('admin/management/laporan', {
             data_manhours: manhours
         });
