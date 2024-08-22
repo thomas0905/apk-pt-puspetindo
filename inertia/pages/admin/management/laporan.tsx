@@ -1,4 +1,4 @@
-import { Head, usePage } from '@inertiajs/react'
+import { Head, useForm, usePage } from '@inertiajs/react'
 import { IconPrinter } from '@tabler/icons-react'
 import React, { useRef } from 'react'
 import { Button } from '~/components/ui/button'
@@ -16,11 +16,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
+import { Input } from '~/components/ui/input'
+import { Label } from '~/components/ui/label'
+import { Textarea } from '~/components/ui/textarea'
 
 
 export default function Laporan() {
   const { data_manhours } = usePage().props;
-console.log(data_manhours);
+  console.log(data_manhours);
 
   const componentRef = useRef(null);
 
@@ -41,7 +45,25 @@ console.log(data_manhours);
             <div className='flex justify-center'>
               <img src={logoPuspetindo} alt="Logo Puspetindo" />
             </div>
-            <h6 className='text-gray-600 text-lg font-bold'>Laporan</h6>
+            <div className="flex items-center justify-between">
+              <h6 className="text-gray-700 text-lg font-bold">Laporan</h6>
+
+              <div className="w-48">
+                <Select>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Pilih Tanggal" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {data_manhours.map((manhours) => (
+                      <SelectItem key={manhours.id} value={manhours.id.toString()}>
+                        {manhours.tanggal}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
             <div className='flex justify-between'>
               <div></div>
               <Table className='mt-2 bg-slate-50'>
@@ -54,7 +76,7 @@ console.log(data_manhours);
                     <TableHead className="text-right">Total</TableHead>
                   </TableRow>
                 </TableHeader>
-                
+
                 <TableBody>
                   {data_manhours.map((manhours) => (
                     <TableRow key={manhours.id}>

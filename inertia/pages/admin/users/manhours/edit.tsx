@@ -10,7 +10,8 @@ import { IconHome } from '@tabler/icons-react';
 import Swal from 'sweetalert2';
 
 export default function Edit() {
-  const { man_hours } = usePage().props
+  // Pastikan data diambil dengan benar dari props
+  const { man_hours, data_proyek, data_karyawan } = usePage().props;
   console.log(man_hours);
 
   const { data, setData, put, processing } = useForm({
@@ -21,8 +22,8 @@ export default function Edit() {
   });
 
   const handleSubmit: FormEventHandler = async (e) => {
-    e.preventDefault()
-    await put('/manhours/edit/' + man_hours.id, {
+    e.preventDefault();
+    await put(`/manhours/edit/${man_hours.id}`, {
       onSuccess: () => {
         Swal.fire({
           title: 'Data Berhasil Diupdate!',
@@ -30,52 +31,33 @@ export default function Edit() {
           confirmButtonText: 'Okee',
         });
       }
-    })
-
-  }
+    });
+  };
 
   return (
     <Admin>
       <Head title="manhours" />
-      Halaman Man Hours Edit
-      <Card className="p-5  shadow-md">
-        <div className="border-b border-gray-200 pb-4">
-          <div className='flex justify-between'>
-            <div>
-              <div className='flex gap-1'>
-                <Link href="/">
-                  <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
-                </Link>
-                <span>-</span>
-                <Link href='/proyek'>
-                  <p className="text-sm">Man Hours</p>
-                </Link>
-              </div>
-              <h6 className='text-gray-600 text-lg font-bold'>Man Hours</h6>
-            </div>
-          </div>
-        </div>
-
+      <h1 className="text-xl font-bold">Edit Man Hours</h1>
+      <Card className="p-5 shadow-md">
         <form className='mt-5' onSubmit={handleSubmit}>
-          {/* <ToastContainer /> */}
           <div className='my-5'>
             <div className="flex flex-col space-y-1.5">
               <Label>Pilih Karyawan:</Label>
               <Select
                 onValueChange={(value) => setData('karyawan_id', value)}
+                defaultValue={data.karyawan_id.toString()}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Pilih karyawan" />
+                  <SelectValue placeholder="Pilih Karyawan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {man_hours.map((man) => (
-                    <SelectItem key={man.id} value={man.id.toString()}> {/* Ubah value menjadi id departemen */}
-                      {man.karyawan_id}karyawan_id
+                  {data_karyawan.map((karyawan) => (
+                    <SelectItem key={karyawan.id} value={karyawan.id.toString()}>
+                      {karyawan.nama}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
-              {/* {errors.departemen_Id && <small className="text-red-600">{errors.departemen_Id}</small>} */}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
@@ -83,19 +65,19 @@ export default function Edit() {
                 <Label>Pilih Proyek:</Label>
                 <Select
                   onValueChange={(value) => setData('proyek_id', value)}
+                  defaultValue={data.proyek_id.toString()}
                 >
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Pilih Proyek" />
                   </SelectTrigger>
                   <SelectContent>
-                    {data_proyek.map((pro) => (
-                      <SelectItem key={pro.id} value={pro.id.toString()}> {/* Ubah value menjadi id departemen */}
-                        {pro.namaProyek}
+                    {data_proyek.map((proyek) => (
+                      <SelectItem key={proyek.id} value={proyek.id.toString()}>
+                        {proyek.namaProyek}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-                {/* {errors.departemen_Id && <small className="text-red-600">{errors.departemen_Id}</small>} */}
               </div>
 
               <div className="flex flex-col space-y-1.5">
