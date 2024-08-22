@@ -1,6 +1,6 @@
 import { Head, useForm, usePage } from '@inertiajs/react'
 import { IconPrinter } from '@tabler/icons-react'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import Admin from '~/layout/admin'
@@ -21,12 +21,11 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Textarea } from '~/components/ui/textarea'
 
-
 export default function Laporan() {
   const { data_manhours } = usePage().props;
-  console.log(data_manhours);
-
   const componentRef = useRef(null);
+
+  const [selectedTanggal, setSelectedTanggal] = useState("");
 
   const handlePrint = () => {
     Swal.fire({
@@ -34,7 +33,11 @@ export default function Laporan() {
       icon: 'success',
       confirmButtonText: 'Okee',
     });
-  }
+  };
+
+  const filteredData = selectedTanggal
+    ? data_manhours.filter(manhours => manhours.tanggal === selectedTanggal)
+    : data_manhours;
 
   return (
     <Admin>
@@ -49,13 +52,13 @@ export default function Laporan() {
               <h6 className="text-gray-700 text-lg font-bold">Laporan</h6>
 
               <div className="w-48">
-                <Select>
+                <Select onValueChange={(value) => setSelectedTanggal(value)}>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Pilih Tanggal" />
                   </SelectTrigger>
                   <SelectContent>
                     {data_manhours.map((manhours) => (
-                      <SelectItem key={manhours.id} value={manhours.id.toString()}>
+                      <SelectItem key={manhours.id} value={manhours.tanggal}>
                         {manhours.tanggal}
                       </SelectItem>
                     ))}
@@ -78,14 +81,20 @@ export default function Laporan() {
                 </TableHeader>
 
                 <TableBody>
-                  {data_manhours.map((manhours) => (
-                    <TableRow key={manhours.id}>
-                      <TableCell>{manhours.id}</TableCell>
-                      <TableCell>{manhours.karyawan?.nama}</TableCell>
-                      <TableCell>{manhours.proyek?.namaProyek}</TableCell>
-                      <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
+                  {filteredData.length > 0 ? (
+                    filteredData.map((manhours, index) => (
+                      <TableRow key={manhours.id}>
+                        <TableCell>{index + 1}</TableCell>
+                        <TableCell>{manhours.karyawan?.nama}</TableCell>
+                        <TableCell>{manhours.proyek?.namaProyek}</TableCell>
+                        <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan="5" className="text-center">Data tidak ditemukan</TableCell>
                     </TableRow>
-                  ))}
+                  )}
                 </TableBody>
               </Table>
             </div>
@@ -103,5 +112,5 @@ export default function Laporan() {
         </Card>
       </div>
     </Admin>
-  )
+  );
 }
