@@ -86,7 +86,7 @@ export default function Laporan() {
                   className="border rounded-sm p-0.5 text-sm"
                 />
               </div>
-              <Button className='bg-blue-600 hover:bg-blue-500 text-xs py-0.5 px-2' onClick={handleFilter}>Pilih</Button>
+              <p className='bg-blue-600 text-white hover:bg-blue-500 text-xs py-1.5 rounded-sm px-3' onClick={handleFilter}>Pilih</p>
             </div>
             <Table className='mt-2 bg-slate-50'>
               <TableHeader className='bg-blue-300'>
