@@ -25,7 +25,7 @@ export default function Sidebar() {
         <Fragment>
             <div className={`hidden border-r bg-muted/40 md:block ${isSidebarHidden ? 'w-220' : 'w-20'}`}>
                 <div className="flex h-full shadow-md max-h-screen flex-col gap-2">
-                    <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+                    <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6 fixed">
                         <Link href="/" className="flex items-center gap-2 font-semibold">
                             <img src={MyImageComponent} alt="Logo" width={150} />
                         </Link>
@@ -34,7 +34,7 @@ export default function Sidebar() {
                             <div className="sr-only">Toggle sidebar</div>
                         </Button>
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 mt-20">
                         <nav className="grid items-start fixed px-2 text-sm font-medium lg:px-4">
                             {/* Dashboard Section */}
                             <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 py-3 text-muted-foreground transition-all">
