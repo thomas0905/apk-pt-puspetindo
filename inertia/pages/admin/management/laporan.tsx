@@ -22,6 +22,7 @@ export default function Laporan() {
 
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [filteredData, setFilteredData] = useState(data_manhours);
 
   const handlePrint = () => {
     Swal.fire({
@@ -36,19 +37,19 @@ export default function Laporan() {
     return new Date(date).toLocaleDateString('id-ID', options);
   };
 
-  const filterDataByDate = () => {
+  const handleFilter = () => {
     if (startDate && endDate) {
-      return data_manhours.filter((manhours) => {
+      const filtered = data_manhours.filter((manhours) => {
         const manhoursDate = new Date(manhours.tanggal);
         const start = new Date(startDate);
         const end = new Date(endDate);
         return manhoursDate >= start && manhoursDate <= end;
       });
+      setFilteredData(filtered);
+    } else {
+      setFilteredData(data_manhours); // Reset jika tidak ada filter
     }
-    return data_manhours;
   };
-
-  const filteredData = filterDataByDate();
 
   return (
     <Admin>
@@ -59,26 +60,25 @@ export default function Laporan() {
             <div className='flex justify-center'>
               <img src={logoPuspetindo} alt="Logo Puspetindo" />
             </div>
-            <div className="flex items-center mt-4">
-              <h6 className="text-gray-700 text-lg font-bold">Laporan</h6>
-              <div className="flex items-center mx-2 space-x-4">
+            <div className="flex items-center mt-2">
+              <h6 className="text-gray-700 text-md font-semibold">Laporan</h6>
+              <div className="flex items-center mx-1 space-x-2">
                 <input
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="border rounded-sm p-1"
+                  className="border rounded-sm p-0.5 text-sm"
                 />
-                <span>sampai</span>
+                <span className="text-xs">sampai</span>
                 <input
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  className="border rounded-sm p-1"
+                  className="border rounded-sm p-0.5 text-sm"
                 />
               </div>
-              <Button className='bg-blue-600 btn-lg'>Pilih</Button>
+              <Button className='bg-blue-600 hover:bg-blue-500 text-xs py-0.5 px-2' onClick={handleFilter}>Pilih</Button>
             </div>
-
             <div className='flex justify-between mt-1'>
               <div></div>
               <Table className='mt-2 bg-slate-50'>
@@ -111,6 +111,7 @@ export default function Laporan() {
                 </TableBody>
               </Table>
             </div>
+            
           </div>
           <div className='mt-2 flex justify-end'>
             <ReactToPrint

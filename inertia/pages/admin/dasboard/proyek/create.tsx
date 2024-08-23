@@ -8,21 +8,13 @@ import Admin from '~/layout/admin'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FormEventHandler } from 'react'
+import { FormEventHandler, useState } from 'react'
 import Swal from 'sweetalert2'
 
 export default function Create() {
-
-
     const statuses = [
-        {
-            value: "Selesai",
-            label: "Selesai",
-        },
-        {
-            value: "Tidak-Selesai",
-            label: "Tidak-Selesai",
-        }
+        { value: "Selesai", label: "Selesai" },
+        { value: "Tidak-Selesai", label: "Tidak-Selesai" }
     ]
 
     const { data, setData, post } = useForm({
@@ -32,24 +24,55 @@ export default function Create() {
         pemilik: ''
     })
 
-    const handleSubmit: FormEventHandler = (e) => {
-        e.preventDefault()
-        post('/proyek/create', {
-            onSuccess: () => {
-                Swal.fire({
-                    title: 'Data Berhasil Di Tambah!',
-                    icon: 'success',
-                    confirmButtonText: 'Okee',
-                });
-            }
-        })
+    const [errors, setErrors] = useState({});
 
+    const handleSubmit: FormEventHandler = (e) => {
+        e.preventDefault();
+
+        const validationErrors: any = {};
+        let isValid = true;
+
+        if (!data.namaProyek.trim()) {
+            validationErrors.namaProyek = 'Nama harus diisi';
+            isValid = false;
+        }
+
+        if (!data.kodeJobOrder.trim()) {
+            validationErrors.kodeJobOrder = 'Kode harus diisi';
+            isValid = false;
+        }
+
+        if (!data.status) {
+            validationErrors.status = 'Status harus dipilih';
+            isValid = false;
+        }
+
+        if (!data.pemilik.trim()) {
+            validationErrors.pemilik = 'Pemilik harus diisi';
+            isValid = false;
+        }
+
+        
+        setErrors(validationErrors);
+        if (isValid) {
+            post('/proyek/create', {
+                onSuccess: () => {
+                    Swal.fire({
+                        title: 'Data Berhasil Ditambah!',
+                        icon: 'success',
+                        confirmButtonText: 'Oke',
+                    });
+                },
+                onError: (errorMessages) => {
+                    setErrors(errorMessages);
+                }
+            })
+        }
     }
 
     return (
         <Admin>
-            <Head title='add-proyek' />
-
+            <Head title='Tambah Proyek' />
             <Card className="p-5 shadow-md">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
@@ -60,10 +83,9 @@ export default function Create() {
                                 </Link>
                                 <span>-</span>
                                 <Link href='/proyek'>
-                                    <p className="text-sm">proyek</p>
+                                    <p className="text-sm">Proyek</p>
                                 </Link>
                             </div>
-
                             <h6 className='text-gray-600 text-lg font-bold'>Tambah Proyek</h6>
                         </div>
                     </div>
@@ -73,14 +95,14 @@ export default function Create() {
                     <ToastContainer />
                     <div className='my-5'>
                         <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="nama"> Nama Proyek:</Label>
+                            <Label htmlFor="namaProyek">Nama Proyek:</Label>
                             <Input
-                                id="nama"
+                                id="namaProyek"
                                 placeholder="Masukkan Nama"
-                                name='namaProyek'
                                 value={data.namaProyek}
                                 onChange={(e) => setData('namaProyek', e.target.value)}
                             />
+                            {errors.namaProyek && <small className="text-red-600">{errors.namaProyek}</small>}
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
@@ -89,10 +111,10 @@ export default function Create() {
                                 <Input
                                     id="kodeJobOrder"
                                     placeholder="Masukkan Kode"
-                                    name='kodeJobOrder'
                                     value={data.kodeJobOrder}
                                     onChange={(e) => setData('kodeJobOrder', e.target.value)}
                                 />
+                                {errors.kodeJobOrder && <small className="text-red-600">{errors.kodeJobOrder}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
@@ -107,17 +129,18 @@ export default function Create() {
                                         ))}
                                     </SelectContent>
                                 </Select>
+                                {errors.status && <small className="text-red-600">{errors.status}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="kodeJobOrder">Pemilik:</Label>
+                                <Label htmlFor="pemilik">Pemilik:</Label>
                                 <Input
-                                    id="kodeJobOrder"
+                                    id="pemilik"
                                     placeholder="Masukkan Pemilik"
-                                    name='kodeJobOrder'
                                     value={data.pemilik}
                                     onChange={(e) => setData('pemilik', e.target.value)}
                                 />
+                                {errors.pemilik && <small className="text-red-600">{errors.pemilik}</small>}
                             </div>
                         </div>
                     </div>
