@@ -1,11 +1,11 @@
 import { Head, usePage } from '@inertiajs/react'
-import { IconPrinter } from '@tabler/icons-react'
+import { IconPlus, IconMinus, IconPrinter } from '@tabler/icons-react'
 import React, { useRef, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import Admin from '~/layout/admin'
 import logoPuspetindo from '../../../img/logo-puspetindo.png'
-import ReactToPrint from 'react-to-print';
+import ReactToPrint from 'react-to-print'
 import Swal from 'sweetalert2'
 import {
   Table,
@@ -17,39 +17,48 @@ import {
 } from "@/components/ui/table"
 
 export default function Laporan() {
-  const { data_manhours } = usePage().props;
-  const componentRef = useRef(null);
+  const { data_manhours } = usePage().props
+  console.log(data_manhours);
+  
+  const componentRef = useRef(null)
 
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [filteredData, setFilteredData] = useState(data_manhours);
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+  const [filteredData, setFilteredData] = useState(data_manhours)
+  const [expandedRows, setExpandedRows] = useState([]) // Track expanded rows
 
   const handlePrint = () => {
     Swal.fire({
       title: 'Data Berhasil Di Tambah!',
       icon: 'success',
       confirmButtonText: 'Okee',
-    });
-  };
+    })
+  }
 
   const formatDate = (date) => {
-    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    return new Date(date).toLocaleDateString('id-ID', options);
-  };
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' }
+    return new Date(date).toLocaleDateString('id-ID', options)
+  }
 
   const handleFilter = () => {
     if (startDate && endDate) {
       const filtered = data_manhours.filter((manhours) => {
-        const manhoursDate = new Date(manhours.tanggal);
-        const start = new Date(startDate);
-        const end = new Date(endDate);
-        return manhoursDate >= start && manhoursDate <= end;
-      });
-      setFilteredData(filtered);
+        const manhoursDate = new Date(manhours.tanggal)
+        const start = new Date(startDate)
+        const end = new Date(endDate)
+        return manhoursDate >= start && manhoursDate <= end
+      })
+      setFilteredData(filtered)
     } else {
-      setFilteredData(data_manhours); // Reset jika tidak ada filter
+      setFilteredData(data_manhours) // Reset jika tidak ada filter
     }
-  };
+  }
+
+  const toggleRow = (rowId) => {
+    setExpandedRows(prev => 
+      prev.includes(rowId) ? prev.filter(id => id !== rowId) : [...prev, rowId]
+    )
+  }
 
   return (
     <Admin>
@@ -79,45 +88,83 @@ export default function Laporan() {
               </div>
               <Button className='bg-blue-600 hover:bg-blue-500 text-xs py-0.5 px-2' onClick={handleFilter}>Pilih</Button>
             </div>
-            <div className='flex justify-between mt-1'>
-              <div></div>
-              <Table className='mt-2 bg-slate-50'>
-                <TableHeader className='bg-blue-300'>
-                  <TableRow className='border-t'>
-                    <TableHead className="w-[100px]">No</TableHead>
-                    <TableHead>Karyawan</TableHead>
-                    <TableHead>Proyek</TableHead>
-                    <TableHead>No_JE</TableHead>
-                    <TableHead>Tanggal</TableHead>
-                  </TableRow>
-                </TableHeader>
-
-                <TableBody>
-                  {filteredData.length > 0 ? (
-                    filteredData.map((manhours, index) => (
-                      <TableRow key={manhours.id}>
+            <Table className='mt-2 bg-slate-50'>
+              <TableHeader className='bg-blue-300'>
+                <TableRow className='border-t'>
+                  <TableHead className="w-[50px]">No</TableHead>
+                  <TableHead>Karyawan</TableHead>
+                  <TableHead>Tanggal</TableHead>
+                  <TableHead>No_JE</TableHead>
+                  <TableHead>Proyek</TableHead>
+                  <TableHead>Total</TableHead>
+                  <TableHead>Detail</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredData.length > 0 ? (
+                  filteredData.map((manhours, index) => (
+                    <React.Fragment key={manhours.id}>
+                      <TableRow>
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>{manhours.karyawan?.nama}</TableCell>
-                        <TableCell>{manhours.proyek?.namaProyek}</TableCell>
-                        <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
                         <TableCell>{formatDate(manhours.tanggal)}</TableCell>
+                        <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
+                        <TableCell>{manhours.proyek?.namaProyek}</TableCell>
+                        <TableCell>{manhours.jamKerja}</TableCell>
+                        <TableCell>
+                          <Button 
+                            className="flex items-center bg-transparent hover:bg-transparent"
+                            onClick={() => toggleRow(manhours.id)}
+                          >
+                            {expandedRows.includes(manhours.id) ? <IconMinus className='bg-blue-500 rounded-sm'  size={20} /> : <IconPlus className='bg-blue-500 rounded-sm' size={20} />}
+                          </Button>
+                        </TableCell>
                       </TableRow>
-                    ))
-                  ) : (
-                    <TableRow>
-                      <TableCell colSpan="5" className="text-center">Data tidak ditemukan</TableCell>
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </div>
-            
+                      {/* Detail Row */}
+                      {expandedRows.includes(manhours.id) && (
+                        <TableRow>
+                          <TableCell colSpan={6}>
+                            <div className="p-4 bg-gray-100 border-t">
+                              <Table className="bg-white">
+                                <TableHeader>
+                                  <TableRow>
+                                    <TableHead>No</TableHead>
+                                    <TableHead>Karyawan</TableHead>
+                                    <TableHead>Tanggal</TableHead>
+                                    <TableHead>No JE</TableHead>
+                                  </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                  <TableRow>
+                                    <TableCell>{index + 1}</TableCell>
+                                    <TableCell>{manhours.karyawan?.nama}</TableCell>
+                                    <TableCell>{manhours.proyek?.namaProyek}</TableCell>
+                                    <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
+                                  </TableRow>
+                                  {/* You can add more detail rows here */}
+                                </TableBody>
+                              </Table>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      )}
+                    </React.Fragment>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan="6" className="text-center">Data tidak ditemukan</TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
           </div>
           <div className='mt-2 flex justify-end'>
             <ReactToPrint
-              trigger={() => {
-                return <Button onClick={handlePrint} className='bg-blue-500 flex gap-1 hover:bg-blue-400'><IconPrinter /> Print</Button>
-              }}
+              trigger={() => (
+                <Button onClick={handlePrint} className='bg-blue-500 flex gap-1 hover:bg-blue-400'>
+                  <IconPrinter /> Print
+                </Button>
+              )}
               content={() => componentRef.current}
               documentTitle='Laporan Puspetindo'
               pageStyle="print"
@@ -126,5 +173,5 @@ export default function Laporan() {
         </Card>
       </div>
     </Admin>
-  );
+  )
 }
