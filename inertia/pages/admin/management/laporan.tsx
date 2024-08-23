@@ -1,4 +1,4 @@
-import { Head, useForm, usePage } from '@inertiajs/react'
+import { Head, usePage } from '@inertiajs/react'
 import { IconPrinter } from '@tabler/icons-react'
 import React, { useRef, useState } from 'react'
 import { Button } from '~/components/ui/button'
@@ -11,18 +11,17 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 
 export default function Laporan() {
   const { data_manhours } = usePage().props;
   const componentRef = useRef(null);
 
-  const [selectedTanggal, setSelectedTanggal] = useState("Semua Tanggal");
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
   const handlePrint = () => {
     Swal.fire({
@@ -32,16 +31,24 @@ export default function Laporan() {
     });
   };
 
-
-  const filteredData = selectedTanggal !== "Semua Tanggal"
-    ? data_manhours.filter(manhours => manhours.tanggal === selectedTanggal)
-    : data_manhours;
-
-
   const formatDate = (date) => {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
     return new Date(date).toLocaleDateString('id-ID', options);
   };
+
+  const filterDataByDate = () => {
+    if (startDate && endDate) {
+      return data_manhours.filter((manhours) => {
+        const manhoursDate = new Date(manhours.tanggal);
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        return manhoursDate >= start && manhoursDate <= end;
+      });
+    }
+    return data_manhours;
+  };
+
+  const filteredData = filterDataByDate();
 
   return (
     <Admin>
@@ -52,27 +59,27 @@ export default function Laporan() {
             <div className='flex justify-center'>
               <img src={logoPuspetindo} alt="Logo Puspetindo" />
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center mt-4">
               <h6 className="text-gray-700 text-lg font-bold">Laporan</h6>
-
-              <div className="w-48">
-                <Select onValueChange={(value) => setSelectedTanggal(value)}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Pilih Tanggal" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Semua Tanggal">Semua Tanggal</SelectItem>
-                    {data_manhours.map((manhours) => (
-                      <SelectItem key={manhours.id} value={manhours.tanggal}>
-                        {formatDate(manhours.tanggal)}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <div className="flex items-center mx-2 space-x-4">
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  className="border rounded-sm p-1"
+                />
+                <span>sampai</span>
+                <input
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  className="border rounded-sm p-1"
+                />
               </div>
+              <Button className='bg-blue-600 btn-lg'>Pilih</Button>
             </div>
 
-            <div className='flex justify-between'>
+            <div className='flex justify-between mt-1'>
               <div></div>
               <Table className='mt-2 bg-slate-50'>
                 <TableHeader className='bg-blue-300'>
@@ -82,7 +89,6 @@ export default function Laporan() {
                     <TableHead>Proyek</TableHead>
                     <TableHead>No_JE</TableHead>
                     <TableHead>Tanggal</TableHead>
-                    <TableHead className="text-right">Total</TableHead>
                   </TableRow>
                 </TableHeader>
 
