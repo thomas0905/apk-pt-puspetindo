@@ -1,4 +1,4 @@
-import { Head, usePage } from '@inertiajs/react'
+import { Head, router, usePage } from '@inertiajs/react'
 import { IconPlus, IconMinus, IconPrinter } from '@tabler/icons-react'
 import React, { useRef, useState } from 'react'
 import { Button } from '~/components/ui/button'
@@ -15,11 +15,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Input } from '~/components/ui/input'
 
 export default function Laporan() {
   const { data_manhours } = usePage().props
   console.log(data_manhours);
-  
+
   const componentRef = useRef(null)
 
   const [startDate, setStartDate] = useState('')
@@ -41,21 +42,17 @@ export default function Laporan() {
   }
 
   const handleFilter = () => {
-    if (startDate && endDate) {
-      const filtered = data_manhours.filter((manhours) => {
-        const manhoursDate = new Date(manhours.tanggal)
-        const start = new Date(startDate)
-        const end = new Date(endDate)
-        return manhoursDate >= start && manhoursDate <= end
-      })
-      setFilteredData(filtered)
-    } else {
-      setFilteredData(data_manhours) // Reset jika tidak ada filter
-    }
+    const filterQuery = router.get('/management/laporan', {
+      start_date: startDate,
+      end_date: endDate
+    })
+
+    console.log(filterQuery);
+
   }
 
   const toggleRow = (rowId) => {
-    setExpandedRows(prev => 
+    setExpandedRows(prev =>
       prev.includes(rowId) ? prev.filter(id => id !== rowId) : [...prev, rowId]
     )
   }
@@ -72,21 +69,23 @@ export default function Laporan() {
             <div className="flex items-center mt-2">
               <h6 className="text-gray-700 text-md font-semibold">Laporan</h6>
               <div className="flex items-center mx-1 space-x-2">
-                <input
+                <Input
+                  size={'sm'}
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
                   className="border rounded-sm p-0.5 text-sm"
                 />
                 <span className="text-xs">sampai</span>
-                <input
+                <Input
+                  size={'sm'}
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
                   className="border rounded-sm p-0.5 text-sm"
                 />
               </div>
-              <p className='bg-blue-600 text-white hover:bg-blue-500 text-xs py-1.5 rounded-sm px-3' onClick={handleFilter}>Pilih</p>
+              <Button className='bg-blue-600 text-white hover:bg-blue-500 text-xs py-1.5 rounded-sm px-3' onClick={handleFilter}>Pilih</Button>
             </div>
             <Table className='mt-2 bg-slate-50'>
               <TableHeader className='bg-blue-300'>
@@ -112,11 +111,11 @@ export default function Laporan() {
                         <TableCell>{manhours.proyek?.namaProyek}</TableCell>
                         <TableCell>{manhours.jamKerja}</TableCell>
                         <TableCell>
-                          <Button 
+                          <Button
                             className="flex items-center bg-transparent hover:bg-transparent"
                             onClick={() => toggleRow(manhours.id)}
                           >
-                            {expandedRows.includes(manhours.id) ? <IconMinus className='bg-blue-500 rounded-sm'  size={20} /> : <IconPlus className='bg-blue-500 rounded-sm' size={20} />}
+                            {expandedRows.includes(manhours.id) ? <IconMinus className='bg-blue-500 rounded-sm' size={20} /> : <IconPlus className='bg-blue-500 rounded-sm' size={20} />}
                           </Button>
                         </TableCell>
                       </TableRow>
@@ -139,7 +138,7 @@ export default function Laporan() {
                                   <TableRow>
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>{manhours.karyawan?.nama}</TableCell>
-                                    <TableCell>{manhours.proyek?.namaProyek}</TableCell>
+                                    <TableCell>{formatDate(manhours.tanggal)}</TableCell>
                                     <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
                                     <TableCell>{manhours.jamKerja}</TableCell>
                                   </TableRow>
