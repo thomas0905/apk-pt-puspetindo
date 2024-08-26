@@ -132,6 +132,7 @@ export default function Laporan() {
                                     <TableHead>Karyawan</TableHead>
                                     <TableHead>Tanggal</TableHead>
                                     <TableHead>No JE</TableHead>
+                                    <TableHead>Jam Kerja</TableHead>
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -140,6 +141,7 @@ export default function Laporan() {
                                     <TableCell>{manhours.karyawan?.nama}</TableCell>
                                     <TableCell>{manhours.proyek?.namaProyek}</TableCell>
                                     <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
+                                    <TableCell>{manhours.jamKerja}</TableCell>
                                   </TableRow>
                                   {/* You can add more detail rows here */}
                                 </TableBody>
