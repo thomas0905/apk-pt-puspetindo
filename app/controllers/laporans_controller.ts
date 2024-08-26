@@ -1,7 +1,6 @@
 import Karyawan from '#models/karyawan';
 import ManHour from '#models/man_hour';
 import type { HttpContext } from '@adonisjs/core/http'
-import { request } from 'http';
 
 export default class LaporansController {
     async laporan({ inertia, auth, response }: HttpContext) {
