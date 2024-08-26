@@ -1,6 +1,6 @@
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { IconHome } from '@tabler/icons-react';
-import React from 'react';
+import React, { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { Button } from '~/components/ui/button';
@@ -20,24 +20,50 @@ export default function Create() {
     jam_kerja: ''
   });
 
-  const handleSubmit = (e) => {    
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!data.karyawan_id.trim()) {
+      newErrors.karyawan_id = 'Karyawan harus dipilih';
+    }
+    if (!data.proyek_id.trim()) {
+      newErrors.proyek_id = 'Proyek harus dipilih';
+    }
+    if (!data.tanggal.trim()) {
+      newErrors.tanggal = 'Tanggal harus diisi';
+    }
+    if (!data.jam_kerja.trim()) {
+      newErrors.jam_kerja = 'Jam Kerja harus diisi';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+    
+    if (!validate()) {
+      return;
+    }
+
     post('/manhours/create', {
       onSuccess: () => {
         Swal.fire({
-          title: 'Data Berhasil Di Tambah!',
+          title: 'Data Berhasil Ditambah!',
           icon: 'success',
-          confirmButtonText: 'Okee',
+          confirmButtonText: 'Oke',
         });
       }
-    })
-
+    });
   };
 
   return (
     <Admin>
-      <Head title='manhours' />
-      <Card className="p-5  shadow-md">
+      <Head title='Manhours' />
+      <Card className="p-5 shadow-md">
         <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
             <div>
@@ -68,13 +94,13 @@ export default function Create() {
                 </SelectTrigger>
                 <SelectContent>
                   {data_karyawan.map((kar) => (
-                    <SelectItem key={kar.id} value={kar.id.toString()}> {/* Ubah value menjadi id departemen */}
+                    <SelectItem key={kar.id} value={kar.id.toString()}>
                       {kar.nama}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
-              {/* {errors.departemen_Id && <small className="text-red-600">{errors.departemen_Id}</small>} */}
+              {errors.karyawan_id && <small className="text-red-600">{errors.karyawan_id}</small>}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
@@ -88,13 +114,13 @@ export default function Create() {
                   </SelectTrigger>
                   <SelectContent>
                     {data_proyek.map((pro) => (
-                      <SelectItem key={pro.id} value={pro.id.toString()}> {/* Ubah value menjadi id departemen */}
+                      <SelectItem key={pro.id} value={pro.id.toString()}>
                         {pro.namaProyek}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-                {/* {errors.departemen_Id && <small className="text-red-600">{errors.departemen_Id}</small>} */}
+                {errors.proyek_id && <small className="text-red-600">{errors.proyek_id}</small>}
               </div>
 
               <div className="flex flex-col space-y-1.5">
@@ -106,6 +132,7 @@ export default function Create() {
                   onChange={(e) => setData('tanggal', e.target.value)}
                   className="w-full"
                 />
+                {errors.tanggal && <small className="text-red-600">{errors.tanggal}</small>}
               </div>
 
               <div className="flex flex-col space-y-1.5">
@@ -118,6 +145,7 @@ export default function Create() {
                   onChange={(e) => setData('jam_kerja', e.target.value)}
                   className="w-full"
                 />
+                {errors.jam_kerja && <small className="text-red-600">{errors.jam_kerja}</small>}
               </div>
             </div>
           </div>

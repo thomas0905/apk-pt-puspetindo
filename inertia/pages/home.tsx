@@ -1,11 +1,8 @@
 import {
   Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
-import { Head, Link, usePage } from "@inertiajs/react";
-import { IconBook2, IconHome, IconReceipt } from '@tabler/icons-react';
+import { Head, usePage } from "@inertiajs/react";
+import { IconHome } from '@tabler/icons-react';
 import Admin from '~/layout/admin';
 import 'animate.css';
 

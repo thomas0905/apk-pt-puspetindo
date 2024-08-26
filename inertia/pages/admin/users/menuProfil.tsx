@@ -6,8 +6,8 @@ import ImgMenuProfil from '../../../img/rois.jpeg'
 import { IconEdit } from '@tabler/icons-react'
 
 export default function MenuProfil() {
-  const {data_karyawan} =usePage().props
-  console.log(data_karyawan);
+  const {data_user} =usePage().props
+  console.log(data_user);
   
   return (
     <Admin> 
@@ -24,7 +24,7 @@ export default function MenuProfil() {
               </div>
             </div>
             <div className='text-black sm:text-white  text-center sm:text-left flex flex-col items-center sm:items-start sm:mt-20 mt-0'>
-              <h1 className='text-3xl font-bold '>Muhammad Rois</h1>
+              <h1 className='text-3xl font-bold '>{data_user?.nama || 'Nama tidak ditemukan'}</h1>
                 <span className='flex gap-2 '>
                 <h1>Posisi:</h1>
                 <h1>IT Programmer</h1>
