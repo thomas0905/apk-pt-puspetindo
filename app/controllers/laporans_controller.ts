@@ -16,20 +16,58 @@ export default class LaporansController {
             return inertia.render('admin/error/404');
         }
 
-        let man_hours;
+        let man_hours = [];
+
         if (request.input('start_date') != null) {
-            man_hours = await ManHour.query().whereBetween('tanggal', [request.input('start_date'), request.input('end_date')]).preload('karyawan').preload('proyek')
-            console.log(man_hours);
+            man_hours = await ManHour.query().whereBetween('tanggal', [request.input('start_date'), request.input('end_date')]).preload('karyawan').preload('proyek').groupBy('karyawan_id')
+
+            let reports = [];
+
+            man_hours.forEach(karyawan => {
+                let laporan = man_hours.filter(item => item.karyawan_id === karyawan.karyawan.id).map(item => {
+                    return {
+                        proyek: item.proyek.namaProyek,
+                        tanggal: item.tanggal,
+                        jam_kerja: item.jam_kerja
+                    };
+                });
+
+                reports.push({
+                    id: karyawan.id,
+                    nama_karyawan: karyawan.karyawan.nama,
+                    data_laporan: laporan
+                });
+            });
+
+            man_hours = reports;
 
         } else {
+
             man_hours = await ManHour.query()
                 .preload('karyawan')
                 .preload('proyek')
                 .where('karyawan_id', karyawan.id)
+                .groupBy('karyawan_id')
+
+            let reports = [];
+
+            man_hours.forEach(karyawan => {
+                let laporan = man_hours.filter(item => item.karyawan_id === karyawan.karyawan_id).map(item => {
+                    return {
+                        proyek: item.proyek.namaProyek,
+                        tanggal: item.tanggal,
+                        jam_kerja: item.jam_kerja
+                    };
+                });
+
+                reports.push({
+                    nama_karyawan: karyawan.karyawan.nama,
+                    data_laporan: laporan // Array of laporan for the specific karyawan
+                });
+            });
+
+            man_hours = reports
         }
-
-
-
 
         // const manhours = await ManHour.query().preload('karyawan').preload('proyek')
 

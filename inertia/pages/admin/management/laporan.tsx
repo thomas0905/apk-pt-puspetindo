@@ -105,7 +105,7 @@ export default function Laporan() {
                     <React.Fragment key={manhours.id}>
                       <TableRow>
                         <TableCell>{index + 1}</TableCell>
-                        <TableCell>{manhours.karyawan?.nama}</TableCell>
+                        <TableCell>{manhours.nama_karyawan}</TableCell>
                         <TableCell>{formatDate(manhours.tanggal)}</TableCell>
                         <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
                         <TableCell>{manhours.proyek?.namaProyek}</TableCell>
@@ -135,13 +135,15 @@ export default function Laporan() {
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                  <TableRow>
-                                    <TableCell>{index + 1}</TableCell>
-                                    <TableCell>{manhours.karyawan?.nama}</TableCell>
-                                    <TableCell>{formatDate(manhours.tanggal)}</TableCell>
-                                    <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
-                                    <TableCell>{manhours.jamKerja}</TableCell>
-                                  </TableRow>
+                                  {manhours.data_laporan.map((data, index) => (
+                                    <TableRow>
+                                      <TableCell>{index + 1}</TableCell>
+                                      <TableCell>{manhours.karyawan?.nama}</TableCell>
+                                      <TableCell>{formatDate(manhours.tanggal)}</TableCell>
+                                      <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
+                                      <TableCell>{manhours.jamKerja}</TableCell>
+                                    </TableRow>
+                                  ))}
                                   {/* You can add more detail rows here */}
                                 </TableBody>
                               </Table>
