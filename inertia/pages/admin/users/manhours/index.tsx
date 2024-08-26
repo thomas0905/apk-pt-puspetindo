@@ -61,9 +61,9 @@ export default function Index() {
           <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
             <IconTrash size={18} />
           </span>
-          <Link href={"/manhours/edit/" + info.row.original.id}>
+          {/* <Link href={"/manhours/edit/" + info.row.original.id}>
             <IconEdit size={18} />
-          </Link>
+          </Link> */}
         </div>
       ),
     }),
