@@ -29,7 +29,7 @@ export default class LaporansController {
 
             
             man_hours.forEach(karyawan => {
-                let laporan = all_man_hours.filter(item => item.karyawan_id == karyawan.karyawan.id).map(item => {
+                let laporan = all_man_hours.filter(item => item.karyawan_id === karyawan.karyawan.id).map(item => {
                     return {
                         proyek: item.proyek.namaProyek,
                         tanggal: item.tanggal,
@@ -55,6 +55,11 @@ export default class LaporansController {
                 .where('karyawan_id', karyawan.id)
                 .groupBy('karyawan_id')
 
+                const all_man_hours = await ManHour.query()
+                // .whereBetween('tanggal', [request.input('start_date'), request.input('end_date')])
+                .preload('karyawan')
+                .preload('proyek');
+                
             let reports = [];
 
             man_hours.forEach(karyawan => {
@@ -75,6 +80,9 @@ export default class LaporansController {
 
             man_hours = reports
         }
+
+        // const manhours = await ManHour.query().preload('karyawan').preload('proyek')
+
         return inertia.render('admin/management/laporan', {
             data_manhours: man_hours
         });
