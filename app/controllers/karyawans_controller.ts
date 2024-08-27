@@ -74,7 +74,7 @@ export default class KaryawansKontroller {
 
         const karyawan = await Karyawan.findOrFail(params.id)
         karyawan.nama = request.input('nama')
-        // karyawan.departemen = request.input('departemen')
+        karyawan.departemen_Id = request.input('departemen_Id')
         karyawan.jabatan = request.input('jabatan')
         karyawan.status = request.input('status')
         karyawan.save()

@@ -13,14 +13,15 @@ import Admin from '~/layout/admin';
 
 export default function EditPengguna() {
     const { data_karyawan } = usePage().props;
+    console.log(data_karyawan);
 
     const { data, setData, put } = useForm({
         nama: data_karyawan.nama || '',
-        namaDepartemen: data_karyawan.namaDepartemen || '',
+        departemen_Id: data_karyawan.departemen_Id || '',
         jabatan: data_karyawan.jabatan || '',
         status: data_karyawan.status || '',
-        email: data_karyawan.user?.email || '', 
-        password: '', // Kosongkan password pada awalnya
+        email: data_karyawan.user?.email || '',
+        password: data_karyawan.user?.password || '',
     });
 
     const handleSubmit: FormEventHandler = async (e) => {
@@ -93,13 +94,13 @@ export default function EditPengguna() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
                             <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="departemen">Departemen:</Label>
+                                <Label htmlFor="departemen_Id">Departemen:</Label>
                                 <Input
                                     id="departemen"
                                     placeholder="Masukkan Nama Departemen"
-                                    name="namaDepartemen"
-                                    value={data.namaDepartemen}
-                                    onChange={(e) => setData('namaDepartemen', e.target.value)}
+                                    name="departemen_Id"
+                                    value={data.departemen_Id}
+                                    onChange={(e) => setData('departemen_Id', e.target.value)}
                                 />
                             </div>
 
