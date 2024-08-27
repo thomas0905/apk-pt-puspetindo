@@ -93,8 +93,7 @@ export default function Laporan() {
                   <TableHead className="w-[50px]">No</TableHead>
                   <TableHead>Karyawan</TableHead>
                   <TableHead>Tanggal</TableHead>
-                  <TableHead>No_JE</TableHead>
-                  <TableHead>Proyek</TableHead>
+                 
                   <TableHead>Total</TableHead>
                   <TableHead>Detail</TableHead>
                 </TableRow>
@@ -107,8 +106,7 @@ export default function Laporan() {
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>{manhours.nama_karyawan}</TableCell>
                         <TableCell>{formatDate(manhours.tanggal)}</TableCell>
-                        <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
-                        <TableCell>{manhours.proyek?.namaProyek}</TableCell>
+                  
                         <TableCell>{manhours.jamKerja}</TableCell>
                         <TableCell>
                           <Button
