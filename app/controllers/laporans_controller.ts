@@ -42,6 +42,7 @@ export default class LaporansController {
                 reports.push({
                     id: karyawan.id,
                     nama_karyawan: karyawan.karyawan.nama,
+                    tanggal:karyawan.tanggal,
                     data_laporan: laporan
                 });
             });            

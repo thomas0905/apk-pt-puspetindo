@@ -100,25 +100,24 @@ export default function Laporan() {
               </TableHeader>
               <TableBody>
                 {filteredData.length > 0 ? (
-                  filteredData.map((manhours, index) => (
-                    <React.Fragment key={manhours.id}>
+                  filteredData.map((data, index) => (
+                    <React.Fragment key={index.id}>
                       <TableRow>
                         <TableCell>{index + 1}</TableCell>
-                        <TableCell>{manhours.nama_karyawan}</TableCell>
-                        <TableCell>{formatDate(manhours.tanggal)}</TableCell>
-                  
-                        <TableCell>{manhours.jamKerja}</TableCell>
+                        <TableCell>{data.nama_karyawan}</TableCell>
+                        <TableCell>{formatDate(data.tanggal)}</TableCell>
+                        <TableCell>{data.jam_kerja}</TableCell>
                         <TableCell>
                           <Button
                             className="flex items-center bg-transparent hover:bg-transparent"
-                            onClick={() => toggleRow(manhours.id)}
+                            onClick={() => toggleRow(data.id)}
                           >
-                            {expandedRows.includes(manhours.id) ? <IconMinus className='bg-blue-500 rounded-sm' size={20} /> : <IconPlus className='bg-blue-500 rounded-sm' size={20} />}
+                            {expandedRows.includes(data.id) ? <IconMinus className='bg-blue-500 rounded-sm' size={20} /> : <IconPlus className='bg-blue-500 rounded-sm' size={20} />}
                           </Button>
                         </TableCell>
                       </TableRow>
                       {/* Detail Row */}
-                      {expandedRows.includes(manhours.id) && (
+                      {expandedRows.includes(data.id) && (
                         <TableRow>
                           <TableCell colSpan={6}>
                             <div className="p-4 bg-gray-100 border-t">
@@ -133,7 +132,7 @@ export default function Laporan() {
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                  {manhours.data_laporan.map((data, index) => (
+                                  {data.data_laporan.map((data, index) => (
                                     <TableRow key={index}>
                                       <TableCell>{index + 1}</TableCell>
                                       <TableCell>{data.karyawan?.nama}</TableCell>
