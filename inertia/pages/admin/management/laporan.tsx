@@ -102,8 +102,7 @@ export default function Laporan() {
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>{data.nama_karyawan}</TableCell>
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
-                        <TableCell>{data.total_jam}</TableCell>
-                        {/* <TableCell>{calculateTotalJamKerja}</TableCell> */}
+                        <TableCell>{data.total_jam} jam</TableCell>
                         <TableCell>
                           <Button
                             className="flex items-center bg-transparent hover:bg-transparent"
@@ -135,7 +134,7 @@ export default function Laporan() {
                                       <TableCell>{data.karyawan?.nama}</TableCell>
                                       <TableCell>{formatDate(data.tanggal)}</TableCell>
                                       <TableCell>{data.kodeJobOrder}</TableCell>
-                                      <TableCell>{data.jam_kerja}</TableCell>
+                                      <TableCell>{data.jam_kerja} jam</TableCell>
                                     </TableRow>
                                   ))}
                                 </TableBody>
