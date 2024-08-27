@@ -1,6 +1,6 @@
 import { Head, router, usePage } from '@inertiajs/react'
 import { IconPlus, IconMinus, IconPrinter } from '@tabler/icons-react'
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useMemo } from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import Admin from '~/layout/admin'
@@ -19,14 +19,13 @@ import { Input } from '~/components/ui/input'
 
 export default function Laporan() {
   const { data_manhours } = usePage().props
-  console.log(data_manhours);
 
   const componentRef = useRef(null)
 
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [filteredData, setFilteredData] = useState(data_manhours)
-  const [expandedRows, setExpandedRows] = useState([]) // Track expanded rows
+  const [expandedRows, setExpandedRows] = useState([])
 
   const handlePrint = () => {
     Swal.fire({
@@ -42,13 +41,10 @@ export default function Laporan() {
   }
 
   const handleFilter = () => {
-    const filterQuery = router.get('/management/laporan', {
+    router.get('/management/laporan', {
       start_date: startDate,
       end_date: endDate
     })
-
-    console.log(filterQuery);
-
   }
 
   const toggleRow = (rowId) => {
@@ -57,7 +53,6 @@ export default function Laporan() {
     )
   }
 
-  // let jam1 = 
 
   return (
     <Admin>
@@ -95,7 +90,6 @@ export default function Laporan() {
                   <TableHead className="w-[50px]">No</TableHead>
                   <TableHead>Karyawan</TableHead>
                   <TableHead>Tanggal</TableHead>
-                 
                   <TableHead>Total</TableHead>
                   <TableHead>Detail</TableHead>
                 </TableRow>
@@ -108,7 +102,8 @@ export default function Laporan() {
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>{data.nama_karyawan}</TableCell>
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
-                        <TableCell>{data.jam_kerja}</TableCell>
+                        <TableCell>{data.total_jam}</TableCell>
+                        {/* <TableCell>{calculateTotalJamKerja}</TableCell> */}
                         <TableCell>
                           <Button
                             className="flex items-center bg-transparent hover:bg-transparent"
@@ -143,7 +138,6 @@ export default function Laporan() {
                                       <TableCell>{data.jam_kerja}</TableCell>
                                     </TableRow>
                                   ))}
-                                  {/* You can add more detail rows here */}
                                 </TableBody>
                               </Table>
                             </div>

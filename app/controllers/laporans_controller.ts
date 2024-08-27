@@ -20,32 +20,38 @@ export default class LaporansController {
 
         if (request.input('start_date') != null) {
             man_hours = await ManHour.query().whereBetween('tanggal', [request.input('start_date'), request.input('end_date')]).preload('karyawan').preload('proyek').groupBy('karyawan_id')
-            const all_man_hours = await await ManHour.query()
-            .whereBetween('tanggal', [request.input('start_date'), request.input('end_date')])
-            .preload('karyawan')
-            .preload('proyek');
-            
+            const all_man_hours = await ManHour.query()
+                .whereBetween('tanggal', [request.input('start_date'), request.input('end_date')])
+                .preload('karyawan')
+                .preload('proyek');
+
             let reports = [];
 
-            
+
             man_hours.forEach(karyawan => {
                 let laporan = all_man_hours.filter(item => item.karyawan_id === karyawan.karyawan.id).map(item => {
                     return {
                         proyek: item.proyek.namaProyek,
                         tanggal: item.tanggal,
-                        kodeJobOrder:item.proyek.kodeJobOrder,
+                        kodeJobOrder: item.proyek.kodeJobOrder,
                         jam_kerja: item.jam_kerja,
                         karyawan: item.karyawan,
                     };
                 });
 
+                let total_jam = laporan.reduce((acc, item) => {
+                    return acc + item.jam_kerja
+                }, 0);
+
+
                 reports.push({
                     id: karyawan.id,
                     nama_karyawan: karyawan.karyawan.nama,
-                    tanggal:karyawan.tanggal,
-                    data_laporan: laporan
+                    tanggal: karyawan.tanggal,
+                    data_laporan: laporan,
+                    total_jam: total_jam,
                 });
-            });            
+            });
 
             man_hours = reports;
 
@@ -57,10 +63,10 @@ export default class LaporansController {
                 .where('karyawan_id', karyawan.id)
                 .groupBy('karyawan_id')
 
-                const all_man_hours = await ManHour.query()
+            const all_man_hours = await ManHour.query()
                 .preload('karyawan')
                 .preload('proyek');
-                
+
             let reports = [];
 
             man_hours.forEach(karyawan => {
@@ -68,14 +74,21 @@ export default class LaporansController {
                     return {
                         proyek: item.proyek.namaProyek,
                         tanggal: item.tanggal,
+                        kodeJobOrder: item.proyek.kodeJobOrder,
                         jam_kerja: item.jam_kerja,
                         karyawan: item.karyawan,
                     };
                 });
 
+                let total_jam = laporan.reduce((acc, item) => {
+                    return acc + item.jam_kerja
+                }, 0);
+
                 reports.push({
+                    id: karyawan.id,
                     nama_karyawan: karyawan.karyawan.nama,
-                    data_laporan: laporan 
+                    data_laporan: laporan,
+                    total_jam: total_jam,
                 });
             });
 
