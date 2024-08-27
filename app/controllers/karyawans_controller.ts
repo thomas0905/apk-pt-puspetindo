@@ -5,29 +5,16 @@ import { HttpContext, Redirect } from "@adonisjs/core/http";
 export default class KaryawansKontroller {
 
     async index({ inertia, auth }: HttpContext) {
-        // Mendapatkan user yang terotentikasi
         const user = auth.user;
-    
-        // Periksa apakah user terotentikasi
         if (!user) {
             return inertia.render('admin/error/404');
         }
-    
-        // Mendapatkan data karyawan berdasarkan user yang sedang login
         const karyawanUser = await Karyawan.query().where('user_id', user.id).first();
-    
-        // Pengecekan jabatan user
         if (karyawanUser?.jabatan !== 'IT Software') {
             return inertia.render('admin/error/404');
         }
-    
-        // Memuat semua data karyawan dengan preload departemen
         const semuaKaryawan = await Karyawan.query().preload('departemen');
-        
-        // Memuat semua data user tanpa preload
         const semuaUser = await User.all();
-    
-        // Kirim data ke view
         return inertia.render('admin/dasboard/karyawan/index', {
             data_karyawan: semuaKaryawan,
             data_user: semuaUser
@@ -72,14 +59,19 @@ export default class KaryawansKontroller {
     }
 
     async edit({ inertia, params }: HttpContext) {
-        console.log(params.id);
-        const karyawan = await Karyawan.find(params.id)
+        const karyawan = await Karyawan.query().preload('user').where('id', params.id).first();
         return inertia.render('admin/dasboard/karyawan/edit', {
-            karyawan: karyawan
+            data_karyawan: karyawan
         });
     }
 
     async update({ request, params, response }: HttpContext) {
+        const users = new User()
+        users.fullName = request.input('fullName');
+        users.email = request.input('email');
+        users.password = request.input('password');
+        await users.save();
+
         const karyawan = await Karyawan.findOrFail(params.id)
         karyawan.nama = request.input('nama')
         // karyawan.departemen = request.input('departemen')
@@ -87,7 +79,6 @@ export default class KaryawansKontroller {
         karyawan.status = request.input('status')
         karyawan.save()
         return response.redirect('/karyawan')
-
     }
 
 }

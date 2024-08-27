@@ -4,7 +4,7 @@ import { compose } from '@adonisjs/core/helpers'
 import { BaseModel, beforeSave, column, hasOne } from '@adonisjs/lucid/orm'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import Karyawan from './karyawan.js'
-import type {HasOne} from '@adonisjs/lucid/types/relations'
+import type { HasOne } from '@adonisjs/lucid/types/relations'
 import { Hash } from '@adonisjs/core/hash'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
