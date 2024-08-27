@@ -58,7 +58,6 @@ export default class LaporansController {
                 .groupBy('karyawan_id')
 
                 const all_man_hours = await ManHour.query()
-                // .whereBetween('tanggal', [request.input('start_date'), request.input('end_date')])
                 .preload('karyawan')
                 .preload('proyek');
                 
@@ -76,14 +75,13 @@ export default class LaporansController {
 
                 reports.push({
                     nama_karyawan: karyawan.karyawan.nama,
-                    data_laporan: laporan // Array of laporan for the specific karyawan
+                    data_laporan: laporan 
                 });
             });
 
             man_hours = reports
         }
 
-        // const manhours = await ManHour.query().preload('karyawan').preload('proyek')
 
         return inertia.render('admin/management/laporan', {
             data_manhours: man_hours
