@@ -138,8 +138,8 @@ export default function Laporan() {
                                       <TableCell>{index + 1}</TableCell>
                                       <TableCell>{data.karyawan?.nama}</TableCell>
                                       <TableCell>{formatDate(data.tanggal)}</TableCell>
-                                      <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
-                                      <TableCell>{manhours.jamKerja}</TableCell>
+                                      <TableCell>{data.kodeJobOrder}</TableCell>
+                                      <TableCell>{data.jam_kerja}</TableCell>
                                     </TableRow>
                                   ))}
                                   {/* You can add more detail rows here */}

@@ -33,6 +33,7 @@ export default class LaporansController {
                     return {
                         proyek: item.proyek.namaProyek,
                         tanggal: item.tanggal,
+                        kodeJobOrder:item.proyek.kodeJobOrder,
                         jam_kerja: item.jam_kerja,
                         karyawan: item.karyawan,
                     };
