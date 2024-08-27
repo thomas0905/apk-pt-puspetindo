@@ -134,10 +134,10 @@ export default function Laporan() {
                                 </TableHeader>
                                 <TableBody>
                                   {manhours.data_laporan.map((data, index) => (
-                                    <TableRow>
+                                    <TableRow key={index}>
                                       <TableCell>{index + 1}</TableCell>
-                                      <TableCell>{manhours.karyawan?.nama}</TableCell>
-                                      <TableCell>{formatDate(manhours.tanggal)}</TableCell>
+                                      <TableCell>{data.karyawan?.nama}</TableCell>
+                                      <TableCell>{formatDate(data.tanggal)}</TableCell>
                                       <TableCell>{manhours.proyek?.kodeJobOrder}</TableCell>
                                       <TableCell>{manhours.jamKerja}</TableCell>
                                     </TableRow>
