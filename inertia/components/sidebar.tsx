@@ -23,7 +23,7 @@ export default function Sidebar() {
     const isActive = (path) => url === path;
     return (
         <Fragment>
-            <div className={`hidden border-r bg-muted/50 md:block ${isSidebarHidden ? 'w-220' : 'w-20'}`}>
+            <div className={`hidden border-r bg-slate-50 md:block ${isSidebarHidden ? 'w-220' : 'w-20'}`}>
                 <div className="flex h-full shadow-right max-h-screen flex-col gap-2">
                     <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6 fixed">
                         <Link href="/" className="flex items-center gap-2 font-semibold">

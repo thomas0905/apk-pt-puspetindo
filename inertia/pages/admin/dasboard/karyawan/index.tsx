@@ -97,7 +97,7 @@ export default function Index() {
                         </div>
 
                         <div className="flex gap-2">
-                            <Link href="/departemen/index">
+                            <Link href="/departemen">
                                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
                                     <IconBuildingArch size={18} />
                                     Departemen
