@@ -20,8 +20,8 @@ export default function EditPengguna() {
         departemen_Id: data_karyawan.departemen_Id || '',
         jabatan: data_karyawan.jabatan || '',
         status: data_karyawan.status || '',
-        email: data_karyawan.user?.email || '',
-        password: data_karyawan.user?.password || '',
+        // email: data_karyawan.user?.email || '',
+        // password: data_karyawan.user?.password || '',
     });
 
     const handleSubmit: FormEventHandler = async (e) => {
@@ -142,7 +142,7 @@ export default function EditPengguna() {
                                 </Select>
                             </div>
 
-                            <div className="mt-2">
+                            {/* <div className="mt-2">
                                 <h6 className="text-gray-600 text-md font-bold">Data Pengguna</h6>
                                 <div className="flex flex-col space-y-1.5 mt-3">
                                     <Label htmlFor="email">Email:</Label>
@@ -179,7 +179,7 @@ export default function EditPengguna() {
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 
