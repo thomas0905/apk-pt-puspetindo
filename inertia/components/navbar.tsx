@@ -32,7 +32,7 @@ export default function Navbar() {
           </div>
         </div>
       )}
-      <header className="flex fixed w-full h-14 items-center gap-4 border-b bg-slate-50 px-4 lg:h-[60px] lg:px-6">
+      <header className="flex  w-full h-14 items-center gap-4 border-b bg-slate-50 px-4 lg:h-[60px] lg:px-6">
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="shrink-0 md:hidden">

@@ -13,7 +13,7 @@ export default function Admin({ children }) {
         <Sidebar />
         <div className="flex flex-col">
           <Navbar />
-          <main className="flex flex-1 flex-col gap-4 p-4 mt-16 lg:gap-6 lg:p-6">{children}</main>
+          <main className="flex flex-1 flex-col gap-4 p-4 mt-2 lg:gap-6 lg:p-6">{children}</main>
         </div>
       </div>
     </Fragment>
