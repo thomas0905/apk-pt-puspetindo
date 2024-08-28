@@ -36,6 +36,7 @@ export default class LaporansController {
                         kodeJobOrder: item.proyek.kodeJobOrder,
                         jam_kerja: item.jam_kerja,
                         karyawan: item.karyawan,
+                        total_persentase: item.jam_kerja * 173 / 100
                     };
                 });
 
@@ -50,6 +51,7 @@ export default class LaporansController {
                     tanggal: karyawan.tanggal,
                     data_laporan: laporan,
                     total_jam: total_jam,
+                    total_persentase: (total_jam * 173) / 100
                 });
             });
 
@@ -77,25 +79,21 @@ export default class LaporansController {
                         kodeJobOrder: item.proyek.kodeJobOrder,
                         jam_kerja: item.jam_kerja,
                         karyawan: item.karyawan,
-
+                        total_persentase: item.jam_kerja * 173 / 100
                     };
                 });
 
                 let total_jam = laporan.reduce((acc, item) => {
-                    return acc + item.jam_kerja
+                    return acc + item.jam_kerja;
                 }, 0);
-
-                let total_persentase = laporan.reduce((acc, item) => {
-                    return acc + item.jam_kerja / 173 * 100;
-                }, 0);
-
+            
 
                 reports.push({
                     id: karyawan.id,
                     nama_karyawan: karyawan.karyawan.nama,
                     data_laporan: laporan,
                     total_jam: total_jam,
-                    total_persentase:total_persentase
+                    total_persentase: (total_jam * 173) / 100
                 });
             });
 
