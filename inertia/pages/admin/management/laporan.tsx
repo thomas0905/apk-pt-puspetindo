@@ -91,6 +91,7 @@ export default function Laporan() {
                   <TableHead>Karyawan</TableHead>
                   <TableHead>Tanggal</TableHead>
                   <TableHead>Total</TableHead>
+                  <TableHead>Total Persentase</TableHead>
                   <TableHead>Detail</TableHead>
                 </TableRow>
               </TableHeader>
@@ -102,7 +103,9 @@ export default function Laporan() {
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>{data.nama_karyawan}</TableCell>
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
-                        <TableCell>{data.total_jam} jam</TableCell>
+                        <TableCell>{} jam</TableCell>
+                        <TableCell>{} %</TableCell>
+
                         <TableCell>
                           <Button
                             className="flex items-center bg-transparent hover:bg-transparent"
@@ -125,6 +128,7 @@ export default function Laporan() {
                                     <TableHead>Tanggal</TableHead>
                                     <TableHead>No JE</TableHead>
                                     <TableHead>Jam Kerja</TableHead>
+                                    <TableHead>Persentase</TableHead>
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -135,6 +139,7 @@ export default function Laporan() {
                                       <TableCell>{formatDate(data.tanggal)}</TableCell>
                                       <TableCell>{data.kodeJobOrder}</TableCell>
                                       <TableCell>{data.jam_kerja} jam</TableCell>
+                                      <TableCell>{data.persentase}%</TableCell>
                                     </TableRow>
                                   ))}
                                 </TableBody>

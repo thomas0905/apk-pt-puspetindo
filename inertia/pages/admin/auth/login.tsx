@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import './login.css';
+// import './login.css';
 import {
     Card,
     CardContent,
@@ -63,7 +63,7 @@ export default function Login() {
                 <title>login</title>
                 <link rel="icon" href={favIcon} type="image/x-icon" />
             </Head>
-            <Card className="w-full max-w-md border-0 shadow-md hover-card sm:p-1 animate__animated animate__fadeIn">
+            <Card className="w-full max-w-md border-0 shadow-lg hover-card sm:p-1 animate__animated animate__fadeIn">
                 <div className='justify-center flex mt-3'>
                     <img className='justify-center' src={logoLogin} alt="Logo" />
                 </div>
