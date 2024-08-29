@@ -1,5 +1,5 @@
 import { Head, router, usePage } from '@inertiajs/react'
-import { IconPlus, IconMinus, IconPrinter } from '@tabler/icons-react'
+import { IconPlus, IconMinus, IconPrinter, IconFileTypeDoc, IconFileDownload } from '@tabler/icons-react'
 import React, { useRef, useState, useMemo } from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
@@ -16,16 +16,15 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Input } from '~/components/ui/input'
-
+import { DownloadTableExcel } from 'react-export-table-to-excel';
 export default function Laporan() {
   const { data_manhours } = usePage().props
-
   const componentRef = useRef(null)
-
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [filteredData, setFilteredData] = useState(data_manhours)
   const [expandedRows, setExpandedRows] = useState([])
+  const tableRef = useRef(null);
 
   const handlePrint = () => {
     Swal.fire({
@@ -51,6 +50,11 @@ export default function Laporan() {
     setExpandedRows(prev =>
       prev.includes(rowId) ? prev.filter(id => id !== rowId) : [...prev, rowId]
     )
+  }
+
+  const handleExport = () => {
+    console.log(data_manhours);
+
   }
 
 
@@ -84,7 +88,7 @@ export default function Laporan() {
               </div>
               <Button className='bg-blue-600 text-white hover:bg-blue-500 text-xs py-1.5 rounded-sm px-3' onClick={handleFilter}>Pilih</Button>
             </div>
-            <Table className='mt-2 bg-slate-50'>
+            <Table className='mt-2 bg-slate-50'  ref={tableRef}>
               <TableHeader className='bg-blue-300'>
                 <TableRow className='border-t'>
                   <TableHead className="w-[50px]">No</TableHead>
@@ -158,7 +162,20 @@ export default function Laporan() {
               </TableBody>
             </Table>
           </div>
-          <div className='mt-2 flex justify-end'>
+          <div className='mt-2 flex justify-end gap-2'>
+            <DownloadTableExcel
+              filename="users table"
+              sheet="users"
+              currentTableRef={tableRef.current}
+            >
+              <Button
+                className='bg-green-600 flex gap-2 hover:bg-green-500'>
+                <IconFileDownload className='gap-2' />
+                Export
+              </Button>
+
+            </DownloadTableExcel>
+
             <ReactToPrint
               trigger={() => (
                 <Button onClick={handlePrint} className='bg-blue-500 flex gap-1 hover:bg-blue-400'>
