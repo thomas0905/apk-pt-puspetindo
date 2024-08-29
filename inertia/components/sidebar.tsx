@@ -24,79 +24,84 @@ export default function Sidebar() {
 
     return (
         <Fragment>
-            <div className={`hidden border-r bg-slate-50 md:block ${isSidebarHidden ? 'w-20' : 'w-220'}`}>
+            <div className={`hidden border-r bg-slate-50 md:block transition-all duration-300 ${isSidebarHidden ? 'w-16' : 'w-220'}`}>
                 <div className="flex h-full shadow-right max-h-screen flex-col gap-2">
                     <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6 fixed">
                         <Link href="/" className="flex items-center gap-2 font-semibold">
-                            <img src={MyImageComponent} alt="Logo" width={isSidebarHidden ? 50 : 150} />
+                            <img src={MyImageComponent} alt="Logo" width={isSidebarHidden ? 0 : 150} />
                         </Link>
-                        <Button variant="outline" size="icon" className="ml-3 h-8 w-8" onClick={toggleSidebar}>
-                            <IconArrowBadgeLeft className={`h-4 w-4 transition-transform ${isSidebarHidden ? 'rotate-180' : ''}`} />
-                            <div className="sr-only">Toggle sidebar</div>
-                        </Button>
-                    </div>
-                    <div className="flex-1 mt-20">
-                        <nav className="grid items-start fixed px-2 text-sm font-medium lg:px-4">
-                            {/* Dashboard Section */}
-                            <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 py-3 text-muted-foreground transition-all">
-                                <span className={`${isSidebarHidden ? 'hidden' : 'judul-sidebar'}`}>Dashboard</span>
-                                <Link
-                                    href='/'
-                                    className={`flex pl-2 text-black rounded-sm mt-1 p-1 gap-2 text-md transition-all duration-200 ${isActive('/') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}
-                                >
-                                    <IconDashboard size={21} />
-                                    <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Beranda</span>
-                                </Link>
+                        <Button
+                            variant="outline"
+                            size="icon" className={`ml - 3 h-8 w-8 transition-all duration-300 ${isSidebarHidden ? 'ml-[-8px]' : 'mx-[8px]'}`}
+
+                        onClick={toggleSidebar}>
+                        <IconArrowBadgeLeft className={`h-4 w-4 transition-transform ${isSidebarHidden ? 'rotate-180' : ''}`} />
+                        <div className="sr-only">Toggle sidebar</div>
+                    </Button>
+
+                </div>
+                <div className="flex-1 mt-20">
+                    <nav className="grid items-start fixed px-2 text-sm font-medium lg:px-4">
+                        {/* Dashboard Section */}
+                        <span className="flex text-xm flex-col items-start gap-1 rounded-lg  py-3 text-muted-foreground transition-all">
+                            <span className={`${isSidebarHidden ? 'hidden' : 'judul-sidebar'}`}>Dashboard</span>
+                            <Link
+                                href='/'
+                                className={`flex pl-2 text-black rounded-sm mt-1 p-1 gap-2 text-md transition-all duration-200 ${isActive('/') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}
+                            >
+                                <IconDashboard size={21} />
+                                <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Beranda</span>
+                            </Link>
 
 
-                                <Link href='/karyawan' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/karyawan') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
-                                    <IconUsers size={21} />
-                                    <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Karyawan</span>
-                                </Link>
+                            <Link href='/karyawan' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/karyawan') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
+                                <IconUsers size={21} />
+                                <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Karyawan</span>
+                            </Link>
 
-                                <Link href='/proyek'className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/proyek') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
-                                    <IconBriefcase size={21} />
-                                    <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Proyek</span>
-                                </Link>
-                            </span>
+                            <Link href='/proyek' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/proyek') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
+                                <IconBriefcase size={21} />
+                                <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Proyek</span>
+                            </Link>
+                        </span>
 
-                            <span className="flex text-xm flex-col items-start gap-1 rounded-lg px-2 text-muted-foreground transition-all">
-                                <span className={`${isSidebarHidden ? 'hidden' : 'judul-sidebar'}`}>Users</span>
-                                <Link href='/manhours/menuProfil' className={`flex pl-2 text-black rounded-sm mt-1 p-1 gap-2 text-md transition-all duration-200 ${isActive('/manhours/menuProfil') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
-                                    <IconUsers size={21} />
-                                    <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Menu Profil</span>
-                                </Link>
+                        <span className="flex text-xm flex-col items-start gap-1 rounded-lg text-muted-foreground transition-all">
+                            <span className={`${isSidebarHidden ? 'hidden' : 'judul-sidebar'}`}>Users</span>
+                            <Link href='/manhours/menuProfil' className={`flex pl-2 text-black rounded-sm mt-1 p-1 gap-2 text-md transition-all duration-200 ${isActive('/manhours/menuProfil') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
+                                <IconUsers size={21} />
+                                <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Menu Profil</span>
+                            </Link>
 
-                                <Link href='/manhours' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/manhours') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
-                                    <IconBriefcase size={21} />
-                                    <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Man Hours</span>
-                                </Link>
-                            </span>
+                            <Link href='/manhours' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/manhours') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
+                                <IconBriefcase size={21} />
+                                <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Man Hours</span>
+                            </Link>
+                        </span>
 
-                            <span className="flex text-xm flex-col items-start gap-1 mt-3 rounded-lg px-2 text-muted-foreground transition-all">
-                                <span className={`${isSidebarHidden ? 'hidden' : 'judul-sidebar'}`}>Management</span>
-                                <Link href='/management/laporan' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/management/laporan') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
-                                    <IconBook2 size={21} />
-                                    <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Laporan</span>
-                                </Link>
-                            </span>
+                        <span className="flex text-xm flex-col items-start gap-1 mt-3 rounded-lg text-muted-foreground transition-all">
+                            <span className={`${isSidebarHidden ? 'hidden' : 'judul-sidebar'}`}>Management</span>
+                            <Link href='/management/laporan' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/management/laporan') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
+                                <IconBook2 size={21} />
+                                <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Laporan</span>
+                            </Link>
+                        </span>
 
-                            <span className="flex text-xm flex-col items-start gap-1 mt-3 rounded-lg px-2 text-muted-foreground transition-all">
-                                <span className={`${isSidebarHidden ? 'hidden' : 'judul-sidebar'}`}>Sistem</span>
-                                <Link href='/pengguna' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/pengguna') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
-                                    <IconUserSquare size={21} />
-                                    <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Pengguna</span>
-                                </Link>
+                        <span className="flex text-xm flex-col items-start gap-1 mt-3 rounded-lg  text-muted-foreground transition-all">
+                            <span className={`${isSidebarHidden ? 'hidden' : 'judul-sidebar'}`}>Sistem</span>
+                            <Link href='/pengguna' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/pengguna') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
+                                <IconUserSquare size={21} />
+                                <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Pengguna</span>
+                            </Link>
 
-                                <Link href='#' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 hover:text-white hover:bg-blue-600 ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
-                                    <IconSettings size={21} />
-                                    <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Pengaturan</span>
-                                </Link>
-                            </span>
-                        </nav>
-                    </div>
+                            <Link href='#' className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 hover:text-white hover:bg-blue-600 ${isSidebarHidden ? 'w-18 justify-center p-2' : 'w-[190px]'}`}>
+                                <IconSettings size={21} />
+                                <span className={`${isSidebarHidden ? 'hidden' : ''}`}>Pengaturan</span>
+                            </Link>
+                        </span>
+                    </nav>
                 </div>
             </div>
-        </Fragment>
+        </div>
+        </Fragment >
     );
 }
