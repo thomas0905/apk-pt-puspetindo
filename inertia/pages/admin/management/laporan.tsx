@@ -17,8 +17,13 @@ import {
 } from "@/components/ui/table"
 import { Input } from '~/components/ui/input'
 import { DownloadTableExcel } from 'react-export-table-to-excel';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
+
+
 export default function Laporan() {
   const { data_manhours } = usePage().props
+  console.log(data_manhours);
+  
   const componentRef = useRef(null)
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
@@ -67,7 +72,7 @@ export default function Laporan() {
             <div className='flex justify-center'>
               <img src={logoPuspetindo} alt="Logo Puspetindo" />
             </div>
-            <div className="flex items-center mt-2">
+            <div className="flex items-center mt-2 gap-2">
               <h6 className="text-gray-700 text-md font-semibold">Laporan</h6>
               <div className="flex items-center mx-1 space-x-2">
                 <Input
@@ -86,6 +91,18 @@ export default function Laporan() {
                   className="border rounded-sm p-0.5 text-sm"
                 />
               </div>
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Pilih Departemen" />
+                </SelectTrigger>
+                <SelectContent>
+                  {data_manhours.map((kar) => (
+                    <SelectItem key={kar.id} value={kar.id.toString()}>
+                      {kar.nama_karyawan}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <Button className='bg-blue-600 text-white hover:bg-blue-500 text-xs py-1.5 rounded-sm px-3' onClick={handleFilter}>Pilih</Button>
             </div>
             <Table className='mt-2 bg-slate-50'  ref={tableRef}>
