@@ -1,15 +1,17 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { IconBuildingArch, IconEdit, IconHome, IconTrash, IconUserPlus } from '@tabler/icons-react';
+import { IconBuildingArch, IconEdit, IconFileDownload, IconHome, IconTrash, IconUserPlus } from '@tabler/icons-react';
 import Admin from '~/layout/admin';
 import { Head, Link, router, usePage } from "@inertiajs/react";
 import Swal from 'sweetalert2'
 import DataTable from '~/components/dataTable/dataTable'
 import { createColumnHelper } from "@tanstack/react-table";
-
+import { DownloadTableExcel } from 'react-export-table-to-excel';
+import { useRef } from 'react';
 export default function Index() {
     const { data_karyawan } = usePage().props;
     console.log(data_karyawan);
+    const tableRef = useRef(null);
 
     const handleDelete = async (id) => {
         const result = await Swal.fire({
@@ -113,8 +115,22 @@ export default function Index() {
                     </div>
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-4" ref={tableRef}>
                     <DataTable data={data_karyawan} columns={columns} />
+                </div>
+                <div className='flex justify-end'>
+                    <DownloadTableExcel
+                        filename="users table"
+                        sheet="users"
+                        currentTableRef={tableRef.current}
+                    >
+
+                        <Button
+                            className='bg-green-600 flex gap-2 hover:bg-green-500 mt-2 justify-end'>
+                            <IconFileDownload className='gap-2' />
+                            Export
+                        </Button>
+                    </DownloadTableExcel>
                 </div>
             </Card>
         </Admin>
