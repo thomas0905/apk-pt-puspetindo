@@ -114,8 +114,8 @@ export default function dataTable({ data, columns }) {
                 />
             </div>
 
-            <Card className='mt-2'>
-                <Table>
+            <Card className='mt-2 overflow-x-scroll'>
+                <Table className='w-full'>
                     <TableHeader>
                         {table.getHeaderGroups().map(headerGroup => (
                             <TableRow key={headerGroup.id}>

@@ -56,6 +56,44 @@ export default function Index() {
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
+
+        columnHelper.accessor('jabatan', {
+            header: 'Jabatan',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
+
+        columnHelper.accessor('jabatan', {
+            header: 'Jabatan',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
+
+        columnHelper.accessor('jabatan', {
+            header: 'Jabatan',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
+
+        columnHelper.accessor('jabatan', {
+            header: 'Jabatan',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
+
+        columnHelper.accessor('jabatan', {
+            header: 'Jabatan',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
+        columnHelper.accessor('jabatan', {
+            header: 'Jabatan',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
+
+
+
         columnHelper.accessor('status', {
             header: 'Status',
             cell: info => {

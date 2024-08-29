@@ -13,6 +13,7 @@ import {
 } from '@tabler/icons-react';
 import MyImageComponent from '../img/logo-puspetindo.png';
 import { Button } from "@/components/ui/button";
+import Navbar from './navbar';
 
 export default function Sidebar() {
     const [isSidebarHidden, setSidebarHidden] = useState(true);
@@ -25,20 +26,22 @@ export default function Sidebar() {
 
     return (
         <Fragment>
+            {/* <Navbar /> */}
             <div className={`hidden border-r bg-slate-50 md:block transition-all duration-300 ${isSidebarHidden ? 'w-16' : 'w-220'}`}>
                 <div className="flex h-full shadow-right max-h-screen flex-col gap-2 transition-all duration-300 ">
                     <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6 fixed">
                         <Link href="/" className="flex items-center gap-2 font-semibold">
                             <img src={MyImageComponent} alt="Logo" width={isSidebarHidden ? 0 : 150} />
                         </Link>
+
                         <Button
                             variant="outline"
                             size="icon" className={`ml - 3 h-8 w-8 transition-all duration-300 ${isSidebarHidden ? 'ml-[-8px]' : 'mx-[8px]'}`}
-
                             onClick={toggleSidebar}>
                             <IconArrowBadgeLeft className={`h-4 w-4 transition-transform ${isSidebarHidden ? 'rotate-180' : ''}`} />
                             <div className="sr-only">Toggle sidebar</div>
                         </Button>
+
 
                     </div>
                     <div className={`${isSidebarHidden ? 'mt-16' : 'flex-1 mt-20'}`}>
@@ -52,7 +55,7 @@ export default function Sidebar() {
                                 >
                                     <IconDashboard size={21} />
                                     {isSidebarHidden ? (
-                                        <span className="hidden group-hover:block absolute left-12 bg-gray-700 text-white px-2 py-1 rounded">
+                                        <span className="hidden group-hover:block absolute left-12 bg-gray-700 text-white px-2 py-1 rounded full">
                                             Beranda
                                         </span>
                                     ) : (
@@ -98,7 +101,7 @@ export default function Sidebar() {
                                     <IconUser size={21} />
                                     {isSidebarHidden ? (
                                         <span className="hidden group-hover:block absolute left-12 bg-gray-700 text-white px-2 py-1 rounded">
-                                             Profil
+                                            Profil
                                         </span>
                                     ) : (
                                         <span>Menu Profil</span>
@@ -112,7 +115,7 @@ export default function Sidebar() {
                                     <IconBriefcase size={21} />
                                     {isSidebarHidden ? (
                                         <span className="hidden  group-hover:block absolute left-12 bg-gray-700 text-white px-2 py-1 rounded">
-                                             Man Hours
+                                            Man Hours
                                         </span>
                                     ) : (
                                         <span>Man Hours</span>
@@ -129,7 +132,7 @@ export default function Sidebar() {
                                     <IconBook2 size={21} />
                                     {isSidebarHidden ? (
                                         <span className="hidden  group-hover:block absolute left-12 bg-gray-700 text-white px-2 py-1 rounded">
-                                             Laporan
+                                            Laporan
                                         </span>
                                     ) : (
                                         <span>Laporan</span>
@@ -146,7 +149,7 @@ export default function Sidebar() {
                                     <IconUserSquare size={21} />
                                     {isSidebarHidden ? (
                                         <span className="hidden group-hover:block absolute left-12 bg-gray-700 text-white px-2 py-1 rounded">
-                                             Pengguna
+                                            Pengguna
                                         </span>
                                     ) : (
                                         <span>Pengguna</span>
@@ -160,7 +163,7 @@ export default function Sidebar() {
                                     <IconSettings size={21} />
                                     {isSidebarHidden ? (
                                         <span className="hidden  group-hover:block absolute left-12 bg-gray-700 text-white px-2 py-1 rounded">
-                                             Settings
+                                            Settings
                                         </span>
                                     ) : (
                                         <span>Settings</span>
