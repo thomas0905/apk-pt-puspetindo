@@ -19,7 +19,7 @@ export default function Navbar() {
     } catch (error) {
       console.error("Logout failed:", error);
       setLoading(false);
-    }
+    } 
   };
 
   return (

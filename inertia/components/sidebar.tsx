@@ -26,8 +26,7 @@ export default function Sidebar() {
 
     return (
         <Fragment>
-
-            <div className={`hidden border-r bg-slate-50 md:block transition-all duration-300 ${isSidebarHidden ? 'w-16' : 'w-220'}`}>
+            <div className={`hidden border-r bg-slate-50 md:block transition-all duration-300 ${isSidebarHidden ? 'w-16 ' : 'w-220 translate-x-1 ease-in-out duration-600'}`}>
                 <div className="flex h-full shadow-right max-h-screen flex-col gap-2 transition-all duration-300 ">
                     <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6 fixed">
                         <Link href="/" className="flex items-center gap-2 font-semibold">
