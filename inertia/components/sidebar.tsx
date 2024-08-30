@@ -35,7 +35,7 @@ export default function Sidebar() {
 
                         <Button
                             variant="outline"
-                            size="icon" className={`ml - 3 h-8 w-8 transition-all duration-300 ${isSidebarHidden ? 'ml-[-8px]' : 'mx-[8px]'}`}
+                            size="icon" className={`ml-3 h-8 w-8 transition-all duration-300 ${isSidebarHidden ? 'ml-[-8px]' : 'mx-[8px]'}`}
                             onClick={toggleSidebar}>
                             <IconArrowBadgeLeft className={`h-4 w-4 transition-transform ${isSidebarHidden ? 'rotate-180' : ''}`} />
                             <div className="sr-only">Toggle sidebar</div>
