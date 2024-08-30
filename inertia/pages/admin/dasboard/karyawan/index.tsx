@@ -57,56 +57,56 @@ export default function Index() {
             footer: info => info.column.id,
         }),
 
-        columnHelper.accessor('jabatan', {
+        columnHelper.accessor('tempatLahir', {
             header: 'Tempat Lahir',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
 
-        columnHelper.accessor('jabatan', {
+        columnHelper.accessor('tanggalLahir', {
             header: 'Tanggal Lahir',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
 
-        columnHelper.accessor('jabatan', {
+        columnHelper.accessor('usia', {
             header: 'Usia',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
 
-        columnHelper.accessor('jabatan', {
+        columnHelper.accessor('jenisKelamin', {
             header: 'Jenis Kelamin',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
 
-        columnHelper.accessor('jabatan', {
+        columnHelper.accessor('pendidikan', {
             header: 'Pendidikan ',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-        columnHelper.accessor('jabatan', {
+        columnHelper.accessor('jurusan', {
             header: 'Jurusan',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-        columnHelper.accessor('jabatan', {
+        columnHelper.accessor('bpjsKk', {
             header: 'BPJS ketenaga kerjaan',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-        columnHelper.accessor('jabatan', {
+        columnHelper.accessor('bpjsKesehatan', {
             header: 'BPJS kesehatan',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-        columnHelper.accessor('jabatan', {
+        columnHelper.accessor('noRekening', {
             header: 'No. Rekening',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-        columnHelper.accessor('jabatan', {
+        columnHelper.accessor('namaBank', {
             header: 'Nama Bank',
             cell: info => info.getValue(),
             footer: info => info.column.id,
