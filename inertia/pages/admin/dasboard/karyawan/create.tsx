@@ -61,6 +61,16 @@ export default function Create() {
         nama: '',
         departemen_Id: '',
         jabatan: '',
+        tempat_lahir: '',
+        tanggal_lahir: '',
+        usia: '',
+        jenis_kelamin: '',
+        pendidikan: '',
+        jurusan: '',
+        bpjs_kk: '',
+        bpjs_kesehatan: '',
+        no_rekening: '',
+        nama_bank: '',
         status: '',
         email: '',
         password: ''
@@ -90,6 +100,58 @@ export default function Create() {
 
         if (data.jabatan.trim() === '') {
             validationErrors.jabatan = 'Jabatan harus dipilih';
+            isValid = false;
+        }
+
+        if (data.tempat_lahir.trim() === '') {
+            validationErrors.tempat_lahir = 'Tempat Lahir harus Di isi';
+            isValid = false;
+        }
+
+
+        if (data.tanggal_lahir.trim() === '') {
+            validationErrors.tanggal_lahir = 'Tanggal Lahir harus Di isi';
+            isValid = false;
+        }
+
+
+        if (data.usia.trim() === '') {
+            validationErrors.usia = 'Tempat Lahir harus Di isi';
+            isValid = false;
+        }
+
+        if (data.jenis_kelamin.trim() === '') {
+            validationErrors.jenis_kelamin = ' Pilih Jenis Kelamin';
+            isValid = false;
+        }
+
+        if (data.pendidikan.trim() === '') {
+            validationErrors.pendidikan = 'Pendidikan harus Di isi';
+            isValid = false;
+        }
+
+        if (data.jurusan.trim() === '') {
+            validationErrors.jurusan = 'Jurusan harus Di isi';
+            isValid = false;
+        }
+        
+        if (data.bpjs_kk.trim() === '') {
+            validationErrors.bpjs_kk = 'bpjs harus Di isi';
+            isValid = false;
+        }
+
+        if (data.bpjs_kesehatan.trim() === '') {
+            validationErrors.bpjs_kesehatan = 'BPJS kesehatan harus Di isi';
+            isValid = false;
+        }
+
+        if (data.no_rekening.trim() === '') {
+            validationErrors.no_rekening = 'Nomor Rekening harus Di isi';
+            isValid = false;
+        }
+        
+        if (data.nama_bank.trim() === '') {
+            validationErrors.nama_bank = 'Nama Bank harus Di isi';
             isValid = false;
         }
 
@@ -215,22 +277,37 @@ export default function Create() {
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Tempat Lahir</Label>
-                                <Input type='text' placeholder='Masukkan Tempat Lahir' />
+                                <Input
+                                    onChange={(e) => setData('tempat_lahir', e.target.value)}
+                                    name='tempat_lahir'
+                                    value={data.tempat_lahir}
+                                    type='text' placeholder='Masukkan Tempat Lahir' />
+                            {errors.tempat_lahir && <small className="text-red-600">{errors.tempat_lahir}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Tanggal Lahir</Label>
-                                <Input type='text' placeholder='Masukkan Tempat Lahir' />
+                                <Input
+                                    onChange={(e) => setData('tanggal_lahir', e.target.value)}
+                                    name='tanggal_lahir'
+                                    value={data.tanggal_lahir}
+                                    type='text' placeholder='Masukkan Tempat Lahir' />
+                            {errors.tanggal_lahir && <small className="text-red-600">{errors.tanggal_lahir}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label> Usia</Label>
-                                <Input type='text' placeholder='Usia anda' />
+                                <Input
+                                    onChange={(e) => setData('usia', e.target.value)}
+                                    name='usia'
+                                    value={data.usia}
+                                    type='text' placeholder='Usia anda' />
+                            {errors.usia && <small className="text-red-600">{errors.usia}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="status">Pilih Jenis Kelamin:</Label>
-                                <Select onValueChange={(value) => setData('status', value)}>
+                                <Select onValueChange={(value) => setData('jenis_kelamin', value)}>
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Pilih Jenis Kelamin" />
                                     </SelectTrigger>
@@ -240,79 +317,109 @@ export default function Create() {
                                         ))}
                                     </SelectContent>
                                 </Select>
-                                {errors.status && <small className="text-red-600">{errors.status}</small>}
+                                {errors.jenis_kelamin && <small className="text-red-600">{errors.jenis_kelamin}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label> Pendidikan</Label>
-                                <Input type='text' placeholder='Pendidikan Anda' />
+                                <Input
+                                    onChange={(e) => setData('pendidikan', e.target.value)}
+                                    name='pendidikan'
+                                    value={data.pendidikan}
+                                    type='text' placeholder='Pendidikan Anda' />
+                            {errors.pendidikan && <small className="text-red-600">{errors.pendidikan}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label> Jurusan</Label>
-                                <Input type='text' placeholder='Jurusan Anda' />
+                                <Input
+                                    onChange={(e) => setData('jurusan', e.target.value)}
+                                    name='jurusan'
+                                    value={data.jurusan}
+                                    type='text' placeholder='Jurusan Anda' />
+                            {errors.jurusan && <small className="text-red-600">{errors.jurusan}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label> BPJS Ketenaga Kerjaan</Label>
-                                <Input type='text' placeholder='Jurusan Anda' />
+                                <Input
+                                    onChange={(e) => setData('bpjs_kk', e.target.value)}
+                                    name='bpjs_kk'
+                                    value={data.bpjs_kk}
+                                    type='text' placeholder='Jurusan Anda' />
+                            {errors.bpjs_kk && <small className="text-red-600">{errors.bpjs_kk}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label> BPJS Kesehatan</Label>
-                                <Input type='text' placeholder='Jurusan Anda' />
+                                <Input
+                                    onChange={(e) => setData('bpjs_kesehatan', e.target.value)}
+                                    name='bpjs_kesehatan'
+                                    value={data.bpjs_kesehatan}
+                                    type='text' placeholder='Jurusan Anda' />
+                            {errors.bpjs_kesehatan && <small className="text-red-600">{errors.bpjs_kesehatan}</small>}
                             </div>
 
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label> No. Rekening</Label>
-                                <Input type='text' placeholder='Nomor Rekening Anda' />
+                                <Input
+                                    onChange={(e) => setData('no_rekening', e.target.value)}
+                                    name='no_rekening'
+                                    value={data.no_rekening}
+                                    type='text' placeholder='Nomor Rekening Anda' />
+                            {errors.no_rekening && <small className="text-red-600">{errors.no_rekening}</small>}
                             </div>
 
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label> Nama Bank</Label>
-                                <Input type='text' placeholder='Nama Bank Rekening Anda' />
+                                <Input
+                                    onChange={(e) => setData('nama_bank', e.target.value)}
+                                    name='nama_bank'
+                                    value={data.nama_bank}
+                                    type='text' placeholder='Nama Bank Rekening Anda' />
+                            {errors.nama_bank && <small className="text-red-600">{errors.nama_bank}</small>}
                             </div>
 
                         </div>
-                            <div className='mt-2'>
-                                <h6 className='text-gray-600 text-md font-bold'>Data Pengguna</h6>
-                                <div className="flex flex-col space-y-1.5 mt-3">
-                                    <Label htmlFor="jabatan">Email:</Label>
-                                    <Input
+                        <div className='mt-2'>
+                            <h6 className='text-gray-600 text-md font-bold'>Data Pengguna</h6>
+                            <div className="flex flex-col space-y-1.5 mt-3">
+                                <Label htmlFor="jabatan">Email:</Label>
+                                <Input
                                     className='w-96'
-                                        type='email'
-                                        placeholder='Masukkan Alamat Email'
-                                        onChange={(e) => setData('email', e.target.value)}
-                                        name='email'
-                                        value={data.email}
-                                    >
-                                    </Input>
-                                    {errors.email && <small className="text-red-600">{errors.email}</small>}
-                                </div>
-                                <div className="flex flex-col space-y-1.5 mt-3">
-                                    <Label htmlFor="password">Password:</Label>
-                                    <div className="relative">
-                                        <Input
-                                            type={showPassword ? 'text' : 'password'}
-                                            placeholder='Masukkan Password'
-                                            onChange={(e) => setData('password', e.target.value)}
-                                            name='password'
-                                            value={data.password}
-                                            className=" pr-10 w-96"
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={handleTogglePassword}
-                                            className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
-                                        >
-                                            {showPassword ? <IconEyeOff className="h-5 w-5 text-gray-500" /> : <IconEye className="h-5 w-5 text-gray-500" />}
-                                        </button>
-                                    </div>
-                                    {errors.password && <small className="text-red-600">{errors.password}</small>}
-                                </div>
+                                    type='email'
+                                    placeholder='Masukkan Alamat Email'
+                                    onChange={(e) => setData('email', e.target.value)}
+                                    name='email'
+                                    value={data.email}
+                                >
+                                </Input>
+                                {errors.email && <small className="text-red-600">{errors.email}</small>}
                             </div>
+                            <div className="flex flex-col space-y-1.5 mt-3">
+                                <Label htmlFor="password">Password:</Label>
+                                <div className="relative">
+                                    <Input
+                                        type={showPassword ? 'text' : 'password'}
+                                        placeholder='Masukkan Password'
+                                        onChange={(e) => setData('password', e.target.value)}
+                                        name='password'
+                                        value={data.password}
+                                        className=" pr-10 w-96"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={handleTogglePassword}
+                                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                                    >
+                                        {showPassword ? <IconEyeOff className="h-5 w-5 text-gray-500" /> : <IconEye className="h-5 w-5 text-gray-500" />}
+                                    </button>
+                                </div>
+                                {errors.password && <small className="text-red-600">{errors.password}</small>}
+                            </div>
+                        </div>
                     </div>
 
                     <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>Simpan</Button>
