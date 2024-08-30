@@ -11,7 +11,7 @@ export default class extends BaseSchema {
       table.string('nama').unique()
       table.string('jabatan')
       table.string('tempat_lahir')
-      table.string('tanggal_lahir')
+      table.date('tanggal_lahir')
       table.integer('usia')
       table.string('jenis_kelamin')
       table.string('pendidikan')

@@ -44,6 +44,16 @@ export default class KaryawansKontroller {
         karyawan.nama = request.input('nama');
         karyawan.departemen_Id = request.input('departemen_Id');
         karyawan.jabatan = request.input('jabatan');
+        karyawan.tempat_lahir = request.input('tempat_lahir');
+        karyawan.tanggal_lahir= request.input('tanggal_lahir');
+        karyawan.usia= request.input('usia');
+        karyawan.jenis_kelamin = request.input('jenis_kelamin');
+        karyawan.pendidikan= request.input('pendidikan');
+        karyawan.jurusan = request.input('jurusan');
+        karyawan.bpjs_kk = request.input('bpjs_kk');
+        karyawan.bpjs_kesehatan = request.input('bpjs_kesehatan');
+        karyawan.no_rekening = request.input('no_rekening');
+        karyawan.nama_bank = request.input('nama_bank');
         karyawan.status = request.input('status');
 
         await karyawan.save();
@@ -76,6 +86,16 @@ export default class KaryawansKontroller {
         karyawan.nama = request.input('nama')
         karyawan.departemen_Id = request.input('departemen_Id')
         karyawan.jabatan = request.input('jabatan')
+        karyawan.tempat_lahir = request.input('tempat_lahir');
+        karyawan.tanggal_lahir= request.input('tanggal_lahir');
+        karyawan.usia= request.input('usia');
+        karyawan.jenis_kelamin = request.input('jenis_kelamin');
+        karyawan.pendidikan= request.input('pendidikan');
+        karyawan.jurusan = request.input('jurusan');
+        karyawan.bpjs_kk = request.input('bpjs_kk');
+        karyawan.bpjs_kesehatan = request.input('bpjs_kesehatan');
+        karyawan.no_rekening = request.input('no_rekening');
+        karyawan.nama_bank = request.input('nama_bank');
         karyawan.status = request.input('status')
         karyawan.save()
         return response.redirect('/karyawan')

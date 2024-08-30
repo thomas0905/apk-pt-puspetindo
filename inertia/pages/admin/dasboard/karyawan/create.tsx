@@ -23,6 +23,17 @@ const statuses = [
     }
 ]
 
+const jenisKelamin = [
+    {
+        value: 'Laki-laki',
+        label: 'Laki-laki'
+    },
+    {
+        value: 'Perempuan',
+        label: 'Perempuan'
+    }
+]
+
 const jabatans = [
     {
         value: "manager",
@@ -67,7 +78,7 @@ export default function Create() {
             isValid = false;
         }
 
-        if (data.departemen_Id === '') { 
+        if (data.departemen_Id === '') {
             validationErrors.departemen_Id = 'Departemen harus dipilih';
             isValid = false;
         }
@@ -202,11 +213,75 @@ export default function Create() {
                             </div>
 
 
+                            <div className="flex flex-col space-y-1.5">
+                                <Label>Tempat Lahir</Label>
+                                <Input type='text' placeholder='Masukkan Tempat Lahir' />
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label>Tanggal Lahir</Label>
+                                <Input type='text' placeholder='Masukkan Tempat Lahir' />
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label> Usia</Label>
+                                <Input type='text' placeholder='Usia anda' />
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="status">Pilih Jenis Kelamin:</Label>
+                                <Select onValueChange={(value) => setData('status', value)}>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Pilih Jenis Kelamin" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {jenisKelamin.map((jenisKelamin) => (
+                                            <SelectItem key={jenisKelamin.value} value={jenisKelamin.value}>{jenisKelamin.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                                {errors.status && <small className="text-red-600">{errors.status}</small>}
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label> Pendidikan</Label>
+                                <Input type='text' placeholder='Pendidikan Anda' />
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label> Jurusan</Label>
+                                <Input type='text' placeholder='Jurusan Anda' />
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label> BPJS Ketenaga Kerjaan</Label>
+                                <Input type='text' placeholder='Jurusan Anda' />
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label> BPJS Kesehatan</Label>
+                                <Input type='text' placeholder='Jurusan Anda' />
+                            </div>
+
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label> No. Rekening</Label>
+                                <Input type='text' placeholder='Nomor Rekening Anda' />
+                            </div>
+
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label> Nama Bank</Label>
+                                <Input type='text' placeholder='Nama Bank Rekening Anda' />
+                            </div>
+
+                        </div>
                             <div className='mt-2'>
                                 <h6 className='text-gray-600 text-md font-bold'>Data Pengguna</h6>
                                 <div className="flex flex-col space-y-1.5 mt-3">
                                     <Label htmlFor="jabatan">Email:</Label>
                                     <Input
+                                    className='w-96'
                                         type='email'
                                         placeholder='Masukkan Alamat Email'
                                         onChange={(e) => setData('email', e.target.value)}
@@ -225,7 +300,7 @@ export default function Create() {
                                             onChange={(e) => setData('password', e.target.value)}
                                             name='password'
                                             value={data.password}
-                                            className="w-full pr-10"
+                                            className=" pr-10 w-96"
                                         />
                                         <button
                                             type="button"
@@ -238,7 +313,6 @@ export default function Create() {
                                     {errors.password && <small className="text-red-600">{errors.password}</small>}
                                 </div>
                             </div>
-                        </div>
                     </div>
 
                     <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>Simpan</Button>

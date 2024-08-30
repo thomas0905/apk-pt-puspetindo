@@ -7,8 +7,10 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Link, router } from '@inertiajs/react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 
-export default function Navbar() {
+export default function Navbar({ isSidebarHidden }) {
   const [loading, setLoading] = useState(false);
+
+
 
   const handleLogout = async () => {
     setLoading(true);
@@ -19,7 +21,7 @@ export default function Navbar() {
     } catch (error) {
       console.error("Logout failed:", error);
       setLoading(false);
-    } 
+    }
   };
 
   return (
@@ -32,7 +34,7 @@ export default function Navbar() {
           </div>
         </div>
       )}
-      <header className="flex  w-full h-14 items-center gap-4 border-b bg-slate-50 px-4 lg:h-[60px] lg:px-6">
+      <header className={`flex  w-full h-14 items-center gap-4 border-b bg-slate-50 px-4 lg:h-[60px] lg:px-6 ${isSidebarHidden ? 'w-64' : 'w-full'}`}>
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="shrink-0 md:hidden">
@@ -116,7 +118,7 @@ export default function Navbar() {
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout} disabled={loading}>
               <Link href='/login' method='post'>
-              Logout
+                Logout
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>

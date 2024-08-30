@@ -41,7 +41,7 @@ export default class Karyawan extends BaseModel {
   declare tempat_lahir: string
 
   @column()
-  declare tanggal_lahir: string
+  declare tanggal_lahir: Date
 
   @column()
   declare usia: number

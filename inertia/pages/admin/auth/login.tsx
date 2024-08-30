@@ -78,7 +78,7 @@ export default function Login() {
                         <div className="grid gap-2">
                             <Label htmlFor="email">Email</Label>
                             <div className="relative">
-                                <IconMail className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                                <IconMail className="absolute icon-login left-2.5 top-2.5 h-4 mt-0.5 w-4 text-muted-foreground" />
                                 <Input
                                     type="text"
                                     placeholder="Email"
@@ -94,7 +94,7 @@ export default function Login() {
                         <div className="grid gap-2">
                             <Label htmlFor="password">Password</Label>
                             <div className="relative">
-                                <IconLock className="absolute icon-login left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                                <IconLock className="absolute icon-login left-2.5 mt-0.5 top-2.5 h-4 w-4 text-muted-foreground" />
                                 <Input
                                     type={showPassword ? "text" : "password"}
                                     placeholder="Password"
