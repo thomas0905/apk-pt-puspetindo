@@ -38,6 +38,36 @@ export default class Karyawan extends BaseModel {
   declare jabatan: string
 
   @column()
+  declare tempat_lahir: string
+
+  @column()
+  declare tanggal_lahir: string
+
+  @column()
+  declare usia: number
+
+  @column()
+  declare jenis_kelamin: string
+
+  @column()
+  declare pendidikan: string
+
+  @column()
+  declare jurusan: string
+
+  @column()
+  declare bpjs_kk: string
+
+  @column()
+  declare bpjs_kesehatan: string
+
+  @column()
+  declare no_rekening: number
+
+  @column()
+  declare nama_bank: string
+
+  @column()
   declare status: string
 
   @column.dateTime({ autoCreate: true })

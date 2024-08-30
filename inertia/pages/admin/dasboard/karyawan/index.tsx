@@ -58,42 +58,59 @@ export default function Index() {
         }),
 
         columnHelper.accessor('jabatan', {
-            header: 'Jabatan',
+            header: 'Tempat Lahir',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
 
         columnHelper.accessor('jabatan', {
-            header: 'Jabatan',
+            header: 'Tanggal Lahir',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
 
         columnHelper.accessor('jabatan', {
-            header: 'Jabatan',
+            header: 'Usia',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
 
         columnHelper.accessor('jabatan', {
-            header: 'Jabatan',
+            header: 'Jenis Kelamin',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
 
         columnHelper.accessor('jabatan', {
-            header: 'Jabatan',
+            header: 'Pendidikan ',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
         columnHelper.accessor('jabatan', {
-            header: 'Jabatan',
+            header: 'Jurusan',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-
-
-
+        columnHelper.accessor('jabatan', {
+            header: 'BPJS ketenaga kerjaan',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
+        columnHelper.accessor('jabatan', {
+            header: 'BPJS kesehatan',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
+        columnHelper.accessor('jabatan', {
+            header: 'No. Rekening',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
+        columnHelper.accessor('jabatan', {
+            header: 'Nama Bank',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
         columnHelper.accessor('status', {
             header: 'Status',
             cell: info => {

@@ -114,13 +114,13 @@ export default function dataTable({ data, columns }) {
                 />
             </div>
 
-            <Card className='mt-2 overflow-x-scroll'>
-                <Table className='w-full'>
-                    <TableHeader>
+            <Card className='mt-2 overflow-x-scroll max-w-[1280px]'>
+                <Table>
+                    <TableHeader >
                         {table.getHeaderGroups().map(headerGroup => (
-                            <TableRow key={headerGroup.id}>
+                            <TableRow className='text-nowrap' key={headerGroup.id}>
                                 {headerGroup.headers.map(header => (
-                                    <TableHead key={header.id}>
+                                    <TableHead className='text-nowrap' key={header.id}>
                                         {header.isPlaceholder
                                             ? null
                                             : flexRender(
@@ -137,7 +137,8 @@ export default function dataTable({ data, columns }) {
                             table.getRowModel().rows.map(row => (
                                 <TableRow key={row.id}>
                                     {row.getVisibleCells().map(cell => (
-                                        <TableCell key={cell.id}>
+                                        <TableCell className='text-nowrap'
+                                        key={cell.id}>
                                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                         </TableCell>
                                     ))}
