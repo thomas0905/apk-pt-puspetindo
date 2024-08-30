@@ -15,18 +15,14 @@ import MyImageComponent from '../img/logo-puspetindo.png';
 import { Button } from "@/components/ui/button";
 import Navbar from './navbar';
 
-export default function Sidebar() {
-    const [isSidebarHidden, setSidebarHidden] = useState(false);
+export default function Sidebar({isSidebarHidden,toggleSidebar}) {
 
-    const toggleSidebar = () => {
-        setSidebarHidden(!isSidebarHidden);
-    };
     const { url } = usePage();
     const isActive = (path) => url === path;
 
     return (
         <Fragment>
-            <div className={`hidden border-r bg-slate-50 md:block transition-all duration-300 ${isSidebarHidden ? 'w-16 ' : 'w-220 translate-x-1 ease-in-out duration-600'}`}>
+            <div className={`hidden border-r bg-slate-50 md:block transition-all duration-300 ${isSidebarHidden ? 'w-16 ' : 'w-230 translate-x-1 ease-in-out duration-600'}`}>
                 <div className="flex h-full shadow-right max-h-screen flex-col gap-2 transition-all duration-300 ">
                     <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6 fixed">
                         <Link href="/" className="flex items-center gap-2 font-semibold">
@@ -35,7 +31,7 @@ export default function Sidebar() {
 
                         <Button
                             variant="outline"
-                            size="icon" className={`ml-3 h-8 w-8 transition-all duration-300 ${isSidebarHidden ? 'ml-[-8px]' : 'mx-[8px]'}`}
+                            size="icon" className={`ml-4 h-8 w-8 transition-all duration-300 ${isSidebarHidden ? 'ml-[-8px]' : 'mx-[6px]'}`}
                             onClick={toggleSidebar}>
                             <IconArrowBadgeLeft className={`h-4 w-4 transition-transform ${isSidebarHidden ? 'rotate-180' : ''}`} />
                             <div className="sr-only">Toggle sidebar</div>
