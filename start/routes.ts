@@ -8,9 +8,9 @@ const PermissionsController = () => import('#controllers/permissions_controller'
 const AuthController = () => import('#controllers/auth_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-const  HomeController = () => import ('#controllers/home_controller')
+const HomeController = () => import('#controllers/home_controller')
 
-router.get('/',[HomeController,'index']).use(middleware.auth())
+router.get('/', [HomeController, 'index']).use(middleware.auth())
 
 
 router.group(() => {
@@ -27,14 +27,15 @@ router.group(() => {
     router.get('create', [DepartemenController, 'create'])
     router.post('create', [DepartemenController, 'store'])
     router.get('edit/:id', [DepartemenController, 'edit'])
-    router.put('edit/:id', [KaryawansController, 'update'])
+    router.put('edit/:id', [DepartemenController, 'update'])
+    router.put('delete/:id', [DepartemenController, 'delete'])
 }).prefix('/departemen/').use(middleware.auth())
 
 router.group(() => {
     router.get('/', [ProyeksController, 'index'])
     router.get('create', [ProyeksController, 'create'])
     router.post('create', [ProyeksController, 'store'])
-    router.delete('delete/:id', [ProyeksController, 'delete'])
+    router.delete('delete/:id',[ProyeksController, 'delete'])
     router.get('edit/:id', [ProyeksController, 'edit'])
     router.put('edit/:id', [ProyeksController, 'update'])
 }).prefix('/proyek/').use(middleware.auth())

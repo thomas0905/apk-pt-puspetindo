@@ -175,8 +175,8 @@ export default function Index() {
                 </div>
                 <div className='flex justify-end'>
                     <DownloadTableExcel
-                        filename="users table"
-                        sheet="users"
+                        filename="karyawan table"
+                        sheet="karyawan"
                         currentTableRef={tableRef.current}
                     >
 

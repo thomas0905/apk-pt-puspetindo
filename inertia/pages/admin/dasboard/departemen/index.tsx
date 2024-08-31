@@ -1,13 +1,34 @@
 import React from 'react';
 import Admin from '~/layout/admin';
-import { Link, usePage } from '@inertiajs/react';
-import { IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react';
+import { Link, router, usePage } from '@inertiajs/react';
+import { IconBuildingArch, IconEdit, IconHome, IconTrash } from '@tabler/icons-react';
 import { Card } from '~/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
+import Swal from 'sweetalert2';
 
 export default function Index() {
     const { data_departemen } = usePage().props;
+
+    const handleDelete = async (id) => {
+        const result = await Swal.fire({
+            title: 'Ingin Hapus Data?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ya!',
+            cancelButtonText: 'Tidak!',
+            allowOutsideClick: false,
+        });
+
+        if (result.isConfirmed) {
+            try {
+                await router.delete(`/departemen/delete/${id}`);
+                Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
+            } catch (error) {
+                Swal.fire('Error', 'Gagal menghapus data.', 'error');
+            }
+        }
+    };
 
     return (
         <Admin>
@@ -49,12 +70,16 @@ export default function Index() {
                                 <TableRow key={dep.id}>
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>{dep.namaDepartemen}</TableCell>
-                                    <TableCell>
+                                    <TableCell className='flex gap-2'>
                                         {/* Tempatkan aksi seperti tombol edit atau delete di sini */}
                                         <Link href={`/departemen/edit/${dep.id}`} className="text-blue-500 hover:underline">
                                             <IconEdit size={18} />
                                         </Link>
+                                        <span onClick={() => handleDelete(dep.id)} className="text-red-900 hover:cursor-pointer">
+                                            <IconTrash size={18} />
+                                        </span>
                                     </TableCell>
+                                    
                                 </TableRow>
                             ))}
                         </TableBody>
