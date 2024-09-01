@@ -23,7 +23,8 @@ export default function EditPengguna() {
         tempat_lahir: data_karyawan.tempat_lahir,
         tanggal_lahir: data_karyawan.tanggal_lahir,
         usia: data_karyawan.usia,
-        jenis_kelamin: data_karyawan.pendidikan,
+        jenis_kelamin: data_karyawan.jenis_kelamin,
+        pendidikan: data_karyawan.pendidikan,
         jurusan: data_karyawan.jurusan,
         bpjs_kk: data_karyawan.bpjs_kk,
         bpjs_kesehatan: data_karyawan.bpjs_kesehatan,
@@ -187,7 +188,7 @@ export default function EditPengguna() {
                                 <Input
                                     type='text'
                                     placeholder='Masukkan Usia Anda'
-                                    name="uia"
+                                    name="usia"
                                     value={data.usia}
                                     onChange={(e) => setData('usia', e.target.value)}
                                 />
@@ -212,42 +213,66 @@ export default function EditPengguna() {
                                 <Label>Pendidikan</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Masukkan Pendidikan Anda' />
+                                    placeholder='Masukkan Pendidikan Anda'
+                                    name='pendidikan'
+                                    value={data.pendidikan}
+                                    onChange={(e) => setData('pendidikan', e.target.value)}
+                                />
                             </div>
 
                             <div className="fex flex-col space-y-1.5">
                                 <Label>Jurusan</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Jurusan Anda' />
+                                    placeholder='Jurusan Anda'
+                                    name='jurusan'
+                                    value={data.jurusan}
+                                    onChange={(e) => setData('jurusan', e.target.value)}
+                                />
                             </div>
 
                             <div className="fex flex-col space-y-1.5">
                                 <Label>BPJS Ketenaga kerjaan</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Masukkan BPJS Ketenaga Kerja Anda' />
+                                    placeholder='Masukkan BPJS Ketenaga Kerja Anda'
+                                    name='bpjs_kk'
+                                    value={data.bpjs_kk}
+                                    onChange={(e) => setData('bpjs_kk', e.target.value)}
+                                />
                             </div>
 
                             <div className="fex flex-col space-y-1.5">
                                 <Label>BPJS Kesehatan</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Masukkan BPJ Kesehatan Anda' />
+                                    placeholder='Masukkan BPJ Kesehatan Anda' 
+                                    name='bpjs_kesehatan'
+                                    value={data.bpjs_kesehatan}
+                                    onChange={(e) => setData('bpjs_kesehatan', e.target.value)}
+                                    />
                             </div>
 
                             <div className="fex flex-col space-y-1.5">
                                 <Label>No.Rekening</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Masukkan No Rekening Anda' />
+                                    placeholder='Masukkan No Rekening Anda' 
+                                    name='no_rekening'
+                                    value={data.no_rekening}
+                                    onChange={(e) => setData('no_rekening', e.target.value)}
+                                    />
                             </div>
 
                             <div className="fex flex-col space-y-1.5">
                                 <Label>Nama Bank</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Masukkan Nama Anda' />
+                                    placeholder='Masukkan Nama Anda' 
+                                    name='nama_bank'
+                                    value={data.nama_bank}
+                                    onChange={(e) => setData('nama_bank', e.target.value)}
+                                    />
                             </div>
 
                         </div>
