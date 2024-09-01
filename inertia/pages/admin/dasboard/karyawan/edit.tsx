@@ -142,44 +142,10 @@ export default function EditPengguna() {
                                 </Select>
                             </div>
 
-                            {/* <div className="mt-2">
-                                <h6 className="text-gray-600 text-md font-bold">Data Pengguna</h6>
-                                <div className="flex flex-col space-y-1.5 mt-3">
-                                    <Label htmlFor="email">Email:</Label>
-                                    <Input
-                                        type="email"
-                                        id="email"
-                                        placeholder="Masukkan Alamat Email"
-                                        name="email"
-                                        value={data.email}
-                                        onChange={(e) => setData('email', e.target.value)}
-                                    />
-                                </div>
-                                <div className="flex flex-col space-y-1.5 mt-3">
-                                    <Label htmlFor="password">Password:</Label>
-                                    <div className="relative">
-                                        <Input
-                                            type={showPassword ? 'text' : 'password'}
-                                            placeholder="Masukkan Password"
-                                            onChange={(e) => setData('password', e.target.value)}
-                                            name="password"
-                                            value={data.password}
-                                            className="w-full pr-10"
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={handleTogglePassword}
-                                            className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
-                                        >
-                                            {showPassword ? (
-                                                <IconEyeOff className="h-5 w-5 text-gray-500" />
-                                            ) : (
-                                                <IconEye className="h-5 w-5 text-gray-500" />
-                                            )}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div> */}
+                            <div className="fex flex-col space-y-1.5">
+                                  <Label>Tempat Lahir</Label>  
+                                  <Input type='text' placeholder='Masukkan Tempat Lahir Anda'/>
+                            </div>
                         </div>
                     </div>
 
