@@ -49,6 +49,18 @@ export default function EditPengguna() {
         { value: 'Tidak-aktif', label: 'Tidak-aktif' },
     ];
 
+    const jenisKelamin = [
+        {
+            value: 'Laki-laki',
+            label: 'Laki-laki'
+        },
+        {
+            value: 'Perempuan',
+            label: 'Perempuan'
+        }
+    ]
+    
+
     // const [showPassword, setShowPassword] = useState(false);
 
     // const handleTogglePassword = () => {
@@ -143,9 +155,81 @@ export default function EditPengguna() {
                             </div>
 
                             <div className="fex flex-col space-y-1.5">
-                                  <Label>Tempat Lahir</Label>  
-                                  <Input type='text' placeholder='Masukkan Tempat Lahir Anda'/>
+                                <Label>Tempat Lahir</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Masukkan Tempat Lahir Anda' />
                             </div>
+                            <div className="fex flex-col space-y-1.5">
+                                <Label>Tanggal Lahir</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Masukkan Tanggal Lahir Anda' />
+                            </div>
+
+                            <div className="fex flex-col space-y-1.5">
+                                <Label>Usia</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Masukkan Usia Anda' />
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="status">Pilih Jenis Kelamin:</Label>
+                                <Select>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Pilih Jenis Kelamin" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {jenisKelamin.map((jenisKelamin) => (
+                                            <SelectItem key={jenisKelamin.value} value={jenisKelamin.value}>{jenisKelamin.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            <div className="fex flex-col space-y-1.5">
+                                <Label>Pendidikan</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Masukkan Pendidikan Anda' />
+                            </div>
+
+                            <div className="fex flex-col space-y-1.5">
+                                <Label>Jurusan</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Jurusan Anda' />
+                            </div>
+
+                            <div className="fex flex-col space-y-1.5">
+                                <Label>BPJS Ketenaga kerjaan</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Masukkan BPJS Ketenaga Kerja Anda' />
+                            </div>
+
+                            <div className="fex flex-col space-y-1.5">
+                                <Label>BPJS Kesehatan</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Masukkan BPJ Kesehatan Anda' />
+                            </div>
+
+                            <div className="fex flex-col space-y-1.5">
+                                <Label>No.Rekening</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Masukkan No Rekening Anda' />
+                            </div>
+
+                            <div className="fex flex-col space-y-1.5">
+                                <Label>Nama Bank</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Masukkan Nama Anda' />
+                            </div>
+
                         </div>
                     </div>
 

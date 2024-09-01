@@ -40,7 +40,7 @@ export default function Sidebar({isSidebarHidden,toggleSidebar}) {
 
                     </div>
                     <div className={`${isSidebarHidden ? 'mt-16' : 'flex-1 mt-20'}`}>
-                        <nav className="grid items-start fixed px-2 text-sm font-medium lg:px-4">
+                        <nav className="grid items-start fixed px-2 text-sm font-medium lg:px-4 fixed">
                             {/* Dashboard Section */}
                             <span className="flex text-xm flex-col   items-start gap-1 rounded-lg  py-3 text-muted-foreground transition-all">
                                 <span className={`${isSidebarHidden ? 'hidden' : 'judul-sidebar'}`}>Dashboard</span>
