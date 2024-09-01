@@ -20,6 +20,15 @@ export default function EditPengguna() {
         departemen_Id: data_karyawan.departemen_Id,
         jabatan: data_karyawan.jabatan,
         status: data_karyawan.status,
+        tempat_lahir: data_karyawan.tempat_lahir,
+        tanggal_lahir: data_karyawan.tanggal_lahir,
+        usia: data_karyawan.usia,
+        jenis_kelamin: data_karyawan.pendidikan,
+        jurusan: data_karyawan.jurusan,
+        bpjs_kk: data_karyawan.bpjs_kk,
+        bpjs_kesehatan: data_karyawan.bpjs_kesehatan,
+        no_rekening: data_karyawan.no_rekening,
+        nama_bank: data_karyawan.nama_bank,
     });
 
     const handleSubmit: FormEventHandler = async (e) => {
@@ -57,7 +66,7 @@ export default function EditPengguna() {
             label: 'Perempuan'
         }
     ]
-    
+
 
     // const [showPassword, setShowPassword] = useState(false);
 
@@ -156,25 +165,38 @@ export default function EditPengguna() {
                                 <Label>Tempat Lahir</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Masukkan Tempat Lahir Anda' />
+                                    placeholder='Masukkan Tempat Lahir Anda'
+                                    name="tempat_lahir"
+                                    value={data.tempat_lahir}
+                                    onChange={(e) => setData('tempat_lahir', e.target.value)}
+                                />
                             </div>
                             <div className="fex flex-col space-y-1.5">
                                 <Label>Tanggal Lahir</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Masukkan Tanggal Lahir Anda' />
+                                    placeholder='Masukkan Tanggal Lahir Anda'
+                                    name="tanggal_lahir"
+                                    value={data.tanggal_lahir}
+                                    onChange={(e) => setData('tanggal_lahir', e.target.value)}
+                                />
                             </div>
 
                             <div className="fex flex-col space-y-1.5">
                                 <Label>Usia</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Masukkan Usia Anda' />
+                                    placeholder='Masukkan Usia Anda'
+                                    name="uia"
+                                    value={data.usia}
+                                    onChange={(e) => setData('usia', e.target.value)}
+                                />
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="status">Pilih Jenis Kelamin:</Label>
-                                <Select>
+                                <Select onValueChange={(value) => setData('jenis_kelamin', value)}
+                                    value={data.jenis_kelamin}>
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Pilih Jenis Kelamin" />
                                     </SelectTrigger>
