@@ -17,19 +17,19 @@ export default function EditPengguna() {
 
     const { data, setData, put } = useForm({
         nama: data_karyawan.nama,
-        departemen_Id: data_karyawan.departemen_Id,
+        departemenId: data_karyawan.departemenId,
         jabatan: data_karyawan.jabatan,
         status: data_karyawan.status,
-        tempat_lahir: data_karyawan.tempat_lahir,
-        tanggal_lahir: data_karyawan.tanggal_lahir,
+        tempatLahir: data_karyawan.tempatLahir,
+        tanggalLahir: data_karyawan.tanggalLahir,
         usia: data_karyawan.usia,
-        jenis_kelamin: data_karyawan.jenis_kelamin,
+        jenisKelamin: data_karyawan.jenisKelamin,
         pendidikan: data_karyawan.pendidikan,
         jurusan: data_karyawan.jurusan,
-        bpjs_kk: data_karyawan.bpjs_kk,
-        bpjs_kesehatan: data_karyawan.bpjs_kesehatan,
-        no_rekening: data_karyawan.no_rekening,
-        nama_bank: data_karyawan.nama_bank,
+        bpjsKk: data_karyawan.bpjsKk,
+        bpjsKesehatan: data_karyawan.bpjsKesehatan,
+        noRekening: data_karyawan.noRekening,
+        namaBank: data_karyawan.namaBank,
     });
 
     const handleSubmit: FormEventHandler = async (e) => {
@@ -118,9 +118,9 @@ export default function EditPengguna() {
                                 <Input
                                     id="departemen"
                                     placeholder="Masukkan Nama Departemen"
-                                    name="departemen_Id"
-                                    value={data.departemen_Id}
-                                    onChange={(e) => setData('departemen_Id', e.target.value)}
+                                    name="departemenId"
+                                    value={data.namaDepartemen}
+                                    onChange={(e) => setData('departemenId', e.target.value)}
                                 />
                             </div>
 
@@ -167,9 +167,9 @@ export default function EditPengguna() {
                                 <Input
                                     type='text'
                                     placeholder='Masukkan Tempat Lahir Anda'
-                                    name="tempat_lahir"
-                                    value={data.tempat_lahir}
-                                    onChange={(e) => setData('tempat_lahir', e.target.value)}
+                                    name="tempatLahir"
+                                    value={data.tempatLahir}
+                                    onChange={(e) => setData('tempatLahir', e.target.value)}
                                 />
                             </div>
                             <div className="fex flex-col space-y-1.5">
@@ -177,9 +177,9 @@ export default function EditPengguna() {
                                 <Input
                                     type='text'
                                     placeholder='Masukkan Tanggal Lahir Anda'
-                                    name="tanggal_lahir"
-                                    value={data.tanggal_lahir}
-                                    onChange={(e) => setData('tanggal_lahir', e.target.value)}
+                                    name="tanggalLahir"
+                                    value={data.tanggalLahir}
+                                    onChange={(e) => setData('tanggalLahir', e.target.value)}
                                 />
                             </div>
 
@@ -196,8 +196,8 @@ export default function EditPengguna() {
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="status">Pilih Jenis Kelamin:</Label>
-                                <Select onValueChange={(value) => setData('jenis_kelamin', value)}
-                                    value={data.jenis_kelamin}>
+                                <Select onValueChange={(value) => setData('jenisKelamin', value)}
+                                    value={data.jenisKelamin}>
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Pilih Jenis Kelamin" />
                                     </SelectTrigger>
@@ -236,9 +236,9 @@ export default function EditPengguna() {
                                 <Input
                                     type='text'
                                     placeholder='Masukkan BPJS Ketenaga Kerja Anda'
-                                    name='bpjs_kk'
-                                    value={data.bpjs_kk}
-                                    onChange={(e) => setData('bpjs_kk', e.target.value)}
+                                    name='bpjsKk'
+                                    value={data.bpjsKk}
+                                    onChange={(e) => setData('bpjsKk', e.target.value)}
                                 />
                             </div>
 
@@ -247,9 +247,9 @@ export default function EditPengguna() {
                                 <Input
                                     type='text'
                                     placeholder='Masukkan BPJ Kesehatan Anda' 
-                                    name='bpjs_kesehatan'
-                                    value={data.bpjs_kesehatan}
-                                    onChange={(e) => setData('bpjs_kesehatan', e.target.value)}
+                                    name='bpjsKesehatan'
+                                    value={data.bpjsKesehatan}
+                                    onChange={(e) => setData('bpjsKesehatan', e.target.value)}
                                     />
                             </div>
 
@@ -258,9 +258,9 @@ export default function EditPengguna() {
                                 <Input
                                     type='text'
                                     placeholder='Masukkan No Rekening Anda' 
-                                    name='no_rekening'
-                                    value={data.no_rekening}
-                                    onChange={(e) => setData('no_rekening', e.target.value)}
+                                    name='noRekening'
+                                    value={data.noRekening}
+                                    onChange={(e) => setData('noRekening', e.target.value)}
                                     />
                             </div>
 
@@ -269,9 +269,9 @@ export default function EditPengguna() {
                                 <Input
                                     type='text'
                                     placeholder='Masukkan Nama Anda' 
-                                    name='nama_bank'
-                                    value={data.nama_bank}
-                                    onChange={(e) => setData('nama_bank', e.target.value)}
+                                    name='namaBank'
+                                    value={data.namaBank}
+                                    onChange={(e) => setData('namaBank', e.target.value)}
                                     />
                             </div>
 
