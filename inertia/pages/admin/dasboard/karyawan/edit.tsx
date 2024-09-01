@@ -16,12 +16,10 @@ export default function EditPengguna() {
     console.log(data_karyawan);
 
     const { data, setData, put } = useForm({
-        nama: data_karyawan.nama || '',
-        departemen_Id: data_karyawan.departemen_Id || '',
-        jabatan: data_karyawan.jabatan || '',
-        status: data_karyawan.status || '',
-        // email: data_karyawan.user?.email || '',
-        // password: data_karyawan.user?.password || '',
+        nama: data_karyawan.nama,
+        departemen_Id: data_karyawan.departemen_Id,
+        jabatan: data_karyawan.jabatan,
+        status: data_karyawan.status,
     });
 
     const handleSubmit: FormEventHandler = async (e) => {
