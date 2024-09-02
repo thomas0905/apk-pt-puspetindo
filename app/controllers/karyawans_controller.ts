@@ -76,11 +76,11 @@ export default class KaryawansKontroller {
     }
 
     async update({ request, params, response }: HttpContext) {
-        const users = new User()
-        users.fullName = request.input('fullName');
-        users.email = request.input('email');
-        users.password = request.input('password');
-        await users.save();
+        // const users = new User()
+        // users.fullName = request.input('fullName');
+        // users.email = request.input('email');
+        // users.password = request.input('password');
+        // await users.save();
 
         const karyawan = await Karyawan.findOrFail(params.id)
         karyawan.nama = request.input('nama')
