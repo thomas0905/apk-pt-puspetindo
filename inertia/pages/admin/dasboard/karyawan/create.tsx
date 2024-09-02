@@ -291,7 +291,7 @@ export default function Create() {
                                     onChange={(e) => setData('tanggal_lahir', e.target.value)}
                                     name='tanggal_lahir'
                                     value={data.tanggal_lahir}
-                                    type='text' placeholder='Masukkan Tempat Lahir' />
+                                    type='date' placeholder='Masukkan Tempat Lahir' />
                             {errors.tanggal_lahir && <small className="text-red-600">{errors.tanggal_lahir}</small>}
                             </div>
 
