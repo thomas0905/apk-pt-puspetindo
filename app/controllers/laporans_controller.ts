@@ -23,7 +23,8 @@ export default class LaporansController {
             const all_man_hours = await ManHour.query()
                 .whereBetween('tanggal', [request.input('start_date'), request.input('end_date')])
                 .preload('karyawan')
-                .preload('proyek');
+                .preload('proyek')
+                .preload('karyawan.departemen');
 
             let reports = [];
 
@@ -60,13 +61,18 @@ export default class LaporansController {
         } else {
 
             man_hours = await ManHour.query()
-                .preload('karyawan')
-                .preload('proyek')
-                .where('karyawan_id', karyawan.id)
-                .groupBy('karyawan_id')
+            .preload('karyawan', (Karyawan) => {
+                Karyawan.preload('departemen');
+            })
+            .preload('proyek')
+            .where('karyawan_id', karyawan.id)
+            
+            .groupBy('karyawan_id');
 
             const all_man_hours = await ManHour.query()
-                .preload('karyawan')
+            .preload('karyawan', (Karyawan) => {
+                Karyawan.preload('departemen');
+            })
                 .preload('proyek');
 
             let reports = [];
@@ -86,7 +92,7 @@ export default class LaporansController {
                 let total_jam = laporan.reduce((acc, item) => {
                     return acc + item.jam_kerja;
                 }, 0);
-            
+
 
                 reports.push({
                     id: karyawan.id,
@@ -98,12 +104,12 @@ export default class LaporansController {
             });
 
             man_hours = reports
-           
+
         }
 
 
         return inertia.render('admin/management/laporan', {
-            data_manhours: man_hours
+            data_manhours: man_hours,
         });
     }
 }

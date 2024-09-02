@@ -23,7 +23,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 export default function Laporan() {
   const { data_manhours } = usePage().props
   console.log(data_manhours);
-  
+
   const componentRef = useRef(null)
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
@@ -105,11 +105,12 @@ export default function Laporan() {
               </Select>
               <Button className='bg-blue-600 text-white hover:bg-blue-500 text-xs py-1.5 rounded-sm px-3' onClick={handleFilter}>Pilih</Button>
             </div>
-            <Table className='mt-2 bg-slate-50'  ref={tableRef}>
+            <Table className='mt-2 bg-slate-50' ref={tableRef}>
               <TableHeader className='bg-blue-300'>
                 <TableRow className='border-t'>
                   <TableHead className="w-[50px]">No</TableHead>
                   <TableHead>Karyawan</TableHead>
+                  <TableHead>Departemen</TableHead>
                   <TableHead>Tanggal</TableHead>
                   <TableHead>Total</TableHead>
                   <TableHead>Total Persentase</TableHead>
@@ -123,6 +124,7 @@ export default function Laporan() {
                       <TableRow>
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>{data.nama_karyawan}</TableCell>
+                        <TableCell>{data.namaDepartemen}</TableCell>
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
                         <TableCell>{data.total_jam} jam</TableCell>
                         <TableCell>{data.total_persentase} %</TableCell>
@@ -146,6 +148,7 @@ export default function Laporan() {
                                   <TableRow>
                                     <TableHead>No</TableHead>
                                     <TableHead>Karyawan</TableHead>
+                                    <TableHead>Departemen</TableHead>
                                     <TableHead>Tanggal</TableHead>
                                     <TableHead>No JE</TableHead>
                                     <TableHead>Jam Kerja</TableHead>
@@ -156,6 +159,7 @@ export default function Laporan() {
                                   {data.data_laporan.map((data, index) => (
                                     <TableRow key={index}>
                                       <TableCell>{index + 1}</TableCell>
+                                      <TableCell>{data.karyawan?.nama}</TableCell>
                                       <TableCell>{data.karyawan?.nama}</TableCell>
                                       <TableCell>{formatDate(data.tanggal)}</TableCell>
                                       <TableCell>{data.kodeJobOrder}</TableCell>
