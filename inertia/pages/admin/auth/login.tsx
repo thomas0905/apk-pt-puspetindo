@@ -87,6 +87,7 @@ export default function Login() {
                                     onChange={(e) => setData('email', e.target.value)}
                                     className="w-full rounded-lg bg-background pl-8 focus:outline-blue-500"
                                 />
+                                
                                 {errors.email && <small className="text-red-600">{errors.email}</small>}
                             </div>
                         </div>
