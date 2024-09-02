@@ -47,6 +47,7 @@ router.group(() => {
     router.post('create', [ManHoursController, 'store'])
     router.delete('delete/:id', [ManHoursController, 'delete'])
     router.get('edit/:id', [ManHoursController, 'edit'])
+    // router.put('edit/:id', [ManHoursController, 'update'])
 }).prefix('/manhours/').use(middleware.auth())
 
 

@@ -10,12 +10,11 @@ import { IconHome } from '@tabler/icons-react';
 import Swal from 'sweetalert2';
 
 export default function Edit() {
-  // Pastikan data diambil dengan benar dari props
-  const { man_hours, data_proyek, data_karyawan } = usePage().props;
+  const { man_hours } = usePage().props;
   console.log(man_hours);
 
   const { data, setData, put, processing } = useForm({
-    karyawan_id: man_hours.karyawan_id,
+    karyawanId: man_hours.karyawanId,
     proyek_id: man_hours.proyek_id,
     tanggal: man_hours.tanggal,
     jam_kerja: man_hours.jam_kerja
@@ -44,18 +43,18 @@ export default function Edit() {
             <div className="flex flex-col space-y-1.5">
               <Label>Pilih Karyawan:</Label>
               <Select
-                onValueChange={(value) => setData('karyawan_id', value)}
-                defaultValue={data.karyawan_id.toString()}
+                onValueChange={(value) => setData('karyawanId', value)}
+                // defaultValue={data.karyawan_id.toString()}
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Pilih Karyawan" />
                 </SelectTrigger>
                 <SelectContent>
-                  {data_karyawan.map((karyawan) => (
+                  {/* {data_karyawan.map((karyawan) => (
                     <SelectItem key={karyawan.id} value={karyawan.id.toString()}>
                       {karyawan.nama}
                     </SelectItem>
-                  ))}
+                  ))} */}
                 </SelectContent>
               </Select>
             </div>

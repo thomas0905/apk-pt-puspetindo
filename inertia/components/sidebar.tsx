@@ -15,7 +15,7 @@ import MyImageComponent from '../img/logo-puspetindo.png';
 import { Button } from "@/components/ui/button";
 import Navbar from './navbar';
 
-export default function Sidebar({isSidebarHidden,toggleSidebar}) {
+export default function Sidebar({ isSidebarHidden, toggleSidebar }) {
 
     const { url } = usePage();
     const isActive = (path) => url === path;

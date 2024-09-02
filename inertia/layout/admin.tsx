@@ -15,7 +15,7 @@ export default function Admin({ children }) {
       <Head>
         <link rel="icon" href={favIcon} type="image/x-icon" />
       </Head>
-      <div className={`grid min-h-screen w-full ${isSidebarHidden ? 'grid-cols-[64px_1fr]' : 'md:grid-cols-[220px_1fr]'} lg:grid-cols-[230px_1fr]`}>
+      <div className={`grid min-h-screen  ${isSidebarHidden ? 'grid-cols-[64px_1fr]' : 'md:grid-cols-[220px_1fr]'} lg:grid-cols-[230px_1fr]`}>
         <Sidebar isSidebarHidden={isSidebarHidden} toggleSidebar={toggleSidebar} />
         <div className="flex flex-col">
           <Navbar isSidebarHidden={isSidebarHidden} />
