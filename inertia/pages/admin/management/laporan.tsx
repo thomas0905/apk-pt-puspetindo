@@ -96,18 +96,18 @@ export default function Laporan() {
                   className="border rounded-sm p-0.5 text-sm"
                 />
               </div>
-              <div className="w-75">
-                <Select >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Pilih Departemen" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {departemen.map((departemen) => (
-                      <SelectItem key={departemen.value} value={departemen.value}>{departemen.label}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+             <div className="w-75">
+             <Select >
+                <SelectTrigger>
+                  <SelectValue placeholder="Pilih Departemen" />
+                </SelectTrigger>
+                <SelectContent>
+                  {departemen.map((departemen) => (
+                    <SelectItem key={departemen.value} value={departemen.value}>{departemen.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+             </div>
               <Button className='bg-blue-600 text-white hover:bg-blue-500 text-xs py-1.5 rounded-sm px-3' onClick={handleFilter}>Pilih</Button>
             </div>
             <Table className='mt-2 bg-slate-50' ref={tableRef}>
@@ -123,7 +123,7 @@ export default function Laporan() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredData.length > 0 ? (
+              {filteredData.length > 0 ? (
                   filteredData.map((data, index) => (
                     <React.Fragment key={data.id}>
                       <TableRow>
@@ -133,7 +133,6 @@ export default function Laporan() {
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
                         <TableCell>{data.total_jam} jam</TableCell>
                         <TableCell>{data.total_persentase} %</TableCell>
-
                         <TableCell>
                           <Button
                             className="flex items-center bg-transparent hover:bg-transparent"
@@ -143,7 +142,6 @@ export default function Laporan() {
                           </Button>
                         </TableCell>
                       </TableRow>
-                      {/* Detail Row */}
                       {expandedRows.includes(data.id) && (
                         <TableRow>
                           <TableCell colSpan={6}>
@@ -185,6 +183,7 @@ export default function Laporan() {
                     <TableCell colSpan="6" className="text-center">Data tidak ditemukan</TableCell>
                   </TableRow>
                 )}
+
               </TableBody>
             </Table>
           </div>
