@@ -56,8 +56,6 @@ export default function Laporan() {
     )
   }
 
-  // Extract unique department names
-  const uniqueDepartments = [...new Set(data_manhours.map(item => item.karyawan?.departemen?.namaDepartemen).filter(Boolean))];
 
   return (
     <Admin>
@@ -122,7 +120,7 @@ export default function Laporan() {
                       <TableRow>
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>{data.nama_karyawan}</TableCell>
-                        <TableCell>{data.data_laporan.karyawan?.departemen?.namaDepartemen || "Departemen tidak ditemukan"}</TableCell>
+                        <TableCell>{data.karyawan?.departemen?.namaDepartemen || "Departemen tidak ditemukan"}</TableCell>
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
                         <TableCell>{data.total_jam} jam</TableCell>
                         <TableCell>{data.total_persentase} %</TableCell>
