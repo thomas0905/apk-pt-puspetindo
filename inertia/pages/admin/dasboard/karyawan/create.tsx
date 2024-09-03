@@ -114,9 +114,11 @@ export default function Create() {
             isValid = false;
         }
 
-
         if (data.usia.trim() === '') {
-            validationErrors.usia = 'Tempat Lahir harus Di isi';
+            validationErrors.usia = 'Usia harus diisi';
+            isValid = false;
+        } else if (isNaN(Number(data.usia))) {
+            validationErrors.usia = 'Usia harus berupa angka';
             isValid = false;
         }
 
@@ -134,7 +136,7 @@ export default function Create() {
             validationErrors.jurusan = 'Jurusan harus Di isi';
             isValid = false;
         }
-        
+
         if (data.bpjs_kk.trim() === '') {
             validationErrors.bpjs_kk = 'bpjs harus Di isi';
             isValid = false;
@@ -149,14 +151,17 @@ export default function Create() {
             validationErrors.no_rekening = 'Nomor Rekening harus Di isi';
             isValid = false;
         }
-        
+
         if (data.nama_bank.trim() === '') {
             validationErrors.nama_bank = 'Nama Bank harus Di isi';
             isValid = false;
         }
 
         if (data.email.trim() === '') {
-            validationErrors.email = 'Email harus di lengkapi';
+            validationErrors.email = 'Email harus dilengkapi';
+            isValid = false;
+        } else {
+            validationErrors.email.user = 'Email sudah ada';
             isValid = false;
         }
 
@@ -282,7 +287,7 @@ export default function Create() {
                                     name='tempat_lahir'
                                     value={data.tempat_lahir}
                                     type='text' placeholder='Masukkan Tempat Lahir' />
-                            {errors.tempat_lahir && <small className="text-red-600">{errors.tempat_lahir}</small>}
+                                {errors.tempat_lahir && <small className="text-red-600">{errors.tempat_lahir}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
@@ -292,7 +297,7 @@ export default function Create() {
                                     name='tanggal_lahir'
                                     value={data.tanggal_lahir}
                                     type='date' placeholder='Masukkan Tempat Lahir' />
-                            {errors.tanggal_lahir && <small className="text-red-600">{errors.tanggal_lahir}</small>}
+                                {errors.tanggal_lahir && <small className="text-red-600">{errors.tanggal_lahir}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
@@ -302,7 +307,7 @@ export default function Create() {
                                     name='usia'
                                     value={data.usia}
                                     type='text' placeholder='Usia anda' />
-                            {errors.usia && <small className="text-red-600">{errors.usia}</small>}
+                                {errors.usia && <small className="text-red-600">{errors.usia}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
@@ -327,7 +332,7 @@ export default function Create() {
                                     name='pendidikan'
                                     value={data.pendidikan}
                                     type='text' placeholder='Pendidikan Anda' />
-                            {errors.pendidikan && <small className="text-red-600">{errors.pendidikan}</small>}
+                                {errors.pendidikan && <small className="text-red-600">{errors.pendidikan}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
@@ -337,7 +342,7 @@ export default function Create() {
                                     name='jurusan'
                                     value={data.jurusan}
                                     type='text' placeholder='Jurusan Anda' />
-                            {errors.jurusan && <small className="text-red-600">{errors.jurusan}</small>}
+                                {errors.jurusan && <small className="text-red-600">{errors.jurusan}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
@@ -347,7 +352,7 @@ export default function Create() {
                                     name='bpjs_kk'
                                     value={data.bpjs_kk}
                                     type='text' placeholder='Jurusan Anda' />
-                            {errors.bpjs_kk && <small className="text-red-600">{errors.bpjs_kk}</small>}
+                                {errors.bpjs_kk && <small className="text-red-600">{errors.bpjs_kk}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
@@ -357,7 +362,7 @@ export default function Create() {
                                     name='bpjs_kesehatan'
                                     value={data.bpjs_kesehatan}
                                     type='text' placeholder='Jurusan Anda' />
-                            {errors.bpjs_kesehatan && <small className="text-red-600">{errors.bpjs_kesehatan}</small>}
+                                {errors.bpjs_kesehatan && <small className="text-red-600">{errors.bpjs_kesehatan}</small>}
                             </div>
 
 
@@ -368,7 +373,7 @@ export default function Create() {
                                     name='no_rekening'
                                     value={data.no_rekening}
                                     type='text' placeholder='Nomor Rekening Anda' />
-                            {errors.no_rekening && <small className="text-red-600">{errors.no_rekening}</small>}
+                                {errors.no_rekening && <small className="text-red-600">{errors.no_rekening}</small>}
                             </div>
 
 
@@ -379,7 +384,7 @@ export default function Create() {
                                     name='nama_bank'
                                     value={data.nama_bank}
                                     type='text' placeholder='Nama Bank Rekening Anda' />
-                            {errors.nama_bank && <small className="text-red-600">{errors.nama_bank}</small>}
+                                {errors.nama_bank && <small className="text-red-600">{errors.nama_bank}</small>}
                             </div>
 
                         </div>
