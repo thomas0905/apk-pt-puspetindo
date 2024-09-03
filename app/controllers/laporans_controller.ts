@@ -61,18 +61,18 @@ export default class LaporansController {
         } else {
 
             man_hours = await ManHour.query()
-            .preload('karyawan', (Karyawan) => {
-                Karyawan.preload('departemen');
-            })
-            .preload('proyek')
-            .where('karyawan_id', karyawan.id)
-            
-            .groupBy('karyawan_id');
+                .preload('karyawan', (Karyawan) => {
+                    Karyawan.preload('departemen');
+                })
+                .preload('proyek')
+                .where('karyawan_id', karyawan.id)
+
+                .groupBy('karyawan_id');
 
             const all_man_hours = await ManHour.query()
-            .preload('karyawan', (Karyawan) => {
-                Karyawan.preload('departemen');
-            })
+                .preload('karyawan', (Karyawan) => {
+                    Karyawan.preload('departemen');
+                })
                 .preload('proyek');
 
             let reports = [];

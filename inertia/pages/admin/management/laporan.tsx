@@ -1,6 +1,6 @@
 import { Head, router, usePage } from '@inertiajs/react'
-import { IconPlus, IconMinus, IconPrinter, IconFileTypeDoc, IconFileDownload } from '@tabler/icons-react'
-import React, { useRef, useState, useMemo } from 'react'
+import { IconPlus, IconMinus, IconPrinter, IconFileDownload } from '@tabler/icons-react'
+import React, { useRef, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import Admin from '~/layout/admin'
@@ -22,7 +22,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 
 export default function Laporan() {
   const { data_manhours } = usePage().props
-  console.log(data_manhours);
 
   const componentRef = useRef(null)
   const [startDate, setStartDate] = useState('')
@@ -56,12 +55,6 @@ export default function Laporan() {
       prev.includes(rowId) ? prev.filter(id => id !== rowId) : [...prev, rowId]
     )
   }
-
-  const handleExport = () => {
-    console.log(data_manhours);
-
-  }
-
 
   return (
     <Admin>
@@ -120,11 +113,11 @@ export default function Laporan() {
               <TableBody>
                 {filteredData.length > 0 ? (
                   filteredData.map((data, index) => (
-                    <React.Fragment key={index.id}>
+                    <React.Fragment key={data.id}>
                       <TableRow>
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>{data.nama_karyawan}</TableCell>
-                        <TableCell>{data.namaDepartemen}</TableCell>
+                        <TableCell>{data.departemen?.namaDepartemen || "Departemen tidak ditemukan"}</TableCell>
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
                         <TableCell>{data.total_jam} jam</TableCell>
                         <TableCell>{data.total_persentase} %</TableCell>
@@ -156,15 +149,15 @@ export default function Laporan() {
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                  {data.data_laporan.map((data, index) => (
-                                    <TableRow key={index}>
-                                      <TableCell>{index + 1}</TableCell>
-                                      <TableCell>{data.karyawan?.nama}</TableCell>
-                                      <TableCell>{data.karyawan?.nama}</TableCell>
-                                      <TableCell>{formatDate(data.tanggal)}</TableCell>
-                                      <TableCell>{data.kodeJobOrder}</TableCell>
-                                      <TableCell>{data.jam_kerja} jam</TableCell>
-                                      <TableCell>{data.total_persentase}%</TableCell>
+                                  {data.data_laporan.map((detail, detailIndex) => (
+                                    <TableRow key={detailIndex}>
+                                      <TableCell>{detailIndex + 1}</TableCell>
+                                      <TableCell>{detail.karyawan?.nama}</TableCell>
+                                      <TableCell>{detail.karyawan?.departemen?.namaDepartemen || "Departemen tidak ditemukan"}</TableCell>
+                                      <TableCell>{formatDate(detail.tanggal)}</TableCell>
+                                      <TableCell>{detail.kodeJobOrder}</TableCell>
+                                      <TableCell>{detail.jam_kerja} jam</TableCell>
+                                      <TableCell>{detail.total_persentase}%</TableCell>
                                     </TableRow>
                                   ))}
                                 </TableBody>
