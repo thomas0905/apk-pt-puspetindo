@@ -24,7 +24,11 @@ export default class LaporansController {
                 .whereBetween('tanggal', [request.input('start_date'), request.input('end_date')])
                 .preload('karyawan')
                 .preload('proyek')
-                .preload('karyawan.departemen');
+                .preload('karyawan', (Karyawan) => {
+                    Karyawan.preload('departemen');
+                })
+                .preload('proyek');
+
 
             let reports = [];
 
@@ -66,7 +70,6 @@ export default class LaporansController {
                 })
                 .preload('proyek')
                 .where('karyawan_id', karyawan.id)
-
                 .groupBy('karyawan_id');
 
             const all_man_hours = await ManHour.query()

@@ -22,6 +22,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 
 export default function Laporan() {
   const { data_manhours } = usePage().props
+  console.log(data_manhours);
 
   const componentRef = useRef(null)
   const [startDate, setStartDate] = useState('')
@@ -56,6 +57,17 @@ export default function Laporan() {
     )
   }
 
+  const departemen = [
+    {
+      value: "HSE",
+      label: "HSE",
+    },
+    {
+      value: "HR",
+      label: "HR",
+    }
+  ]
+
   return (
     <Admin>
       <Head title='Laporan' />
@@ -84,18 +96,18 @@ export default function Laporan() {
                   className="border rounded-sm p-0.5 text-sm"
                 />
               </div>
-              <Select>
-                <SelectTrigger>
-                  <SelectValue placeholder="Pilih Departemen" />
-                </SelectTrigger>
-                <SelectContent>
-                  {data_manhours.map((kar) => (
-                    <SelectItem key={kar.id} value={kar.id.toString()}>
-                      {kar.nama_karyawan}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <div className="w-75">
+                <Select >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Pilih Departemen" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {departemen.map((departemen) => (
+                      <SelectItem key={departemen.value} value={departemen.value}>{departemen.label}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
               <Button className='bg-blue-600 text-white hover:bg-blue-500 text-xs py-1.5 rounded-sm px-3' onClick={handleFilter}>Pilih</Button>
             </div>
             <Table className='mt-2 bg-slate-50' ref={tableRef}>
@@ -117,7 +129,7 @@ export default function Laporan() {
                       <TableRow>
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>{data.nama_karyawan}</TableCell>
-                        <TableCell>{data.departemen?.namaDepartemen || "Departemen tidak ditemukan"}</TableCell>
+                        <TableCell>{data.karyawan?.departemen?.namaDepartemen || "Departemen tidak ditemukan"}</TableCell>
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
                         <TableCell>{data.total_jam} jam</TableCell>
                         <TableCell>{data.total_persentase} %</TableCell>
