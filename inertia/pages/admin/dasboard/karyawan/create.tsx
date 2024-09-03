@@ -160,10 +160,7 @@ export default function Create() {
         if (data.email.trim() === '') {
             validationErrors.email = 'Email harus dilengkapi';
             isValid = false;
-        } else {
-            validationErrors.email.user = 'Email sudah ada';
-            isValid = false;
-        }
+        } 
 
         if (data.password.trim() === '') {
             validationErrors.password = 'password harus di lengkapi';

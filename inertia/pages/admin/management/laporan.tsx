@@ -19,7 +19,6 @@ import { Input } from '~/components/ui/input'
 import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 
-
 export default function Laporan() {
   const { data_manhours } = usePage().props
   console.log(data_manhours);
@@ -57,16 +56,8 @@ export default function Laporan() {
     )
   }
 
-  const departemen = [
-    {
-      value: "HSE",
-      label: "HSE",
-    },
-    {
-      value: "HR",
-      label: "HR",
-    }
-  ]
+  // Extract unique department names
+  const uniqueDepartments = [...new Set(data_manhours.map(item => item.karyawan?.departemen?.namaDepartemen).filter(Boolean))];
 
   return (
     <Admin>
@@ -102,8 +93,10 @@ export default function Laporan() {
                   <SelectValue placeholder="Pilih Departemen" />
                 </SelectTrigger>
                 <SelectContent>
-                  {departemen.map((departemen) => (
-                    <SelectItem key={departemen.value} value={departemen.value}>{departemen.label}</SelectItem>
+                  {data_manhours.map((departmen, index) => (
+                    <SelectItem key={index} value={departmen}>
+                      {departmen.namaDepartemen}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -129,7 +122,7 @@ export default function Laporan() {
                       <TableRow>
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>{data.nama_karyawan}</TableCell>
-                        <TableCell>{data.karyawan?.departemen?.namaDepartemen || "Departemen tidak ditemukan"}</TableCell>
+                        <TableCell>{data.data_laporan.karyawan?.departemen?.namaDepartemen || "Departemen tidak ditemukan"}</TableCell>
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
                         <TableCell>{data.total_jam} jam</TableCell>
                         <TableCell>{data.total_persentase} %</TableCell>

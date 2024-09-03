@@ -18,16 +18,15 @@ export default class LaporansController {
 
         let man_hours = [];
 
-        if (request.input('start_date') != null) {
+        if (request.input('start_date') != null) {           
             man_hours = await ManHour.query().whereBetween('tanggal', [request.input('start_date'), request.input('end_date')]).preload('karyawan').preload('proyek').groupBy('karyawan_id')
             const all_man_hours = await ManHour.query()
                 .whereBetween('tanggal', [request.input('start_date'), request.input('end_date')])
-                .preload('karyawan')
-                .preload('proyek')
                 .preload('karyawan', (Karyawan) => {
                     Karyawan.preload('departemen');
                 })
-                .preload('proyek');
+                .preload('proyek')
+
 
 
             let reports = [];
