@@ -91,9 +91,9 @@ export default function Laporan() {
                   <SelectValue placeholder="Pilih Departemen" />
                 </SelectTrigger>
                 <SelectContent>
-                  {data_manhours.map((departmen, index) => (
-                    <SelectItem key={index} value={departmen}>
-                      {departmen.namaDepartemen}
+                  {data_manhours.map((departmen) => (
+                    <SelectItem key={departmen.id} value={departmen.id}>
+                      {departmen.departemen}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -115,65 +115,65 @@ export default function Laporan() {
               </TableHeader>
               <TableBody>
               {filteredData.length > 0 ? (
-                  filteredData.map((data, index) => (
-                    <React.Fragment key={data.id}>
-                      <TableRow>
-                        <TableCell>{index + 1}</TableCell>
-                        <TableCell>{data.nama_karyawan}</TableCell>
-                        <TableCell>{data.karyawan?.departemen?.namaDepartemen || "Departemen tidak ditemukan"}</TableCell>
-                        <TableCell>{formatDate(data.tanggal)}</TableCell>
-                        <TableCell>{data.total_jam} jam</TableCell>
-                        <TableCell>{data.total_persentase} %</TableCell>
-                        <TableCell>
-                          <Button
-                            className="flex items-center bg-transparent hover:bg-transparent"
-                            onClick={() => toggleRow(data.id)}
-                          >
-                            {expandedRows.includes(data.id) ? <IconMinus className='bg-blue-500 rounded-sm' size={20} /> : <IconPlus className='bg-blue-500 rounded-sm' size={20} />}
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                      {expandedRows.includes(data.id) && (
-                        <TableRow>
-                          <TableCell colSpan={6}>
-                            <div className="p-4 bg-gray-100 border-t">
-                              <Table className="bg-white">
-                                <TableHeader>
-                                  <TableRow>
-                                    <TableHead>No</TableHead>
-                                    <TableHead>Karyawan</TableHead>
-                                    <TableHead>Departemen</TableHead>
-                                    <TableHead>Tanggal</TableHead>
-                                    <TableHead>No JE</TableHead>
-                                    <TableHead>Jam Kerja</TableHead>
-                                    <TableHead>Persentase</TableHead>
-                                  </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                  {data.data_laporan.map((detail, detailIndex) => (
-                                    <TableRow key={detailIndex}>
-                                      <TableCell>{detailIndex + 1}</TableCell>
-                                      <TableCell>{detail.karyawan?.nama}</TableCell>
-                                      <TableCell>{detail.karyawan?.departemen?.namaDepartemen || "Departemen tidak ditemukan"}</TableCell>
-                                      <TableCell>{formatDate(detail.tanggal)}</TableCell>
-                                      <TableCell>{detail.kodeJobOrder}</TableCell>
-                                      <TableCell>{detail.jam_kerja} jam</TableCell>
-                                      <TableCell>{detail.total_persentase}%</TableCell>
-                                    </TableRow>
-                                  ))}
-                                </TableBody>
-                              </Table>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      )}
-                    </React.Fragment>
-                  ))
-                ) : (
+  filteredData.map((data, index) => (
+    <React.Fragment key={data.id}>
+      <TableRow>
+        <TableCell className="text-center">{index + 1}</TableCell>
+        <TableCell>{data.nama_karyawan}</TableCell>
+        <TableCell>{data.departemen || "-"}</TableCell>
+        <TableCell>{formatDate(data.tanggal)}</TableCell>
+        <TableCell>{data.total_jam} jam</TableCell>
+        <TableCell>{data.total_persentase} %</TableCell>
+        <TableCell>
+          <Button
+            className="flex items-center bg-transparent hover:bg-transparent"
+            onClick={() => toggleRow(data.id)}
+          >
+            {expandedRows.includes(data.id) ? <IconMinus className='bg-blue-500 rounded-sm' size={20} /> : <IconPlus className='bg-blue-500 rounded-sm' size={20} />}
+          </Button>
+        </TableCell>
+      </TableRow>
+      {expandedRows.includes(data.id) && (
+        <TableRow>
+          <TableCell colSpan={6}>
+            <div className="p-4 bg-gray-100 border-t">
+              <Table className="bg-white">
+                <TableHeader>
                   <TableRow>
-                    <TableCell colSpan="6" className="text-center">Data tidak ditemukan</TableCell>
+                    <TableHead>No</TableHead>
+                    <TableHead>Karyawan</TableHead>
+                    <TableHead>Departemen</TableHead>
+                    <TableHead>Tanggal</TableHead>
+                    <TableHead>No JE</TableHead>
+                    <TableHead>Jam Kerja</TableHead>
+                    <TableHead>Persentase</TableHead>
                   </TableRow>
-                )}
+                </TableHeader>
+                <TableBody>
+                  {data.data_laporan.map((detail, detailIndex) => (
+                    <TableRow key={detailIndex}>
+                      <TableCell>{detailIndex + 1}</TableCell>
+                      <TableCell>{detail.karyawan?.nama}</TableCell>
+                      <TableCell>{detail.karyawan?.departemen?.namaDepartemen || "-"}</TableCell>
+                      <TableCell>{formatDate(detail.tanggal)}</TableCell>
+                      <TableCell>{detail.kodeJobOrder}</TableCell>
+                      <TableCell>{detail.jam_kerja} jam</TableCell>
+                      <TableCell>{detail.total_persentase}%</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </TableCell>
+        </TableRow>
+      )}
+    </React.Fragment>
+  ))
+) : (
+  <TableRow>
+    <TableCell colSpan="6" className="text-center">Data tidak ditemukan</TableCell>
+  </TableRow>
+)}
 
               </TableBody>
             </Table>
