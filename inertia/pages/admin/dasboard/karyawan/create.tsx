@@ -1,6 +1,6 @@
 import { Head, Link, usePage } from '@inertiajs/react'
 import { IconEye, IconEyeOff, IconHome } from '@tabler/icons-react'
-import React, { FormEventHandler, useState } from 'react'
+import React, { FormEventHandler, useEffect, useState } from 'react'
 import { useForm } from '@inertiajs/react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
@@ -76,7 +76,7 @@ export default function Create() {
         password: ''
     })
     const [errors, setErrors] = useState({});
-
+    const [isDuplicateEmail, setIsDuplicateEmail] = useState(false);
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
 
@@ -160,7 +160,13 @@ export default function Create() {
         if (data.email.trim() === '') {
             validationErrors.email = 'Email harus dilengkapi';
             isValid = false;
-        } 
+        } else {
+            if (isDuplicateEmail) {
+                setIsDuplicateEmail(true);
+                validationErrors.email = 'Email sudah terdaftar';
+                isValid = false;
+            }
+        }
 
         if (data.password.trim() === '') {
             validationErrors.password = 'password harus di lengkapi';
@@ -183,6 +189,7 @@ export default function Create() {
         }
     }
     const [showPassword, setShowPassword] = useState(false); // State untuk mengatur visibilitas password
+
 
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
