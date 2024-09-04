@@ -8,6 +8,7 @@ const PermissionsController = () => import('#controllers/permissions_controller'
 const AuthController = () => import('#controllers/auth_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+import MenuProfilsController from '#controllers/menu_profils_controller'
 const HomeController = () => import('#controllers/home_controller')
 
 router.get('/', [HomeController, 'index']).use(middleware.auth())
@@ -41,7 +42,6 @@ router.group(() => {
 }).prefix('/proyek/').use(middleware.auth())
 
 router.group(() => {
-    router.get('menuProfil', [ManHoursController, 'menuProfil'])
     router.get('/', [ManHoursController, 'index'])
     router.get('create', [ManHoursController, 'create'])
     router.post('create', [ManHoursController, 'store'])
@@ -51,6 +51,7 @@ router.group(() => {
 }).prefix('/manhours/').use(middleware.auth())
 
 
+router.get('/menuProfil', [MenuProfilsController, 'index'])
 
 // Route to login page
 router.get('/login', [AuthController, 'login']).use(middleware.guest())
