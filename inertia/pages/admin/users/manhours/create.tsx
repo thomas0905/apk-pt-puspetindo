@@ -13,6 +13,9 @@ import Admin from '~/layout/admin';
 export default function Create() {
   const { data_karyawan, data_proyek } = usePage().props;
 
+
+  const filterNamaProyek = [...new Set(data_proyek.map(proyek => proyek.namaProyek))];
+
   const { data, setData, post, processing } = useForm({
     karyawan_id: '',
     proyek_id: '',
@@ -44,7 +47,7 @@ export default function Create() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (!validate()) {
       return;
     }
@@ -113,9 +116,9 @@ export default function Create() {
                     <SelectValue placeholder="Pilih Proyek" />
                   </SelectTrigger>
                   <SelectContent>
-                    {data_proyek.map((pro) => (
-                      <SelectItem key={pro.id} value={pro.id.toString()}>
-                        {pro.namaProyek}
+                    {filterNamaProyek.map((namaProyek, index) => (
+                      <SelectItem key={index} value={namaProyek}>
+                        {namaProyek}
                       </SelectItem>
                     ))}
                   </SelectContent>

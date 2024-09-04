@@ -52,7 +52,6 @@ export default class LaporansController {
                 reports.push({
                     id: karyawan.id,
                     nama_karyawan: karyawan.karyawan.nama,
-                    departemen: karyawan.karyawan.departemen?.namaDepartemen,
                     tanggal: karyawan.tanggal,
                     data_laporan: laporan,
                     total_jam: total_jam,
