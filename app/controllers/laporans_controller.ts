@@ -18,22 +18,25 @@ export default class LaporansController {
 
         let man_hours = [];
 
-        if (request.input('start_date') != null) {           
-            man_hours = await ManHour.query().whereBetween('tanggal', [request.input('start_date'), request.input('end_date')]).preload('karyawan').preload('proyek').groupBy('karyawan_id')
+        if (request.input('start_date') != null) {
+            man_hours = await ManHour.query()
+                .whereBetween('tanggal',[request.input('start_date'),request.input('end_date')])
+                .preload('karyawan', (Karyawan) => {
+                    Karyawan.preload('departemen');
+                })
+                .preload('proyek')
+                .groupBy('karyawan_id')
+
             const all_man_hours = await ManHour.query()
                 .whereBetween('tanggal', [request.input('start_date'), request.input('end_date')])
                 .preload('karyawan', (Karyawan) => {
                     Karyawan.preload('departemen');
                 })
                 .preload('proyek')
-
-
-
             let reports = [];
 
-
             man_hours.forEach(karyawan => {
-                let laporan = all_man_hours.filter(item => item.karyawan_id === karyawan.karyawan.id).map(item => {
+                let laporan = all_man_hours.filter(item => item.karyawan_id === karyawan.karyawan_id).map(item => {
                     return {
                         proyek: item.proyek.namaProyek,
                         tanggal: item.tanggal,
@@ -52,10 +55,11 @@ export default class LaporansController {
                 reports.push({
                     id: karyawan.id,
                     nama_karyawan: karyawan.karyawan.nama,
+                    departemen: karyawan.karyawan.departemen.namaDepartemen,
                     tanggal: karyawan.tanggal,
                     data_laporan: laporan,
                     total_jam: total_jam,
-                    total_persentase: (total_jam * 173) / 100
+                    total_persentase: (total_jam * 173) / 100 
                 });
             });
 

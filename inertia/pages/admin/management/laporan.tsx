@@ -120,7 +120,7 @@ export default function Laporan() {
                       <TableRow>
                         <TableCell className="text-center">{index + 1}</TableCell>
                         <TableCell>{data.nama_karyawan}</TableCell>
-                        <TableCell>{data.departemen || "-"}</TableCell>
+                        <TableCell>{data.departemen}</TableCell>
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
                         <TableCell>{data.total_jam} jam</TableCell>
                         <TableCell>{data.total_persentase} %</TableCell>
