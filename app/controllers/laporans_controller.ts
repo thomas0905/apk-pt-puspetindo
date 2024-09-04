@@ -52,8 +52,8 @@ export default class LaporansController {
                 reports.push({
                     id: karyawan.id,
                     nama_karyawan: karyawan.karyawan.nama,
-                    tanggal: karyawan.tanggal,
                     departemen: karyawan.karyawan.departemen?.namaDepartemen,
+                    tanggal: karyawan.tanggal,
                     data_laporan: laporan,
                     total_jam: total_jam,
                     total_persentase: (total_jam * 173) / 100
