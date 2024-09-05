@@ -111,7 +111,7 @@ export default function dataTable({ data, columns }) {
     })
     return (
         <Fragment>
-            <div className="relative flex ml-auto flex-1 md:grow-0 mt-3 gap-2">
+            <div className="relative flex ml-auto flex-1 md:grow-0 mt-3 gap-2 justify-between">
                 <IconSearch className="absolute mt-1 left-2.5  top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                     value={globalFilter ?? ''}

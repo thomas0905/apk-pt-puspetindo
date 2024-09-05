@@ -244,7 +244,7 @@ export default function Create() {
                                     </SelectTrigger>
                                     <SelectContent>
                                         {data_departemen.map((dep) => (
-                                            <SelectItem key={dep.id} value={dep.id.toString()}> {/* Ubah value menjadi id departemen */}
+                                            <SelectItem key={dep.id} value={dep.id.toString()}>
                                                 {dep.namaDepartemen}
                                             </SelectItem>
                                         ))}
