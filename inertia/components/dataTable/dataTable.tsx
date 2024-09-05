@@ -139,7 +139,7 @@ export default function dataTable({ data, columns }) {
                 </Select>
             </div>
 
-            <Card className='mt-2 overflow-x-scroll max-w-[1280px]'>
+            <Card className='mt-2 overflow-x max-w-[1280px]'>
                 <Table>
                     <TableHeader >
                         {table.getHeaderGroups().map(headerGroup => (
