@@ -15,7 +15,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-
 import {
     Column,
     ColumnDef,
@@ -30,7 +29,6 @@ import {
     sortingFns,
     useReactTable,
 } from '@tanstack/react-table'
-
 // A TanStack fork of Kent C. Dodds' match-sorter library that provides ranking information
 import {
     RankingInfo,
