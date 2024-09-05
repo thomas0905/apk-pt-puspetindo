@@ -172,20 +172,20 @@ export default function Index() {
 
                 <div className="mt-4" ref={tableRef}>
                     <DataTable data={data_karyawan} columns={columns} />
-                </div>
-                <div className='flex justify-end'>
-                    <DownloadTableExcel
-                        filename="karyawan table"
-                        sheet="karyawan"
-                        currentTableRef={tableRef.current}
-                    >
+                    <div className='flex justify-end'>
+                        <DownloadTableExcel
+                            filename="karyawan table"
+                            sheet="karyawan"
+                            currentTableRef={tableRef.current}
+                        >
 
-                        <Button
-                            className='bg-green-600 flex gap-2 hover:bg-green-500 mt-2 justify-end'>
-                            <IconFileDownload className='gap-2' />
-                            Export
-                        </Button>
-                    </DownloadTableExcel>
+                            <Button
+                                className='bg-green-600 flex gap-2 hover:bg-green-500 -mt-8 justify-end'>
+                                <IconFileDownload className='gap-2' />
+                                Export
+                            </Button>
+                        </DownloadTableExcel>
+                    </div>
                 </div>
             </Card>
         </Admin>
