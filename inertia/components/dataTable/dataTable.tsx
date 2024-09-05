@@ -14,8 +14,8 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-  } from "@/components/ui/select"
-  
+} from "@/components/ui/select"
+
 import {
     Column,
     ColumnDef,
@@ -111,7 +111,7 @@ export default function dataTable({ data, columns }) {
     })
     return (
         <Fragment>
-            <div className="relative ml-auto flex-1 md:grow-0 mt-3">
+            <div className="relative flex ml-auto flex-1 md:grow-0 mt-3 gap-2">
                 <IconSearch className="absolute mt-1 left-2.5  top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                     value={globalFilter ?? ''}
@@ -120,6 +120,23 @@ export default function dataTable({ data, columns }) {
                     placeholder="Search..."
                     className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
                 />
+
+                <Select
+                    className='w-28'
+                    value={table.getState().pagination.pageSize}
+                    onValueChange={(value) => { table.setPageSize(Number(value)); }}
+                >
+                    <SelectTrigger className="py-1.5 px-2 rounded-sm w-32 border">
+                        <SelectValue placeholder={`Show ${table.getState().pagination.pageSize}`} />
+                    </SelectTrigger>
+                    <SelectContent>
+                        {[10, 20, 30, 40, 50].map((pageSize) => (
+                            <SelectItem key={pageSize} value={pageSize.toString()}>
+                                Show {pageSize}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
             </div>
 
             <Card className='mt-2 overflow-x-scroll max-w-[1280px]'>
@@ -215,20 +232,8 @@ export default function dataTable({ data, columns }) {
                         className="border p-1 rounded w-16"
                     />
                 </span>
-  
-                <select
-                className='py-1.5 px-2 rounded-sm border '
-                    value={table.getState().pagination.pageSize}
-                    onChange={e => {
-                        table.setPageSize(Number(e.target.value))
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map(pageSize => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </select>
+
+
             </div>
 
         </Fragment>
