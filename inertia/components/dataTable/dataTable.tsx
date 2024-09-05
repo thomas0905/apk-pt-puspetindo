@@ -9,6 +9,14 @@ import {
     Table
 } from "@/components/ui/table"
 import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select"
+  
+import {
     Column,
     ColumnDef,
     ColumnFiltersState,
@@ -207,7 +215,9 @@ export default function dataTable({ data, columns }) {
                         className="border p-1 rounded w-16"
                     />
                 </span>
+  
                 <select
+                className='py-1.5 px-2 rounded-sm border '
                     value={table.getState().pagination.pageSize}
                     onChange={e => {
                         table.setPageSize(Number(e.target.value))
