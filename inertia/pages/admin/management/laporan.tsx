@@ -57,6 +57,13 @@ export default function Laporan() {
   }
 
 
+  // const departemen =[
+  //   {
+  //     value:'HSE',
+  //     label:'HSE'
+  //   }
+  // ]
+
   return (
     <Admin>
       <Head title='Laporan' />

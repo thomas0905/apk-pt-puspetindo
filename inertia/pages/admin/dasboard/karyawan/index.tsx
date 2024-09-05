@@ -142,7 +142,7 @@ export default function Index() {
     return (
         <Admin>
             <Head title="karyawan" />
-            <Card className="p-5 shadow-md">
+            <Card className="p-5 shadow-md ">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between items-center'>
                         <div>
