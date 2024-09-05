@@ -69,7 +69,7 @@ export default class KaryawansKontroller {
     }
 
     async edit({ inertia, params }: HttpContext) {
-        const karyawan = await Karyawan.query().preload('user').where('id', params.id).first();
+        const karyawan = await Karyawan.query().preload('user').preload('departemen').where('id', params.id).first();
         return inertia.render('admin/dasboard/karyawan/edit', {
             data_karyawan: karyawan
         });

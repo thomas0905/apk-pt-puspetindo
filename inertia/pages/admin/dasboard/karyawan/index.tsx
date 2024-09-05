@@ -10,7 +10,6 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { useRef } from 'react';
 export default function Index() {
     const { data_karyawan } = usePage().props;
-    console.log(data_karyawan);
     const tableRef = useRef(null);
 
     const handleDelete = async (id) => {
