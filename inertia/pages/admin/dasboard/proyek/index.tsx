@@ -1,19 +1,18 @@
 import Proyek from '#models/proyek'
 import { Head, Link, router, usePage } from '@inertiajs/react'
-import { IconBriefcase, IconEdit, IconHome, IconSearch, IconTrash, IconUserPlus } from '@tabler/icons-react'
-import React from 'react'
+import { IconBriefcase, IconEdit, IconFileDownload, IconHome, IconTrash } from '@tabler/icons-react'
+import React, { useRef } from 'react'
 import Swal from 'sweetalert2'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
-import { Input } from '~/components/ui/input'
 import Admin from '~/layout/admin'
 import DataTable from '~/components/dataTable/dataTable'
 import { createColumnHelper } from '@tanstack/react-table'
-import { Car } from 'lucide-react'
-
+import { DownloadTableExcel } from 'react-export-table-to-excel';
 export default function IndexProyek() {
     const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
-    console.log(data_proyek);
+    const tableRef = useRef(null);
+
 
     const handleDelete = async (id: any) => {
         const swalInstance = Swal.fire({
@@ -108,7 +107,23 @@ export default function IndexProyek() {
                     </div>
                 </div>
 
-                <DataTable data={data_proyek} columns={columns} />
+                <div ref={tableRef}>
+                    <DataTable data={data_proyek} columns={columns}/>
+                    <div className='flex justify-end'>
+                        <DownloadTableExcel
+                            filename="proyek table"
+                            sheet="proyek"
+                            currentTableRef={tableRef.current}
+                        >
+
+                            <Button
+                                className='bg-green-600 flex gap-2 hover:bg-green-500 -mt-8 justify-end'>
+                                <IconFileDownload className='gap-2' />
+                                Export
+                            </Button>
+                        </DownloadTableExcel>
+                    </div>
+                </div>
             </Card>
         </Admin>
     )
