@@ -38,6 +38,7 @@ import {
 import { Input } from '../ui/input'
 import { Card } from '../ui/card'
 import { IconDatabaseOff, IconSearch } from '@tabler/icons-react'
+import { Button } from '../ui/button'
 
 declare module '@tanstack/react-table' {
     //add fuzzy filter to the filterFns
@@ -205,43 +206,43 @@ export default function dataTable({ data, columns }) {
                 </Table>
             </Card>
             <div className="flex items-center mt-2 gap-2">
-                <button
-                    className="border rounded p-1 hover:cursor-pointer"
+                <Button
+                    className="border-2 rounded px-2 h-7 hover:cursor-pointer bg-transparent text-black "
                     onClick={() => table.setPageIndex(0)}
                     disabled={!table.getCanPreviousPage()}
                 >
                     {'<<'}
-                </button>
-                <button
-                    className="border rounded p-1  hover:cursor-pointer"
+                </Button>
+                <Button
+                    className="border-2 rounded px-2 h-7 hover:cursor-pointer bg-transparent text-black "
                     onClick={() => table.previousPage()}
                     disabled={!table.getCanPreviousPage()}
                 >
                     {'<'}
-                </button>
-                <button
-                    className="border rounded p-1  hover:cursor-pointer"
+                </Button>
+                <Button
+                    className="border-2 rounded px-2 h-7 hover:cursor-pointer bg-transparent text-black "
                     onClick={() => table.nextPage()}
                     disabled={!table.getCanNextPage()}
                 >
                     {'>'}
-                </button>
-                <button
-                    className="border rounded p-1  hover:cursor-pointer"
+                </Button>
+                <Button
+                    className="border-2 rounded px-2 h-7 hover:cursor-pointer bg-transparent text-black "
                     onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                     disabled={!table.getCanNextPage()}
                 >
                     {'>>'}
-                </button>
+                </Button>
                 <span className="flex items-center gap-1">
                     <div>Page</div>
                     <strong>
-                        {table.getState().pagination.pageIndex + 1} of{' '}
+                        {table.getState().pagination.pageIndex + 1} dari{' '}
                         {table.getPageCount()}
                     </strong>
                 </span>
                 <span className="flex items-center gap-1">
-                    | Go to page:
+                    | Ke halaman:
                     <input
                         type="number"
                         min="1"
@@ -251,7 +252,7 @@ export default function dataTable({ data, columns }) {
                             const page = e.target.value ? Number(e.target.value) - 1 : 0
                             table.setPageIndex(page)
                         }}
-                        className="border p-1 rounded w-16"
+                        className="border p-1 rounded w-16 h-7"
                     />
                 </span>
 
