@@ -207,28 +207,28 @@ export default function dataTable({ data, columns }) {
             </Card>
             <div className="flex items-center mt-2 gap-2">
                 <Button
-                    className="border-2 rounded px-2 h-7 hover:cursor-pointer bg-transparent text-black "
+                    className="border-2 rounded px-2 h-7 hover:cursor-pointer bg-transparent text-black hover:bg-slate-100 "
                     onClick={() => table.setPageIndex(0)}
                     disabled={!table.getCanPreviousPage()}
                 >
                     {'<<'}
                 </Button>
                 <Button
-                    className="border-2 rounded px-2 h-7 hover:cursor-pointer bg-transparent text-black "
+                    className="border-2 rounded px-2 h-7 hover:cursor-pointer bg-transparent text-black  hover:bg-slate-100"
                     onClick={() => table.previousPage()}
                     disabled={!table.getCanPreviousPage()}
                 >
                     {'<'}
                 </Button>
                 <Button
-                    className="border-2 rounded px-2 h-7 hover:cursor-pointer bg-transparent text-black "
+                    className="border-2 rounded px-2 h-7 hover:cursor-pointer bg-transparent text-black  hover:bg-slate-100"
                     onClick={() => table.nextPage()}
                     disabled={!table.getCanNextPage()}
                 >
                     {'>'}
                 </Button>
                 <Button
-                    className="border-2 rounded px-2 h-7 hover:cursor-pointer bg-transparent text-black "
+                    className="border-2 rounded-sm px-2 h-7 hover:cursor-pointer bg-transparent text-black hover:bg-slate-100 "
                     onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                     disabled={!table.getCanNextPage()}
                 >
