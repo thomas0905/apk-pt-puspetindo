@@ -34,7 +34,7 @@ export default class LaporansController {
                 })
                 .preload('proyek')
                 .preload('karyawan')
-                
+
             let reports = [];
 
             man_hours.forEach(karyawan => {
@@ -120,6 +120,7 @@ export default class LaporansController {
 
 
         let departemen =[]
+
         if (request.input('departemen') != null) {
             departemen = await ManHour.query()
             .preload('karyawan', (Karyawan) => {
