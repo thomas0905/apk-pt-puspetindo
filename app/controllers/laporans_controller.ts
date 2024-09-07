@@ -20,10 +20,12 @@ export default class LaporansController {
 
         if (request.input('start_date') != null) {
             man_hours = await ManHour.query()
-                .whereBetween('tanggal', [request.input('start_date'), request.input('end_date')])
-                .preload('karyawan', (Karyawan) => {
-                    Karyawan.preload('departemen');
-                })
+                .whereBetween('tanggal',
+                    [request.input('start_date'),
+                    request.input('end_date')])
+                    .preload('karyawan', (Karyawan) => {
+                        Karyawan.preload('departemen');
+                    })
                 .preload('proyek')
                 .groupBy('karyawan_id')
 
@@ -33,7 +35,6 @@ export default class LaporansController {
                     Karyawan.preload('departemen');
                 })
                 .preload('proyek')
-                .preload('karyawan')
 
             let reports = [];
 
@@ -61,7 +62,7 @@ export default class LaporansController {
                     tanggal: karyawan.tanggal,
                     data_laporan: laporan,
                     total_jam: total_jam,
-                    total_persentase: (total_jam * 173) / 100
+                    total_persentase: (total_jam * 173) / 100 
                 });
             });
 
@@ -105,7 +106,6 @@ export default class LaporansController {
                 reports.push({
                     id: karyawan.id,
                     nama_karyawan: karyawan.karyawan.nama,
-                    tanggal:karyawan.tanggal,
                     departemen: karyawan.karyawan.departemen.namaDepartemen,
                     data_laporan: laporan,
                     total_jam: total_jam,
@@ -118,21 +118,8 @@ export default class LaporansController {
         }
 
 
-
-        let departemen =[]
-
-        if (request.input('departemen') != null) {
-            departemen = await ManHour.query()
-            .preload('karyawan', (Karyawan) => {
-                Karyawan.preload('departemen');
-            })
-        }
-
-
         return inertia.render('admin/management/laporan', {
             data_manhours: man_hours,
         });
     }
 }
-
-
