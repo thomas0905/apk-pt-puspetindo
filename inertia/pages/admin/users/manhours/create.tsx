@@ -12,6 +12,7 @@ import Admin from '~/layout/admin';
 
 export default function Create() {
   const { data_karyawan, data_proyek } = usePage().props;
+console.log(data_proyek);
 
 
   const filterNamaProyek = [...new Set(data_proyek.map(proyek => proyek.namaProyek))];
@@ -47,6 +48,7 @@ export default function Create() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+console.log(data);
 
     if (!validate()) {
       return;
@@ -116,9 +118,9 @@ export default function Create() {
                     <SelectValue placeholder="Pilih Proyek" />
                   </SelectTrigger>
                   <SelectContent>
-                    {filterNamaProyek.map((namaProyek, index) => (
-                      <SelectItem key={index} value={namaProyek}>
-                        {namaProyek}
+                    {data_proyek.map((data) => (
+                      <SelectItem key={data.id} value={data.id.toString()}>
+                        {data.namaProyek}
                       </SelectItem>
                     ))}
                   </SelectContent>

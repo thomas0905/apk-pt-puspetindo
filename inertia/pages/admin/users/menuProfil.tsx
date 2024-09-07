@@ -6,7 +6,7 @@ import ImgMenuProfil from '../../../img/rois.jpeg'
 import { IconEdit } from '@tabler/icons-react'
 
 export default function MenuProfil() {
-  const { data_karyawan } = usePage().props;
+  // const { data_karyawan } = usePage().props;
   
   return (
     <Admin> 
