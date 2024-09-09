@@ -1,4 +1,4 @@
-import { Head, Link, useForm, usePage } from '@inertiajs/react'
+import { Head, useForm, usePage } from '@inertiajs/react'
 import React, { FormEventHandler } from 'react'
 import Admin from '~/layout/admin'
 import { Button } from '~/components/ui/button';
@@ -6,7 +6,6 @@ import { Card } from '~/components/ui/card';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
-import { IconHome } from '@tabler/icons-react';
 import Swal from 'sweetalert2';
 
 export default function Edit() {

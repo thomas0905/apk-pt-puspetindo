@@ -10,11 +10,10 @@ import Swal from 'sweetalert2';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Create from './create';
 
-export default function Index() {
-  // Mendapatkan data dari Inertia.js props
-  const { data_manHours, data_proyek } = usePage<{ data_manHours: any[], data_proyek: any[] }>().props;
+export default function Index({}) {
+  const { data_manHours, data_proyek } = usePage().props;
+console.log(data_proyek);
 
-  // State untuk mengelola modal create
   const [modalCreate, setModalCreate] = useState(false);
 
   const columnHelper = createColumnHelper<any>();
@@ -101,7 +100,7 @@ export default function Index() {
                     <DialogTitle>Tambah Manhours</DialogTitle>
                   </DialogHeader>
                   {/* Kirim data_proyek ke Create dan tutup modal setelah berhasil */}
-                  <Create data_proyek={data_proyek} onSuccess={() => setModalCreate(false)} />
+                  <Create proyek={data_proyek} manhours={data_manHours} />
                 </DialogContent>
               </Dialog>
             </div>

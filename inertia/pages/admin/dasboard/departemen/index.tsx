@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Create from './create';
 
-export default function Index() {
+export default function Index({}) {
     const { data_departemen } = usePage().props;
 
     const handleDelete = async (id) => {
@@ -74,13 +74,23 @@ export default function Index() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {/* Data departemen yang sudah ada */}
                             {data_departemen.map((dep, index) => (
                                 <TableRow key={dep.id}>
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>{dep.namaDepartemen}</TableCell>
                                     <TableCell className='flex gap-2'>
-                                        {/* Tempatkan aksi seperti tombol edit atau delete di sini */}
+                                        {/* Tempatkan aksi seperti tombol edit atau delete di sini*/}
+                                        {/* <Dialog>
+                                            <DialogTrigger asChild>
+                                                <IconEdit size={18} />
+                                            </DialogTrigger>
+                                            <DialogContent className="sm:max-w-[425px]">
+                                                <DialogHeader>
+                                                    <DialogTitle>Tambah Departemen</DialogTitle>
+                                                </DialogHeader>
+                                                <Edit />
+                                            </DialogContent>
+                                        </Dialog> */}
                                         <Link href={`/departemen/edit/${dep.id}`} className="text-blue-500 hover:underline">
                                             <IconEdit size={18} />
                                         </Link>

@@ -6,10 +6,10 @@ import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
 
-export default function Create({data_proyek,onSuccess}) {
-  const {  data_proyek,data_karyawan } = usePage().props;
-  console.log(data_proyek);
+export default function Create({proyek,manhours}) {
+console.log(manhours);
 
+  // const {data_manhours} =usePage().props
 
   // const filterNamaProyek = [...new Set(data_manhours.map(proyek => proyek.namaProyek))];
 
@@ -75,9 +75,9 @@ export default function Create({data_proyek,onSuccess}) {
                 <SelectValue placeholder="Pilih karyawan" />
               </SelectTrigger>
               <SelectContent>
-                {data_karyawan.map((kar) => (
-                  <SelectItem key={kar.id} value={kar.id.toString()}>
-                    {kar.nama}
+                {manhours.map((data) => (
+                  <SelectItem key={data.id} value={data.id.toString()}>
+                    {data.karyawan.nama}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -85,7 +85,7 @@ export default function Create({data_proyek,onSuccess}) {
             {errors.karyawan_id && <small className="text-red-600">{errors.karyawan_id}</small>}
           </div>
 
-          <div className="flex flex-col space-y-1.5 mt-2">
+          {/* <div className="flex flex-col space-y-1.5 mt-2">
             <Label>Pilih Proyek:</Label>
             <Select
               onValueChange={(value) => setData('proyek_id', value)}
@@ -94,7 +94,7 @@ export default function Create({data_proyek,onSuccess}) {
                 <SelectValue placeholder="Pilih Proyek" />
               </SelectTrigger>
               <SelectContent>
-                {data_proyek.map((data) => (
+                {proyek.map((data) => (
                   <SelectItem key={data.id} value={data.id.toString()}>
                     {data.namaProyek}
                   </SelectItem>
@@ -102,7 +102,7 @@ export default function Create({data_proyek,onSuccess}) {
               </SelectContent>
             </Select>
             {errors.proyek_id && <small className="text-red-600">{errors.proyek_id}</small>}
-          </div>
+          </div> */}
 
           <div className="flex flex-col space-y-1.5 mt-2">
             <Label>Tanggal:</Label>

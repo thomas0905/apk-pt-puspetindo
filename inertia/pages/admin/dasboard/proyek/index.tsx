@@ -11,7 +11,8 @@ import { createColumnHelper } from '@tanstack/react-table'
 import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Create from './create'
-export default function IndexProyek({onSuccess}) {
+import Edit from './edit'
+export default function IndexProyek({ onSuccess }) {
     const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
     const tableRef = useRef(null);
     const [modalCreate, setModalCreate] = useState(false);
@@ -76,6 +77,17 @@ export default function IndexProyek({onSuccess}) {
                     <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
                         <IconTrash size={18} />
                     </span>
+                    {/* <Dialog>
+                        <DialogTrigger asChild>
+                        <IconEdit size={18} />
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[425px]">
+                            <DialogHeader>
+                                <DialogTitle>Tambah Proyek</DialogTitle>
+                            </DialogHeader>
+                            <Edit onSuccess={() => setModalCreate(!modalCreate)} />
+                        </DialogContent>
+                    </Dialog> */}
                     <Link href={"/proyek/edit/" + info.row.original.id}>
                         <IconEdit size={18} />
                     </Link>
@@ -100,36 +112,36 @@ export default function IndexProyek({onSuccess}) {
                             <h6 className='text-gray-600 text-lg font-bold'>Proyek</h6>
                         </div>
                         <div>
-                    
+
                             <Dialog>
-                            <DialogTrigger asChild>
-                                <Button
-                                    className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
-                                    variant="outline"
-                                >
-                                    <IconBriefcase size={18} />
-                                    Tambah Proyek
-                                </Button>
-                            </DialogTrigger>
-                            <DialogContent className="sm:max-w-[425px]">
-                                <DialogHeader>
-                                    <DialogTitle>Tambah Proyek</DialogTitle>
-                                </DialogHeader>
-                                <Create onSuccess={() => setModalCreate(!modalCreate)}/>
-                            </DialogContent>
-                        </Dialog>
+                                <DialogTrigger asChild>
+                                    <Button
+                                        className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
+                                        variant="outline"
+                                    >
+                                        <IconBriefcase size={18} />
+                                        Tambah Proyek
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent className="sm:max-w-[425px]">
+                                    <DialogHeader>
+                                        <DialogTitle>Tambah Proyek</DialogTitle>
+                                    </DialogHeader>
+                                    <Create onSuccess={() => setModalCreate(!modalCreate)} />
+                                </DialogContent>
+                            </Dialog>
                         </div>
                     </div>
                 </div>
 
                 <div ref={tableRef}>
-                    <DataTable data={data_proyek} columns={columns}/>
+                    <DataTable data={data_proyek} columns={columns} />
                     <div className='flex justify-end'>
                         <DownloadTableExcel
                             filename="proyek table"
                             sheet="proyek"
                             currentTableRef={tableRef.current}
-                    >
+                        >
 
                             <Button
                                 className='bg-green-600 flex gap-2 hover:bg-green-500 -mt-8 justify-end'>

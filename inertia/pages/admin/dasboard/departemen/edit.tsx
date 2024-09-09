@@ -9,7 +9,10 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import Admin from '~/layout/admin'
 
-export default function Edit() {
+export default function Edit({
+  departemen,
+  handleSuccess
+}) {
   const { departemen } = usePage().props
   const { data, setData, put, processing } = useForm({
     namaDepartemen: departemen.namaDepartemen
