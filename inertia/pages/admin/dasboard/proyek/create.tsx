@@ -64,7 +64,7 @@ export default function Create({ closeModal }) {
       setLoading(false);
       
       // Tampilkan pesan sukses menggunakan SweetAlert2
-     toast.success('Data Berhasil Di simpan')
+     toast.success('Data Berhasil Di simp')
 
       // Tutup modal setelah data berhasil disimpan
       handleClose();
@@ -131,7 +131,7 @@ export default function Create({ closeModal }) {
                         {errors.pemilik && <small className="text-red-600">{errors.pemilik}</small>}
                     </div>
                 </div>
-                <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>         {loading ? 'Menyimpan...' : 'Simpan'}</Button>
+                <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>Simpan</Button>
             </form>
         </Fragment>
     );
