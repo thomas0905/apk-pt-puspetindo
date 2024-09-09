@@ -66,27 +66,9 @@ console.log(data);
   };
 
   return (
-    <Admin>
+    <>
       <Head title='Manhours' />
-      <Card className="p-5 shadow-md">
-        <div className="border-b border-gray-200 pb-4">
-          <div className='flex justify-between'>
-            <div>
-              <div className='flex gap-1'>
-                <Link href="/">
-                  <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
-                </Link>
-                <span>-</span>
-                <Link href='/proyek'>
-                  <p className="text-sm">Man Hours</p>
-                </Link>
-              </div>
-              <h6 className='text-gray-600 text-lg font-bold'>Man Hours</h6>
-            </div>
-          </div>
-        </div>
-
-        <form className='mt-5' onSubmit={handleSubmit}>
+      <form className='mt-5' onSubmit={handleSubmit}>
           <ToastContainer />
           <div className='my-5'>
             <div className="flex flex-col space-y-1.5">
@@ -158,7 +140,6 @@ console.log(data);
             Simpan
           </Button>
         </form>
-      </Card>
-    </Admin>
+    </>
   );
 }

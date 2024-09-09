@@ -7,6 +7,8 @@ import Admin from '~/layout/admin';
 import DataTable from '~/components/dataTable/dataTable';
 import { createColumnHelper } from '@tanstack/react-table';
 import Swal from 'sweetalert2';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
+import Create from './create';
 
 export default function Index() {
   const { data_manHours } = usePage<{ data_manHours: any[] }>().props;
@@ -72,7 +74,7 @@ export default function Index() {
   return (
     <Admin>
       <Head title='manhours' />
-      <Card className="p-5 shadow-md"> 
+      <Card className="p-5 shadow-md">
         <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
             <div>
@@ -84,12 +86,23 @@ export default function Index() {
               </Link>
             </div>
             <div>
-              <Link href="/manhours/create">
-                <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white" variant="outline">
-                  <IconBriefcase size={18} />
-                  Tambah man hours
-                </Button>
-              </Link>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
+                    variant="outline"
+                  >
+                    <IconBriefcase size={18} />
+                    Tambah Manhours
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Tambah Manhours</DialogTitle>
+                  </DialogHeader>
+                  <Create />
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>

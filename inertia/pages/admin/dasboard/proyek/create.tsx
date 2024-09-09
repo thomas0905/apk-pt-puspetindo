@@ -20,7 +20,7 @@ export default function Create({ closeModal }) {
     });
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
-  
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -57,18 +57,12 @@ export default function Create({ closeModal }) {
         if (isValid) {
             post('/proyek/create', {
                 onSuccess: () => {
-                 setLoading(true);
-    
-    // Simulasikan proses penyimpanan data
-    setTimeout(() => {
-      setLoading(false);
-      
-      // Tampilkan pesan sukses menggunakan SweetAlert2
-     toast.success('Data Berhasil Di simp')
-
-      // Tutup modal setelah data berhasil disimpan
-      handleClose();
-    }, 2000);
+                    setLoading(true);
+                    setTimeout(() => {
+                        setLoading(false);
+                        toast.success('Data Berhasil Di simp')
+                        handleClose();
+                    }, 2000);
                 },
                 onError: (errorMessages) => {
                     setErrors(errorMessages);
@@ -79,7 +73,7 @@ export default function Create({ closeModal }) {
 
     return (
         <Fragment>
-            <Toaster position="top-center" reverseOrder={false} /> 
+            <Toaster position="top-center" reverseOrder={false} />
             <Head title='Tambah Proyek' />
             <form onSubmit={handleSubmit}>
                 <div className="gap-4 py-4">
