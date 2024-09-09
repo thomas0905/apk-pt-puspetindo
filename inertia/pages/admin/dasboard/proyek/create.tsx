@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import { Fragment, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function Create({ onSuccess}) {
+export default function Create({ onSuccess }) {
 
     const statuses = [
         { value: "Selesai", label: "Selesai" },
@@ -81,6 +81,7 @@ export default function Create({ onSuccess}) {
                     <div className="flex flex-col space-y-1.5">
                         <Label htmlFor="namaProyek">Nama Proyek:</Label>
                         <Input
+                            className='focus-visible:ring-0 focus:border-blue-600' 
                             id="namaProyek"
                             placeholder="Masukkan Nama"
                             value={data.namaProyek}
@@ -92,6 +93,7 @@ export default function Create({ onSuccess}) {
                     <div className="flex flex-col space-y-1.5 mt-3">
                         <Label htmlFor="kodeJobOrder">Kode Job Order:</Label>
                         <Input
+                            className='focus-visible:ring-0 focus:border-blue-600' 
                             id="kodeJobOrder"
                             placeholder="Masukkan Kode"
                             value={data.kodeJobOrder}
@@ -102,11 +104,12 @@ export default function Create({ onSuccess}) {
 
                     <div className="flex flex-col space-y-1.5 mt-3">
                         <Label htmlFor="status">Status:</Label>
-                        <Select onValueChange={(value) => setData('status', value)}>
-                            <SelectTrigger className="w-full">
+                        <Select
+                         onValueChange={(value) => setData('status', value)}>
+                            <SelectTrigger className="w-full  focus:ring-0 focus:border-blue-600 focus:outline-none" >
                                 <SelectValue placeholder="Pilih Status" />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent >
                                 {statuses.map((status) => (
                                     <SelectItem key={status.value} value={status.value}>{status.label}</SelectItem>
                                 ))}
@@ -118,6 +121,7 @@ export default function Create({ onSuccess}) {
                     <div className="flex flex-col space-y-1.5 mt-3">
                         <Label htmlFor="pemilik">Pemilik:</Label>
                         <Input
+                            className='focus-visible:ring-0 focus:border-blue-600' 
                             id="pemilik"
                             placeholder="Masukkan Pemilik"
                             value={data.pemilik}
