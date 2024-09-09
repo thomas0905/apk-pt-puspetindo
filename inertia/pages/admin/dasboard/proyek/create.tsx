@@ -1,32 +1,32 @@
-import { Head, Link, useForm } from '@inertiajs/react'
-import { IconHome } from '@tabler/icons-react'
-import { Button } from '~/components/ui/button'
-import { Card } from '~/components/ui/card'
-import { Input } from '~/components/ui/input'
-import { Label } from '~/components/ui/label'
-import Admin from '~/layout/admin'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { FormEventHandler, Fragment, useState } from 'react'
-import Swal from 'sweetalert2'
+import { Head, useForm } from '@inertiajs/react';
+import { Button } from '~/components/ui/button';
+import { Input } from '~/components/ui/input';
+import { Label } from '~/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
+import { Fragment, useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
-export default function Create() {
+export default function Create({ closeModal }) {
     const statuses = [
         { value: "Selesai", label: "Selesai" },
         { value: "Tidak-Selesai", label: "Tidak-Selesai" }
-    ]
+    ];
 
     const { data, setData, post, processing } = useForm({
         namaProyek: '',
         kodeJobOrder: '',
         status: '',
         pemilik: ''
-    })
+    });
+    const [show, setShow] = useState(false);
+    const [loading, setLoading] = useState(false);
+  
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const [errors, setErrors] = useState({});
 
-    const handleSubmit: FormEventHandler = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         const validationErrors: any = {};
@@ -52,26 +52,34 @@ export default function Create() {
             isValid = false;
         }
 
-
         setErrors(validationErrors);
+
         if (isValid) {
             post('/proyek/create', {
                 onSuccess: () => {
-                    Swal.fire({
-                        title: 'Data Berhasil Ditambah!',
-                        icon: 'success',
-                        confirmButtonText: 'Oke',
-                    });
+                 setLoading(true);
+    
+    // Simulasikan proses penyimpanan data
+    setTimeout(() => {
+      setLoading(false);
+      
+      // Tampilkan pesan sukses menggunakan SweetAlert2
+     toast.success('Data Berhasil Di simpan')
+
+      // Tutup modal setelah data berhasil disimpan
+      handleClose();
+    }, 2000);
                 },
                 onError: (errorMessages) => {
                     setErrors(errorMessages);
                 }
-            })
+            });
         }
-    }
+    };
 
     return (
         <Fragment>
+            <Toaster position="top-center" reverseOrder={false} /> 
             <Head title='Tambah Proyek' />
             <form onSubmit={handleSubmit}>
                 <div className="gap-4 py-4">
@@ -123,8 +131,8 @@ export default function Create() {
                         {errors.pemilik && <small className="text-red-600">{errors.pemilik}</small>}
                     </div>
                 </div>
-                <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>Simpan</Button>
+                <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>         {loading ? 'Menyimpan...' : 'Simpan'}</Button>
             </form>
         </Fragment>
-    )
+    );
 }
