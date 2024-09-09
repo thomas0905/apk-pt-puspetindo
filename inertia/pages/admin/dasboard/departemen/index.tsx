@@ -6,7 +6,7 @@ import { Card } from '~/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
 import Swal from 'sweetalert2';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Create from './create';
 
 export default function Index() {
@@ -24,7 +24,7 @@ export default function Index() {
 
         if (result.isConfirmed) {
             try {
-                await router.delete(`/departemen/delete/${id}`);
+                await router.delete('/departemen/delete/' + id);
                 Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
             } catch (error) {
                 Swal.fire('Error', 'Gagal menghapus data.', 'error');
@@ -46,7 +46,7 @@ export default function Index() {
 
                         <Dialog>
                             <DialogTrigger asChild>
-                            <Button
+                                <Button
                                     className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
                                     variant="outline"
                                 >
@@ -57,11 +57,8 @@ export default function Index() {
                             <DialogContent className="sm:max-w-[425px]">
                                 <DialogHeader>
                                     <DialogTitle>Tambah Departemen</DialogTitle>
-                                    {/* <DialogDescription>
-                                        Make changes to your profile here. Click save when you're done.
-                                    </DialogDescription> */}
                                 </DialogHeader>
-                              <Create/>
+                                <Create />
                             </DialogContent>
                         </Dialog>
                     </div>

@@ -9,6 +9,8 @@ import Admin from '~/layout/admin'
 import DataTable from '~/components/dataTable/dataTable'
 import { createColumnHelper } from '@tanstack/react-table'
 import { DownloadTableExcel } from 'react-export-table-to-excel';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
+import Create from './create'
 export default function IndexProyek() {
     const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
     const tableRef = useRef(null);
@@ -97,12 +99,24 @@ export default function IndexProyek() {
                             <h6 className='text-gray-600 text-lg font-bold'>Proyek</h6>
                         </div>
                         <div>
-                            <Link href="/proyek/create">
-                                <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2  hover:text-white" variant="outline">
+                    
+                            <Dialog>
+                            <DialogTrigger asChild>
+                                <Button
+                                    className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
+                                    variant="outline"
+                                >
                                     <IconBriefcase size={18} />
                                     Tambah Proyek
                                 </Button>
-                            </Link>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                    <DialogTitle>Tambah Proyek</DialogTitle>
+                                </DialogHeader>
+                                <Create />
+                            </DialogContent>
+                        </Dialog>
                         </div>
                     </div>
                 </div>
