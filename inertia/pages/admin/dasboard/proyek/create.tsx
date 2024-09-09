@@ -6,7 +6,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import { Fragment, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function Create({ closeModal }) {
+export default function Create({ onSuccess}) {
+
     const statuses = [
         { value: "Selesai", label: "Selesai" },
         { value: "Tidak-Selesai", label: "Tidak-Selesai" }

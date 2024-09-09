@@ -1,7 +1,7 @@
 import Proyek from '#models/proyek'
 import { Head, Link, router, usePage } from '@inertiajs/react'
 import { IconBriefcase, IconEdit, IconFileDownload, IconHome, IconTrash } from '@tabler/icons-react'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Swal from 'sweetalert2'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
@@ -11,9 +11,10 @@ import { createColumnHelper } from '@tanstack/react-table'
 import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Create from './create'
-export default function IndexProyek() {
+export default function IndexProyek({onSuccess}) {
     const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
     const tableRef = useRef(null);
+    const [modalCreate, setModalCreate] = useState(false);
 
 
     const handleDelete = async (id: any) => {
@@ -114,7 +115,7 @@ export default function IndexProyek() {
                                 <DialogHeader>
                                     <DialogTitle>Tambah Proyek</DialogTitle>
                                 </DialogHeader>
-                                <Create />
+                                <Create onSuccess={() => setModalCreate(!modalCreate)}/>
                             </DialogContent>
                         </Dialog>
                         </div>

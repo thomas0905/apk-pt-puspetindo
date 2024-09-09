@@ -1,6 +1,6 @@
 import { Head, Link, router, usePage } from '@inertiajs/react';
-import { IconBriefcase, IconEdit, IconHome, IconTrash } from '@tabler/icons-react';
-import React from 'react';
+import { IconBriefcase, IconHome, IconTrash } from '@tabler/icons-react';
+import React, { useState } from 'react';
 import { Button } from '~/components/ui/button';
 import { Card } from '~/components/ui/card';
 import Admin from '~/layout/admin';
@@ -11,8 +11,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import Create from './create';
 
 export default function Index() {
-  const { data_manHours } = usePage<{ data_manHours: any[] }>().props;
-  console.log(data_manHours);
+  // Mendapatkan data dari Inertia.js props
+  const { data_manHours, data_proyek } = usePage<{ data_manHours: any[], data_proyek: any[] }>().props;
+
+  // State untuk mengelola modal create
+  const [modalCreate, setModalCreate] = useState(false);
 
   const columnHelper = createColumnHelper<any>();
 
@@ -63,9 +66,6 @@ export default function Index() {
           <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
             <IconTrash size={18} />
           </span>
-          {/* <Link href={"/manhours/edit/" + info.row.original.id}>
-            <IconEdit size={18} />
-          </Link> */}
         </div>
       ),
     }),
@@ -73,7 +73,7 @@ export default function Index() {
 
   return (
     <Admin>
-      <Head title='manhours' />
+      <Head title='Man Hours' />
       <Card className="p-5 shadow-md">
         <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
@@ -86,7 +86,7 @@ export default function Index() {
               </Link>
             </div>
             <div>
-              <Dialog>
+              <Dialog open={modalCreate} onOpenChange={setModalCreate}>
                 <DialogTrigger asChild>
                   <Button
                     className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
@@ -100,13 +100,13 @@ export default function Index() {
                   <DialogHeader>
                     <DialogTitle>Tambah Manhours</DialogTitle>
                   </DialogHeader>
-                  <Create />
+                  {/* Kirim data_proyek ke Create dan tutup modal setelah berhasil */}
+                  <Create data_proyek={data_proyek} onSuccess={() => setModalCreate(false)} />
                 </DialogContent>
               </Dialog>
             </div>
           </div>
         </div>
-
         <DataTable data={data_manHours} columns={columns} />
       </Card>
     </Admin>

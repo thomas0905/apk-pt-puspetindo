@@ -41,12 +41,11 @@ router.group(() => {
 
 router.group(() => {
     router.get('/', [ManHoursController, 'index'])
-    router.get('create', [ManHoursController, 'create'])
+    router.get('create',[ManHoursController,'create'])
     router.post('create', [ManHoursController, 'store'])
     router.delete('delete/:id', [ManHoursController, 'delete'])
     router.get('edit/:id', [ManHoursController, 'edit'])
 }).prefix('/manhours/').use(middleware.auth())
-
 
 router.get('/menuProfil', [MenuProfilsController, 'index'])
 
