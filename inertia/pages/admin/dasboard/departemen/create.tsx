@@ -46,46 +46,23 @@ export default function Create() {
     };
 
     return (
-        <Admin>
-            <Card className="p-5">
-                <div className="border-b border-gray-200 pb-4">
-                    <div className='flex justify-between'>
-                        <div>
-                            <div className='flex gap-1'>
-                                <Link href="/">
-                                    <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
-                                </Link>
-                                <span>-</span>
-                                <Link href='/karyawan'>
-                                    <p className="text-sm">Departemen</p>
-                                </Link>
-                            </div>
-                            <h6 className='text-gray-600 text-lg font-bold'>Tambah Departemen</h6>
-                        </div>
+        <>
+            <form onSubmit={handleSubmit}>
+                <div className="grid gap-4 py-4">
+                    <div className="grid-cols-4 items-center gap-4">
+                        <Label htmlFor="namaDepartemen">Nama Departemen:</Label>
+                        <Input
+                            id="namaDepartemen"
+                            placeholder="Masukkan Nama Departemen"
+                            onChange={(e) => setData('namaDepartemen', e.target.value)}
+                            name='namaDepartemen'
+                            value={data.namaDepartemen}
+                        />
+                        {errors.namaDepartemen && <small className="text-red-600">{errors.namaDepartemen}</small>}
                     </div>
                 </div>
-
-                <form className='mt-5' onSubmit={handleSubmit}>
-                    <ToastContainer />
-                    <div className='my-5'>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="namaDepartemen">Nama Departemen:</Label>
-                                <Input
-                                    id="namaDepartemen"
-                                    placeholder="Masukkan Nama Departemen"
-                                    onChange={(e) => setData('namaDepartemen', e.target.value)}
-                                    name='namaDepartemen'
-                                    value={data.namaDepartemen}
-                                />
-                                {errors.namaDepartemen && <small className="text-red-600">{errors.namaDepartemen}</small>}
-                            </div>
-                        </div>
-                    </div>
-
-                    <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>Simpan</Button>
-                </form>
-            </Card>
-        </Admin>
+                <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>Simpan</Button>
+            </form>
+        </>
     );
 }

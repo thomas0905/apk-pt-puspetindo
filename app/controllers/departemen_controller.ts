@@ -49,6 +49,6 @@ export default class DepartemenController {
     async delete({ params, response }: HttpContext) {
         const departemen = await Departemen.findOrFail(params.id)
         await departemen.delete()
-        return response.redirect('/departemen')
+    return response.redirect('/departemen')
     }
 }
