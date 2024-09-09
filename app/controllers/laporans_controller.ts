@@ -107,6 +107,7 @@ export default class LaporansController {
                     id: karyawan.id,
                     nama_karyawan: karyawan.karyawan.nama,
                     departemen: karyawan.karyawan.departemen.namaDepartemen,
+                    tanggal:karyawan.tanggal,
                     data_laporan: laporan,
                     total_jam: total_jam,
                     total_persentase: (total_jam * 173) / 100
