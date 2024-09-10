@@ -45,7 +45,7 @@ export default function Sidebar({ isSidebarHidden, toggleSidebar }) {
 
 
                     </div>
-                    <div className={`${isSidebarHidden ? 'mt-16' : 'flex-1 mt-20'}`}>
+                    <div className={`${isSidebarHidden ? 'mt-16' : 'flex-1 mt-[70px]'}`}>
                         <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
                             {/* Dashboard Section */}
                             <span className="flex text-xm flex-col   items-start gap-1 rounded-lg  py-3 text-muted-foreground transition-all">

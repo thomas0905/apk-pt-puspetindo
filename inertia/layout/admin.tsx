@@ -19,7 +19,7 @@ export default function Admin({ children }) {
         <Sidebar isSidebarHidden={isSidebarHidden} toggleSidebar={toggleSidebar} />
         <div className="flex flex-col">
           <Navbar isSidebarHidden={isSidebarHidden} />
-          <main className={`flex flex-1 flex-col gap-4 p-4 mt-2 lg:gap-6 lg:p-6 w-full transition-all duration-300 ${isSidebarHidden ? 'pl-8' : 'pl-64 lg:pl-22'}`}>
+          <main className={`flex flex-1 flex-col gap-4 p-4  lg:gap-6 lg:p-6 w-full transition-all duration-300 ${isSidebarHidden ? 'pl-8' : 'pl-64 lg:pl-22'}`}>
             {children}
           </main>
         </div>
