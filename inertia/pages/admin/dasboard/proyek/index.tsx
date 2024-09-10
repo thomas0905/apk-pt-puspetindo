@@ -84,12 +84,13 @@ export default function IndexProyek() {
                         <IconTrash size={18} />
                     </span>
 
-                    <Dialog open={modalEdit} onOpenChange={setModalEdit}>
-                    <DialogOverlay className="bg-white/10 backdrop-blur-sm " />
+                    <Dialog open={modalEdit} onOpenChange={setModalEdit} >
+                        <DialogOverlay className="bg-white/10 backdrop-blur-sm" />
+
                         <DialogTrigger asChild>
-                        <IconEdit size={18} className='cursor-pointer' onClick={() => handleEdit(info.row.original)} />
+                            <IconEdit size={18} className='cursor-pointer' onClick={() => handleEdit(info.row.original)} />
                         </DialogTrigger>
-                        <DialogContent className="sm:max-w-[425px]">
+                        <DialogContent className="sm:max-w-[425px] shadow-none">
                             <DialogHeader>
                                 <DialogTitle>Edit Proyek</DialogTitle>
                             </DialogHeader>
