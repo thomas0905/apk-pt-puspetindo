@@ -1,26 +1,95 @@
-import { Link } from '@inertiajs/react'
-import { IconHome } from '@tabler/icons-react'
-import React from 'react'
-import { Card } from '~/components/ui/card'
-import Admin from '~/layout/admin'
+import React, { Fragment, useState } from 'react';
+import { Button } from '~/components/ui/button';
+import { Input } from '~/components/ui/input';
+import { Label } from '~/components/ui/label';
+import { Textarea } from '~/components/ui/textarea';
 
 export default function Create() {
+  const [image, setImage] = useState(null);
+
+  const handleImage = (e) => {
+    const oploudImg = e.target.files;
+    if (oploudImg && oploudImg[0]) {
+      let img = oploudImg[0];
+      setImage(URL.createObjectURL(img)); // Menampilkan pratinjau gambar
+
+      let file = oploudImg[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = _handleReaderLoaded;
+        reader.readAsBinaryString(file); // Membaca file sebagai binary
+      }
+    }
+  };
+
+  const _handleReaderLoaded = (e) => {
+    let binaryString = e.target.result;
+    // Anda bisa memproses binary string untuk kebutuhan lebih lanjut
+    console.log(binaryString); // Tampilkan hasil pembacaan file binary
+  };
+
   return (
-    <Admin>
-      <Card className="p-5">
-        <div className="border-b border-gray-200 pb-4">
-          <div className='flex justify-between'>
-            <div>
-              <Link href="/karyawan">
-                <p className='text-sm flex gap-1'><IconHome size={18} />PPWI</p>
-              </Link>
-              <h6 className='text-gray-600 text-lg font-bold'>Tambah PPWI</h6>
+    <Fragment>
+      <div className="">
+        <div>
+          <Label>Judul</Label>
+          <Input type="text" placeholder="Masukkan Judul" />
+        </div>
+
+        <div className="flex items-center justify-center w-full mt-3">
+          <label
+            htmlFor="dropzone-file"
+            className={`flex flex-col items-center justify-center w-full ${image ? 'max-h-56' : 'h-56'} border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600`}
+          >
+            <div className="flex flex-col items-center justify-center">
+              {image ? (
+                // Jika ada gambar, tampilkan preview dan sesuaikan border dengan ukuran gambar
+                <img src={image} alt="Preview" className="w-full h-auto max-h-64 rounded-lg" />
+              ) : (
+                <>
+                  <svg
+                    className="w-8 max-h-56 mb- text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 16"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    />
+                  </svg>
+                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                    <span className="font-semibold">Click to upload</span> or drag and drop
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    SVG, PNG, JPG or GIF (MAX. 800x400px)
+                  </p>
+                </>
+              )}
             </div>
-          </div>
+            <input id="dropzone-file" type="file" className="hidden" onChange={handleImage} />
+          </label>
         </div>
 
 
-      </Card>
-    </Admin>
-  )
+
+        <div className="mt-2">
+          <Label>Keterangan</Label>
+          <Textarea
+            id="message"
+            placeholder="Type your description here..."
+            className="min-h-20 resize-none border-2 p-3 shadow-none focus-visible:ring-0"
+          />
+        </div>
+
+        <div className="mt-2">
+          <Button className="bg-blue-600 hover:bg-blue-500">Simpan</Button>
+        </div>
+      </div>
+    </Fragment>
+  );
 }

@@ -1,8 +1,13 @@
 import { Link } from '@inertiajs/react'
-import { IconHome } from '@tabler/icons-react'
+import { IconBuildingArch, IconHome } from '@tabler/icons-react'
 import React from 'react'
+import { AlertDialogHeader } from '~/components/ui/alert-dialog'
+import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Admin from '~/layout/admin'
+import Create from './create'
+import DataTable from '~/components/dataTable/dataTable'
 
 export default function Index() {
   return (
@@ -11,11 +16,34 @@ export default function Index() {
         <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
             <div>
-              <Link href="/karyawan">
-                <p className='text-sm flex gap-1'><IconHome size={18} />PPWI</p>
+              <Link href="/">
+                <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
               </Link>
               <h6 className='text-gray-600 text-lg font-bold'>Halaman PPWI</h6>
             </div>
+
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
+                  variant="outline"
+                >
+                  <IconBuildingArch size={18} />
+                  Tambah PPWI
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <AlertDialogHeader>
+                  <DialogTitle>Tambah PPWI</DialogTitle>
+                </AlertDialogHeader>
+                <Create />
+              </DialogContent>
+            </Dialog>
+          </div>
+
+          <div>
+            {/* <DataTable data={} columns={} /> */}
           </div>
         </div>
 
