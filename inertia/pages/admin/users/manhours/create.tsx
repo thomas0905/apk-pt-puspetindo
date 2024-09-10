@@ -85,7 +85,7 @@ console.log(manhours);
             {errors.karyawan_id && <small className="text-red-600">{errors.karyawan_id}</small>}
           </div>
 
-          {/* <div className="flex flex-col space-y-1.5 mt-2">
+          <div className="flex flex-col space-y-1.5 mt-2">
             <Label>Pilih Proyek:</Label>
             <Select
               onValueChange={(value) => setData('proyek_id', value)}
@@ -102,7 +102,7 @@ console.log(manhours);
               </SelectContent>
             </Select>
             {errors.proyek_id && <small className="text-red-600">{errors.proyek_id}</small>}
-          </div> */}
+          </div>
 
           <div className="flex flex-col space-y-1.5 mt-2">
             <Label>Tanggal:</Label>

@@ -10,9 +10,9 @@ import Swal from 'sweetalert2';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Create from './create';
 
-export default function Index({}) {
+export default function Index({ }) {
   const { data_manHours, data_proyek } = usePage().props;
-console.log(data_proyek);
+  console.log(data_proyek);
 
   const [modalCreate, setModalCreate] = useState(false);
 
