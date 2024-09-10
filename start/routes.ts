@@ -9,6 +9,7 @@ const AuthController = () => import('#controllers/auth_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 import MenuProfilsController from '#controllers/menu_profils_controller'
+import PpwisController from '#controllers/ppwis_controller'
 const HomeController = () => import('#controllers/home_controller')
 
 router.get('/', [HomeController, 'index']).use(middleware.auth())
@@ -46,6 +47,10 @@ router.group(() => {
     router.delete('delete/:id', [ManHoursController, 'delete'])
     router.get('edit/:id', [ManHoursController, 'edit'])
 }).prefix('/manhours/').use(middleware.auth())
+
+router.group(() => {
+    router.get('/' ,[PpwisController,'index'])
+}).prefix('/ppwi')
 
 router.get('/menuProfil', [MenuProfilsController, 'index'])
 

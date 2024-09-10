@@ -14,7 +14,12 @@ import {
 } from '@tabler/icons-react';
 import MyImageComponent from '../img/logo-puspetindo.png';
 import { Button } from "@/components/ui/button";
-import Navbar from './navbar';
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
 
 export default function Sidebar({ isSidebarHidden, toggleSidebar }) {
 
@@ -118,9 +123,11 @@ export default function Sidebar({ isSidebarHidden, toggleSidebar }) {
                                     )}
                                 </Link>
 
+
+
                                 <Link
-                                    href='/manhours'
-                                    className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/manhours') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2 relative group' : 'w-[190px]'}`}
+                                    href='/ppwi'
+                                    className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/ppwi') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2 relative group' : 'w-[190px]'}`}
                                 >
                                     <IconBook size={21} />
                                     {isSidebarHidden ? (
@@ -131,6 +138,7 @@ export default function Sidebar({ isSidebarHidden, toggleSidebar }) {
                                         <span>PPWI</span>
                                     )}
                                 </Link>
+
                             </span>
 
                             <span className="flex text-xm flex-col items-start gap-1 mt-3 rounded-lg text-muted-foreground transition-all">
