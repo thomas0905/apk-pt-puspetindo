@@ -12,9 +12,7 @@ import Create from './create';
 
 export default function Index({ }) {
   const { data_manHours, data_proyek } = usePage().props;
-// console.log(data_manHours);
-
-  const [modalCreate, setModalCreate] = useState(false);
+console.log(data_manHours);
 
   const columnHelper = createColumnHelper<any>();
 
@@ -80,29 +78,18 @@ export default function Index({ }) {
               <Link href="/">
                 <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
               </Link>
-              <Link href="/manhours">
-                <h6 className='text-gray-600 text-lg font-bold'>Man Hours</h6>
-              </Link>
+              <p className='text-sm flex gap-1'><IconBriefcase size={18} />Man Hours</p>
             </div>
             <div>
-              <Dialog open={modalCreate} onOpenChange={setModalCreate}>
-                <DialogTrigger asChild>
-                  <Button
-                    className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
-                    variant="outline"
-                  >
-                    <IconBriefcase size={18} />
-                    Tambah Manhours
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle>Tambah Manhours</DialogTitle>
-                  </DialogHeader>
-                  {/* Kirim data_proyek ke Create dan tutup modal setelah berhasil */}
-                  <Create proyek={data_proyek} manhours={data_manHours} />
-                </DialogContent>
-              </Dialog>
+              <Link href='/manhours/create'>
+                <Button
+                  className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
+                  variant="outline"
+                >
+                  <IconBriefcase size={18} />
+                  Tambah Manhours
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -111,3 +98,4 @@ export default function Index({ }) {
     </Admin>
   );
 }
+

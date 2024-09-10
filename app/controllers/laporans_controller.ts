@@ -1,3 +1,4 @@
+import Departeman from '#models/departemen';
 import Karyawan from '#models/karyawan';
 import ManHour from '#models/man_hour';
 import type { HttpContext } from '@adonisjs/core/http'
@@ -23,11 +24,12 @@ export default class LaporansController {
                 .whereBetween('tanggal',
                     [request.input('start_date'),
                     request.input('end_date')])
-                    .preload('karyawan', (Karyawan) => {
-                        Karyawan.preload('departemen');
-                    })
+                .preload('karyawan', (Karyawan) => {
+                    Karyawan.preload('departemen');
+                })
                 .preload('proyek')
                 .groupBy('karyawan_id')
+               
 
             const all_man_hours = await ManHour.query()
                 .whereBetween('tanggal', [request.input('start_date'), request.input('end_date')])
@@ -43,6 +45,7 @@ export default class LaporansController {
                     return {
                         proyek: item.proyek.namaProyek,
                         tanggal: item.tanggal,
+                        departemen: item.karyawan.departemen.namaDepartemen,
                         kodeJobOrder: item.proyek.kodeJobOrder,
                         jam_kerja: item.jam_kerja,
                         karyawan: item.karyawan,
@@ -68,6 +71,8 @@ export default class LaporansController {
 
             man_hours = reports;
 
+            const departemen = all_man_hours.map(item => item.karyawan.departemen.namaDepartemen).filter((value, index, self) => self.indexOf(value) === index);
+
         } else {
 
             man_hours = await ManHour.query()
@@ -91,6 +96,7 @@ export default class LaporansController {
                     return {
                         proyek: item.proyek.namaProyek,
                         tanggal: item.tanggal,
+                        departemen: item.karyawan.departemen.namaDepartemen,
                         kodeJobOrder: item.proyek.kodeJobOrder,
                         jam_kerja: item.jam_kerja,
                         karyawan: item.karyawan,
@@ -118,9 +124,11 @@ export default class LaporansController {
 
         }
 
+        const departemen = await Karyawan.query().preload('departemen')
 
         return inertia.render('admin/management/laporan', {
             data_manhours: man_hours,
+            data_karyawan:departemen
         });
     }
 }

@@ -20,8 +20,8 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 
 export default function Laporan() {
-  const { data_manhours } = usePage().props
-  console.log(data_manhours);
+  const { data_manhours,data_karyawan } = usePage().props
+  console.log(data_karyawan);
 
   const componentRef = useRef(null)
   const [startDate, setStartDate] = useState('')
@@ -30,6 +30,8 @@ export default function Laporan() {
   const [expandedRows, setExpandedRows] = useState([])
   const tableRef = useRef(null);
 
+  const karyawanList = Array.isArray(data_karyawan) ? data_karyawan : [];
+
   const handlePrint = () => {
     Swal.fire({
       title: 'Data Berhasil Di Tambah!',
@@ -37,32 +39,21 @@ export default function Laporan() {
       confirmButtonText: 'Okee',
     })
   }
-
   const formatDate = (date) => {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' }
     return new Date(date).toLocaleDateString('id-ID', options)
   }
-
   const handleFilter = () => {
     router.get('/management/laporan', {
       start_date: startDate,
       end_date: endDate
     })
   }
-
   const toggleRow = (rowId) => {
     setExpandedRows(prev =>
       prev.includes(rowId) ? prev.filter(id => id !== rowId) : [...prev, rowId]
     )
   }
-
-
-  // const departemen =[
-  //   {
-  //     value:'HSE',
-  //     label:'HSE'
-  //   }
-  // ]
 
   return (
     <Admin>
@@ -77,7 +68,6 @@ export default function Laporan() {
               <h6 className="text-gray-700 text-md font-semibold">Laporan</h6>
               <div className="flex items-center mx-1 space-x-2">
                 <Input
-                  // size={'sm'}
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
@@ -85,7 +75,6 @@ export default function Laporan() {
                 />
                 <span className="text-xs">sampai</span>
                 <Input
-                  // size={'sm'}
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
@@ -93,14 +82,14 @@ export default function Laporan() {
                 />
               </div>
               <div className="w-75">
-                <Select >
+                <Select>
                   <SelectTrigger>
                     <SelectValue placeholder="Pilih Departemen" />
                   </SelectTrigger>
                   <SelectContent>
-                    {data_manhours.map((data) => (
-                      <SelectItem key={data.id} value={data.id}>
-                        {data.departemen}
+                    {karyawanList.map((data,index) => (
+                      <SelectItem key={index} value={index}>
+                        {data.departemen.namaDepartemen}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -181,7 +170,6 @@ export default function Laporan() {
                     <TableCell colSpan="6" className="text-center">Data tidak ditemukan</TableCell>
                   </TableRow>
                 )}
-
               </TableBody>
             </Table>
           </div>
@@ -196,7 +184,6 @@ export default function Laporan() {
                 <IconFileDownload className='gap-2' />
                 Export
               </Button>
-
             </DownloadTableExcel>
 
             <ReactToPrint
@@ -215,3 +202,4 @@ export default function Laporan() {
     </Admin>
   )
 }
+
