@@ -27,7 +27,7 @@ export default class DepartemenController {
         await departemen.save();
 
         session.flash({ notification: 'Data Berhasil Disimpan!' });
-        return response.redirect('/departemen/create');
+        return response.redirect('/departemen');
     }
 
 
@@ -49,6 +49,6 @@ export default class DepartemenController {
     async delete({ params, response }: HttpContext) {
         const departemen = await Departemen.findOrFail(params.id)
         await departemen.delete()
-    return response.redirect('/departemen')
+    return response.redirect('/departemen/delete')
     }
 }

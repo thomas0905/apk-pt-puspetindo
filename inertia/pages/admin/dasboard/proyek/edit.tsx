@@ -1,15 +1,13 @@
-import { Head, Link, useForm, usePage } from '@inertiajs/react'
-import { IconHome } from '@tabler/icons-react'
+import { Head, useForm } from '@inertiajs/react'
 import React, { FormEventHandler, Fragment } from 'react'
 import Swal from 'sweetalert2'
 import { Button } from '~/components/ui/button'
-import { Card } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
-import Admin from '~/layout/admin'
 
 export default function Edit({proyek}) {
+    console.log(proyek)
     const { data, setData, put } = useForm({
         namaProyek: proyek.namaProyek,
         kodeJobOrder: proyek.kodeJobOrder,
@@ -65,6 +63,7 @@ export default function Edit({proyek}) {
                                 name='namaProyek'
                                 value={data.namaProyek}
                                 onChange={(e) => setData('namaProyek', e.target.value)}
+                                 className='focus-visible:ring-0 focus:border-blue-600'
                             />
                         </div>
 
@@ -77,6 +76,7 @@ export default function Edit({proyek}) {
                                     name='kodeJobOrder'
                                     value={data.kodeJobOrder}
                                     onChange={(e) => setData('kodeJobOrder', e.target.value)}
+                                     className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
 
@@ -86,7 +86,7 @@ export default function Edit({proyek}) {
                                     value={data.status}
                                     onValueChange={(value) => setData('status', value)}
                                 >
-                                    <SelectTrigger className="w-full">
+                                    <SelectTrigger className="w-full  focus:ring-0 focus:border-blue-600 focus:outline-none">
                                         <SelectValue placeholder="Pilih Status" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -107,6 +107,7 @@ export default function Edit({proyek}) {
                                     name='pemilik'
                                     value={data.pemilik}
                                     onChange={(e) => setData('pemilik', e.target.value)}
+                                     className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
 

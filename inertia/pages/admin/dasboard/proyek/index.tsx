@@ -79,13 +79,13 @@ export default function IndexProyek() {
                     </span>
                     <Dialog>
                         <DialogTrigger asChild>
-                        <IconEdit size={18} />
+                            <IconEdit size={18} className='cursor-pointer' />
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[425px]">
                             <DialogHeader>
-                                <DialogTitle>Tambah Proyek</DialogTitle>
+                                <DialogTitle>Edit Proyek</DialogTitle>
                             </DialogHeader>
-                            <Edit proyek={data_proyek}/>
+                            <Edit proyek={data_proyek} />
                         </DialogContent>
                     </Dialog>
                     {/* <Link href={"/proyek/edit/" + info.row.original.id}>
