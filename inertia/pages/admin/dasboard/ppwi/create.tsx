@@ -11,21 +11,20 @@ export default function Create() {
     const oploudImg = e.target.files;
     if (oploudImg && oploudImg[0]) {
       let img = oploudImg[0];
-      setImage(URL.createObjectURL(img)); // Menampilkan pratinjau gambar
+      setImage(URL.createObjectURL(img));
 
       let file = oploudImg[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = _handleReaderLoaded;
-        reader.readAsBinaryString(file); // Membaca file sebagai binary
+        reader.readAsBinaryString(file);
       }
     }
   };
 
   const _handleReaderLoaded = (e) => {
     let binaryString = e.target.result;
-    // Anda bisa memproses binary string untuk kebutuhan lebih lanjut
-    console.log(binaryString); // Tampilkan hasil pembacaan file binary
+    console.log(binaryString);
   };
 
   return (
@@ -33,7 +32,10 @@ export default function Create() {
       <div className="">
         <div>
           <Label>Judul</Label>
-          <Input type="text" placeholder="Masukkan Judul" />
+          <Input
+            type="text"
+            placeholder="Masukkan Judul"
+            className='focus-visible:ring-0 focus:border-blue-600' />
         </div>
 
         <div className="flex items-center justify-center w-full mt-3">
@@ -82,7 +84,7 @@ export default function Create() {
           <Textarea
             id="message"
             placeholder="Type your description here..."
-            className="min-h-20 resize-none border-2 p-3 shadow-none focus-visible:ring-0"
+            className="min-h-20 resize-none border-2 p-3 shadow-none focus-visible:ring-0 focus:border-blue-600"
           />
         </div>
 

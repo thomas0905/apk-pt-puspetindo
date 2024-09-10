@@ -29,9 +29,9 @@ export default class ProyeksController {
         });
     }
 
-    async create({ inertia }: HttpContext) {
-        return inertia.render('admin/dasboard/proyek/create')
-    }
+    // async create({ inertia }: HttpContext) {
+    //     return inertia.render('admin/dasboard/proyek/create')
+    // }
 
     async store({ request, response, session }: HttpContext) {
         const proyek = new Proyek();
