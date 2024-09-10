@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react'
-import { IconBuildingArch, IconHome } from '@tabler/icons-react'
+import { IconBook, IconBookOff, IconBuildingArch, IconHome } from '@tabler/icons-react'
 import React from 'react'
 import { AlertDialogHeader } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import Admin from '~/layout/admin'
 import Create from './create'
 import DataTable from '~/components/dataTable/dataTable'
+import CreateJudul from './createJudul'
 
 export default function Index() {
   return (
@@ -22,24 +23,50 @@ export default function Index() {
               <h6 className='text-gray-600 text-lg font-bold'>Halaman PPWI</h6>
             </div>
 
-
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button
+            <div className='flex gap-1'>
+              <Dialog>
+                <DialogTrigger asChild>
+                  {/* <Button
                   className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
                   variant="outline"
                 >
                   <IconBuildingArch size={18} />
-                  Tambah PPWI
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[425px]">
-                <AlertDialogHeader>
-                  <DialogTitle>Tambah PPWI</DialogTitle>
-                </AlertDialogHeader>
-                <Create />
-              </DialogContent>
-            </Dialog>
+                  Tambah Judul
+                </Button> */}
+                  <Button
+                    className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
+                    variant="outline"
+                  >
+                    <IconBuildingArch size={18} />
+                    Tambah Judul
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <AlertDialogHeader>
+                    <DialogTitle>Tambah Judul</DialogTitle>
+                  </AlertDialogHeader>
+                  <CreateJudul/>
+                </DialogContent>
+              </Dialog>
+
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
+                    variant="outline"
+                  >
+                    <IconBook size={18} />
+                     Tambah PPWI
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <AlertDialogHeader>
+                    <DialogTitle>Tambah PPWI</DialogTitle>
+                  </AlertDialogHeader>
+                  <Create />
+                </DialogContent>
+              </Dialog>
+            </div>
           </div>
 
           <div>
