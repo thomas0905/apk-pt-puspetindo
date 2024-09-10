@@ -53,6 +53,7 @@ export default function Create() {
                             onChange={(e) => setData('namaDepartemen', e.target.value)}
                             name='namaDepartemen'
                             value={data.namaDepartemen}
+                            className='focus-visible:ring-0 focus:border-blue-600' 
                         />
                         {errors.namaDepartemen && <small className="text-red-600">{errors.namaDepartemen}</small>}
                     </div>

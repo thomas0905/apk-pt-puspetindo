@@ -114,7 +114,7 @@ export default function Edit({proyek}) {
                         </div>
                     </div>
 
-                    <Button className='bg-blue-600 hover:bg-blue-500' type="submit">Update</Button>
+                    <Button className='bg-blue-600 hover:bg-blue-500 mt-2' type="submit">Update</Button>
                 </form>
         </Fragment>
     )

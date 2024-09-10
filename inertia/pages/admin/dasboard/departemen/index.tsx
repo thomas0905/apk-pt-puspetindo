@@ -8,6 +8,7 @@ import { Button } from '~/components/ui/button';
 import Swal from 'sweetalert2';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Create from './create';
+import Edit from './edit';
 
 export default function Index({}) {
     const { data_departemen } = usePage().props;
@@ -80,20 +81,20 @@ export default function Index({}) {
                                     <TableCell>{dep.namaDepartemen}</TableCell>
                                     <TableCell className='flex gap-2'>
                                         {/* Tempatkan aksi seperti tombol edit atau delete di sini*/}
-                                        {/* <Dialog>
+                                        <Dialog>
                                             <DialogTrigger asChild>
-                                                <IconEdit size={18} />
+                                                <IconEdit size={18} className='cursor-pointer' />
                                             </DialogTrigger>
                                             <DialogContent className="sm:max-w-[425px]">
                                                 <DialogHeader>
-                                                    <DialogTitle>Tambah Departemen</DialogTitle>
+                                                    <DialogTitle>Edit Departemen</DialogTitle>
                                                 </DialogHeader>
-                                                <Edit />
+                                                <Edit departemen={data_departemen}/>
                                             </DialogContent>
-                                        </Dialog> */}
-                                        <Link href={`/departemen/edit/${dep.id}`} className="text-blue-500 hover:underline">
+                                        </Dialog>
+                                        {/* <Link href={`/departemen/edit/${dep.id}`} className="text-blue-500 hover:underline">
                                             <IconEdit size={18} />
-                                        </Link>
+                                        </Link> */}
                                         <span onClick={() => handleDelete(dep.id)} className="text-red-900 hover:cursor-pointer">
                                             <IconTrash size={18} />
                                         </span>
