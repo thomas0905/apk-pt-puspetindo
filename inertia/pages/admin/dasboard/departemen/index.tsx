@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Admin from '~/layout/admin';
 import { Link, router, usePage } from '@inertiajs/react';
 import { IconBuildingArch, IconEdit, IconHome, IconTrash } from '@tabler/icons-react';
@@ -9,9 +9,12 @@ import Swal from 'sweetalert2';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Create from './create';
 import Edit from './edit';
+import Departemen from '#models/departemen';
 
 export default function Index({}) {
     const { data_departemen } = usePage().props;
+    const [modalEdit, setModalEdit] = useState(false); // State untuk modal edit
+    const [selectedDepartemen, setSelectedDepartemen] = useState(null); // State untuk departemen yang dipilih
 
     const handleDelete = async (id) => {
         const result = await Swal.fire({
@@ -31,6 +34,11 @@ export default function Index({}) {
                 Swal.fire('Error', 'Gagal menghapus data.', 'error');
             }
         }
+    };
+
+    const handleEdit = (departemen: Departemen) => {
+        setSelectedDepartemen(departemen); // Set departemen yang dipilih ke state
+        setModalEdit(true); // Buka modal edit
     };
 
     return (
@@ -80,26 +88,31 @@ export default function Index({}) {
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>{dep.namaDepartemen}</TableCell>
                                     <TableCell className='flex gap-2'>
-                                        {/* Tempatkan aksi seperti tombol edit atau delete di sini*/}
-                                        <Dialog>
-                                            <DialogTrigger asChild>
-                                                <IconEdit size={18} className='cursor-pointer' />
-                                            </DialogTrigger>
+                                        <IconEdit
+                                            size={18}
+                                            className='cursor-pointer'
+                                            onClick={() => handleEdit(dep)} // Panggil handleEdit dengan parameter departemen
+                                        />
+
+                                        {/* Modal Edit */}
+                                        <Dialog open={modalEdit} onOpenChange={setModalEdit}>
                                             <DialogContent className="sm:max-w-[425px]">
                                                 <DialogHeader>
                                                     <DialogTitle>Edit Departemen</DialogTitle>
                                                 </DialogHeader>
-                                                <Edit departemen={data_departemen}/>
+                                                {selectedDepartemen && (
+                                                    <Edit departemen={selectedDepartemen} />
+                                                )}
                                             </DialogContent>
                                         </Dialog>
-                                        {/* <Link href={`/departemen/edit/${dep.id}`} className="text-blue-500 hover:underline">
-                                            <IconEdit size={18} />
-                                        </Link> */}
-                                        <span onClick={() => handleDelete(dep.id)} className="text-red-900 hover:cursor-pointer">
+
+                                        <span
+                                            onClick={() => handleDelete(dep.id)}
+                                            className="text-red-900 hover:cursor-pointer"
+                                        >
                                             <IconTrash size={18} />
                                         </span>
                                     </TableCell>
-
                                 </TableRow>
                             ))}
                         </TableBody>

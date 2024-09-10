@@ -9,9 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 export default function Create({proyek,manhours}) {
 console.log(manhours);
 
-  // const {data_manhours} =usePage().props
 
-  // const filterNamaProyek = [...new Set(data_manhours.map(proyek => proyek.namaProyek))];
+const uniqueProyek = [...new Set(manhours.map((item) => item.proyek.namaProyek))];
 
   const { data, setData, post, processing } = useForm({
     karyawan_id: '',
@@ -77,7 +76,7 @@ console.log(manhours);
               <SelectContent>
                 {manhours.map((data) => (
                   <SelectItem key={data.id} value={data.id.toString()}>
-                    {data.karyawan.nama}
+                    {data.karyawan_id}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -94,9 +93,9 @@ console.log(manhours);
                 <SelectValue placeholder="Pilih Proyek" />
               </SelectTrigger>
               <SelectContent>
-                {proyek.map((data) => (
-                  <SelectItem key={data.id} value={data.id.toString()}>
-                    {data.namaProyek}
+              {uniqueProyek.map((data, index) => (
+                  <SelectItem key={index} value={index}>
+                    {data.proyek_id}
                   </SelectItem>
                 ))}
               </SelectContent>

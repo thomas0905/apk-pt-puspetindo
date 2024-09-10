@@ -1,12 +1,16 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
+import JudulPpwi from './judul_ppwi.js'
+import type {BelongsTo} from '@adonisjs/lucid/types/relations'
 
 export default class Ppwi extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  @column()
-  declare judul:string
+  @belongsTo(() => JudulPpwi, {
+    foreignKey: 'judul_id'
+  })
+  declare judulPpwi: BelongsTo<typeof JudulPpwi>
 
   @column()
   declare dokumen:File

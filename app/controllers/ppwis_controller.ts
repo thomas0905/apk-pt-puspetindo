@@ -8,7 +8,6 @@ export default class PpwisController {
 
     async store({ request, response,inertia }: HttpContext) {
         const ppwi = new Ppwi()
-        ppwi.judul = request.input('judul')
         const oploud_image = request.input('foto_ppwi',{
             types:['image'],
             size:'5mb',

@@ -12,7 +12,7 @@ import Create from './create';
 
 export default function Index({ }) {
   const { data_manHours, data_proyek } = usePage().props;
-  console.log(data_proyek);
+// console.log(data_manHours);
 
   const [modalCreate, setModalCreate] = useState(false);
 

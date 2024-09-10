@@ -50,6 +50,7 @@ router.group(() => {
 
 router.group(() => {
     router.get('/' ,[PpwisController,'index'])
+    router.post('/create',[PpwisController,'store'])
 }).prefix('/ppwi')
 
 router.get('/menuProfil', [MenuProfilsController, 'index'])

@@ -9,14 +9,16 @@ import Admin from '~/layout/admin'
 import DataTable from '~/components/dataTable/dataTable'
 import { createColumnHelper } from '@tanstack/react-table'
 import { DownloadTableExcel } from 'react-export-table-to-excel';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogOverlay, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Create from './create'
 import Edit from './edit'
+
 export default function IndexProyek() {
     const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
     const tableRef = useRef(null);
     const [modalCreate, setModalCreate] = useState(false);
-
+    const [modalEdit, setModalEdit] = useState(false); // State untuk modal edit
+    const [selectedProyek, setSelectedProyek] = useState(null); // State untuk proyek yang dipilih
 
     const handleDelete = async (id: any) => {
         const swalInstance = Swal.fire({
@@ -36,8 +38,12 @@ export default function IndexProyek() {
         }
     };
 
+    const handleEdit = async (proyek: Proyek) => {
+        setSelectedProyek(proyek); // Set proyek yang dipilih ke state
+        setModalEdit(true); // Buka modal edit
+    };
 
-    const columnHelper = createColumnHelper<Proyek>()
+    const columnHelper = createColumnHelper<Proyek>();
 
     const columns = [
         columnHelper.accessor('id', {
@@ -77,32 +83,29 @@ export default function IndexProyek() {
                     <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
                         <IconTrash size={18} />
                     </span>
-                    <Dialog>
+
+                    <Dialog open={modalEdit} onOpenChange={setModalEdit}>
+                    <DialogOverlay className="bg-white/10 backdrop-blur-sm " />
                         <DialogTrigger asChild>
-                            <IconEdit size={18} className='cursor-pointer' />
+                        <IconEdit size={18} className='cursor-pointer' onClick={() => handleEdit(info.row.original)} />
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[425px]">
                             <DialogHeader>
                                 <DialogTitle>Edit Proyek</DialogTitle>
                             </DialogHeader>
-                            <Edit proyek={data_proyek} />
+                            <Edit proyek={selectedProyek} />
                         </DialogContent>
                     </Dialog>
-                    {/* <Link href={"/proyek/edit/" + info.row.original.id}>
-                        <IconEdit size={18} />
-                    </Link> */}
                 </div>
             ),
             footer: info => info.column.id,
         }),
     ];
 
-
     return (
         <Admin>
             <Head title="proyek" />
-            <Card className="p-5 shadow-md
-            ">
+            <Card className="p-5 shadow-md">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
                         <div>
@@ -112,7 +115,6 @@ export default function IndexProyek() {
                             <h6 className='text-gray-600 text-lg font-bold'>Proyek</h6>
                         </div>
                         <div>
-
                             <Dialog>
                                 <DialogTrigger asChild>
                                     <Button
@@ -142,7 +144,6 @@ export default function IndexProyek() {
                             sheet="proyek"
                             currentTableRef={tableRef.current}
                         >
-
                             <Button
                                 className='bg-green-600 flex gap-2 hover:bg-green-500 -mt-8 justify-end'>
                                 <IconFileDownload className='gap-2' />
@@ -153,5 +154,5 @@ export default function IndexProyek() {
                 </div>
             </Card>
         </Admin>
-    )
+    );
 }
