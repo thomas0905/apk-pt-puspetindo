@@ -10,6 +10,7 @@ import {
     IconSettings,
     IconUserSquare,
     IconUser,
+    IconBook,
 } from '@tabler/icons-react';
 import MyImageComponent from '../img/logo-puspetindo.png';
 import { Button } from "@/components/ui/button";
@@ -114,6 +115,20 @@ export default function Sidebar({ isSidebarHidden, toggleSidebar }) {
                                         </span>
                                     ) : (
                                         <span>Man Hours</span>
+                                    )}
+                                </Link>
+
+                                <Link
+                                    href='/manhours'
+                                    className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/manhours') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2 relative group' : 'w-[190px]'}`}
+                                >
+                                    <IconBook size={21} />
+                                    {isSidebarHidden ? (
+                                        <span className="hidden  group-hover:block absolute left-12 bg-gray-700 text-white px-2 py-1 rounded">
+                                            PPWI
+                                        </span>
+                                    ) : (
+                                        <span>PPWI</span>
                                     )}
                                 </Link>
                             </span>
