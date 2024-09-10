@@ -1,6 +1,6 @@
 import { Head, Link, useForm, usePage } from '@inertiajs/react'
 import { IconHome } from '@tabler/icons-react'
-import React, { FormEventHandler } from 'react'
+import React, { FormEventHandler, Fragment } from 'react'
 import Swal from 'sweetalert2'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
@@ -9,8 +9,7 @@ import { Label } from '~/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import Admin from '~/layout/admin'
 
-export default function Edit() {
-    const { proyek } = usePage().props
+export default function Edit({proyek}) {
     const { data, setData, put } = useForm({
         namaProyek: proyek.namaProyek,
         kodeJobOrder: proyek.kodeJobOrder,
@@ -54,28 +53,10 @@ export default function Edit() {
     ]
 
     return (
-        <Admin>
+        <Fragment>
             <Head title='edit Proyek' />
-            <Card className="p-5 shadow-md">
-                <div className="border-b border-gray-200 pb-4">
-                    <div className='flex justify-between'>
-                        <div>
-                            <div className='flex gap-1'>
-                                <Link href="/">
-                                    <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
-                                </Link>
-                                <span>-</span>
-                                <Link href='/proyek'>
-                                    <p className="text-sm">Proyek</p>
-                                </Link>
-                            </div>
-                            <h6 className='text-gray-600 text-lg font-bold'>Edit Proyek</h6>
-                        </div>
-                    </div>
-                </div>
-
-                <form className='mt-5' onSubmit={handleSubmit}>
-                    <div className='my-5'>
+            <form className='mt-5' onSubmit={handleSubmit}>
+                    <div>
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="namaProyek">Nama Proyek:</Label>
                             <Input
@@ -87,7 +68,7 @@ export default function Edit() {
                             />
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
+                        <div className=" md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="kodeJobOrder">Kode Proyek:</Label>
                                 <Input
@@ -99,7 +80,7 @@ export default function Edit() {
                                 />
                             </div>
 
-                            <div className="flex flex-col space-y-1.5">
+                            <div className="flex flex-col space-y-1.5 mt-2">
                                 <Label htmlFor="status">Pilih Status:</Label>
                                 <Select
                                     value={data.status}
@@ -118,7 +99,7 @@ export default function Edit() {
                                 </Select>
                             </div>
 
-                            <div className="flex flex-col space-y-1.5">
+                            <div className="flex flex-col space-y-1.5 mt-2">
                                 <Label htmlFor="kodeJobOrder">Kode Proyek:</Label>
                                 <Input
                                     id="pemilik"
@@ -134,7 +115,6 @@ export default function Edit() {
 
                     <Button className='bg-blue-600 hover:bg-blue-500' type="submit">Update</Button>
                 </form>
-            </Card>
-        </Admin>
+        </Fragment>
     )
 }

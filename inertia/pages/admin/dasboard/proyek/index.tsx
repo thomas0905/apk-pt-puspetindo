@@ -12,7 +12,7 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Create from './create'
 import Edit from './edit'
-export default function IndexProyek({ onSuccess }) {
+export default function IndexProyek() {
     const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
     const tableRef = useRef(null);
     const [modalCreate, setModalCreate] = useState(false);
@@ -77,7 +77,7 @@ export default function IndexProyek({ onSuccess }) {
                     <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
                         <IconTrash size={18} />
                     </span>
-                    {/* <Dialog>
+                    <Dialog>
                         <DialogTrigger asChild>
                         <IconEdit size={18} />
                         </DialogTrigger>
@@ -85,12 +85,12 @@ export default function IndexProyek({ onSuccess }) {
                             <DialogHeader>
                                 <DialogTitle>Tambah Proyek</DialogTitle>
                             </DialogHeader>
-                            <Edit onSuccess={() => setModalCreate(!modalCreate)} />
+                            <Edit proyek={data_proyek}/>
                         </DialogContent>
-                    </Dialog> */}
-                    <Link href={"/proyek/edit/" + info.row.original.id}>
+                    </Dialog>
+                    {/* <Link href={"/proyek/edit/" + info.row.original.id}>
                         <IconEdit size={18} />
-                    </Link>
+                    </Link> */}
                 </div>
             ),
             footer: info => info.column.id,

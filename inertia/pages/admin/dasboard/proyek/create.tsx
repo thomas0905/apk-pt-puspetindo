@@ -58,12 +58,7 @@ export default function Create({ onSuccess }) {
         if (isValid) {
             post('/proyek/create', {
                 onSuccess: () => {
-                    setLoading(true);
-                    setTimeout(() => {
-                        setLoading(false);
-                        toast.success('Data Berhasil Di simp')
-                        handleClose();
-                    }, 2000);
+              toast.success('Proyek berhasil di simpan')
                 },
                 onError: (errorMessages) => {
                     setErrors(errorMessages);
