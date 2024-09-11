@@ -34,7 +34,7 @@ export default function Navbar({ isSidebarHidden }) {
           </div>
         </div>
       )}
-      <header className={`flex  w-full h-14 items-center gap-4 border-b bg-slate-50 px-4 lg:h-[60px] lg:px-6 ${isSidebarHidden ? 'w-64' : 'w-full'}`}>
+      <header className={`flex  w-full h-14 items-center gap-4 border-b bg-white px-4 lg:h-[60px] lg:px-6 ${isSidebarHidden ? 'w-64' : 'w-full'}`}>
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="shrink-0 md:hidden">
