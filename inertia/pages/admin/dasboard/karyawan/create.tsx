@@ -409,25 +409,30 @@ export default function Create() {
                             </div>
                             <div className="flex flex-col space-y-1.5 mt-3">
                                 <Label htmlFor="password">Password:</Label>
-                                <div className="relative">
+                                <div className="relative w-96">
                                     <Input
                                         type={showPassword ? 'text' : 'password'}
                                         placeholder='Masukkan Password'
                                         onChange={(e) => setData('password', e.target.value)}
                                         name='password'
                                         value={data.password}
-                                        className=" pr-10 w-96"
+                                        className="pr-10 w-full"
                                     />
                                     <button
                                         type="button"
                                         onClick={handleTogglePassword}
-                                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                                        className="absolute inset-y-0 right-3 flex items-center text-sm leading-5"
                                     >
-                                        {showPassword ? <IconEyeOff className="h-5 w-5 text-gray-500" /> : <IconEye className="h-5 w-5 text-gray-500" />}
+                                        {showPassword ? (
+                                            <IconEyeOff className="h-5 w-5 text-gray-500" />
+                                        ) : (
+                                            <IconEye className="h-5 w-5 text-gray-500" />
+                                        )}
                                     </button>
                                 </div>
                                 {errors.password && <small className="text-red-600">{errors.password}</small>}
                             </div>
+
                         </div>
                     </div>
 

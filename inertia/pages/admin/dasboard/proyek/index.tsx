@@ -146,7 +146,7 @@ export default function IndexProyek() {
                             currentTableRef={tableRef.current}
                         >
                             <Button
-                                className='bg-green-600 flex gap-2 hover:bg-green-500 -mt-8 justify-end'>
+                                className='bg-green-600 flex gap-2 hover:bg-green-500 -mt-7 justify-end'>
                                 <IconFileDownload className='gap-2' />
                                 Export
                             </Button>
