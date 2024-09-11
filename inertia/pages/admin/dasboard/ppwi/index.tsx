@@ -88,7 +88,7 @@ export default function Index() {
                     <TableCell></TableCell>
                     <TableCell className='flex gap-2'>
                       <Link href='/ppwi/detail'>
-                        <p className='bg-blue-600 text-white px-2 py-1 rounded-sm'>Preview</p>
+                        <p className='bg-blue-600 text-white px-2 py-1 rounded-sm'>Lihat PPWI</p>
                       </Link>
                     </TableCell>
                   </TableRow>

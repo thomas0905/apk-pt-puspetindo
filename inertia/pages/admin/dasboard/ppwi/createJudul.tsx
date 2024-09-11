@@ -12,6 +12,7 @@ export default function CreateJudul() {
   
 
   const handleSubmit: FormEventHandler = (e) => {
+    e.preventDefault()
     post('/ppwi/create')
   }
   return (
@@ -29,7 +30,7 @@ export default function CreateJudul() {
         </div>
 
         <div className="mt-2">
-          <Button className="bg-blue-600 hover:bg-blue-500" disabled={processing}>Simpan</Button>
+          <Button type='submit' className="bg-blue-600 hover:bg-blue-500" disabled={processing}>Simpan</Button>
         </div>
       </form>
     </div>

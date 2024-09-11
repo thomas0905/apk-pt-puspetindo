@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 
 export default function Index({ }) {
   const { data_manHours, data_proyek } = usePage().props;
-console.log(data_proyek);
+
 
   const columnHelper = createColumnHelper<any>();
 

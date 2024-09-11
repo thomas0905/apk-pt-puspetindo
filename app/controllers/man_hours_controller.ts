@@ -25,7 +25,6 @@ export default class ManHoursController {
     }
 
     async store({ request, response, session }: HttpContext) {
-        console.log(request.all());
         const manhours = new ManHour()
         manhours.karyawan_id = request.input('karyawan_id')
         manhours.proyek_id = request.input('proyek_id')

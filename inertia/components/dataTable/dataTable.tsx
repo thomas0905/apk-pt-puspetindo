@@ -147,7 +147,7 @@ export default function dataTable({ data, columns }) {
 
             <Card className='mt-2 overflow-x max-w-[1280px]'>
                 <Table>
-                    <TableHeader >
+                    <TableHeader className='bg-slate-100'>
                         {table.getHeaderGroups().map(headerGroup => (
                             <TableRow className='text-nowrap' key={headerGroup.id}>
                                 {headerGroup.headers.map(header => {
