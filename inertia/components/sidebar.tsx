@@ -28,7 +28,7 @@ export default function Sidebar({ isSidebarHidden, toggleSidebar }) {
 
     return (
         <Fragment>
-            <div className={`hidden border-r h-full bg-white md:block transition-all duration-300 ${isSidebarHidden ? 'w-16 ' : 'w-230 translate-x-1 ease-in-out duration-600'}`}>
+            <div className={`hidden border-r z-10 h-full bg-white md:block transition-all duration-300 ${isSidebarHidden ? 'w-16 ' : 'w-230 translate-x-1 ease-in-out duration-600'}`}>
                 <div className="flex h-full shadow-right max-h-screen flex-col gap-2 transition-all duration-300 ">
                     <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6 fixed">
                         <Link href="/" className="flex items-center gap-2 font-semibold">
