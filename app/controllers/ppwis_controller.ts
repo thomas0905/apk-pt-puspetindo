@@ -31,6 +31,8 @@ export default class PpwisController {
 
         return response.redirect('/ppwi')
 
+        
+
     }
 
 }
