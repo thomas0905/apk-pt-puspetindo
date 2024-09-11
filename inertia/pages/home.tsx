@@ -34,7 +34,8 @@ export default function Index() {
           </div>
 
           <div className='mt-5'>
-            <h1 className='text-2xl font-bold'>Halo 👏 {data_karyawan.nama} </h1>
+          <h1 className='text-2xl font-bold'>Halo 👏 <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">{data_karyawan.nama}</span></h1>
+
             <p className='text-gray-600 text-sm'>{randomAktivitas}</p>
           </div>
         </div>
