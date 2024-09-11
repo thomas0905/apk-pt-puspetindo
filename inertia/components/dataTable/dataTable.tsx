@@ -121,12 +121,18 @@ export default function dataTable({ data, columns }) {
                 />
 
                 <Select
-                    className='w-28'
+                    className="w-28"
                     value={table.getState().pagination.pageSize}
-                    onValueChange={(value) => { table.setPageSize(Number(value)); }}
+                    onValueChange={(value) => {
+                        table.setPageSize(Number(value));
+                    }}
                 >
-                    <SelectTrigger className="py-1.5 px-2 rounded-sm w-32 border">
-                        <SelectValue placeholder={`Show ${table.getState().pagination.pageSize}`} />
+                    <SelectTrigger className="py-1.5 px-2 rounded-lg w-32 border">
+                        <SelectValue>
+                            {table.getState().pagination.pageSize
+                                ? `Show ${table.getState().pagination.pageSize}`
+                                : 'Select page size'}
+                        </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
                         {[10, 20, 30, 40, 50].map((pageSize) => (
@@ -136,6 +142,7 @@ export default function dataTable({ data, columns }) {
                         ))}
                     </SelectContent>
                 </Select>
+
             </div>
 
             <Card className='mt-2 overflow-x max-w-[1280px]'>

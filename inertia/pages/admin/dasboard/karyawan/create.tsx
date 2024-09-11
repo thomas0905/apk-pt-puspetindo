@@ -222,24 +222,25 @@ export default function Create() {
                     <ToastContainer />
                     <div className='my-5'>
 
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="nama">Nama:</Label>
-                            <Input
-                                id="nama"
-                                placeholder="Masukkan Nama"
-                                onChange={(e) => setData('nama', e.target.value)}
-                                name='nama'
-                                value={data.nama}
-                            />
-                            {errors.nama && <small className="text-red-600">{errors.nama}</small>}
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3 mt-3">
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="nama">Nama:</Label>
+                                <Input
+                                    id="nama"
+                                    placeholder="Masukkan Nama"
+                                    onChange={(e) => setData('nama', e.target.value)}
+                                    name='nama'
+                                    value={data.nama}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
+                                {errors.nama && <small className="text-red-600">{errors.nama}</small>}
+                            </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Pilih Departemen:</Label>
                                 <Select
                                     onValueChange={(value) => setData('departemen_Id', value)}
                                 >
-                                    <SelectTrigger className="w-full">
+                                    <SelectTrigger className="w-full focus:ring-0 focus:border-blue-600 focus:outline-none">
                                         <SelectValue placeholder="Pilih Departemen" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -252,11 +253,14 @@ export default function Create() {
                                 </Select>
                                 {errors.departemen_Id && <small className="text-red-600">{errors.departemen_Id}</small>}
                             </div>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
+
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="jabatan">Pilih Jabatan:</Label>
                                 <Select onValueChange={(value) => setData('jabatan', value)}>
-                                    <SelectTrigger className="w-full">
+                                    <SelectTrigger className="w-full focus:ring-0 focus:border-blue-600 focus:outline-none">
                                         <SelectValue placeholder="Pilih Jabatan" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -271,7 +275,7 @@ export default function Create() {
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="status">Pilih Status:</Label>
                                 <Select onValueChange={(value) => setData('status', value)}>
-                                    <SelectTrigger className="w-full">
+                                    <SelectTrigger className="w-full focus:ring-0 focus:border-blue-600 focus:outline-none">
                                         <SelectValue placeholder="Pilih Status" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -290,7 +294,9 @@ export default function Create() {
                                     onChange={(e) => setData('tempat_lahir', e.target.value)}
                                     name='tempat_lahir'
                                     value={data.tempat_lahir}
-                                    type='text' placeholder='Masukkan Tempat Lahir' />
+                                    type='text' placeholder='Masukkan Tempat Lahir'
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
                                 {errors.tempat_lahir && <small className="text-red-600">{errors.tempat_lahir}</small>}
                             </div>
 
@@ -300,7 +306,9 @@ export default function Create() {
                                     onChange={(e) => setData('tanggal_lahir', e.target.value)}
                                     name='tanggal_lahir'
                                     value={data.tanggal_lahir}
-                                    type='date' placeholder='Masukkan Tempat Lahir' />
+                                    type='date' placeholder='Masukkan Tempat Lahir'
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
                                 {errors.tanggal_lahir && <small className="text-red-600">{errors.tanggal_lahir}</small>}
                             </div>
 
@@ -310,14 +318,16 @@ export default function Create() {
                                     onChange={(e) => setData('usia', e.target.value)}
                                     name='usia'
                                     value={data.usia}
-                                    type='text' placeholder='Usia anda' />
+                                    type='text' placeholder='Usia anda'
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
                                 {errors.usia && <small className="text-red-600">{errors.usia}</small>}
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="status">Pilih Jenis Kelamin:</Label>
                                 <Select onValueChange={(value) => setData('jenis_kelamin', value)}>
-                                    <SelectTrigger className="w-full">
+                                    <SelectTrigger className="w-full focus:ring-0 focus:border-blue-600 focus:outline-none">
                                         <SelectValue placeholder="Pilih Jenis Kelamin" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -335,7 +345,9 @@ export default function Create() {
                                     onChange={(e) => setData('pendidikan', e.target.value)}
                                     name='pendidikan'
                                     value={data.pendidikan}
-                                    type='text' placeholder='Pendidikan Anda' />
+                                    type='text' placeholder='Pendidikan Anda'
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
                                 {errors.pendidikan && <small className="text-red-600">{errors.pendidikan}</small>}
                             </div>
 
@@ -345,7 +357,9 @@ export default function Create() {
                                     onChange={(e) => setData('jurusan', e.target.value)}
                                     name='jurusan'
                                     value={data.jurusan}
-                                    type='text' placeholder='Jurusan Anda' />
+                                    type='text' placeholder='Jurusan Anda'
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
                                 {errors.jurusan && <small className="text-red-600">{errors.jurusan}</small>}
                             </div>
 
@@ -355,7 +369,9 @@ export default function Create() {
                                     onChange={(e) => setData('bpjs_kk', e.target.value)}
                                     name='bpjs_kk'
                                     value={data.bpjs_kk}
-                                    type='text' placeholder='Jurusan Anda' />
+                                    type='text' placeholder='Jurusan Anda'
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
                                 {errors.bpjs_kk && <small className="text-red-600">{errors.bpjs_kk}</small>}
                             </div>
 
@@ -365,7 +381,9 @@ export default function Create() {
                                     onChange={(e) => setData('bpjs_kesehatan', e.target.value)}
                                     name='bpjs_kesehatan'
                                     value={data.bpjs_kesehatan}
-                                    type='text' placeholder='Jurusan Anda' />
+                                    type='text' placeholder='Jurusan Anda'
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
                                 {errors.bpjs_kesehatan && <small className="text-red-600">{errors.bpjs_kesehatan}</small>}
                             </div>
 
@@ -376,7 +394,9 @@ export default function Create() {
                                     onChange={(e) => setData('no_rekening', e.target.value)}
                                     name='no_rekening'
                                     value={data.no_rekening}
-                                    type='text' placeholder='Nomor Rekening Anda' />
+                                    type='text' placeholder='Nomor Rekening Anda'
+
+                                    className='focus-visible:ring-0 focus:border-blue-600' />
                                 {errors.no_rekening && <small className="text-red-600">{errors.no_rekening}</small>}
                             </div>
 
@@ -387,7 +407,8 @@ export default function Create() {
                                     onChange={(e) => setData('nama_bank', e.target.value)}
                                     name='nama_bank'
                                     value={data.nama_bank}
-                                    type='text' placeholder='Nama Bank Rekening Anda' />
+                                    type='text' placeholder='Nama Bank Rekening Anda'
+                                    className='focus-visible:ring-0 focus:border-blue-600' />
                                 {errors.nama_bank && <small className="text-red-600">{errors.nama_bank}</small>}
                             </div>
 
@@ -397,12 +418,12 @@ export default function Create() {
                             <div className="flex flex-col space-y-1.5 mt-3">
                                 <Label htmlFor="jabatan">Email:</Label>
                                 <Input
-                                    className='w-96'
                                     type='email'
                                     placeholder='Masukkan Alamat Email'
                                     onChange={(e) => setData('email', e.target.value)}
                                     name='email'
                                     value={data.email}
+                                    className='w-96 focus-visible:ring-0 focus:border-blue-600'
                                 >
                                 </Input>
                                 {errors.email && <small className="text-red-600">{errors.email}</small>}
@@ -416,7 +437,7 @@ export default function Create() {
                                         onChange={(e) => setData('password', e.target.value)}
                                         name='password'
                                         value={data.password}
-                                        className="pr-10 w-full"
+                                        className="pr-10 w-full focus-visible:ring-0 focus:border-blue-600 "
                                     />
                                     <button
                                         type="button"

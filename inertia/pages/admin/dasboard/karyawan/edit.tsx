@@ -98,21 +98,20 @@ export default function EditPengguna() {
                         </div>
                     </div>
                 </div>
-
                 <form className="mt-5" onSubmit={handleSubmit}>
                     <div className="my-5">
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="name">Name:</Label>
-                            <Input
-                                id="name"
-                                name="nama"
-                                placeholder="Masukkan Nama"
-                                value={data.nama}
-                                onChange={(e) => setData('nama', e.target.value)}
-                            />
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3 mt-3">
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="name">Name:</Label>
+                                <Input
+                                    id="name"
+                                    name="nama"
+                                    placeholder="Masukkan Nama"
+                                    value={data.nama}
+                                    onChange={(e) => setData('nama', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
+                            </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="departemen_Id">Departemen:</Label>
                                 <Input
@@ -121,9 +120,11 @@ export default function EditPengguna() {
                                     name="departemen"
                                     value={data.departemen}
                                     onChange={(e) => setData('departemen', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
-
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="jabatan">Pilih Jabatan:</Label>
                                 <Select
@@ -162,7 +163,7 @@ export default function EditPengguna() {
                                 </Select>
                             </div>
 
-                            <div className="fex flex-col space-y-1.5">
+                            <div className="flex flex-col space-y-1.5">
                                 <Label>Tempat Lahir</Label>
                                 <Input
                                     type='text'
@@ -170,9 +171,10 @@ export default function EditPengguna() {
                                     name="tempatLahir"
                                     value={data.tempatLahir}
                                     onChange={(e) => setData('tempatLahir', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
-                            <div className="fex flex-col space-y-1.5">
+                            <div className="flex flex-col space-y-1.5">
                                 <Label>Tanggal Lahir</Label>
                                 <Input
                                     type='text'
@@ -180,10 +182,11 @@ export default function EditPengguna() {
                                     name="tanggalLahir"
                                     value={data.tanggalLahir}
                                     onChange={(e) => setData('tanggalLahir', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
 
-                            <div className="fex flex-col space-y-1.5">
+                            <div className="flex flex-col space-y-1.5">
                                 <Label>Usia</Label>
                                 <Input
                                     type='text'
@@ -191,6 +194,7 @@ export default function EditPengguna() {
                                     name="usia"
                                     value={data.usia}
                                     onChange={(e) => setData('usia', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
 
@@ -209,7 +213,7 @@ export default function EditPengguna() {
                                 </Select>
                             </div>
 
-                            <div className="fex flex-col space-y-1.5">
+                            <div className="flex flex-col space-y-1.5">
                                 <Label>Pendidikan</Label>
                                 <Input
                                     type='text'
@@ -217,10 +221,11 @@ export default function EditPengguna() {
                                     name='pendidikan'
                                     value={data.pendidikan}
                                     onChange={(e) => setData('pendidikan', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
 
-                            <div className="fex flex-col space-y-1.5">
+                            <div className="flex flex-col space-y-1.5">
                                 <Label>Jurusan</Label>
                                 <Input
                                     type='text'
@@ -228,10 +233,11 @@ export default function EditPengguna() {
                                     name='jurusan'
                                     value={data.jurusan}
                                     onChange={(e) => setData('jurusan', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
 
-                            <div className="fex flex-col space-y-1.5">
+                            <div className="flex flex-col space-y-1.5">
                                 <Label>BPJS Ketenaga kerjaan</Label>
                                 <Input
                                     type='text'
@@ -239,40 +245,44 @@ export default function EditPengguna() {
                                     name='bpjsKk'
                                     value={data.bpjsKk}
                                     onChange={(e) => setData('bpjsKk', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
 
-                            <div className="fex flex-col space-y-1.5">
+                            <div className="flex flex-col space-y-1.5">
                                 <Label>BPJS Kesehatan</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Masukkan BPJ Kesehatan Anda' 
+                                    placeholder='Masukkan BPJ Kesehatan Anda'
                                     name='bpjsKesehatan'
                                     value={data.bpjsKesehatan}
                                     onChange={(e) => setData('bpjsKesehatan', e.target.value)}
-                                    />
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
                             </div>
 
-                            <div className="fex flex-col space-y-1.5">
+                            <div className="flex flex-col space-y-1.5">
                                 <Label>No.Rekening</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Masukkan No Rekening Anda' 
+                                    placeholder='Masukkan No Rekening Anda'
                                     name='noRekening'
                                     value={data.noRekening}
                                     onChange={(e) => setData('noRekening', e.target.value)}
-                                    />
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
                             </div>
 
-                            <div className="fex flex-col space-y-1.5">
+                            <div className="flex flex-col space-y-1.5">
                                 <Label>Nama Bank</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Masukkan Nama Anda' 
+                                    placeholder='Masukkan Nama Anda'
                                     name='namaBank'
                                     value={data.namaBank}
                                     onChange={(e) => setData('namaBank', e.target.value)}
-                                    />
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
                             </div>
 
                         </div>
