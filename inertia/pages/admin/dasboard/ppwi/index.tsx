@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react'
-import { IconBook, IconBookOff, IconBuildingArch, IconHome } from '@tabler/icons-react'
+import { IconBook, IconBookOff, IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react'
 import React from 'react'
 import { AlertDialogHeader } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
@@ -9,6 +9,7 @@ import Admin from '~/layout/admin'
 import Create from './create'
 import DataTable from '~/components/dataTable/dataTable'
 import CreateJudul from './createJudul'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 
 export default function Index() {
   return (
@@ -45,7 +46,7 @@ export default function Index() {
                   <AlertDialogHeader>
                     <DialogTitle>Tambah Judul</DialogTitle>
                   </AlertDialogHeader>
-                  <CreateJudul/>
+                  <CreateJudul />
                 </DialogContent>
               </Dialog>
 
@@ -56,7 +57,7 @@ export default function Index() {
                     variant="outline"
                   >
                     <IconBook size={18} />
-                     Tambah PPWI
+                    Tambah PPWI
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
@@ -70,7 +71,30 @@ export default function Index() {
           </div>
 
           <div>
-            {/* <DataTable data={} columns={} /> */}
+            <Card className="mt-3">
+              <Table className="container">
+                <TableHeader className="bg-slate-50">
+                  <TableRow>
+                    <TableHead className="w-[100px]">No</TableHead>
+                    <TableHead>Judul</TableHead>
+                    <TableHead>Keterangan</TableHead>
+                    <TableHead>Aksi</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow >
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell className='flex gap-2'>
+                      <Link href='/ppwi/detail'>
+                        <p className='bg-blue-600 text-white px-2 py-1 rounded-sm'>Preview</p>
+                      </Link>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Card>
           </div>
         </div>
 

@@ -1,3 +1,4 @@
+import { usePage } from '@inertiajs/react';
 import React, { Fragment, useState } from 'react';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
@@ -5,6 +6,9 @@ import { Label } from '~/components/ui/label';
 import { Textarea } from '~/components/ui/textarea';
 
 export default function Create() {
+  const {data_ppwi} = usePage().props;
+  console.log(data_ppwi);
+  
   const [image, setImage] = useState(null);
 
   const handleImage = (e) => {
