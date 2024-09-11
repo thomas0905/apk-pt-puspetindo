@@ -28,6 +28,7 @@ export default class LaporansController {
                     Karyawan.preload('departemen');
                 })
                 .preload('proyek')
+                
                 .groupBy('karyawan_id')
                
 
@@ -74,7 +75,6 @@ export default class LaporansController {
             const departemen = all_man_hours.map(item => item.karyawan.departemen.namaDepartemen).filter((value, index, self) => self.indexOf(value) === index);
 
         } else {
-
             man_hours = await ManHour.query()
                 .preload('karyawan', (Karyawan) => {
                     Karyawan.preload('departemen');

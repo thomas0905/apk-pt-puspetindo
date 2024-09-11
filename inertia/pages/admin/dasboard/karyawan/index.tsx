@@ -144,12 +144,12 @@ export default function Index() {
             <Head title="karyawan" />
             <Card className="p-5 shadow-md ">
                 <div className="border-b border-gray-200 pb-4">
-                    <div className='flex justify-between items-center'>
+                    <div className='flex justify-between '>
                         <div>
                             <Link href="/">
                                 <p className='text-sm flex gap-1 items-center'><IconHome size={18} />Home</p>
                             </Link>
-                            <h6 className='text-gray-600 text-lg font-bold mt-2'>Data Karyawan</h6>
+                            <h6 className='text-gray-600 text-lg font-bold '>Data Karyawan</h6>
                         </div>
 
                         <div className="flex gap-2">

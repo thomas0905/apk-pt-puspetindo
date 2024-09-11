@@ -7,12 +7,10 @@ import Admin from '~/layout/admin';
 import DataTable from '~/components/dataTable/dataTable';
 import { createColumnHelper } from '@tanstack/react-table';
 import Swal from 'sweetalert2';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
-import Create from './create';
 
 export default function Index({ }) {
   const { data_manHours, data_proyek } = usePage().props;
-console.log(data_manHours);
+console.log(data_proyek);
 
   const columnHelper = createColumnHelper<any>();
 
@@ -78,7 +76,7 @@ console.log(data_manHours);
               <Link href="/">
                 <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
               </Link>
-              <p className='text-sm flex gap-1'><IconBriefcase size={18} />Man Hours</p>
+              <h6 className='text-gray-600 text-lg font-bold'>Man Hours</h6>
             </div>
             <div>
               <Link href='/manhours/create'>

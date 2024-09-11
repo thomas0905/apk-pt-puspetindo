@@ -16,9 +16,11 @@ export default class ManHoursController {
     }
 
     async create({ inertia }: HttpContext) {
-        const manhours = await ManHour.query().preload('karyawan').preload('proyek')
+        const karyawan = await Karyawan.query()
+        const proyek = await Proyek.query()
         return inertia.render('admin/users/manhours/create', {
-            data_manhours: manhours,
+          data_karyawan:karyawan,
+          data_proyek:proyek
         })
     }
 

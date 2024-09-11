@@ -1,102 +1,169 @@
-import { useForm, usePage } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
+import { Link, useForm, usePage } from '@inertiajs/react';
+import { IconHome } from '@tabler/icons-react';
+import { FormEventHandler, useState } from 'react';
 import { Button } from '~/components/ui/button';
+import { Card } from '~/components/ui/card';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
+import Admin from '~/layout/admin';
 
-export default function Create() {
+export default function Create({ onSuccess }: { onSuccess: () => void }) {
   const { data_proyek, data_karyawan } = usePage().props;
-  console.log(data_proyek);
-  
-  const { data, setData, post, processing, errors } = useForm({
+
+  const { data, setData, post, processing } = useForm({
     karyawan_id: '',
     proyek_id: '',
     tanggal: '',
     jam_kerja: '',
   });
+  
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
-    post('/manhours/create', {
-      onSuccess: () => {
-        onSuccess();
-      },
-      onError: (errorMessages) => {
-        setErrors(errorMessages);
-      }
-    });
+
+    // Resetting errors
+    const validationErrors: { [key: string]: string } = {};
+    let isValid = true;
+
+    // Local validation
+    if (!data.karyawan_id.trim()) {
+      validationErrors.karyawan_id = 'Nama Karyawan harus diisi';
+      isValid = false;
+    }
+
+    if (!data.proyek_id.trim()) {
+      validationErrors.proyek_id = 'Nama Proyek harus diisi';
+      isValid = false;
+    }
+
+    if (!data.tanggal.trim()) {
+      validationErrors.tanggal = 'Tanggal harus diisi';
+      isValid = false;
+    }
+
+    if (!data.jam_kerja.trim()) {
+      validationErrors.jam_kerja = 'Jam Kerja harus diisi';
+      isValid = false;
+    }
+
+    setErrors(validationErrors);
+
+    if (isValid) {
+      // If valid, submit the form to the server
+      post('/manhours/create', {
+        onSuccess: () => onSuccess(),
+        onError: (errorMessages) => setErrors(errorMessages),
+      });
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex flex-col space-y-1.5">
-        <Label>Pilih Karyawan:</Label>
-        <Select
-          onValueChange={(value) => setData('karyawan_id', value)}
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Pilih Karyawan" />
-          </SelectTrigger>
-          <SelectContent>
-            {data_karyawan.map((kar) => (
-              <SelectItem key={kar.id} value={kar.id.toString()}>
-                {kar.nama}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        {errors.karyawan_id && <small className="text-red-600">{errors.karyawan_id}</small>}
-      </div>
+    <Admin>
+      <Card className='p-5'>
+        <div className="border-b border-gray-200 pb-4">
+          <div className='flex justify-between'>
+            <div>
+              <div className='flex gap-1'>
+                <Link href="/">
+                  <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
+                </Link>
+                <span>-</span>
+                <Link href='/proyek'>
+                  <p className="text-sm">Man Hours</p>
+                </Link>
+              </div>
+              <h6 className='text-gray-600 text-lg font-bold'>Tambah Man Hours</h6>
+            </div>
+          </div>
+        </div>
+        <form onSubmit={handleSubmit} className="mt-5">
+          <div className="grid grid-cols-2 gap-4">
+            {/* Pilih Karyawan */}
+            <div className="flex flex-col space-y-1.5">
+              <Label>Pilih Karyawan:</Label>
+              <Select onValueChange={(value) => setData('karyawan_id', value)}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Pilih Karyawan" />
+                </SelectTrigger>
+                <SelectContent>
+                  {data_karyawan.map((data) => (
+                    <SelectItem key={data.id} value={data.id.toString()}>
+                      {data.nama}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.karyawan_id && (
+                <small className="text-red-600">{errors.karyawan_id}</small>
+              )}
+            </div>
 
-      <div className="flex flex-col space-y-1.5 mt-2">
-        <Label>Pilih Proyek:</Label>
-        <Select
-          onValueChange={(value) => setData('proyek_id', value)}
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Pilih Proyek" />
-          </SelectTrigger>
-          <SelectContent>
-            {data_proyek.map((data) => (
-              <SelectItem key={data.id} value={data.id.toString()}>
-                {data.namaProyek}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        {errors.proyek_id && <small className="text-red-600">{errors.proyek_id}</small>}
-      </div>
+            {/* Pilih Proyek */}
+            <div className="flex flex-col space-y-1.5">
+              <Label>Pilih Proyek:</Label>
+              <Select onValueChange={(value) => setData('proyek_id', value)}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Pilih Proyek" />
+                </SelectTrigger>
+                <SelectContent>
+                  {data_proyek.map((data) => (
+                    <SelectItem key={data.id} value={data.id.toString()}>
+                      {data.namaProyek}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.proyek_id && (
+                <small className="text-red-600">{errors.proyek_id}</small>
+              )}
+            </div>
 
-      <div className="flex flex-col space-y-1.5 mt-2">
-        <Label>Tanggal:</Label>
-        <Input
-          type="date"
-          name='tanggal'
-          value={data.tanggal}
-          onChange={(e) => setData('tanggal', e.target.value)}
-          className="w-full"
-        />
-        {errors.tanggal && <small className="text-red-600">{errors.tanggal}</small>}
-      </div>
+            {/* Tanggal */}
+            <div className="flex flex-col space-y-1.5">
+              <Label>Tanggal:</Label>
+              <Input
+                type="date"
+                name="tanggal"
+                value={data.tanggal}
+                onChange={(e) => setData('tanggal', e.target.value)}
+                className="w-full"
+              />
+              {errors.tanggal && (
+                <small className="text-red-600">{errors.tanggal}</small>
+              )}
+            </div>
 
-      <div className="flex flex-col space-y-1.5 mt-2">
-        <Label>Jam Kerja:</Label>
-        <Input
-          type="text"
-          placeholder="Jam Kerja"
-          name='jam_kerja'
-          value={data.jam_kerja}
-          onChange={(e) => setData('jam_kerja', e.target.value)}
-          className="w-full"
-        />
-        {errors.jam_kerja && <small className="text-red-600">{errors.jam_kerja}</small>}
-      </div>
+            {/* Jam Kerja */}
+            <div className="flex flex-col space-y-1.5">
+              <Label>Jam Kerja:</Label>
+              <Input
+                type="text"
+                placeholder="Jam Kerja"
+                name="jam_kerja"
+                value={data.jam_kerja}
+                onChange={(e) => setData('jam_kerja', e.target.value)}
+                className="w-full"
+              />
+              {errors.jam_kerja && (
+                <small className="text-red-600">{errors.jam_kerja}</small>
+              )}
+            </div>
 
-      <Button className='bg-blue-600 mt-2 hover:bg-blue-500' type="submit" disabled={processing}>
-        Simpan
-      </Button>
-    </form>
+          </div>
+
+          {/* Button Simpan */}
+          <Button
+            className="bg-blue-600 mt-5 hover:bg-blue-500"
+            type="submit"
+            disabled={processing}
+          >
+            Simpan
+          </Button>
+        </form>
+
+      </Card>
+    </Admin>
   );
 }
-
