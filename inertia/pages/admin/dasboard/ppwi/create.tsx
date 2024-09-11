@@ -1,4 +1,5 @@
 import { usePage } from '@inertiajs/react';
+import { IconFileTypeDoc, IconPdf } from '@tabler/icons-react';
 import React, { Fragment, useState } from 'react';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
@@ -6,9 +7,9 @@ import { Label } from '~/components/ui/label';
 import { Textarea } from '~/components/ui/textarea';
 
 export default function Create() {
-  const {data_ppwi} = usePage().props;
+  const { data_ppwi } = usePage().props;
   console.log(data_ppwi);
-  
+
   const [image, setImage] = useState(null);
 
   const handleImage = (e) => {
@@ -42,7 +43,7 @@ export default function Create() {
             className='focus-visible:ring-0 focus:border-blue-600' />
         </div>
 
-        <div className="flex items-center justify-center w-full mt-3">
+        {/* <div className="flex items-center justify-center w-full mt-3">
           <label
             htmlFor="dropzone-file"
             className={`flex flex-col items-center justify-center w-full ${image ? 'max-h-56' : 'h-56'} border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600`}
@@ -71,14 +72,26 @@ export default function Create() {
                   <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                     <span className="font-semibold">Click to upload</span> or drag and drop
                   </p>
+             
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    SVG, PNG, JPG or GIF (MAX. 800x400px)
+                  DOC,PDF
                   </p>
                 </>
               )}
             </div>
             <input id="dropzone-file" type="file" className="hidden" onChange={handleImage} />
           </label>
+        </div> */}
+
+        <div className='mt-2'>
+          <Label>Pilih File</Label>
+          <Input
+            type="file"
+            id="file-upload"
+            accept=".doc,.docx,.pdf"
+            name="file"
+            className="border rounded-lg p-2 cursor-pointer hover:bg-slate-50"
+          />
         </div>
 
 

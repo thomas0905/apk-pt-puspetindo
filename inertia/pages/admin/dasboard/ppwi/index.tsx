@@ -70,34 +70,34 @@ export default function Index() {
             </div>
           </div>
 
-          <div>
-            <Card className="mt-3">
-              <Table className="container">
-                <TableHeader className="bg-slate-50">
-                  <TableRow>
-                    <TableHead className="w-[100px]">No</TableHead>
-                    <TableHead>Judul</TableHead>
-                    <TableHead>Keterangan</TableHead>
-                    <TableHead>Aksi</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow >
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell className='flex gap-2'>
-                      <Link href='/ppwi/detail'>
-                        <p className='bg-blue-600 text-white px-2 py-1 rounded-sm'>Lihat PPWI</p>
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </Card>
-          </div>
-        </div>
 
+        </div>
+        <div>
+          <Card className="mt-3">
+            <Table className="container">
+              <TableHeader className="bg-slate-50">
+                <TableRow>
+                  <TableHead className="w-[100px]">No</TableHead>
+                  <TableHead>Judul</TableHead>
+                  <TableHead>Keterangan</TableHead>
+                  <TableHead>Aksi</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow >
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell className='flex gap-2'>
+                    <Link href='/ppwi/detail'>
+                      <p className='bg-blue-600 text-white px-2 py-1 rounded-sm'>Lihat PPWI</p>
+                    </Link>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </Card>
+        </div>
 
       </Card>
     </Admin>
