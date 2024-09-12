@@ -7,11 +7,6 @@ export default class PpwisController {
         return inertia.render('admin/dasboard/ppwi/index')
     }
 
-    // const oploud_image = request.input('foto_ppwi',{
-    //     types:['image'],
-    //     size:'5mb',
-    //     extnames:['jpg','png','jpeg']
-    // })
     async create({ inertia }: HttpContext) {
         const ppwi = await JudulPpwi.query().preload('Ppwi')
         return inertia.render('admin/dasboard/ppwi/create',{
@@ -21,7 +16,6 @@ export default class PpwisController {
     async detail({ inertia }: HttpContext) {
         return inertia.render('admin/dasboard/ppwi/detail')
     }
-
 
     async store({ request, response }: HttpContext) {
         const ppwi = new Ppwi()

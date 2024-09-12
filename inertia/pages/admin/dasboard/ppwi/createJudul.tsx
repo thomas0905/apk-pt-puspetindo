@@ -1,22 +1,33 @@
 import { useForm } from '@inertiajs/react'
-import React, { FormEventHandler } from 'react'
+import React, { FormEventHandler, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function CreateJudul() {
   const { data, setData, post, processing } = useForm({
     judul: ''
   })
   console.log(data);
+  const [errors, setErrors] = useState({});
   
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault()
-    post('/ppwi/createjudul')
+    post('/ppwi/createJudul',{
+      onSuccess: () => {
+        toast.success('Proyek berhasil di simpan')
+    },
+    onError: (errorMessages) => {
+        setErrors(errorMessages);
+    }
+    })
   }
   return (
     <div>
+            <Toaster position="top-center" reverseOrder={false} />
+
       <form onSubmit={handleSubmit} className="">
         <div>
           <Label>Judul</Label>

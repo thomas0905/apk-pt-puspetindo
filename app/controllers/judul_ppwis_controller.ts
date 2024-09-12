@@ -10,6 +10,6 @@ export default class JudulPpwisController {
         const judulPpwi = new JudulPpwi();
         judulPpwi.judul = request.input('judul');
         await judulPpwi.save();
-        return response.redirect('/ppwi/createJudul');
+        return response.redirect('/ppwi');
     }
 }

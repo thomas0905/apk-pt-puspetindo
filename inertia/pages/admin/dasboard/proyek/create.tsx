@@ -20,10 +20,6 @@ export default function Create({ onSuccess, }: { onSuccess: () => void }) {
         pemilik: ''
     });
     const [show, setShow] = useState(false);
-    const [loading, setLoading] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     const [errors, setErrors] = useState({});
 

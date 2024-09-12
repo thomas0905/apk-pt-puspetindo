@@ -9,7 +9,8 @@ const AuthController = () => import('#controllers/auth_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 import MenuProfilsController from '#controllers/menu_profils_controller'
-import PpwisController from '#controllers/ppwis_controller'
+const PpwisController = () => import ('#controllers/ppwis_controller')
+const JudulPpwisController =() => import ('#controllers/judul_ppwis_controller')
 const HomeController = () => import('#controllers/home_controller')
 
 router.get('/', [HomeController, 'index']).use(middleware.auth())
@@ -48,10 +49,10 @@ router.group(() => {
 
 router.group(() => {
     router.get('/' ,[PpwisController,'index'])
-    router.get('/detail' ,[PpwisController,'detail'])
-    router.get('/createjudul',[PpwisController,'store'])
-    router.post('/create',[PpwisController,'store'])
-}).prefix('/ppwi')
+    router.get('detail' ,[PpwisController,'detail'])
+    router.post('create',[PpwisController,'store'])
+    router.post('createJudul',[JudulPpwisController,'store'])
+}).prefix('/ppwi/')
 
 router.get('/menuProfil', [MenuProfilsController, 'index'])
 
