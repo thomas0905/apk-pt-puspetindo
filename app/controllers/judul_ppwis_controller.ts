@@ -7,16 +7,9 @@ export default class JudulPpwisController {
     }
 
     async store({ request, response }: HttpContext) {
-        // Membuat instance baru dari model Ppwi
-        const ppwi = new JudulPpwi();
-    
-        // Mengisi atribut model dengan data dari request
-        ppwi.judul = request.input('judul');
-    
-        // Menyimpan model ke database
-        await JudulPpwi.save();
-    
-        // Mengarahkan kembali setelah data disimpan
-        return response.redirect('/ppwi');
+        const judulPpwi = new JudulPpwi();
+        judulPpwi.judul = request.input('judul');
+        await judulPpwi.save();
+        return response.redirect('/ppwi/createJudul');
     }
 }

@@ -28,7 +28,6 @@ router.group(() => {
     router.get('/', [DepartemenController, 'index'])
     router.post('create', [DepartemenController, 'store'])
     router.get('edit/:id', [DepartemenController, 'edit'])
-    router.put('edit/:id', [DepartemenController, 'update'])
     router.put('delete/:id', [DepartemenController, 'delete'])
 }).prefix('/departemen/').use(middleware.auth())
 
@@ -36,7 +35,6 @@ router.group(() => {
     router.get('/', [ProyeksController, 'index'])
     router.post('create', [ProyeksController, 'store'])
     router.delete('delete/:id',[ProyeksController, 'delete'])
-    router.get('edit/:id', [ProyeksController, 'edit'])
     router.put('edit/:id', [ProyeksController, 'update'])
 }).prefix('/proyek/').use(middleware.auth())
 
@@ -51,6 +49,7 @@ router.group(() => {
 router.group(() => {
     router.get('/' ,[PpwisController,'index'])
     router.get('/detail' ,[PpwisController,'detail'])
+    router.get('/createjudul',[PpwisController,'store'])
     router.post('/create',[PpwisController,'store'])
 }).prefix('/ppwi')
 

@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import { Fragment, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function Create({ onSuccess }) {
+export default function Create({ onSuccess, }: { onSuccess: () => void }) {
 
     const statuses = [
         { value: "Selesai", label: "Selesai" },
@@ -58,7 +58,8 @@ export default function Create({ onSuccess }) {
         if (isValid) {
             post('/proyek/create', {
                 onSuccess: () => {
-              toast.success('Proyek berhasil di simpan')
+                    toast.success('Proyek berhasil di simpan')
+                    onSuccess()
                 },
                 onError: (errorMessages) => {
                     setErrors(errorMessages);
@@ -76,7 +77,7 @@ export default function Create({ onSuccess }) {
                     <div className="flex flex-col space-y-1.5">
                         <Label htmlFor="namaProyek">Nama Proyek:</Label>
                         <Input
-                            className='focus-visible:ring-0 focus:border-blue-600' 
+                            className='focus-visible:ring-0 focus:border-blue-600'
                             id="namaProyek"
                             placeholder="Masukkan Nama"
                             value={data.namaProyek}
@@ -88,7 +89,7 @@ export default function Create({ onSuccess }) {
                     <div className="flex flex-col space-y-1.5 mt-3">
                         <Label htmlFor="kodeJobOrder">Kode Job Order:</Label>
                         <Input
-                            className='focus-visible:ring-0 focus:border-blue-600' 
+                            className='focus-visible:ring-0 focus:border-blue-600'
                             id="kodeJobOrder"
                             placeholder="Masukkan Kode"
                             value={data.kodeJobOrder}
@@ -100,7 +101,7 @@ export default function Create({ onSuccess }) {
                     <div className="flex flex-col space-y-1.5 mt-3">
                         <Label htmlFor="status">Status:</Label>
                         <Select
-                         onValueChange={(value) => setData('status', value)}>
+                            onValueChange={(value) => setData('status', value)}>
                             <SelectTrigger className="w-full  focus:ring-0 focus:border-blue-600 focus:outline-none" >
                                 <SelectValue placeholder="Pilih Status" />
                             </SelectTrigger>
@@ -116,7 +117,7 @@ export default function Create({ onSuccess }) {
                     <div className="flex flex-col space-y-1.5 mt-3">
                         <Label htmlFor="pemilik">Pemilik:</Label>
                         <Input
-                            className='focus-visible:ring-0 focus:border-blue-600' 
+                            className='focus-visible:ring-0 focus:border-blue-600'
                             id="pemilik"
                             placeholder="Masukkan Pemilik"
                             value={data.pemilik}

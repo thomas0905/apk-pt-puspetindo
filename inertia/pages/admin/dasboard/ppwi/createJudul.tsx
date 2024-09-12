@@ -13,7 +13,7 @@ export default function CreateJudul() {
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault()
-    post('/ppwi/create')
+    post('/ppwi/createjudul')
   }
   return (
     <div>

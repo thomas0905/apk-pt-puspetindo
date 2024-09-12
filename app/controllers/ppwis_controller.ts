@@ -13,7 +13,7 @@ export default class PpwisController {
     //     extnames:['jpg','png','jpeg']
     // })
     async create({ inertia }: HttpContext) {
-        const ppwi = await JudulPpwi.query()
+        const ppwi = await JudulPpwi.query().preload('Ppwi')
         return inertia.render('admin/dasboard/ppwi/create',{
             data_ppwi:ppwi
         })
@@ -23,16 +23,13 @@ export default class PpwisController {
     }
 
 
-    async store({ request, response, inertia }: HttpContext) {
-        const ppwi = await Ppwi.query()
+    async store({ request, response }: HttpContext) {
+        const ppwi = new Ppwi()
         ppwi.keterangan = request.input('keterangan')
 
         await ppwi.save()
 
         return response.redirect('/ppwi')
-
-        
-
     }
 
 }

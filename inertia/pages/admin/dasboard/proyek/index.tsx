@@ -130,7 +130,7 @@ export default function IndexProyek() {
                                     <DialogHeader>
                                         <DialogTitle>Tambah Proyek</DialogTitle>
                                     </DialogHeader>
-                                    <Create onSuccess={() => setModalCreate(!modalCreate)} />
+                                    <Create onSuccess={() => setModalCreate(false)} />
                                 </DialogContent>
                             </Dialog>
                         </div>

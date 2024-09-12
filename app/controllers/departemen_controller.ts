@@ -14,8 +14,6 @@ export default class DepartemenController {
         const karyawan = await Karyawan.all()
         return inertia.render('admin/dasboard/departemen/create', {
             data_karyawan: karyawan,
-
-
         })
     }
 
