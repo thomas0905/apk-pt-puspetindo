@@ -19,7 +19,7 @@ export default class LaporansController {
 
         let man_hours = [];
 
-        if (request.input('start_date') != null) {
+        if (request.input('start_date') != null ) {
             man_hours = await ManHour.query()
                 .whereBetween('tanggal',
                     [request.input('start_date'),
@@ -28,7 +28,12 @@ export default class LaporansController {
                     Karyawan.preload('departemen');
                 })
                 .preload('proyek')
-                
+                .if(request.input('departemen') !== null, (query) => {
+                    // Jika departemen ID tidak kosong, lakukan filter berdasarkan departemen
+                    query.whereHas('karyawan', (karyawanQuery) => {
+                        karyawanQuery.where('departemen_id', request.input('departemen') || '');
+                    });
+                })
                 .groupBy('karyawan_id')
                
 
@@ -75,12 +80,18 @@ export default class LaporansController {
             const departemen = all_man_hours.map(item => item.karyawan.departemen.namaDepartemen).filter((value, index, self) => self.indexOf(value) === index);
 
         } else {
+            
             man_hours = await ManHour.query()
                 .preload('karyawan', (Karyawan) => {
                     Karyawan.preload('departemen');
                 })
                 .preload('proyek')
-                .where('karyawan_id', karyawan.id)
+                .if(request.input('departemen') !== '', (query) => {
+                    // Jika departemen ID tidak kosong, lakukan filter berdasarkan departemen
+                    query.whereHas('karyawan', (karyawanQuery) => {
+                        karyawanQuery.where('departemen_id', request.input('departemen') || '');
+                    });
+                })
                 .groupBy('karyawan_id');
 
             const all_man_hours = await ManHour.query()
@@ -124,7 +135,7 @@ export default class LaporansController {
 
         }
 
-        const departemen = await Karyawan.query().preload('departemen')
+        const departemen = await Karyawan.query().preload('departemen').distinct('departemen_id')
 
         return inertia.render('admin/management/laporan', {
             data_manhours: man_hours,

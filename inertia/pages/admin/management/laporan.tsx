@@ -29,6 +29,7 @@ export default function Laporan() {
   const [filteredData, setFilteredData] = useState(data_manhours)
   const [expandedRows, setExpandedRows] = useState([])
   const tableRef = useRef(null);
+  const [departemen,setDepartemen] = useState('');
 
   const karyawanList = Array.isArray(data_karyawan) ? data_karyawan : [];
 
@@ -44,10 +45,21 @@ export default function Laporan() {
     return new Date(date).toLocaleDateString('id-ID', options)
   }
   const handleFilter = () => {
-    router.get('/management/laporan', {
-      start_date: startDate,
-      end_date: endDate
-    })
+    const params = {};
+  
+    if (startDate) {
+      params.start_date = startDate;
+    }
+  
+    if (endDate) {
+      params.end_date = endDate;
+    }
+  
+    if (departemen) {
+      params.departemen = departemen;
+    }
+  
+    router.get('/management/laporan', params);
   }
   const toggleRow = (rowId) => {
     setExpandedRows(prev =>
@@ -82,13 +94,13 @@ export default function Laporan() {
                 />
               </div>
               <div className="w-75">
-                <Select>
+                <Select value={departemen} onValueChange={(value) => setDepartemen(value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Pilih Departemen" />
                   </SelectTrigger>
                   <SelectContent>
                     {karyawanList.map((data,index) => (
-                      <SelectItem key={index} value={index}>
+                      <SelectItem key={index} value={data.departemen.id}>
                         {data.departemen.namaDepartemen}
                       </SelectItem>
                     ))}
