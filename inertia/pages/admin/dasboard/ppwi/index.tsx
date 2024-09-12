@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react'
+import { Link, usePage } from '@inertiajs/react'
 import { IconBook, IconBookOff, IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react'
 import React from 'react'
 import { AlertDialogHeader } from '~/components/ui/alert-dialog'
@@ -12,6 +12,8 @@ import CreateJudul from './createJudul'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 
 export default function Index() {
+  const { judul_ppwi } = usePage().props;
+  console.log(judul_ppwi);
   return (
     <Admin>
       <Card className="p-5">

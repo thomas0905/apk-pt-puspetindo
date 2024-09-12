@@ -7,8 +7,8 @@ import { Label } from '~/components/ui/label';
 import { Textarea } from '~/components/ui/textarea';
 
 export default function Create() {
-  const { data_ppwi } = usePage().props;
-  console.log(data_ppwi);
+  const { judul_ppwi } = usePage().props;
+  console.log(judul_ppwi);
 
   const [image, setImage] = useState(null);
 

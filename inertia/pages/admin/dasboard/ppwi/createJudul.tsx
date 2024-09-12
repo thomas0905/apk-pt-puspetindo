@@ -15,19 +15,32 @@ export default function CreateJudul() {
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault()
-    post('/ppwi/createJudul',{
-      onSuccess: () => {
-        toast.success('Proyek berhasil di simpan')
-    },
-    onError: (errorMessages) => {
-        setErrors(errorMessages);
+
+    const validationErrors: any = {};
+    let isValid = true;
+
+    if (data.judul.trim() === '') {
+        validationErrors.judul = 'Nama departemen harus diisi';
+        isValid = false;
     }
-    })
+
+    setErrors(validationErrors);
+
+if(isValid){
+  post('/ppwi/createJudul',{
+    onSuccess: () => {
+      toast.success('Proyek berhasil di simpan')
+  },
+  onError: (errorMessages) => {
+      setErrors(errorMessages);
+  }
+  })
+}
+   
   }
   return (
     <div>
-            <Toaster position="top-center" reverseOrder={false} />
-
+      <Toaster position="top-center" reverseOrder={false} />
       <form onSubmit={handleSubmit} className="">
         <div>
           <Label>Judul</Label>
@@ -38,6 +51,7 @@ export default function CreateJudul() {
             value={data.judul}
             onChange={(e) => setData('judul', e.target.value)}
             className='focus-visible:ring-0 focus:border-blue-600' />
+            {errors.judul && <small className="text-red-500">{errors.judul}</small>}
         </div>
 
         <div className="mt-2">

@@ -23,7 +23,6 @@ export default class KaryawansKontroller {
 
     async create({ inertia }: HttpContext) {
         const departemen = await Departeman.all()
-
         return inertia.render('admin/dasboard/karyawan/create', {
             data_departemen: departemen
         });
