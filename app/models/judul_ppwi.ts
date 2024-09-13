@@ -7,8 +7,10 @@ export default class JudulPpwi extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  @belongsTo(() => Ppwi)
-  declare Ppwi: BelongsTo<typeof Ppwi>
+  @belongsTo(() => Ppwi,{
+    localKey:'id'
+  })
+  declare ppwi: BelongsTo<typeof Ppwi>
 
   @column()
   declare judul:string

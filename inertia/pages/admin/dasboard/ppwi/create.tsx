@@ -1,6 +1,7 @@
-import { usePage } from '@inertiajs/react';
+import { useForm, usePage } from '@inertiajs/react';
 import { IconFileTypeDoc, IconPdf } from '@tabler/icons-react';
-import React, { Fragment, useState } from 'react';
+import React, { FormEventHandler, Fragment, useState } from 'react';
+import { toast } from 'react-toastify';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
@@ -8,32 +9,26 @@ import { Textarea } from '~/components/ui/textarea';
 
 export default function Create() {
   const { judul_ppwi } = usePage().props;
-  console.log(judul_ppwi);
 
-  const [image, setImage] = useState(null);
+const {data,setData,post,processing} = useForm({
+  judul_ppwi: '',
+  dokumen: null,
+  keterangan: ''
+})
+console.log(data);
 
-  const handleImage = (e) => {
-    const oploudImg = e.target.files;
-    if (oploudImg && oploudImg[0]) {
-      let img = oploudImg[0];
-      setImage(URL.createObjectURL(img));
-
-      let file = oploudImg[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = _handleReaderLoaded;
-        reader.readAsBinaryString(file);
-      }
-    }
-  };
-
-  const _handleReaderLoaded = (e) => {
-    let binaryString = e.target.result;
-    console.log(binaryString);
-  };
+const handleSubmit: FormEventHandler = (e) => {
+  e.preventDefault();
+  post('/ppwi/create', {
+    onSuccess: () => {
+      toast.success('Data Berhasil Ditambahkan!');
+    },
+  })
+}
 
   return (
     <Fragment>
+      <form action="" onClick={handleSubmit}>
       <div className="">
         <div>
           <Label>Judul</Label>
@@ -90,11 +85,11 @@ export default function Create() {
             id="file-upload"
             accept=".doc,.docx,.pdf"
             name="file"
+            // value={data.dokumen}
+            // onChange={(e) => setData('dokumen', e.target.files?.[0] || null)}
             className="border rounded-lg p-2 cursor-pointer hover:bg-slate-50"
           />
         </div>
-
-
 
         <div className="mt-2">
           <Label>Keterangan</Label>
@@ -102,6 +97,10 @@ export default function Create() {
             id="message"
             placeholder="Type your description here..."
             className="min-h-20 resize-none border-2 p-3 shadow-none focus-visible:ring-0 focus:border-blue-600"
+            name='keterangan'
+            value={data.keterangan}
+            onChange={(e) => setData('keterangan', e.target.value)}
+          
           />
         </div>
 
@@ -109,6 +108,7 @@ export default function Create() {
           <Button className="bg-blue-600 hover:bg-blue-500">Simpan</Button>
         </div>
       </div>
+      </form>
     </Fragment>
   );
 }
