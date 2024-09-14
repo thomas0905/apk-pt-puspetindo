@@ -1,10 +1,10 @@
-import { Link, usePage } from '@inertiajs/react'
-import { IconBook, IconBookOff, IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react'
+import { Head, Link, usePage } from '@inertiajs/react'
+import { IconBook, IconBuildingArch, IconHome } from '@tabler/icons-react'
 import React from 'react'
 import { AlertDialogHeader } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Admin from '~/layout/admin'
 import Create from './create'
 import DataTable from '~/components/dataTable/dataTable'
@@ -16,6 +16,9 @@ export default function Index() {
   console.log(judul_ppwi);
   return (
     <Admin>
+      <Head>
+        <title>PPWI</title>
+      </Head>
       <Card className="p-5">
         <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
