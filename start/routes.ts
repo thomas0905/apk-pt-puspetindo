@@ -51,8 +51,13 @@ router.group(() => {
     router.get('/' ,[PpwisController,'index'])
     router.get('detail' ,[PpwisController,'detail'])
     router.post('create',[PpwisController,'store'])
-    router.post('createJudul',[JudulPpwisController,'store'])
 }).prefix('/ppwi/')
+
+
+router.group(() => {
+    router.get('/' ,[JudulPpwisController,'index'])
+    router.post('create',[JudulPpwisController,'store'])
+}).prefix('/judul/')
 
 router.get('/menuProfil', [MenuProfilsController, 'index'])
 

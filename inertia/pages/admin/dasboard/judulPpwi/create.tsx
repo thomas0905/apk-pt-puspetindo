@@ -27,7 +27,7 @@ export default function CreateJudul() {
     setErrors(validationErrors);
 
 if(isValid){
-  post('/ppwi/createJudul',{
+  post('/judul/create',{
     onSuccess: () => {
       toast.success('Proyek berhasil di simpan')
   },

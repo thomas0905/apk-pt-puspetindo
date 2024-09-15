@@ -7,8 +7,6 @@ import { Card } from '~/components/ui/card'
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Admin from '~/layout/admin'
 import Create from './create'
-import DataTable from '~/components/dataTable/dataTable'
-import CreateJudul from './createJudul'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 
 export default function Index() {
@@ -30,31 +28,9 @@ export default function Index() {
             </div>
 
             <div className='flex gap-1'>
-              <Dialog>
-                <DialogTrigger asChild>
-                  {/* <Button
-                  className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
-                  variant="outline"
-                >
-                  <IconBuildingArch size={18} />
-                  Tambah Judul
-                </Button> */}
-                  <Button
-                    className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
-                    variant="outline"
-                  >
-                    <IconBuildingArch size={18} />
-                    Tambah Judul
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                  <AlertDialogHeader>
-                    <DialogTitle>Tambah Judul</DialogTitle>
-                  </AlertDialogHeader>
-                  <CreateJudul />
-                </DialogContent>
-              </Dialog>
-
+   <Link href='/judul'>     
+   <Button  className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white">Data Judul</Button>
+   </Link>
               <Dialog>
                 <DialogTrigger asChild>
                   <Button
