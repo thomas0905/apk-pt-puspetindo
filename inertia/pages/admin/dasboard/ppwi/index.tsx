@@ -11,7 +11,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~
 
 export default function Index() {
 
-  console.log(judul_ppwi);
+
   return (
     <Admin>
       <Head>

@@ -1,4 +1,5 @@
 import { useForm, usePage } from '@inertiajs/react';
+import { SelectItem } from '@radix-ui/react-select';
 import { IconFileTypeDoc, IconPdf } from '@tabler/icons-react';
 import React, { FormEventHandler, Fragment, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -9,7 +10,8 @@ import { Select, SelectContent, SelectTrigger, SelectValue } from '~/components/
 import { Textarea } from '~/components/ui/textarea';
 
 export default function Create() {
-  const { judul_ppwi } = usePage().props;
+  const {data_judul} = usePage().props
+  console.log(data_judul);
 
 const {data,setData,post,processing} = useForm({
   judul_ppwi: '',
@@ -35,7 +37,7 @@ const handleSubmit: FormEventHandler = (e) => {
           <Label>Judul</Label>
           <Select>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Pilih Karyawan" />
+                  <SelectValue placeholder="Pilih judul" />
                 </SelectTrigger>
                 <SelectContent>
                   {/* {data_karyawan.map((data) => (
@@ -43,6 +45,12 @@ const handleSubmit: FormEventHandler = (e) => {
                       {data.nama}
                     </SelectItem>
                   ))} */}
+
+                  {data_judul.map((data) => (
+                    <SelectItem key={data.id} value={data.id}>
+{data.judul}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
         </div>

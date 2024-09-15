@@ -3,14 +3,16 @@ import Ppwi from '#models/ppwi'
 import type { HttpContext } from '@adonisjs/core/http'
 export default class PpwisController {
     async index({ inertia }: HttpContext) {
-        // const ppwis = await Ppwi.query().preload('judulPpwi')
-        return inertia.render('admin/dasboard/ppwi/index')
+        const judul = await JudulPpwi.all()
+        return inertia.render('admin/dasboard/ppwi/index',{
+            data_judul:judul
+        })
     }
 
     async create({inertia }: HttpContext) {
-        const ppwi = await JudulPpwi.query()
+        const judul = await JudulPpwi.all()
         return inertia.render('admin/dasboard/ppwi/create',{
-            judul_ppwi:ppwi
+            data_judul:judul
         })
     }
     async detail({ inertia }: HttpContext) {
