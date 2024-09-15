@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
+import { Select, SelectContent, SelectTrigger, SelectValue } from '~/components/ui/select';
 import { Textarea } from '~/components/ui/textarea';
 
 export default function Create() {
@@ -32,10 +33,18 @@ const handleSubmit: FormEventHandler = (e) => {
       <div className="">
         <div>
           <Label>Judul</Label>
-          <Input
-            type="text"
-            placeholder="Masukkan Judul"
-            className='focus-visible:ring-0 focus:border-blue-600' />
+          <Select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Pilih Karyawan" />
+                </SelectTrigger>
+                <SelectContent>
+                  {/* {data_karyawan.map((data) => (
+                    <SelectItem key={data.id} value={data.id.toString()}>
+                      {data.nama}
+                    </SelectItem>
+                  ))} */}
+                </SelectContent>
+              </Select>
         </div>
 
         {/* <div className="flex items-center justify-center w-full mt-3">
