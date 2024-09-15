@@ -1,5 +1,5 @@
-import { Link } from '@inertiajs/react'
-import { IconBuildingArch, IconHome } from '@tabler/icons-react'
+import { Link, usePage } from '@inertiajs/react'
+import { IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react'
 import React from 'react'
 import { AlertDialogHeader } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
@@ -7,9 +7,12 @@ import { Card } from '~/components/ui/card'
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '~/components/ui/dialog'
 import Admin from '~/layout/admin'
 import CreateJudul from './create'
-import { Table, TableBody, TableHead, TableHeader, TableRow } from '~/components/ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 
 export default function Indexjudul() {
+    const { data_judul } = usePage().props;
+    console.log(data_judul);
+    
   return (
     <Admin>
       <Card className="p-5">
@@ -52,7 +55,38 @@ export default function Indexjudul() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                
+                        {data_judul.map((data,index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{index + 1}</TableCell>
+                                    <TableCell>{data.judul}</TableCell>
+                                    <TableCell className='flex gap-2'>
+                                        {/* <IconEdit
+                                            size={18}
+                                            className='cursor-pointer'
+                                            onClick={() => handleEdit(dep)} // Panggil handleEdit dengan parameter departemen
+                                        /> */}
+
+                                        {/* Modal Edit */}
+                                        {/* <Dialog open={modalEdit} onOpenChange={setModalEdit}>
+                                            <DialogContent className="sm:max-w-[425px]">
+                                                <DialogHeader>
+                                                    <DialogTitle>Edit Departemen</DialogTitle>
+                                                </DialogHeader>
+                                                {selectedDepartemen && (
+                                                    <Edit departemen={selectedDepartemen} />
+                                                )}
+                                            </DialogContent>
+                                        </Dialog> */}
+
+                                        {/* <span
+                                            onClick={() => handleDelete(dep.id)}
+                                            className="text-red-900 hover:cursor-pointer"
+                                        >
+                                            <IconTrash size={18} />
+                                        </span> */}
+                                    </TableCell>
+                                </TableRow>
+                            ))}
                         </TableBody>
                     </Table>
                 </Card>

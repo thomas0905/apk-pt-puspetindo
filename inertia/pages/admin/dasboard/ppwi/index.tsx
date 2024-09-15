@@ -10,7 +10,7 @@ import Create from './create'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 
 export default function Index() {
-  const { judul_ppwi } = usePage().props;
+
   console.log(judul_ppwi);
   return (
     <Admin>

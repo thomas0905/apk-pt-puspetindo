@@ -3,7 +3,10 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 export default class JudulPpwisController {
 async index({inertia}:HttpContext){
-    return inertia.render('admin/dasboard/judulPpwi/index')
+    const judul = await JudulPpwi.all()
+    return inertia.render('admin/dasboard/judulPpwi/index',{
+        data_judul:judul
+    })
 }
 
     async create({inertia}:HttpContext){
