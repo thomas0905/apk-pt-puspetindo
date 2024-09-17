@@ -47,12 +47,6 @@ export default class ProyeksController {
         return response.redirect('/proyek');
     }
 
-    async delete({ params, response }: HttpContext) {
-        const proyek = await Proyek.findOrFail(params.id)
-        await proyek.delete()
-        return response.redirect('/proyek')
-    }
-
     async edit({ inertia, params }: HttpContext) {
         console.log(params.id);
         const proyek = await Proyek.find(params.id)
@@ -71,4 +65,12 @@ export default class ProyeksController {
         return response.redirect('/proyek')
 
     }
+
+
+    async delete({ params, response }: HttpContext) {
+        const proyek = await Proyek.findOrFail(params.id)
+        await proyek.delete()
+        return response.redirect('/proyek')
+    }
+
 }

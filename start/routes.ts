@@ -52,6 +52,7 @@ router.group(() => {
     router.get('detail' ,[PpwisController,'detail'])
     router.get('create',[PpwisController,'create'])
     router.post('create',[PpwisController,'store'])
+    router.post('delete/:id',[PpwisController,'delete'])
 }).prefix('/ppwi/')
 
 

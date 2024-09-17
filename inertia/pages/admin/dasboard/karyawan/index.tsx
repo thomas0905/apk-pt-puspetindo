@@ -12,7 +12,7 @@ export default function Index() {
     const { data_karyawan } = usePage().props;
     const tableRef = useRef(null);
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id:any) => {
         const result = await Swal.fire({
             title: 'Ingin Hapus Data?',
             icon: 'question',

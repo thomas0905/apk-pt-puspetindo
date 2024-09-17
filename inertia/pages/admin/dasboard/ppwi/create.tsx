@@ -1,85 +1,93 @@
+import React, { useState, FormEventHandler } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
-import { SelectItem } from '@radix-ui/react-select';
-import { IconFileTypeDoc, IconPdf } from '@tabler/icons-react';
-import React, { FormEventHandler, Fragment, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
-import { Select, SelectContent, SelectTrigger, SelectValue } from '~/components/ui/select';
+import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '~/components/ui/select';
 import { Textarea } from '~/components/ui/textarea';
 
-export default function Create() {
-  const {data_judul} = usePage().props
-  console.log(data_judul);
+export default function CreatePpwi() {
+  const { data_judul } = usePage().props; // Data judul dari backend
+  const [fileName, setFileName] = useState<string | null>(null); // State untuk menyimpan nama file yang dipilih
 
-const {data,setData,post,processing} = useForm({
-  judul_ppwi: '',
-  dokumen: null,
-  keterangan: ''
-})
-console.log(data);
+  // Inisialisasi form menggunakan Inertia.js
+  const { data, setData, post, processing } = useForm({
+    judulPpwi: '',
+    dokumen: null as File | null, // File upload disimpan di sini
+    keterangan: '',
+  });
 
-const handleSubmit: FormEventHandler = (e) => {
-  e.preventDefault();
-  post('/ppwi/create', {
-    onSuccess: () => {
-      toast.success('Data Berhasil Ditambahkan!');
-    },
-  })
-}
+  console.log(data);
+
+  // Fungsi untuk menangani submit form
+  const handleSubmit: FormEventHandler = (e) => {
+    e.preventDefault();
+    post('/ppwi/create', {
+      onSuccess: () => {
+        toast.success('Data Berhasil Ditambahkan!'); // Menampilkan notifikasi berhasil
+      },
+      onError: () => {
+        toast.error('Terjadi Kesalahan, Coba Lagi!'); // Notifikasi error
+      },
+    });
+  };
+
+  // Fungsi untuk menangani perubahan file
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setData('dokumen', file);
+    setFileName(file ? file.name : null);
+  };
 
   return (
-    <Fragment>
-      <form action="" onClick={handleSubmit}>
-      <div className="">
-        <div  className="flex flex-col space-y-1.5">
-          <Label>Judul</Label>
-          <Select value={data.judul_ppwi} onValueChange={(value) => setData('judul_ppwi', value)}>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <div className="space-y-4">
+        {/* Select untuk memilih judul */}
+        <div className="flex flex-col space-y-1.5">
+          <Label>Pilih Judul:</Label>
+          <Select onValueChange={(value) => setData('judulPpwi', value)}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Pilih judul" />
+              <SelectValue placeholder="Pilih Judul" />
             </SelectTrigger>
             <SelectContent>
-                  {data_judul.map((data) => (
-                    <SelectItem key={data.id} value={data.id.toString()}>
-                      {data.judul}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
+              {data_judul.map((data: any) => (
+                <SelectItem key={data.id} value={data.id.toString()}>
+                  {data.judul}
+                </SelectItem>
+              ))}
+            </SelectContent>
           </Select>
         </div>
 
-        <div className="mt-2">
-          <Label>Pilih File</Label>
+        {/* Input untuk mengunggah file */}
+        <div>
+          <Label>Unggah Dokumen (PDF/DOC/DOCX)</Label>
           <Input
             type="file"
-            id="file-upload"
-            accept=".doc,.docx,.pdf"
-            name="file"
+            accept=".pdf,.doc,.docx"
+            onChange={handleFileChange}
             className="border rounded-lg p-2 cursor-pointer hover:bg-slate-50"
-            onChange={(e) => setData('dokumen', e.target.files?.[0] || null)}
           />
+          {fileName && <p className="mt-1 text-sm text-gray-600">File: {fileName}</p>}
         </div>
 
-        <div className="mt-2">
+        {/* Input untuk keterangan */}
+        <div>
           <Label>Keterangan</Label>
           <Textarea
-            id="message"
-            placeholder="Type your description here..."
-            className="min-h-20 resize-none border-2 p-3 shadow-none focus-visible:ring-0 focus:border-blue-600"
-            name='keterangan'
+            placeholder="Masukkan keterangan di sini"
             value={data.keterangan}
             onChange={(e) => setData('keterangan', e.target.value)}
-          
+            className="min-h-20 resize-none border-2 p-3 shadow-none focus-visible:ring-0 focus:border-blue-600"
           />
         </div>
 
-        <div className="mt-2">
-          <Button className="bg-blue-600 hover:bg-blue-500">Simpan</Button>
-        </div>
+        {/* Button untuk submit */}
+        <Button type="submit" className="bg-blue-600 hover:bg-blue-500" disabled={processing}>
+          Simpan
+        </Button>
       </div>
-      </form>
-    </Fragment>
+    </form>
   );
 }
-

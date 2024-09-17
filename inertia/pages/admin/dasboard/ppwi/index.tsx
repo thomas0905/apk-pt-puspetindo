@@ -1,19 +1,90 @@
-import { Head, Link, usePage } from '@inertiajs/react'
-import { IconBook, IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react'
-import React, { useState } from 'react'
+import { Head, Link, router, usePage } from '@inertiajs/react'
+import { IconBook, IconHome, IconTrash } from '@tabler/icons-react'
 import { AlertDialogHeader } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
 import Admin from '~/layout/admin'
 import Create from './create'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
+import Ppwi from '#models/ppwi'
+import { createColumnHelper } from '@tanstack/react-table'
+import DataTable from '~/components/dataTable/dataTable'
+import Swal from 'sweetalert2'
 
 export default function Index() {
 const {data_judul,data_ppwi} = usePage().props
 console.log(data_ppwi);
 
-  const [open,setOpen] = useState(false)
+  // const [open,setOpen] = useState(false)
+
+const handleDelete = async (id: any) => {
+    const swalInstance = Swal.fire({
+        title: 'Ingin Hapus Data?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Ya!',
+        cancelButtonText: 'Tidak!',
+        allowOutsideClick: false,
+    });
+    const result = await swalInstance;
+    if (result.isConfirmed) {
+        await router.delete('/ppwi/delete/' + id);
+        Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
+    } else {
+        Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
+    }
+};
+
+  const columnHelper = createColumnHelper<Ppwi>();
+
+  const columns = [
+      columnHelper.accessor('id', {
+          header: () => 'No',
+          cell: info => info.row.index + 1,
+          footer: info => info.column.id,
+      }),
+      columnHelper.accessor('judul', {
+          header: () => 'Judul',
+          cell: info => info.renderValue(),
+          footer: info => info.column.id,
+      }),
+      columnHelper.accessor('dokumen', {
+          header: () => 'Dokumen',
+          cell: info => info.renderValue(),
+          footer: info => info.column.id,
+      }),
+      columnHelper.accessor('keterangan', {
+          header: () => 'Keterangan',
+          cell: info => info.renderValue(),
+          footer: info => info.column.id,
+      }),
+      columnHelper.display({
+          id: 'aksi',
+          header: () => 'Aksi',
+          cell: info => (
+              <div className="flex gap-3">
+                  <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
+                      <IconTrash size={18} />
+                  </span>
+
+                  {/* <Dialog open={modalEdit} onOpenChange={setModalEdit} >
+                      <DialogOverlay className="bg-white/10 backdrop-blur-sm" />
+
+                      <DialogTrigger asChild>
+                          <IconEdit size={18} className='cursor-pointer' onClick={() => handleEdit(info.row.original)} />
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[425px] shadow-none">
+                          <DialogHeader>
+                              <DialogTitle>Edit Proyek</DialogTitle>
+                          </DialogHeader>
+                          <Edit proyek={selectedProyek} />
+                      </DialogContent>
+                  </Dialog> */}
+              </div>
+          ),
+          footer: info => info.column.id,
+      }),
+  ];
 
   return (
     <Admin>
@@ -57,56 +128,11 @@ console.log(data_ppwi);
 
         </div>
         <div>
-          <Card className="mt-3">
-            <Table className="container">
-              <TableHeader className="bg-slate-50">
-                <TableRow>
-                  <TableHead className="w-[100px]">No</TableHead>
-                  <TableHead>Judul</TableHead>
-                  <TableHead>Keterangan</TableHead>
-                  <TableHead>Aksi</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                            {data_ppwi.map((data, index) => (
-                                <TableRow key={data.id}>
-                                    <TableCell>{index + 1}</TableCell>
-                                    <TableCell>{data.judul}</TableCell>
-                                    <TableCell>{data.keterangan}</TableCell>
-                                    <TableCell className='flex gap-2'>
-                                        {/* <IconEdit
-                                            size={18}
-                                            className='cursor-pointer'
-                                            onClick={() => handleEdit(dep)} // Panggil handleEdit dengan parameter departemen
-                                        /> */}
-
-                                        {/* Modal Edit */}
-                                        {/* <Dialog open={modalEdit} onOpenChange={setModalEdit}>
-                                            <DialogContent className="sm:max-w-[425px]">
-                                                <DialogHeader>
-                                                    <DialogTitle>Edit Departemen</DialogTitle>
-                                                </DialogHeader>
-                                                {selectedDepartemen && (
-                                                    <Edit departemen={selectedDepartemen} />
-                                                )}
-                                            </DialogContent>
-                                        </Dialog> */}
-
-                                        {/* <span
-                                            onClick={() => handleDelete(dep.id)}
-                                            className="text-red-900 hover:cursor-pointer"
-                                        >
-                                            <IconTrash size={18} />
-                                        </span> */}
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-            </Table>
-          </Card>
+     <DataTable data={data_ppwi} columns={columns} />
         </div>
 
       </Card>
     </Admin>
   )
 }
+
