@@ -4,8 +4,10 @@ import type { HttpContext } from '@adonisjs/core/http'
 export default class PpwisController {
     async index({ inertia }: HttpContext) {
         const judul = await JudulPpwi.all()
+        const ppwi = await Ppwi.query()
         return inertia.render('admin/dasboard/ppwi/index',{
-            data_judul:judul
+            data_judul:judul,
+            data_ppwi:ppwi
         })
     }
 

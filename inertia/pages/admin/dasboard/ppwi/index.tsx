@@ -1,6 +1,6 @@
 import { Head, Link, usePage } from '@inertiajs/react'
-import { IconBook, IconBuildingArch, IconHome } from '@tabler/icons-react'
-import React from 'react'
+import { IconBook, IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react'
+import React, { useState } from 'react'
 import { AlertDialogHeader } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
@@ -10,7 +10,10 @@ import Create from './create'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 
 export default function Index() {
+const {data_judul,data_ppwi} = usePage().props
+console.log(data_ppwi);
 
+  const [open,setOpen] = useState(false)
 
   return (
     <Admin>
@@ -45,7 +48,7 @@ export default function Index() {
                   <AlertDialogHeader>
                     <DialogTitle>Tambah PPWI</DialogTitle>
                   </AlertDialogHeader>
-                  <Create />
+                  <Create/>
                 </DialogContent>
               </Dialog>
             </div>
@@ -65,17 +68,40 @@ export default function Index() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow >
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell className='flex gap-2'>
-                    <Link href='/ppwi/detail'>
-                      <p className='bg-blue-600 text-white px-2 py-1 rounded-sm'>Lihat PPWI</p>
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
+                            {data_ppwi.map((data, index) => (
+                                <TableRow key={data.id}>
+                                    <TableCell>{index + 1}</TableCell>
+                                    <TableCell>{data.judul}</TableCell>
+                                    <TableCell>{data.keterangan}</TableCell>
+                                    <TableCell className='flex gap-2'>
+                                        {/* <IconEdit
+                                            size={18}
+                                            className='cursor-pointer'
+                                            onClick={() => handleEdit(dep)} // Panggil handleEdit dengan parameter departemen
+                                        /> */}
+
+                                        {/* Modal Edit */}
+                                        {/* <Dialog open={modalEdit} onOpenChange={setModalEdit}>
+                                            <DialogContent className="sm:max-w-[425px]">
+                                                <DialogHeader>
+                                                    <DialogTitle>Edit Departemen</DialogTitle>
+                                                </DialogHeader>
+                                                {selectedDepartemen && (
+                                                    <Edit departemen={selectedDepartemen} />
+                                                )}
+                                            </DialogContent>
+                                        </Dialog> */}
+
+                                        {/* <span
+                                            onClick={() => handleDelete(dep.id)}
+                                            className="text-red-900 hover:cursor-pointer"
+                                        >
+                                            <IconTrash size={18} />
+                                        </span> */}
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
             </Table>
           </Card>
         </div>

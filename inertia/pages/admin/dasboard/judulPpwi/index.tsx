@@ -1,6 +1,6 @@
 import { Link, usePage } from '@inertiajs/react'
 import { IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { AlertDialogHeader } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
@@ -13,6 +13,7 @@ export default function Indexjudul() {
     const { data_judul } = usePage().props;
     console.log(data_judul);
     
+    // const {open,setOpen} =useState(true)
   return (
     <Admin>
       <Card className="p-5">

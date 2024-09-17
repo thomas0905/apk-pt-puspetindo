@@ -33,78 +33,31 @@ const handleSubmit: FormEventHandler = (e) => {
     <Fragment>
       <form action="" onClick={handleSubmit}>
       <div className="">
-        <div>
+        <div  className="flex flex-col space-y-1.5">
           <Label>Judul</Label>
-          <Select>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Pilih judul" />
-                </SelectTrigger>
-                <SelectContent>
-                  {/* {data_karyawan.map((data) => (
-                    <SelectItem key={data.id} value={data.id.toString()}>
-                      {data.nama}
-                    </SelectItem>
-                  ))} */}
-
+          <Select value={data.judul_ppwi} onValueChange={(value) => setData('judul_ppwi', value)}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Pilih judul" />
+            </SelectTrigger>
+            <SelectContent>
                   {data_judul.map((data) => (
-                    <SelectItem key={data.id} value={data.id}>
-{data.judul}
+                    <SelectItem key={data.id} value={data.id.toString()}>
+                      {data.judul}
                     </SelectItem>
                   ))}
                 </SelectContent>
-              </Select>
+          </Select>
         </div>
 
-        {/* <div className="flex items-center justify-center w-full mt-3">
-          <label
-            htmlFor="dropzone-file"
-            className={`flex flex-col items-center justify-center w-full ${image ? 'max-h-56' : 'h-56'} border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600`}
-          >
-            <div className="flex flex-col items-center justify-center">
-              {image ? (
-                // Jika ada gambar, tampilkan preview dan sesuaikan border dengan ukuran gambar
-                <img src={image} alt="Preview" className="w-full h-auto max-h-64 rounded-lg" />
-              ) : (
-                <>
-                  <svg
-                    className="w-8 max-h-56 mb- text-gray-500 dark:text-gray-400"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 20 16"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                    />
-                  </svg>
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span className="font-semibold">Click to upload</span> or drag and drop
-                  </p>
-             
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                  DOC,PDF
-                  </p>
-                </>
-              )}
-            </div>
-            <input id="dropzone-file" type="file" className="hidden" onChange={handleImage} />
-          </label>
-        </div> */}
-
-        <div className='mt-2'>
+        <div className="mt-2">
           <Label>Pilih File</Label>
           <Input
             type="file"
             id="file-upload"
             accept=".doc,.docx,.pdf"
             name="file"
-            // value={data.dokumen}
-            // onChange={(e) => setData('dokumen', e.target.files?.[0] || null)}
             className="border rounded-lg p-2 cursor-pointer hover:bg-slate-50"
+            onChange={(e) => setData('dokumen', e.target.files?.[0] || null)}
           />
         </div>
 
@@ -129,3 +82,4 @@ const handleSubmit: FormEventHandler = (e) => {
     </Fragment>
   );
 }
+

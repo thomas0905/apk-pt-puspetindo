@@ -50,6 +50,7 @@ router.group(() => {
 router.group(() => {
     router.get('/' ,[PpwisController,'index'])
     router.get('detail' ,[PpwisController,'detail'])
+    router.get('create',[PpwisController,'create'])
     router.post('create',[PpwisController,'store'])
 }).prefix('/ppwi/')
 
