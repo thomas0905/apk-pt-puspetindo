@@ -8,35 +8,37 @@ import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '~
 import { Textarea } from '~/components/ui/textarea';
 
 export default function CreatePpwi() {
-  const { data_judul } = usePage().props; // Data judul dari backend
-  const [fileName, setFileName] = useState<string | null>(null); // State untuk menyimpan nama file yang dipilih
+  const { data_judul } = usePage().props; 
+  const [fileName, setFileName] = useState<string | null>(null);
 
-  // Inisialisasi form menggunakan Inertia.js
   const { data, setData, post, processing } = useForm({
-    judulPpwi: '',
-    dokumen: null as File | null, // File upload disimpan di sini
+    judul_id: '',
+    dokumen: null as File | null, 
     keterangan: '',
+    namaFile: ''
   });
 
   console.log(data);
 
-  // Fungsi untuk menangani submit form
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
     post('/ppwi/create', {
       onSuccess: () => {
-        toast.success('Data Berhasil Ditambahkan!'); // Menampilkan notifikasi berhasil
+        toast.success('Data Berhasil Ditambahkan!'); 
       },
       onError: () => {
-        toast.error('Terjadi Kesalahan, Coba Lagi!'); // Notifikasi error
+        toast.error('Terjadi Kesalahan, Coba Lagi!'); 
       },
     });
   };
-
-  // Fungsi untuk menangani perubahan file
+  
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    setData('dokumen', file);
+    setData({
+      ...data,
+      dokumen: file,
+      namaFile: file?.name,
+    });
     setFileName(file ? file.name : null);
   };
 
@@ -46,7 +48,7 @@ export default function CreatePpwi() {
         {/* Select untuk memilih judul */}
         <div className="flex flex-col space-y-1.5">
           <Label>Pilih Judul:</Label>
-          <Select onValueChange={(value) => setData('judulPpwi', value)}>
+          <Select onValueChange={(value) => setData('judul_id', value)}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Pilih Judul" />
             </SelectTrigger>

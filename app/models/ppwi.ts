@@ -16,6 +16,12 @@ export default class Ppwi extends BaseModel {
   declare dokumen:File
 
   @column()
+  declare namaFile:string
+
+  @column()
+  declare link:string
+  
+  @column()
   declare keterangan:string
 
   @column.dateTime({ autoCreate: true })

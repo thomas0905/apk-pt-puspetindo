@@ -1,43 +1,54 @@
 import JudulPpwi from '#models/judul_ppwi'
 import Ppwi from '#models/ppwi'
-import { Application } from '@adonisjs/core/app'
 import type { HttpContext } from '@adonisjs/core/http'
-import { log } from 'console'
+import app from '@adonisjs/core/services/app'
+
 export default class PpwisController {
+
     async index({ inertia }: HttpContext) {
         const judul = await JudulPpwi.all()
         const ppwi = await Ppwi.query()
-        return inertia.render('admin/dasboard/ppwi/index',{
-            data_judul:judul,
-            data_ppwi:ppwi
+        return inertia.render('admin/dasboard/ppwi/index', {
+            data_judul: judul,
+            data_ppwi: ppwi,
         })
     }
 
-    async create({inertia }: HttpContext) {
+    async create({ inertia }: HttpContext) {
         const judul = await JudulPpwi.all()
-        return inertia.render('admin/dasboard/ppwi/create',{
-            data_judul:judul
+        return inertia.render('admin/dasboard/ppwi/create', {
+            data_judul: judul,
         })
     }
+
+
     async detail({ inertia }: HttpContext) {
         return inertia.render('admin/dasboard/ppwi/detail')
     }
 
     public async store({ request, response }: HttpContext) {
-    const ppwi = new Ppwi();
+        const ppwi = new Ppwi()
+        ppwi.judul_id = request.input('judul_id')
+        ppwi.keterangan = request.input('keterangan')
+        ppwi.namaFile = request.input('namaFile')
+        const dokumen = request.file('dokumen', {
+            size: '2mb',
+            extnames: ['pdf', 'doc', 'docx'],
+        });
 
-        ppwi.judulPpwi = request.input('judulPpwi');
-        ppwi.keterangan = request.input('keterangan');
-        
-        await ppwi.save();
+        await dokumen.move(app.makePath('storage/uploads'));
+        const pathFile = `/uploads/${request.input('namaFile')}`
+        ppwi.link = pathFile
 
-        return response.redirect('/ppwi');
+        await ppwi.save()
+    
+        return response.redirect('/ppwi')
     }
+
 
     async delete({ params, response }: HttpContext) {
         const ppwi = await Ppwi.findOrFail(params.id)
         await ppwi.delete()
         return response.redirect('/ppwi')
     }
-
 }

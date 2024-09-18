@@ -63,9 +63,9 @@ const handleDelete = async (id: any) => {
           header: () => 'Aksi',
           cell: info => (
               <div className="flex gap-3">
-                  <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
+                  {/* <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
                       <IconTrash size={18} />
-                  </span>
+                  </span> */}
 
                   {/* <Dialog open={modalEdit} onOpenChange={setModalEdit} >
                       <DialogOverlay className="bg-white/10 backdrop-blur-sm" />
