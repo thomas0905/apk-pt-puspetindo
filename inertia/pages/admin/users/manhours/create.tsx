@@ -23,11 +23,9 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
 
-    // Resetting errors
     const validationErrors: { [key: string]: string } = {};
     let isValid = true;
 
-    // Local validation
     if (!data.karyawan_id.trim()) {
       validationErrors.karyawan_id = 'Nama Karyawan harus diisi';
       isValid = false;
@@ -51,7 +49,6 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
     setErrors(validationErrors);
 
     if (isValid) {
-      // If valid, submit the form to the server
       post('/manhours/create', {
         onSuccess: () => onSuccess(),
         onError: (errorMessages) => setErrors(errorMessages),
