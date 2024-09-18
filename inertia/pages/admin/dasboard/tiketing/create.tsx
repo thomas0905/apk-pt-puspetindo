@@ -4,11 +4,10 @@ import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Textarea } from '~/components/ui/textarea'
-import Swal from 'sweetalert2'
-
+import toast, { Toaster } from 'react-hot-toast';
 export default function Create() {
 
-    const { data, setData, post, processing, reset } = useForm({
+    const { data, setData, post, processing } = useForm({
         problem: '',
         keterangan: '',
         tanggal: ''
@@ -18,19 +17,14 @@ export default function Create() {
         e.preventDefault();
         post('/tiketing/create', {
             onSuccess: () => {
-                Swal.fire({
-                    title: 'Data Berhasil Ditambahkan!',
-                    icon: 'success',
-                    confirmButtonText: 'Oke',
-                }).then(() => {
-                    window.location.href = '/tiketing';
-                });
-            }
+                toast.success('Proyek berhasil di simpan')
+            },
         });
     }
 
     return (
         <div>
+            <Toaster position="top-center" reverseOrder={false} />
             <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-2">
                     {/* Input for Problem */}
@@ -76,7 +70,7 @@ export default function Create() {
                     className='mt-4 bg-blue-600 hover:bg-blue-500' 
                     disabled={processing}
                 >
-                    {processing ? 'Submitting...' : 'Submit'}
+                 Submit
                 </Button>
             </form>
         </div>

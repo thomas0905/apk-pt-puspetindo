@@ -10,6 +10,12 @@ export default class TiketingsController {
         return inertia.render('admin/dasboard/tiketing/index')
     }
 
+    async laporan({inertia}:HttpContext){
+        const tiketing = await Tiketing.query();
+        return inertia.render('admin/dasboard/tiketing/laporan',{
+            data_tiketing:tiketing
+        })
+    }
 
     async create({inertia}:HttpContext){
         return inertia.render('admin/dasboard/tiketing/create')
