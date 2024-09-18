@@ -8,7 +8,7 @@ export default class PpwisController {
     async index({ inertia }: HttpContext) {
         const judul = await JudulPpwi.all()
         const ppwi = await Ppwi.query()
-        return inertia.render('admin/dasboard/ppwi/index', {
+        return inertia.render('admin/users/ppwi/index', {
             data_judul: judul,
             data_ppwi: ppwi,
         })
@@ -16,14 +16,14 @@ export default class PpwisController {
 
     async create({ inertia }: HttpContext) {
         const judul = await JudulPpwi.all()
-        return inertia.render('admin/dasboard/ppwi/create', {
+        return inertia.render('admin/users/ppwi/create', {
             data_judul: judul,
         })
     }
 
 
     async detail({ inertia }: HttpContext) {
-        return inertia.render('admin/dasboard/ppwi/detail')
+        return inertia.render('admin/users/ppwi/detail')
     }
 
     public async store({ request, response }: HttpContext) {
@@ -35,13 +35,10 @@ export default class PpwisController {
             size: '2mb',
             extnames: ['pdf', 'doc', 'docx'],
         });
-
         await dokumen.move(app.makePath('storage/uploads'));
         const pathFile = `/uploads/${request.input('namaFile')}`
         ppwi.link = pathFile
-
         await ppwi.save()
-    
         return response.redirect('/ppwi')
     }
 
