@@ -48,26 +48,26 @@ export default function Index() {
 
           <div>
             <p className='mt-5'>Coba Tulis laporan di bawah ini </p>
-          <Create />
+            <Create />
           </div>
 
           <div className='mt-5'>
             <p className='font-semibold'>Histori laporan</p>
             <Card className="mt-3">
-                    <Table className="container">
-                        <TableHeader className="bg-slate-50">
-                            <TableRow>
-                                <TableHead className="w-[100px]">No</TableHead>
-                                <TableHead>Problem</TableHead>
-                                <TableHead>Tanggal</TableHead>
-                                <TableHead>Keterangan</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                        
-                        </TableBody>
-                    </Table>
-                </Card>
+              <Table className="container">
+                <TableHeader className="bg-slate-50">
+                  <TableRow>
+                    <TableHead className="w-[100px]">No</TableHead>
+                    <TableHead>Problem</TableHead>
+                    <TableHead>Tanggal</TableHead>
+                    <TableHead>Keterangan</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+
+                </TableBody>
+              </Table>
+            </Card>
           </div>
         </div>
       </Card>

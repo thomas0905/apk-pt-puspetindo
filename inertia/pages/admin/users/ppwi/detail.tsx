@@ -1,26 +1,36 @@
-import { IconDownload } from '@tabler/icons-react'
-import React from 'react'
-import { Button } from '~/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card'
+import { IconCloudDownload, IconFileTypePdf } from '@tabler/icons-react'
+import { Card, CardContent } from '~/components/ui/card'
 import Admin from '~/layout/admin'
 
 export default function Detail() {
+  
+  // Fungsi download file
+  const handleDownload = () => {
+    const fileUrl = '/path/to/tiketing.pdf';
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.setAttribute('download', 'tiketing.pdf');
+    document.body.appendChild(link);
+  }
+
   return (
     <Admin>
-      Judul PPWI
       <div className="flex gap-2">
-        <div className="w-8/12">
-          <Card className=''>
-            <CardContent className='p-3'>
-              sdf
-            </CardContent>
-          </Card>
-        </div>
         <div className="w-3/12">
-          <Card>
-            <CardContent className='p-3'>
-              <p className='border-b-2'>Judul</p>
-              <Button className='bg-blue-600 mt-2 hover:bg-blue-600 w-full flex items-center gap-2'><IconDownload size={18}/>Download</Button>
+          <Card className="relative rounded-sm p-5">
+            <CardContent className='p-3 flex justify-center relative'>
+              <div className='text-center'>
+                <IconFileTypePdf size={54} className='text-green-600' />
+                <p>tiketing.pdf</p>
+              </div>
+
+              <div className='absolute -bottom-6 -right-4 p-4 '>
+                <IconCloudDownload 
+                  size={24} 
+                  className='text-blue-600 hover:bg-gray-100 duration-300 border rounded-sm w-8 border-slate-200 hover:text-blue-800 cursor-pointer' 
+                  onClick={handleDownload}
+                />
+              </div>
             </CardContent>
           </Card>
         </div>

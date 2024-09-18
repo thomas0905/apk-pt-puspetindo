@@ -19,14 +19,12 @@ export default function Create() {
         post('/tiketing/create', {
             onSuccess: () => {
                 Swal.fire({
-                    title: 'Berhasil!',
-                    text: 'Data berhasil disimpan.',
+                    title: 'Data Berhasil Ditambahkan!',
                     icon: 'success',
-                    confirmButtonText: 'OK'
+                    confirmButtonText: 'Oke',
                 }).then(() => {
-                    // Reset form setelah modal ditutup
-                    reset()
-                })
+                    window.location.href = '/tiketing';
+                });
             }
         });
     }
