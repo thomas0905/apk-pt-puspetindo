@@ -71,7 +71,7 @@ export default function Laporan() {
     <Admin>
       <Head title='Laporan' />
       <div ref={componentRef}>
-        <Card className="p-5 shadow-md">
+        <Card className="p-5">
           <div className="border-b border-gray-200 pb-4">
             <div className='flex justify-center'>
               <img src={logoPuspetindo} alt="Logo Puspetindo" />

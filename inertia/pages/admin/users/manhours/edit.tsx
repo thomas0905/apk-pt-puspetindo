@@ -36,7 +36,7 @@ export default function Edit() {
     <Admin>
       <Head title="manhours" />
       <h1 className="text-xl font-bold">Edit Man Hours</h1>
-      <Card className="p-5 shadow-md">
+      <Card className="p-5">
         <form className='mt-5' onSubmit={handleSubmit}>
           <div className='my-5'>
             <div className="flex flex-col space-y-1.5">

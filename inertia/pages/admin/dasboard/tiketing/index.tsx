@@ -36,7 +36,7 @@ export default function Index() {
       <Head>
         <title>tiketing</title>
       </Head>
-      <Card className="p-5 animate__animated animate__fadeIn shadow-md">
+      <Card className="p-5 ">
         <div>
           <div className='mt-5'>
             <h1 className='text-2xl font-bold'>Ada Problem apa hari ini ?
