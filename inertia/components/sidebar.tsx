@@ -81,7 +81,7 @@ export default function Sidebar({ isSidebarHidden, toggleSidebar }) {
 
                                 <Link
                                     href='/tiketing'
-                                    className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/karyawan') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2 relative group' : 'w-[190px]'}`}
+                                    className={`flex pl-2 text-black rounded-sm p-1 gap-2 text-md transition-all duration-200 ${isActive('/tiketing') ? 'bg-blue-600 text-white' : 'hover:text-white hover:bg-blue-600'} ${isSidebarHidden ? 'w-18 justify-center p-2 relative group' : 'w-[190px]'}`}
                                 >
                                     <IconTicket size={21} />
                                     {isSidebarHidden ? (
