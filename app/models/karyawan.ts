@@ -4,12 +4,18 @@ import User from './user.js'
 import type { BelongsTo, HasOne } from '@adonisjs/lucid/types/relations'
 import ManHour from './man_hour.js'
 import Departeman from './departemen.js'
+import Tiketing from './tiketing.js'
 
 export default class Karyawan extends BaseModel {
   @hasOne(() => ManHour, {
     foreignKey: 'karyawanId',
   })
   declare manHour: HasOne<typeof ManHour>
+
+  @hasOne(() => Tiketing, {
+    foreignKey: 'karyawanId',
+  })
+  declare tiketing: HasOne<typeof Tiketing>
 
   @belongsTo(() => Departeman, {
     foreignKey: 'departemen_Id'

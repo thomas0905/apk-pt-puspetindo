@@ -28,6 +28,8 @@ router.group(() => {
 
 router.group(() => {
     router.get('/',[TiketingsController,'index'])
+    router.get('create',[TiketingsController,'create'])
+    router.post('create',[TiketingsController,'store'])
 }).prefix('/tiketing/')
 
 router.group(() => {

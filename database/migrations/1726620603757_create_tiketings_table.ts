@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table.integer('karyawan_id').unsigned().references('karyawans.id')
       table.text('problem')
       table.text('keterangan')
+      table.date('tanggal')
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })
