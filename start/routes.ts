@@ -57,7 +57,7 @@ router.group(() => {
 
 router.group(() => {
     router.get('/' ,[PpwisController,'index'])
-    router.get('detail' ,[PpwisController,'detail'])
+    router.get('detail/:id' ,[PpwisController,'detail'])
     router.get('create',[PpwisController,'create'])
     router.post('create',[PpwisController,'store'])
     router.post('delete/:id',[PpwisController,'delete'])

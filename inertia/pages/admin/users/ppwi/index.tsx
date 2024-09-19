@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
 
 export default function Index() {
   const { data_ppwi } = usePage().props
-  console.log(data_ppwi);
+  // console.log(data_ppwi);
 
   // const [open,setOpen] = useState(false)
 
@@ -48,11 +48,7 @@ export default function Index() {
       cell: info => info.renderValue(),
       footer: info => info.column.id,
     }),
-    columnHelper.accessor('namaFile', {
-      header: () => 'Dokumen',
-      cell: info => info.renderValue(),
-      footer: info => info.column.id,
-    }),
+
     columnHelper.accessor('keterangan', {
       header: () => 'Keterangan',
       cell: info => info.renderValue(),
@@ -63,7 +59,7 @@ export default function Index() {
       header: () => 'Aksi',
       cell: info => (
         <div className="flex gap-3">
-          <Link href='/ppwi/detail'>
+          <Link href={`/ppwi/detail/${info.row.original.id}`}>
             <p className='text-white bg-blue-600 py-1 px-2 rounded-md hover:text-white cursor-pointer'>Preview</p>
           </Link>
         </div>

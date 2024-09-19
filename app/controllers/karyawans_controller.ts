@@ -44,10 +44,10 @@ export default class KaryawansKontroller {
         karyawan.departemen_Id = request.input('departemen_Id');
         karyawan.jabatan = request.input('jabatan');
         karyawan.tempat_lahir = request.input('tempat_lahir');
-        karyawan.tanggal_lahir= request.input('tanggal_lahir');
-        karyawan.usia= request.input('usia');
+        karyawan.tanggal_lahir = request.input('tanggal_lahir');
+        karyawan.usia = request.input('usia');
         karyawan.jenis_kelamin = request.input('jenis_kelamin');
-        karyawan.pendidikan= request.input('pendidikan');
+        karyawan.pendidikan = request.input('pendidikan');
         karyawan.jurusan = request.input('jurusan');
         karyawan.bpjs_kk = request.input('bpjs_kk');
         karyawan.bpjs_kesehatan = request.input('bpjs_kesehatan');
@@ -68,28 +68,26 @@ export default class KaryawansKontroller {
     }
 
     async edit({ inertia, params }: HttpContext) {
-        const karyawan = await Karyawan.query().preload('user').preload('departemen').where('id', params.id).first();
+        const karyawan = await Karyawan.query()
+            .preload('user')
+            .preload('departemen')
+            .where('id', params.id)
+            .first();
         return inertia.render('admin/dasboard/karyawan/edit', {
             data_karyawan: karyawan
         });
     }
 
     async update({ request, params, response }: HttpContext) {
-        // const users = new User()
-        // users.fullName = request.input('fullName');
-        // users.email = request.input('email');
-        // users.password = request.input('password');
-        // await users.save();
-
         const karyawan = await Karyawan.findOrFail(params.id)
         karyawan.nama = request.input('nama')
         karyawan.departemen_Id = request.input('departemen_Id')
         karyawan.jabatan = request.input('jabatan')
         karyawan.tempat_lahir = request.input('tempat_lahir');
-        karyawan.tanggal_lahir= request.input('tanggal_lahir');
-        karyawan.usia= request.input('usia');
+        karyawan.tanggal_lahir = request.input('tanggal_lahir');
+        karyawan.usia = request.input('usia');
         karyawan.jenis_kelamin = request.input('jenis_kelamin');
-        karyawan.pendidikan= request.input('pendidikan');
+        karyawan.pendidikan = request.input('pendidikan');
         karyawan.jurusan = request.input('jurusan');
         karyawan.bpjs_kk = request.input('bpjs_kk');
         karyawan.bpjs_kesehatan = request.input('bpjs_kesehatan');

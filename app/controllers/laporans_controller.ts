@@ -29,7 +29,6 @@ export default class LaporansController {
                 })
                 .preload('proyek')
                 .if(request.input('departemen') !== null, (query) => {
-                    // Jika departemen ID tidak kosong, lakukan filter berdasarkan departemen
                     query.whereHas('karyawan', (karyawanQuery) => {
                         karyawanQuery.where('departemen_id', request.input('departemen') || '');
                     });
@@ -77,7 +76,7 @@ export default class LaporansController {
 
             man_hours = reports;
 
-            const departemen = all_man_hours.map(item => item.karyawan.departemen.namaDepartemen).filter((value, index, self) => self.indexOf(value) === index);
+            // const departemen = all_man_hours.map(item => item.karyawan.departemen.namaDepartemen).filter((value, index, self) => self.indexOf(value) === index);
 
         } else {
             
