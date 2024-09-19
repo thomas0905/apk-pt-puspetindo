@@ -1,6 +1,7 @@
 import { Link, useForm, usePage } from '@inertiajs/react';
 import { IconHome } from '@tabler/icons-react';
 import { FormEventHandler, useState } from 'react';
+import Swal from 'sweetalert2';
 import { Button } from '~/components/ui/button';
 import { Card } from '~/components/ui/card';
 import { Input } from '~/components/ui/input';
@@ -50,8 +51,13 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
 
     if (isValid) {
       post('/manhours/create', {
-        onSuccess: () => onSuccess(),
-        onError: (errorMessages) => setErrors(errorMessages),
+        onSuccess: () => {
+          Swal.fire({
+              title: 'Data Berhasil Di Tambah!',
+              icon: 'success',
+              confirmButtonText: 'Okee',
+          });
+      }
       });
     }
   };
