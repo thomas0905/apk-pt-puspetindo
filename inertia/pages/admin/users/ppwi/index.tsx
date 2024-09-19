@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
 
 export default function Index() {
   const { data_judul, data_ppwi } = usePage().props
-  console.log(data_ppwi);
+  console.log(data_judul);
 
   // const [open,setOpen] = useState(false)
 
@@ -43,7 +43,7 @@ export default function Index() {
       cell: info => info.row.index + 1,
       footer: info => info.column.id,
     }),
-    columnHelper.accessor('judul_id', {
+    columnHelper.accessor('judul', {
       header: () => 'Judul',
       cell: info => info.renderValue(),
       footer: info => info.column.id,

@@ -2,7 +2,8 @@ import { IconCloudDownload, IconFileTypePdf } from '@tabler/icons-react'
 import { Card, CardContent } from '~/components/ui/card'
 import Admin from '~/layout/admin'
 
-export default function Detail() {
+export default function Detail({detail_ppwi}) {
+  console.log(detail_ppwi);
   
   // Fungsi download file
   const handleDownload = () => {
@@ -22,6 +23,7 @@ export default function Detail() {
               <div className='text-center'>
                 <IconFileTypePdf size={54} className='text-green-600' />
                 <p>tiketing.pdf</p>
+                <p>{detail_ppwi.keterangan}</p>
               </div>
 
               <div className='absolute -bottom-6 -right-4 p-4 '>

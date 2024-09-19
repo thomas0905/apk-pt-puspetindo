@@ -22,9 +22,13 @@ export default class PpwisController {
     }
 
 
-    async detail({ inertia }: HttpContext) {
-        return inertia.render('admin/users/ppwi/detail')
-    }
+    async detail({ params, inertia }: HttpContext) {
+        const { id } = params;
+        const ppwi = await Ppwi.findOrFail(id);
+        return inertia.render('admin/users/ppwi/detail', {
+          detail_ppwi: ppwi.toJSON(),
+        });
+      }
 
     public async store({ request, response }: HttpContext) {
         const ppwi = new Ppwi()
