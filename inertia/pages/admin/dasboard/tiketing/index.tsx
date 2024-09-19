@@ -39,7 +39,7 @@ export default function Index() {
       <Card className="p-5 ">
         <div>
           <div className='mt-5'>
-            <h1 className='text-2xl font-bold'>Ada Problem apa hari ini ?
+            <h1 className='text-2xl text-slate-500 font-bold'>Ada Problem apa hari ini ?
               <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
               </span>
             </h1>
@@ -47,7 +47,7 @@ export default function Index() {
 
 
           <div>
-            <p className='mt-5'>Coba Tulis laporan di bawah ini </p>
+            <p className='mt-3'>Coba Tulis laporan di bawah ini </p>
             <Create />
           </div>
 

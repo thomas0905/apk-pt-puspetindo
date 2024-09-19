@@ -43,7 +43,7 @@ export default function Index() {
       cell: info => info.row.index + 1,
       footer: info => info.column.id,
     }),
-    columnHelper.accessor('judul', {
+    columnHelper.accessor('judul_id', {
       header: () => 'Judul',
       cell: info => info.renderValue(),
       footer: info => info.column.id,

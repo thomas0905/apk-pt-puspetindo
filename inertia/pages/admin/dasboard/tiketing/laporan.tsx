@@ -34,7 +34,7 @@ export default function Laporan() {
           {sortedData.map((data) => (
             <Card key={data.id} className="rounded-sm relative">
               <CardContent className="mt-6">
-                <CardTitle> {data.id}</CardTitle>
+                {/* <CardTitle> {data.id}</CardTitle> */}
                 <p>Problem : {data.problem}</p>
                 <p className='pb-4'>Keterangan : {data.keterangan}</p>
                 <p className="absolute bottom-2 right-3 text-end ">

@@ -10,8 +10,9 @@ export default class TiketingsController {
         return inertia.render('admin/dasboard/tiketing/index')
     }
 
-    async laporan({inertia}:HttpContext){
-        const tiketing = await Tiketing.query();
+    async laporan({inertia,auth}:HttpContext){
+        // const auth = auth.user
+        const tiketing = await Tiketing.query()
         return inertia.render('admin/dasboard/tiketing/laporan',{
             data_tiketing:tiketing
         })

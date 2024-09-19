@@ -67,7 +67,7 @@ export default function Create() {
                 {/* Submit Button */}
                 <Button 
                     type="submit" 
-                    className='mt-4 bg-blue-600 hover:bg-blue-500' 
+                    className='mt-2 bg-blue-600 hover:bg-blue-500' 
                     disabled={processing}
                 >
                  Submit
