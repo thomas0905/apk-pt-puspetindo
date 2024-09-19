@@ -12,8 +12,8 @@ import DataTable from '~/components/dataTable/dataTable'
 import Swal from 'sweetalert2'
 
 export default function Index() {
-  const { data_judul, data_ppwi } = usePage().props
-  console.log(data_judul);
+  const { data_ppwi } = usePage().props
+  console.log(data_ppwi);
 
   // const [open,setOpen] = useState(false)
 

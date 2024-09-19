@@ -9,10 +9,12 @@ import { Textarea } from '~/components/ui/textarea';
 
 export default function CreatePpwi() {
   const { data_judul } = usePage().props; 
+  console.log(data_judul);
+  
   const [fileName, setFileName] = useState<string | null>(null);
 
   const { data, setData, post, processing } = useForm({
-    judul_id: '',
+    judulId: '',
     dokumen: null as File | null, 
     keterangan: '',
     namaFile: ''
@@ -48,7 +50,7 @@ export default function CreatePpwi() {
         {/* Select untuk memilih judul */}
         <div className="flex flex-col space-y-1.5">
           <Label>Pilih Judul:</Label>
-          <Select onValueChange={(value) => setData('judul_id', value)}>
+          <Select onValueChange={(value) => setData('judulId', value)}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Pilih Judul" />
             </SelectTrigger>

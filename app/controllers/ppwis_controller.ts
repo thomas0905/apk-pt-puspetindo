@@ -5,9 +5,10 @@ import app from '@adonisjs/core/services/app'
 
 export default class PpwisController {
 
+
     async index({ inertia }: HttpContext) {
         const judul = await JudulPpwi.all()
-        const ppwi = await Ppwi.query()
+        const ppwi = await Ppwi.query().preload('judulPpwi')
         return inertia.render('admin/users/ppwi/index', {
             data_judul: judul,
             data_ppwi: ppwi,
@@ -23,16 +24,14 @@ export default class PpwisController {
 
 
     async detail({ params, inertia }: HttpContext) {
-        const { id } = params;
-        const ppwi = await Ppwi.findOrFail(id);
-        return inertia.render('admin/users/ppwi/detail', {
-          detail_ppwi: ppwi.toJSON(),
-        });
-      }
+        // const { id } = params;
+        // const ppwi = await Ppwi.findOrFail(id);
+        return inertia.render('admin/users/ppwi/detail');
+    }
 
     public async store({ request, response }: HttpContext) {
         const ppwi = new Ppwi()
-        ppwi.judul_id = request.input('judul_id')
+        ppwi.judulId = request.input('judulId')
         ppwi.keterangan = request.input('keterangan')
         ppwi.namaFile = request.input('namaFile')
         const dokumen = request.file('dokumen', {

@@ -31,7 +31,7 @@ router.group(() => {
     router.get('/laporan',[TiketingsController,'laporan'])
     router.get('create',[TiketingsController,'create'])
     router.post('create',[TiketingsController,'store'])
-}).prefix('/tiketing/')
+}).prefix('/tiketing/').use(middleware.auth())
 
 router.group(() => {
     router.get('/', [DepartemenController, 'index'])
@@ -57,17 +57,17 @@ router.group(() => {
 
 router.group(() => {
     router.get('/' ,[PpwisController,'index'])
-    router.get('detail/:id' ,[PpwisController,'detail'])
+    router.get('detail' ,[PpwisController,'detail'])
     router.get('create',[PpwisController,'create'])
     router.post('create',[PpwisController,'store'])
     router.post('delete/:id',[PpwisController,'delete'])
-}).prefix('/ppwi/')
+}).prefix('/ppwi/').use(middleware.auth())
 
 
 router.group(() => {
     router.get('/' ,[JudulPpwisController,'index'])
     router.post('create',[JudulPpwisController,'store'])
-}).prefix('/judul/')
+}).prefix('/judul/').use(middleware.auth())
 
 router.get('/menuProfil', [MenuProfilsController, 'index'])
 

@@ -8,9 +8,12 @@ export default class Ppwi extends BaseModel {
   declare id: number
 
   @belongsTo(() => JudulPpwi, {
-    foreignKey: 'judul_id'
+    foreignKey: 'judulId'
   })
   declare judulPpwi: BelongsTo<typeof JudulPpwi>
+
+  @column()
+  declare judulId:string
 
   @column()
   declare dokumen:File
