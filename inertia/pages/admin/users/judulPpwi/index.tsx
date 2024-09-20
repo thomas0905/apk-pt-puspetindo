@@ -42,11 +42,11 @@ export default function Indexjudul() {
                         <div >
                             <div className='flex gap-1'>
                                 <Link href="/karyawan">
-                                    <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
+                                    <p className='text-sm flex gap-1 hover:text-gray-500 '><IconHome size={18} />Home</p>
                                 </Link>
                                 <small>/</small>
                                 <Link href="/ppwi">
-                                    <p className='text-sm'>ppwi</p>
+                                    <p className='text-sm hover:text-gray-500 '>ppwi</p>
                                 </Link>
                             </div>
                             <h6 className='text-gray-600 text-lg font-bold'>Menu Judul</h6>

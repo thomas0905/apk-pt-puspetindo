@@ -64,7 +64,7 @@ export default function Index() {
       cell: info => (
         <div className="flex gap-3">
           <Link href={`/ppwi/detail/${info.row.original.id}`}>
-            <p className='text-white bg-blue-600 py-1 px-2 rounded-md hover:text-white cursor-pointer'>Preview</p>
+            <small className='text-white bg-blue-600 text-sm py-1 px-2 rounded-sm hover:text-white hover:bg-blue-500 cursor-pointer'>Preview</small>
           </Link>
         </div>
       ),
@@ -82,7 +82,7 @@ export default function Index() {
           <div className='flex justify-between'>
             <div>
               <Link href="/">
-                <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
+                <p className='text-sm flex gap-1 hover:text-gray-500 '><IconHome size={18} />Home</p>
               </Link>
               <h6 className='text-gray-600 text-lg font-bold'>Halaman PPWI</h6>
             </div>

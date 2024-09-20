@@ -24,11 +24,11 @@ export default function Detail({ data_ppwi }: any) {
       </Head>
       <div className='flex gap-1'>
         <Link href="/" >
-          <p className='text-sm flex gap-1 hover:border-dashed'><IconHome size={18} />Home</p>
+          <p className='text-sm flex gap-1 hover:text-gray-500  hover:border-dashed'><IconHome size={18} />Home</p>
         </Link>
         <small>/</small>
         <Link href='/ppwi'>
-          <p className='text-sm'>ppwi</p>
+          <p className='text-sm hover:text-gray-500 '>ppwi</p>
         </Link>
       </div>
       {/* <div className='bg-emerald-300 rounded-sm text-green-700 -mt-3'>

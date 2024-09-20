@@ -147,7 +147,7 @@ export default function Index() {
                     <div className='flex justify-between '>
                         <div>
                             <Link href="/">
-                                <p className='text-sm flex gap-1 items-center'><IconHome size={18} />Home</p>
+                                <p className='text-sm flex hover:text-gray-500  gap-1 items-center'><IconHome size={18} />Home</p>
                             </Link>
                             <h6 className='text-gray-600 text-lg font-bold '>Data Karyawan</h6>
                         </div>

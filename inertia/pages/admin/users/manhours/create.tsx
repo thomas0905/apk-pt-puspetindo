@@ -70,12 +70,12 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
             <div>
               <div className='flex gap-1'>
                 <Link href="/">
-                  <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
+                  <p className='text-sm flex gap-1 hover:text-gray-500 '><IconHome size={18} />Home</p>
                 </Link>
                 <small>/</small>
 
                 <Link href='/manhours'>
-                  <p className="text-sm">Man Hours</p>
+                  <p className="text-sm hover:text-gray-500 ">Man Hours</p>
                 </Link>
               </div>
               <h6 className='text-gray-600 text-lg font-bold'>Tambah Man Hours</h6>

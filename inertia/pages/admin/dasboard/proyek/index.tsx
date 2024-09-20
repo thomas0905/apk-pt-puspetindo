@@ -111,7 +111,7 @@ export default function IndexProyek() {
                     <div className='flex justify-between'>
                         <div>
                             <Link href="/">
-                                <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
+                                <p className='text-sm flex gap-1 hover:text-gray-500 '><IconHome size={18} />Home</p>
                             </Link>
                             <h6 className='text-gray-600 text-lg font-bold'>Proyek</h6>
                         </div>

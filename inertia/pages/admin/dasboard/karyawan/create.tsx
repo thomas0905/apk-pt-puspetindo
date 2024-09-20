@@ -205,12 +205,12 @@ export default function Create() {
                         <div>
                             <div className='flex gap-1'>
                                 <Link href="/">
-                                    <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
+                                    <p className='text-sm flex gap-1 hover:text-gray-500 '><IconHome size={18} />Home</p>
                                 </Link>
                                 <small>/</small>
 
                                 <Link href='/karyawan'>
-                                    <p className="text-sm">karyawan</p>
+                                    <p className="text-sm hover:text-gray-500 ">karyawan</p>
                                 </Link>
                             </div>
 

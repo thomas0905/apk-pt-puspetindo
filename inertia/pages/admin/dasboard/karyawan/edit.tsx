@@ -84,7 +84,7 @@ export default function EditPengguna() {
                         <div>
                             <div className="flex gap-1">
                                 <Link href="/">
-                                    <p className="text-sm flex gap-1">
+                                    <p className="text-sm flex gap-1 hover:text-gray-500 ">
                                         <IconHome size={18} />
                                         Home
                                     </p>
@@ -92,7 +92,7 @@ export default function EditPengguna() {
                                 <small>/</small>
 
                                 <Link href="/karyawan">
-                                    <p className="text-sm">karyawan</p>
+                                    <p className="text-sm hover:text-gray-500 ">karyawan</p>
                                 </Link>
                             </div>
                             <h6 className="text-gray-600 text-lg font-bold">Edit Karyawan</h6>
