@@ -1,4 +1,4 @@
-import { Link, router, usePage } from '@inertiajs/react'
+import { Head, Link, router, usePage } from '@inertiajs/react'
 import { IconBuildingArch, IconEdit, IconHome, IconTrash } from '@tabler/icons-react'
 import React, { useState } from 'react'
 import { AlertDialogHeader } from '~/components/ui/alert-dialog'
@@ -7,9 +7,10 @@ import { Card } from '~/components/ui/card'
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '~/components/ui/dialog'
 import Admin from '~/layout/admin'
 import CreateJudul from './create'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 import Swal from 'sweetalert2'
-
+import DataTable from '~/components/dataTable/dataTable'
+import { createColumnHelper } from '@tanstack/react-table'
+import Ppwi from '#models/ppwi'
 export default function Indexjudul() {
     const { data_judul } = usePage().props;
     console.log(data_judul);
@@ -34,8 +35,53 @@ export default function Indexjudul() {
             }
         }
     }
+
+    const columnHelper = createColumnHelper<Ppwi>();
+
+    const columns = [
+        columnHelper.accessor('id', {
+            header: () => 'No',
+            cell: info => info.row.index + 1,
+            footer: info => info.column.id,
+        }),
+        columnHelper.accessor('judul', {
+            header: () => 'Folder',
+            cell: info => info.renderValue(),
+            footer: info => info.column.id,
+        }),
+    
+        columnHelper.display({
+            id: 'aksi',
+            header: () => 'Aksi',
+            cell: info => (
+                <div className="flex gap-3">
+                    <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
+                        <IconTrash size={18} />
+                    </span>
+
+                    {/* <Dialog open={modalEdit} onOpenChange={setModalEdit} >
+                        <DialogOverlay className="bg-white/10 backdrop-blur-sm" />
+
+                        <DialogTrigger asChild>
+                            <IconEdit size={18} className='cursor-pointer' onClick={() => handleEdit(info.row.original)} />
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[425px] shadow-none">
+                            <DialogHeader>
+                                <DialogTitle>Edit Proyek</DialogTitle>
+                            </DialogHeader>
+                            <Edit proyek={selectedProyek} />
+                        </DialogContent>
+                    </Dialog> */}
+                </div>
+            ),
+            footer: info => info.column.id,
+        }),
+    ];
     return (
         <Admin>
+            <Head>
+                <title>judul</title>
+            </Head>
             <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
@@ -72,52 +118,9 @@ export default function Indexjudul() {
                     </div>
                 </div>
 
-                <Card className="mt-3">
-                    <Table className="container">
-                        <TableHeader className="bg-slate-50">
-                            <TableRow>
-                                <TableHead className="w-[100px]">No</TableHead>
-                                <TableHead>Nama</TableHead>
-                                <TableHead>Aksi</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {data_judul.map((data, index) => (
-                                <TableRow key={index}>
-                                    <TableCell>{index + 1}</TableCell>
-                                    <TableCell>{data.judul}</TableCell>
-                                    <TableCell className='flex gap-2'>
-                                        {/* <IconEdit
-                                            size={18}
-                                            className='cursor-pointer'
-                                            onClick={() => handleEdit(dep)} // Panggil handleEdit dengan parameter departemen
-                                        /> */}
-
-                                        {/* Modal Edit */}
-                                        {/* <Dialog open={modalEdit} onOpenChange={setModalEdit}>
-                                            <DialogContent className="sm:max-w-[425px]">
-                                                <DialogHeader>
-                                                    <DialogTitle>Edit Departemen</DialogTitle>
-                                                </DialogHeader>
-                                                {selectedDepartemen && (
-                                                    <Edit departemen={selectedDepartemen} />
-                                                )}
-                                            </DialogContent>
-                                        </Dialog> */}
-
-                                        <span
-                                            onClick={() => handleDelete(data.id)}
-                                            className="text-red-900 hover:cursor-pointer"
-                                        >
-                                            <IconTrash size={18} />
-                                        </span>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </Card>
+                <DataTable data={data_judul} columns={columns} />
             </Card>
         </Admin>
     )
 }
+

@@ -37,7 +37,7 @@ router.group(() => {
     router.get('/', [DepartemenController, 'index'])
     router.post('create', [DepartemenController, 'store'])
     router.get('edit/:id', [DepartemenController, 'edit'])
-    router.put('delete/:id', [DepartemenController, 'delete'])
+    router.delete('delete/:id', [DepartemenController, 'delete'])
 }).prefix('/departemen/').use(middleware.auth())
 
 router.group(() => {

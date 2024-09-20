@@ -32,6 +32,11 @@ export default function Index() {
         }
     };
 
+    const formatDate = (date) => {
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' }
+        return new Date(date).toLocaleDateString('id-ID', options)
+      }
+
     const columnHelper = createColumnHelper();
 
     const columns = [
@@ -55,31 +60,34 @@ export default function Index() {
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-
         columnHelper.accessor('tempatLahir', {
             header: 'Tempat Lahir',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-
         columnHelper.accessor('tanggalLahir', {
             header: 'Tanggal Lahir',
-            cell: info => info.getValue(),
+            cell: info => {
+                const rawDate = info.getValue();
+                const formattedDate = new Date(rawDate).toLocaleDateString('id-ID', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                });
+                return formattedDate;
+            },
             footer: info => info.column.id,
         }),
-
         columnHelper.accessor('usia', {
             header: 'Usia',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-
         columnHelper.accessor('jenisKelamin', {
             header: 'Jenis Kelamin',
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
-
         columnHelper.accessor('pendidikan', {
             header: 'Pendidikan ',
             cell: info => info.getValue(),

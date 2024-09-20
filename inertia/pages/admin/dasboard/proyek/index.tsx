@@ -39,8 +39,8 @@ export default function IndexProyek() {
     };
 
     const handleEdit = async (proyek: Proyek) => {
-        setSelectedProyek(proyek); // Set proyek yang dipilih ke state
-        setModalEdit(true); // Buka modal edit
+        setSelectedProyek(proyek); 
+        setModalEdit(true);
     };
 
     const columnHelper = createColumnHelper<Proyek>();
