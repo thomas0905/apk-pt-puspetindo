@@ -4,8 +4,6 @@ import Admin from '~/layout/admin';
 import { Head, Link, usePage } from '@inertiajs/react';
 
 export default function Detail({ data_ppwi }: any) {
-  // const { data_ppwi } = usePage().props;
-  console.log(data_ppwi);
   const handleDownload = () => {
     const fileUrl = data_ppwi.file_url || '/default/path/to/tiketing.pdf'; // Mengambil URL file dari data API
     const fileName = data_ppwi.file_name || 'tiketing.pdf';

@@ -8,20 +8,19 @@ export default class PpwisController {
 
     async index({ inertia }: HttpContext) {
         const judul = await JudulPpwi.all()
-        const ppwi = await Ppwi.query()
-        .preload('judulPpwi')
-        // .where('judulId', judul.)
-        // .first()
+        const ppwi = await Ppwi.query().preload('judulPpwi')
+        const uniquePpwi = Object.values(
+            ppwi.reduce((acc, current) => {
+                const judulId = current.judulPpwi?.id;
+                if (judulId && !acc[judulId]) {
+                    acc[judulId] = current;
+                }
+                return acc;
+            }, {})
+        );
         return inertia.render('admin/users/ppwi/index', {
             data_judul: judul,
-            data_ppwi: ppwi,
-        })
-    }
-
-    async create({ inertia }: HttpContext) {
-        const judul = await JudulPpwi.all()
-        return inertia.render('admin/users/ppwi/create', {
-            data_judul: judul,
+            data_ppwi: uniquePpwi,
         })
     }
 
@@ -35,12 +34,13 @@ export default class PpwisController {
             return inertia.render('admin/users/ppwi/detail', {
                 data_ppwi: ppwi,
             });
+
         } catch (error) {
             return inertia.render('errors/not_found', { message: 'Data not found' });
         }
     }
-    
-    
+
+
     public async store({ request, response }: HttpContext) {
         const ppwi = new Ppwi()
         ppwi.judulId = request.input('judulId')

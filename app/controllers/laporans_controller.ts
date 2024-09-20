@@ -76,17 +76,13 @@ export default class LaporansController {
 
             man_hours = reports;
 
-            // const departemen = all_man_hours.map(item => item.karyawan.departemen.namaDepartemen).filter((value, index, self) => self.indexOf(value) === index);
-
-        } else {
-            
+        } else {            
             man_hours = await ManHour.query()
                 .preload('karyawan', (Karyawan) => {
                     Karyawan.preload('departemen');
                 })
                 .preload('proyek')
                 .if(request.input('departemen') !== '', (query) => {
-                    // Jika departemen ID tidak kosong, lakukan filter berdasarkan departemen
                     query.whereHas('karyawan', (karyawanQuery) => {
                         karyawanQuery.where('departemen_id', request.input('departemen') || '');
                     });
@@ -135,7 +131,6 @@ export default class LaporansController {
         }
 
         const departemen = await Karyawan.query().preload('departemen').distinct('departemen_id')
-
         return inertia.render('admin/management/laporan', {
             data_manhours: man_hours,
             data_karyawan:departemen
