@@ -1,5 +1,5 @@
 import { Head, Link, router, usePage } from '@inertiajs/react'
-import { IconBook, IconHome } from '@tabler/icons-react'
+import { IconBook, IconFolder, IconFolders, IconHome } from '@tabler/icons-react'
 import { AlertDialogHeader } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
@@ -44,11 +44,15 @@ export default function Index() {
       footer: info => info.column.id,
     }),
     columnHelper.accessor('judulPpwi.judul', {
-      header: () => 'Judul',
-      cell: info => info.renderValue(),
+      header: () => 'Folder',
+      cell: info => (
+        <div className="flex items-center gap-1">
+          <IconFolders size={18}  />
+          <span>{info.renderValue()}</span> 
+        </div>
+      ),
       footer: info => info.column.id,
     }),
-
     columnHelper.accessor('keterangan', {
       header: () => 'Keterangan',
       cell: info => info.renderValue(),

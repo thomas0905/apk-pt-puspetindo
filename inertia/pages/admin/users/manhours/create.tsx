@@ -72,8 +72,9 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
                 <Link href="/">
                   <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                 </Link>
-                <span>-</span>
-                <Link href='/proyek'>
+                <small>/</small>
+
+                <Link href='/manhours'>
                   <p className="text-sm">Man Hours</p>
                 </Link>
               </div>

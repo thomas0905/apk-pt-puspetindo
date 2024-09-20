@@ -19,4 +19,10 @@ async index({inertia}:HttpContext){
         await judulPpwi.save();
         return response.redirect('/judul');
     }
+
+    async delete ({ params, response }: HttpContext) {
+        const judul = await JudulPpwi.findOrFail(params.id)
+        await judul.delete()
+        return response.redirect('/judul')
+    }
 }

@@ -207,7 +207,8 @@ export default function Create() {
                                 <Link href="/">
                                     <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
                                 </Link>
-                                <span>-</span>
+                                <small>/</small>
+
                                 <Link href='/karyawan'>
                                     <p className="text-sm">karyawan</p>
                                 </Link>

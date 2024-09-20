@@ -89,7 +89,8 @@ export default function EditPengguna() {
                                         Home
                                     </p>
                                 </Link>
-                                <span>-</span>
+                                <small>/</small>
+
                                 <Link href="/karyawan">
                                     <p className="text-sm">karyawan</p>
                                 </Link>

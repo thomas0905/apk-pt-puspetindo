@@ -1,7 +1,7 @@
 import { IconCloudDownload, IconFileTypePdf, IconHome } from '@tabler/icons-react';
 import { Card, CardContent } from '~/components/ui/card';
 import Admin from '~/layout/admin';
-import { Link, usePage } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 
 export default function Detail({ data_ppwi }: any) {
   // const { data_ppwi } = usePage().props;
@@ -19,14 +19,21 @@ export default function Detail({ data_ppwi }: any) {
 
   return (
     <Admin>
-      <div className='flex gap-2'>
+      <Head>
+        <title>detail</title>
+      </Head>
+      <div className='flex gap-1'>
         <Link href="/" >
           <p className='text-sm flex gap-1 hover:border-dashed'><IconHome size={18} />Home</p>
         </Link>
+        <small>/</small>
         <Link href='/ppwi'>
-        <p className='text-sm'>ppwi</p>
+          <p className='text-sm'>ppwi</p>
         </Link>
       </div>
+      {/* <div className='bg-emerald-300 rounded-sm text-green-700 -mt-3'>
+        <p className='text-sm py-1 mx-2 '>File laporan hanya di tampilkan bisa di download</p>
+      </div> */}
       <div className="flex gap-2 -mt-3">
         <div className="w-3/12">
           <Card className="relative rounded-sm p-5 flex items-center justify-center">

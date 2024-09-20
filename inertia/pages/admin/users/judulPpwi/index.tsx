@@ -13,10 +13,10 @@ import Swal from 'sweetalert2'
 export default function Indexjudul() {
     const { data_judul } = usePage().props;
     console.log(data_judul);
-    
+
     // const {open,setOpen} =useState(true)
 
-    const handleDelete = async(id) => {
+    const handleDelete = async (id: any) => {
         const result = await Swal.fire({
             title: 'Ingin Hapus Data?',
             icon: 'question',
@@ -25,24 +25,30 @@ export default function Indexjudul() {
             cancelButtonText: 'Tidak!',
             allowOutsideClick: false,
         });
-        if(result.isConfirmed){
-            try{
-                await router.delete('/karyawan/delete/' + id);
+        if (result.isConfirmed) {
+            try {
+                await router.delete('/judul/delete/' + id);
                 Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
-            }catch(error){
+            } catch (error) {
                 Swal.fire('Error', 'Gagal menghapus data.', 'error');
             }
         }
     }
-  return (
-    <Admin>
-      <Card className="p-5">
+    return (
+        <Admin>
+            <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
-                        <div>
-                            <Link href="/karyawan">
-                                <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
-                            </Link>
+                        <div >
+                            <div className='flex gap-1'>
+                                <Link href="/karyawan">
+                                    <p className='text-sm flex gap-1'><IconHome size={18} />Home</p>
+                                </Link>
+                                <small>/</small>
+                                <Link href="/ppwi">
+                                    <p className='text-sm'>ppwi</p>
+                                </Link>
+                            </div>
                             <h6 className='text-gray-600 text-lg font-bold'>Menu Judul</h6>
                         </div>
 
@@ -60,7 +66,7 @@ export default function Indexjudul() {
                                 <AlertDialogHeader>
                                     <DialogTitle>Judul</DialogTitle>
                                 </AlertDialogHeader>
-                                <CreateJudul/>
+                                <CreateJudul />
                             </DialogContent>
                         </Dialog>
                     </div>
@@ -76,7 +82,7 @@ export default function Indexjudul() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                        {data_judul.map((data,index) => (
+                            {data_judul.map((data, index) => (
                                 <TableRow key={index}>
                                     <TableCell>{index + 1}</TableCell>
                                     <TableCell>{data.judul}</TableCell>
@@ -112,6 +118,6 @@ export default function Indexjudul() {
                     </Table>
                 </Card>
             </Card>
-    </Admin>
-  )
+        </Admin>
+    )
 }

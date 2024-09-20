@@ -67,6 +67,7 @@ router.group(() => {
 router.group(() => {
     router.get('/' ,[JudulPpwisController,'index'])
     router.post('create',[JudulPpwisController,'store'])
+    router.delete('detele/:id',[JudulPpwisController,'delete'])
 }).prefix('/judul/').use(middleware.auth())
 
 router.get('/menuProfil', [MenuProfilsController, 'index'])
