@@ -1,5 +1,5 @@
-import { Link, usePage } from '@inertiajs/react'
-import { IconBuildingArch, IconEdit, IconHome } from '@tabler/icons-react'
+import { Link, router, usePage } from '@inertiajs/react'
+import { IconBuildingArch, IconEdit, IconHome, IconTrash } from '@tabler/icons-react'
 import React, { useState } from 'react'
 import { AlertDialogHeader } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
@@ -8,12 +8,32 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '~/components/
 import Admin from '~/layout/admin'
 import CreateJudul from './create'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
+import Swal from 'sweetalert2'
 
 export default function Indexjudul() {
     const { data_judul } = usePage().props;
     console.log(data_judul);
     
     // const {open,setOpen} =useState(true)
+
+    const handleDelete = async(id) => {
+        const result = await Swal.fire({
+            title: 'Ingin Hapus Data?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ya!',
+            cancelButtonText: 'Tidak!',
+            allowOutsideClick: false,
+        });
+        if(result.isConfirmed){
+            try{
+                await router.delete('/karyawan/delete/' + id);
+                Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
+            }catch(error){
+                Swal.fire('Error', 'Gagal menghapus data.', 'error');
+            }
+        }
+    }
   return (
     <Admin>
       <Card className="p-5">
@@ -79,12 +99,12 @@ export default function Indexjudul() {
                                             </DialogContent>
                                         </Dialog> */}
 
-                                        {/* <span
-                                            onClick={() => handleDelete(dep.id)}
+                                        <span
+                                            onClick={() => handleDelete(data.id)}
                                             className="text-red-900 hover:cursor-pointer"
                                         >
                                             <IconTrash size={18} />
-                                        </span> */}
+                                        </span>
                                     </TableCell>
                                 </TableRow>
                             ))}

@@ -1,7 +1,7 @@
-import { IconCloudDownload, IconFileTypePdf } from '@tabler/icons-react';
+import { IconCloudDownload, IconFileTypePdf, IconHome } from '@tabler/icons-react';
 import { Card, CardContent } from '~/components/ui/card';
 import Admin from '~/layout/admin';
-import { usePage } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 export default function Detail({ data_ppwi }: any) {
   // const { data_ppwi } = usePage().props;
@@ -13,22 +13,30 @@ export default function Detail({ data_ppwi }: any) {
     link.href = fileUrl;
     link.setAttribute('download', fileName);
     document.body.appendChild(link);
-    link.click(); 
+    link.click();
     document.body.removeChild(link);
   };
 
   return (
     <Admin>
-      <div className="flex gap-2">
+      <div className='flex gap-2'>
+        <Link href="/" >
+          <p className='text-sm flex gap-1 hover:border-dashed'><IconHome size={18} />Home</p>
+        </Link>
+        <Link href='/ppwi'>
+        <p className='text-sm'>ppwi</p>
+        </Link>
+      </div>
+      <div className="flex gap-2 -mt-3">
         <div className="w-3/12">
-          <Card className="relative rounded-sm p-5">
-            <CardContent className="p-3 flex justify-center relative">
-              <div className="text-center">
+          <Card className="relative rounded-sm p-5 flex items-center justify-center">
+            <CardContent className="p-3 flex flex-col items-center justify-center relative">
+              <div className="flex flex-col items-center justify-center">
                 <IconFileTypePdf size={54} className="text-green-600" />
-                <p>{data_ppwi.namaFile}</p>
-                <p>{data_ppwi.keterangan}</p>
+                <p className="mt-2">{data_ppwi.namaFile}</p>
               </div>
-              
+
+              {/* Tombol download berada di sudut kanan bawah */}
               <div className="absolute -bottom-6 -right-4 p-4">
                 <IconCloudDownload
                   size={24}
@@ -38,6 +46,7 @@ export default function Detail({ data_ppwi }: any) {
               </div>
             </CardContent>
           </Card>
+
         </div>
       </div>
     </Admin>
