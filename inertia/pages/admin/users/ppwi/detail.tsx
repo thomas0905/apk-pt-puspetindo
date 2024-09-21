@@ -39,7 +39,7 @@ export default function Detail({ data_ppwi }: any) {
             <p className='text-sm hover:text-gray-500'>ppwi</p>
           </Link>
         </div>
-        <div>
+        <div className='-mt-2'>
           <Input
             placeholder="Cari nama file..."
             value={searchQuery}
