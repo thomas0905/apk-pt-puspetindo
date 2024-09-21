@@ -49,7 +49,7 @@ async detail({ params, inertia }: HttpContext) {
         });
 
     } catch (error) {
-        // Tampilkan halaman error jika terjadi kesalahan
+ 
         return inertia.render('errors/not_found', { message: 'Data not found' });
     }
 }
