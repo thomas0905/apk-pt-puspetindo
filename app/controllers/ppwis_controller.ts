@@ -25,22 +25,32 @@ export default class PpwisController {
     }
 
 
-    async detail({ params, inertia, response }: HttpContext) {
+    async detail({ params, inertia }: HttpContext) {
         try {
+  
             const ppwi = await Ppwi.query()
                 .where('id', params.id)
                 .preload('judulPpwi')
                 .first();
+            if (!ppwi) {
+                return inertia.render('errors/not_found', { message: 'Data not found' });
+            }
+            const relatedPpwi = await Ppwi.query()
+                .where('judulId', ppwi.judulId)  
+                .preload('judulPpwi');          
+   
             return inertia.render('admin/users/ppwi/detail', {
-                data_ppwi: ppwi,
+                data_ppwi: relatedPpwi,  
             });
-
+    
         } catch (error) {
+
             return inertia.render('errors/not_found', { message: 'Data not found' });
         }
     }
-
-
+    
+    
+    
     public async store({ request, response }: HttpContext) {
         const ppwi = new Ppwi()
         ppwi.judulId = request.input('judulId')
