@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react'
 import { Card } from '~/components/ui/card'
 import Admin from '~/layout/admin'
 import Create from './create'
-import { Table, TableBody, TableHead, TableHeader, TableRow } from '~/components/ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 
 export default function Index() {
-  const { data_karyawan } = usePage().props
-  console.log(data_karyawan)
+  const { data_tiketing } = usePage().props
+  console.log(data_tiketing)
 
   const problems = [
     'Jaringan Wi-Fi lambat, mungkin ada kendala di router.',
@@ -54,20 +54,29 @@ export default function Index() {
           <div className='mt-5'>
             <p className='font-semibold'>Histori laporan</p>
             <Card className="mt-3">
-              <Table className="container">
-                <TableHeader className="bg-slate-50">
-                  <TableRow>
-                    <TableHead className="w-[100px]">No</TableHead>
-                    <TableHead>Problem</TableHead>
-                    <TableHead>Tanggal</TableHead>
-                    <TableHead>Keterangan</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
+  <Table className="container">
+    {/* Header Tabel */}
+    <TableHeader className="bg-slate-50">
+      <TableRow>
+        <TableHead className="w-[100px]">No</TableHead>
+        <TableHead>Problem</TableHead>
+        <TableHead>Tanggal</TableHead>
+        <TableHead>Keterangan</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      {data_tiketing.map((ppwi, index) => (
+        <TableRow key={ppwi.id}>
+          <TableCell>{index + 1}</TableCell>
+          <TableCell>{ppwi.problem}</TableCell>
+          <TableCell>{ppwi.tanggal}</TableCell>
+          <TableCell>{ppwi.keterangan}</TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
+</Card>
 
-                </TableBody>
-              </Table>
-            </Card>
           </div>
         </div>
       </Card>

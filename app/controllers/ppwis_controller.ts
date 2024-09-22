@@ -1,4 +1,5 @@
 import JudulPpwi from '#models/judul_ppwi'
+import Karyawan from '#models/karyawan';
 import Ppwi from '#models/ppwi'
 import type { HttpContext } from '@adonisjs/core/http'
 import app from '@adonisjs/core/services/app'
@@ -6,7 +7,19 @@ import app from '@adonisjs/core/services/app'
 export default class PpwisController {
 
 
-    async index({ inertia }: HttpContext) {
+    async index({ inertia,auth,response }: HttpContext) {
+        const user = auth.user;
+
+        if (!user) {
+            return response.redirect('/login');
+        }
+
+
+        const karyawan = await Karyawan.query().where('user_id', user.id).first();
+        if (!karyawan || karyawan.jabatan !== 'IT Software') {
+            return inertia.render('admin/error/404');
+        }
+
         const judul = await JudulPpwi.all()
         const ppwi = await Ppwi.query().preload('judulPpwi')
         const uniquePpwi = Object.values(
