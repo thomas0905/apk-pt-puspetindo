@@ -89,7 +89,7 @@ export default function Create() {
 
                 {/* Textarea for Keterangan */}
                 <div className='mt-2'>
-                    <Label>Laporan Keterangan:</Label>
+                    <Label> Keterangan:</Label>
                     <Textarea
                         placeholder="Masukkan keterangan di sini"
                         value={data.keterangan}
