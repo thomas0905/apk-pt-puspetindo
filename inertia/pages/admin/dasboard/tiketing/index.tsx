@@ -31,6 +31,12 @@ export default function Index() {
     setRandomProblem(getRandomProblem())
   }, [])
 
+
+  const formatDate = (date) => {
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' }
+    return new Date(date).toLocaleDateString('id-ID', options)
+  }
+
   return (
     <Admin>
       <Head>
@@ -54,28 +60,28 @@ export default function Index() {
           <div className='mt-5'>
             <p className='font-semibold'>Histori laporan</p>
             <Card className="mt-3">
-  <Table className="container">
-    {/* Header Tabel */}
-    <TableHeader className="bg-slate-50">
-      <TableRow>
-        <TableHead className="w-[100px]">No</TableHead>
-        <TableHead>Problem</TableHead>
-        <TableHead>Tanggal</TableHead>
-        <TableHead>Keterangan</TableHead>
-      </TableRow>
-    </TableHeader>
-    <TableBody>
-      {data_tiketing.map((ppwi, index) => (
-        <TableRow key={ppwi.id}>
-          <TableCell>{index + 1}</TableCell>
-          <TableCell>{ppwi.problem}</TableCell>
-          <TableCell>{ppwi.tanggal}</TableCell>
-          <TableCell>{ppwi.keterangan}</TableCell>
-        </TableRow>
-      ))}
-    </TableBody>
-  </Table>
-</Card>
+              <Table className="container">
+                {/* Header Tabel */}
+                <TableHeader className="bg-slate-50">
+                  <TableRow>
+                    <TableHead className="w-[100px]">No</TableHead>
+                    <TableHead>Problem</TableHead>
+                    <TableHead>Tanggal</TableHead>
+                    <TableHead>Keterangan</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {data_tiketing.map((ppwi, index) => (
+                    <TableRow key={ppwi.id}>
+                      <TableCell>{index + 1}</TableCell>
+                      <TableCell>{ppwi.problem}</TableCell>
+                      <TableCell>{formatDate(ppwi.tanggal)}</TableCell>
+                      <TableCell>{ppwi.keterangan}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Card>
 
           </div>
         </div>
