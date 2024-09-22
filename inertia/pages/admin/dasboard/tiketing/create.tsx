@@ -1,25 +1,57 @@
 import { useForm } from '@inertiajs/react'
-import React, { FormEventHandler } from 'react'
+import React, { FormEventHandler, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Textarea } from '~/components/ui/textarea'
 import toast, { Toaster } from 'react-hot-toast';
-export default function Create() {
 
+export default function Create() {
     const { data, setData, post, processing } = useForm({
         problem: '',
         keterangan: '',
         tanggal: ''
-    })
+    });
+
+    // State untuk validasi error
+    const [errors, setErrors] = useState({
+        problem: '',
+        keterangan: '',
+        tanggal: ''
+    });
+
+    // Validasi input
+    const validate = () => {
+        let valid = true;
+        let newErrors = { problem: '', keterangan: '', tanggal: '' };
+
+        if (!data.problem) {
+            newErrors.problem = 'Problem harus diisi';
+            valid = false;
+        }
+        if (!data.keterangan) {
+            newErrors.keterangan = 'Keterangan harus diisi';
+            valid = false;
+        }
+        if (!data.tanggal) {
+            newErrors.tanggal = 'Tanggal harus diisi';
+            valid = false;
+        }
+
+        setErrors(newErrors);
+        return valid;
+    }
 
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault();
-        post('/tiketing/create', {
-            onSuccess: () => {
-                toast.success('Proyek berhasil di simpan')
-            },
-        });
+
+        if (validate()) {
+            post('/tiketing/create', {
+                onSuccess: () => {
+                    toast.success('Proyek berhasil di simpan');
+                },
+            });
+        }
     }
 
     return (
@@ -38,6 +70,7 @@ export default function Create() {
                             onChange={(e) => setData('problem', e.target.value)}
                             className="resize-none border p-3 shadow-none focus-visible:ring-0 focus:border-blue-600"
                         />
+                        {errors.problem && <span className="text-red-600 text-sm">{errors.problem}</span>}
                     </div>
 
                     {/* Input for Tanggal */}
@@ -50,6 +83,7 @@ export default function Create() {
                             onChange={(e) => setData('tanggal', e.target.value)}
                             className="resize-none border p-3 shadow-none focus-visible:ring-0 focus:border-blue-600"
                         />
+                        {errors.tanggal && <span className="text-red-600 text-sm">{errors.tanggal}</span>}
                     </div>
                 </div>
 
@@ -62,6 +96,7 @@ export default function Create() {
                         onChange={(e) => setData('keterangan', e.target.value)}
                         className="min-h-20 resize-none border-2 p-3 shadow-none focus-visible:ring-0 focus:border-blue-600"
                     />
+                    {errors.keterangan && <span className="text-red-600 text-sm">{errors.keterangan}</span>}
                 </div>
 
                 {/* Submit Button */}
