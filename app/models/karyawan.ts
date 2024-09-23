@@ -12,11 +12,6 @@ export default class Karyawan extends BaseModel {
   })
   declare manHour: HasOne<typeof ManHour>
 
-  @hasOne(() => Tiketing, {
-    foreignKey: 'karyawanId',
-  })
-  declare tiketing: HasOne<typeof Tiketing>
-
   @belongsTo(() => Departeman, {
     foreignKey: 'departemen_Id'
   })
@@ -35,7 +30,6 @@ export default class Karyawan extends BaseModel {
 
   @column()
   declare nama: string
-
 
   @column()
   declare departemen_Id: number
