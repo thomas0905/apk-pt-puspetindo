@@ -11,14 +11,15 @@ import Admin from '~/layout/admin';
 
 export default function Create({ onSuccess }: { onSuccess: () => void }) {
   const { data_proyek, data_karyawan } = usePage().props;
-
+  console.log(data_proyek);
+  { data_proyek }
   const { data, setData, post, processing } = useForm({
     karyawan_id: '',
     proyek_id: '',
     tanggal: '',
     jam_kerja: '',
   });
-  
+
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const handleSubmit: FormEventHandler = (e) => {
@@ -53,11 +54,11 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
       post('/manhours/create', {
         onSuccess: () => {
           Swal.fire({
-              title: 'Data Berhasil Di Tambah!',
-              icon: 'success',
-              confirmButtonText: 'Okee',
+            title: 'Data Berhasil Di Tambah!',
+            icon: 'success',
+            confirmButtonText: 'Okee',
           });
-      }
+        }
       });
     }
   };
@@ -65,7 +66,7 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
   return (
     <Admin>
       <Card className='p-5'>
-      <div className="border-b border-gray-200 pb-4">
+        <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
             <div>
               <div className='flex gap-1'>
@@ -114,9 +115,10 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
                 <SelectContent>
                   {data_proyek.map((data) => (
                     <SelectItem key={data.id} value={data.id.toString()}>
-                      {data.namaProyek}
+                      {data.kodeJobOrder} - {data.namaProyek}
                     </SelectItem>
                   ))}
+
                 </SelectContent>
               </Select>
               {errors.proyek_id && (

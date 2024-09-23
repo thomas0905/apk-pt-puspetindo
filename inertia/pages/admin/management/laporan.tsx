@@ -154,7 +154,7 @@ export default function Laporan() {
                                     <TableHead>Tanggal</TableHead>
                                     <TableHead>No JE</TableHead>
                                     <TableHead>Jam Kerja</TableHead>
-                                    <TableHead>Persentase</TableHead>
+                                    {/* <TableHead>Persentase</TableHead> */}
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -166,7 +166,7 @@ export default function Laporan() {
                                       <TableCell>{formatDate(detail.tanggal)}</TableCell>
                                       <TableCell>{detail.kodeJobOrder}</TableCell>
                                       <TableCell>{detail.jam_kerja} jam</TableCell>
-                                      <TableCell>{detail.total_persentase.toFixed(1)}%</TableCell>
+                                      {/* <TableCell>{detail.total_persentase.toFixed(1)}%</TableCell> */}
                                     </TableRow>
                                   ))}
                                 </TableBody>
