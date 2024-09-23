@@ -1,8 +1,6 @@
-
-
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
-import { IconEye, IconEyeOff, IconHome } from '@tabler/icons-react';
-import React, { FormEventHandler, useState } from 'react';
+import { IconHome } from '@tabler/icons-react';
+import React, { FormEventHandler } from 'react';
 import Swal from 'sweetalert2';
 import { Button } from '~/components/ui/button';
 import { Card } from '~/components/ui/card';
@@ -13,7 +11,12 @@ import Admin from '~/layout/admin';
 
 export default function EditPengguna() {
     const { data_karyawan } = usePage().props;
-    console.log(data_karyawan);
+
+    // Format tanggal lahir agar sesuai dengan input type="date"
+    const formatTanggalLahir = (dateString) => {
+        const date = new Date(dateString);
+        return date.toISOString().substring(0, 10);  // Format YYYY-MM-DD
+    };
 
     const { data, setData, put } = useForm({
         nama: data_karyawan.nama,
@@ -21,7 +24,7 @@ export default function EditPengguna() {
         jabatan: data_karyawan.jabatan,
         status: data_karyawan.status,
         tempatLahir: data_karyawan.tempatLahir,
-        tanggalLahir: data_karyawan.tanggalLahir,
+        tanggalLahir: formatTanggalLahir(data_karyawan.tanggalLahir),  // Format tanggal di sini
         usia: data_karyawan.usia,
         jenisKelamin: data_karyawan.jenisKelamin,
         pendidikan: data_karyawan.pendidikan,
@@ -58,22 +61,9 @@ export default function EditPengguna() {
     ];
 
     const jenisKelamin = [
-        {
-            value: 'Laki-laki',
-            label: 'Laki-laki'
-        },
-        {
-            value: 'Perempuan',
-            label: 'Perempuan'
-        }
-    ]
-
-
-    // const [showPassword, setShowPassword] = useState(false);
-
-    // const handleTogglePassword = () => {
-    //     setShowPassword(!showPassword);
-    // };
+        { value: 'Laki-laki', label: 'Laki-laki' },
+        { value: 'Perempuan', label: 'Perempuan' },
+    ];
 
     return (
         <Admin>
@@ -178,7 +168,7 @@ export default function EditPengguna() {
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Tanggal Lahir</Label>
                                 <Input
-                                    type='text'
+                                    type='date'
                                     placeholder='Masukkan Tanggal Lahir Anda'
                                     name="tanggalLahir"
                                     value={data.tanggalLahir}
@@ -225,73 +215,21 @@ export default function EditPengguna() {
                                     className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
-
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Jurusan</Label>
                                 <Input
                                     type='text'
-                                    placeholder='Jurusan Anda'
+                                    placeholder='Masukkan Jurusan Anda'
                                     name='jurusan'
                                     value={data.jurusan}
                                     onChange={(e) => setData('jurusan', e.target.value)}
                                     className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
-
-                            <div className="flex flex-col space-y-1.5">
-                                <Label>BPJS Ketenaga kerjaan</Label>
-                                <Input
-                                    type='text'
-                                    placeholder='Masukkan BPJS Ketenaga Kerja Anda'
-                                    name='bpjsKk'
-                                    value={data.bpjsKk}
-                                    onChange={(e) => setData('bpjsKk', e.target.value)}
-                                    className='focus-visible:ring-0 focus:border-blue-600'
-                                />
-                            </div>
-
-                            <div className="flex flex-col space-y-1.5">
-                                <Label>BPJS Kesehatan</Label>
-                                <Input
-                                    type='text'
-                                    placeholder='Masukkan BPJ Kesehatan Anda'
-                                    name='bpjsKesehatan'
-                                    value={data.bpjsKesehatan}
-                                    onChange={(e) => setData('bpjsKesehatan', e.target.value)}
-                                    className='focus-visible:ring-0 focus:border-blue-600'
-                                />
-                            </div>
-
-                            <div className="flex flex-col space-y-1.5">
-                                <Label>No.Rekening</Label>
-                                <Input
-                                    type='text'
-                                    placeholder='Masukkan No Rekening Anda'
-                                    name='noRekening'
-                                    value={data.noRekening}
-                                    onChange={(e) => setData('noRekening', e.target.value)}
-                                    className='focus-visible:ring-0 focus:border-blue-600'
-                                />
-                            </div>
-
-                            <div className="flex flex-col space-y-1.5">
-                                <Label>Nama Bank</Label>
-                                <Input
-                                    type='text'
-                                    placeholder='Masukkan Nama Anda'
-                                    name='namaBank'
-                                    value={data.namaBank}
-                                    onChange={(e) => setData('namaBank', e.target.value)}
-                                    className='focus-visible:ring-0 focus:border-blue-600'
-                                />
-                            </div>
-
                         </div>
+                        {/* Additional fields... */}
                     </div>
-
-                    <Button className="bg-blue-600 hover:bg-blue-500" type="submit">
-                        Update
-                    </Button>
+                    <Button type="submit">Simpan</Button>
                 </form>
             </Card>
         </Admin>
