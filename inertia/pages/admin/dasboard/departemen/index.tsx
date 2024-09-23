@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Admin from '~/layout/admin';
-import { Link, router, usePage } from '@inertiajs/react';
+import { Head, Link, router, usePage } from '@inertiajs/react';
 import { IconBuildingArch, IconEdit, IconHome, IconTrash } from '@tabler/icons-react';
 import { Card } from '~/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
@@ -37,12 +37,15 @@ export default function Index({}) {
     };
 
     const handleEdit = (departemen: Departemen) => {
-        setSelectedDepartemen(departemen); // Set departemen yang dipilih ke state
-        setModalEdit(true); // Buka modal edit
+        setSelectedDepartemen(departemen);
+        setModalEdit(true);
     };
 
     return (
         <Admin>
+            <Head>
+                <title>departemen</title>
+            </Head>
             <Card className="p-5">
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>

@@ -18,7 +18,7 @@ export default function Indexjudul() {
     // const {open,setOpen} =useState(true)
 
     const handleDelete = async (id: any) => {
-        const result = await Swal.fire({
+        const swalInstance = Swal.fire({
             title: 'Ingin Hapus Data?',
             icon: 'question',
             showCancelButton: true,
@@ -26,15 +26,14 @@ export default function Indexjudul() {
             cancelButtonText: 'Tidak!',
             allowOutsideClick: false,
         });
+        const result = await swalInstance;
         if (result.isConfirmed) {
-            try {
-                await router.delete('/judul/delete/' + id);
-                Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
-            } catch (error) {
-                Swal.fire('Error', 'Gagal menghapus data.', 'error');
-            }
+            await router.delete('/judul/delete/' + id);
+            Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
+        } else {
+            Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
         }
-    }
+    };
 
     const columnHelper = createColumnHelper<Ppwi>();
 

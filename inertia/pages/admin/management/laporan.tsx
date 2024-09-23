@@ -21,7 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 
 export default function Laporan() {
   const { data_manhours,data_karyawan } = usePage().props
-  console.log(data_karyawan);
+  console.log(data_manhours);
 
   const componentRef = useRef(null)
   const [startDate, setStartDate] = useState('')

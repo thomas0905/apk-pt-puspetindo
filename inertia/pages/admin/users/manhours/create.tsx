@@ -1,4 +1,4 @@
-import { Link, useForm, usePage } from '@inertiajs/react';
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { IconHome } from '@tabler/icons-react';
 import { FormEventHandler, useState } from 'react';
 import Swal from 'sweetalert2';
@@ -65,6 +65,9 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
 
   return (
     <Admin>
+      <Head>
+        <title>create</title>
+      </Head>
       <Card className='p-5'>
         <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
