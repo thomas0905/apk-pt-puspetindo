@@ -80,21 +80,23 @@ export default class KaryawansKontroller {
 
     async update({ request, params, response }: HttpContext) {
         const karyawan = await Karyawan.findOrFail(params.id)
+
         karyawan.nama = request.input('nama')
         karyawan.departemen_Id = request.input('departemen_Id')
         karyawan.jabatan = request.input('jabatan')
-        karyawan.tempat_lahir = request.input('tempat_lahir');
-        karyawan.tanggal_lahir = request.input('tanggal_lahir');
+        karyawan.tempat_lahir = request.input('tempatLahir');
+        karyawan.tanggal_lahir = request.input('tanggalLahir');
         karyawan.usia = request.input('usia');
-        karyawan.jenis_kelamin = request.input('jenis_kelamin');
+        karyawan.jenis_kelamin = request.input('jenisKelamin');
         karyawan.pendidikan = request.input('pendidikan');
         karyawan.jurusan = request.input('jurusan');
-        karyawan.bpjs_kk = request.input('bpjs_kk');
-        karyawan.bpjs_kesehatan = request.input('bpjs_kesehatan');
-        karyawan.no_rekening = request.input('no_rekening');
-        karyawan.nama_bank = request.input('nama_bank');
+        karyawan.bpjs_kk = request.input('bpjsKk');
+        karyawan.bpjs_kesehatan = request.input('bpjsKesehatan');
+        karyawan.no_rekening = request.input('noRekening');
+        karyawan.nama_bank = request.input('namaBank');
         karyawan.status = request.input('status')
-        await karyawan.save();
+
+         karyawan.save();
         return response.redirect('/karyawan')
     }
 
