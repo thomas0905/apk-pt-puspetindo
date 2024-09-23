@@ -11,8 +11,10 @@ import Admin from '~/layout/admin';
 
 export default function EditPengguna() {
     const { data_karyawan } = usePage().props;
+    console.log(data_karyawan);
+    
 
-    // Format tanggal lahir agar sesuai dengan input type="date"
+
     const formatTanggalLahir = (dateString) => {
         const date = new Date(dateString);
         return date.toISOString().substring(0, 10);  // Format YYYY-MM-DD
@@ -24,7 +26,7 @@ export default function EditPengguna() {
         jabatan: data_karyawan.jabatan,
         status: data_karyawan.status,
         tempatLahir: data_karyawan.tempatLahir,
-        tanggalLahir: formatTanggalLahir(data_karyawan.tanggalLahir),  // Format tanggal di sini
+        tanggalLahir: formatTanggalLahir(data_karyawan.tanggalLahir),
         usia: data_karyawan.usia,
         jenisKelamin: data_karyawan.jenisKelamin,
         pendidikan: data_karyawan.pendidikan,
@@ -37,6 +39,7 @@ export default function EditPengguna() {
 
     const handleSubmit: FormEventHandler = async (e) => {
         e.preventDefault();
+        console.log('Submitting Data:', data);
         await put('/karyawan/edit/' + data_karyawan.id, {
             onSuccess: () => {
                 Swal.fire({
@@ -227,9 +230,9 @@ export default function EditPengguna() {
                                 />
                             </div>
                         </div>
-                        {/* Additional fields... */}
                     </div>
-                    <Button type="submit">Simpan</Button>
+
+                    <Button type="submit" className='bg-blue-600 hover:bg-blue-500'>Update</Button>
                 </form>
             </Card>
         </Admin>

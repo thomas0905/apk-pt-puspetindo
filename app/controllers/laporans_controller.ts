@@ -54,7 +54,7 @@ export default class LaporansController {
                         kodeJobOrder: item.proyek.kodeJobOrder,
                         jam_kerja: item.jam_kerja,
                         karyawan: item.karyawan,
-                        total_persentase: item.jam_kerja * 173 / 100
+                        total_persentase: (item.jam_kerja / 173) * 100
                     };
                 });
 
@@ -70,13 +70,15 @@ export default class LaporansController {
                     tanggal: karyawan.tanggal,
                     data_laporan: laporan,
                     total_jam: total_jam,
-                    total_persentase: (total_jam * 173) / 100 
+                    total_persentase: (total_jam / 173) * 100
                 });
             });
 
             man_hours = reports;
 
-        } else {            
+
+        } else {
+            
             man_hours = await ManHour.query()
                 .preload('karyawan', (Karyawan) => {
                     Karyawan.preload('departemen');
@@ -106,7 +108,7 @@ export default class LaporansController {
                         kodeJobOrder: item.proyek.kodeJobOrder,
                         jam_kerja: item.jam_kerja,
                         karyawan: item.karyawan,
-                        total_persentase: item.jam_kerja * 173 / 100
+                        total_persentase: (item.jam_kerja / 173) * 100
                     };
                 });
 
@@ -122,7 +124,7 @@ export default class LaporansController {
                     tanggal:karyawan.tanggal,
                     data_laporan: laporan,
                     total_jam: total_jam,
-                    total_persentase: (total_jam * 173) / 100
+                    total_persentase: (total_jam / 173) * 100
                 });
             });
 

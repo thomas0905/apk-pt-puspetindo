@@ -131,7 +131,7 @@ export default function Laporan() {
                         <TableCell>{data.departemen}</TableCell>
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
                         <TableCell>{data.total_jam} jam</TableCell>
-                        <TableCell>{data.total_persentase} %</TableCell>
+                        <TableCell>{data.total_persentase.toFixed(1)}%</TableCell>
                         <TableCell>
                           <Button
                             className="flex items-center bg-transparent hover:bg-transparent"
@@ -166,7 +166,7 @@ export default function Laporan() {
                                       <TableCell>{formatDate(detail.tanggal)}</TableCell>
                                       <TableCell>{detail.kodeJobOrder}</TableCell>
                                       <TableCell>{detail.jam_kerja} jam</TableCell>
-                                      <TableCell>{detail.total_persentase}%</TableCell>
+                                      <TableCell>{detail.total_persentase.toFixed(1)}%</TableCell>
                                     </TableRow>
                                   ))}
                                 </TableBody>
