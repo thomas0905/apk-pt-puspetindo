@@ -229,6 +229,56 @@ export default function EditPengguna() {
                                     className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label>BPJS Ketenaga Kerjaan</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Masukkan Jurusan Anda'
+                                    name='bpjsKk'
+                                    value={data.bpjsKk}
+                                    onChange={(e) => setData('bpjsKk', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label>BPJS Kesehatan</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Masukkan Jurusan Anda'
+                                    name='bpjsKesehatan'
+                                    value={data.bpjsKesehatan}
+                                    onChange={(e) => setData('bpjsKesehatan', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
+                            </div>
+
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label>No Rekening</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Masukkan Jurusan Anda'
+                                    name='noRekening'
+                                    value={data.noRekening}
+                                    onChange={(e) => setData('noRekening', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
+                            </div>
+
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label>Nama Bank</Label>
+                                <Input
+                                    type='text'
+                                    placeholder='Masukkan Jurusan Anda'
+                                    name='namaBank'
+                                    value={data.namaBank}
+                                    onChange={(e) => setData('namaBank', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
+                            </div>
                         </div>
                     </div>
 

@@ -94,7 +94,7 @@ export default class KaryawansKontroller {
         karyawan.no_rekening = request.input('no_rekening');
         karyawan.nama_bank = request.input('nama_bank');
         karyawan.status = request.input('status')
-        karyawan.save()
+        await karyawan.save();
         return response.redirect('/karyawan')
     }
 

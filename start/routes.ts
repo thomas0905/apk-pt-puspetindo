@@ -63,7 +63,6 @@ router.group(() => {
     router.post('delete/:id',[PpwisController,'delete'])
 }).prefix('/ppwi/').use(middleware.auth())
 
-
 router.group(() => {
     router.get('/' ,[JudulPpwisController,'index'])
     router.post('create',[JudulPpwisController,'store'])
@@ -71,8 +70,6 @@ router.group(() => {
 }).prefix('/judul/').use(middleware.auth())
 
 router.get('/menuProfil', [MenuProfilsController, 'index'])
-
-// Route to login page
 router.get('/login', [AuthController, 'login']).use(middleware.guest())
 router.post('/auth/login', [AuthController, 'loginAuth'])
 
@@ -80,7 +77,6 @@ router.post('logout', async ({ auth, response }) => {
     await auth.use('web').logout()
     return response.redirect('/login')
 }).use(middleware.auth())
-
 
 router.get('/management/laporan', [LaporansController, 'laporan']).use(middleware.auth())
 
