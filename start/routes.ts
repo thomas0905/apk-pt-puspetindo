@@ -28,7 +28,7 @@ router.group(() => {
 
 router.group(() => {
     router.get('/',[TiketingsController,'index'])
-    router.get('/laporan',[TiketingsController,'laporan'])
+    router.get('laporan',[TiketingsController,'laporan'])
     router.get('create',[TiketingsController,'create'])
     router.post('create',[TiketingsController,'store'])
 }).prefix('/tiketing/').use(middleware.auth())

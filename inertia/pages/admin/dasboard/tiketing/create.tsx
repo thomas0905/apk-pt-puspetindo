@@ -77,7 +77,7 @@ export default function Create() {
                     <div className="flex flex-col space-y-1.5 mt-3">
                         <Label>Tanggal:</Label>
                         <Input
-                            type='date'
+                            type='datetime-local'
                             name='tanggal'
                             value={data.tanggal}
                             onChange={(e) => setData('tanggal', e.target.value)}
