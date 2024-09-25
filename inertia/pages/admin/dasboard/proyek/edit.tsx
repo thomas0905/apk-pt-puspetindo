@@ -6,19 +6,19 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 
-export default function Edit() {
-    const {data_proyek} = usePage().props
-    console.log(data_proyek)
+export default function Edit({proyek}: any) {
+    console.log(proyek);
+    
     const { data, setData, put } = useForm({
-        namaProyek: data_proyek.namaProyek,
-        kodeJobOrder: data_proyek.kodeJobOrder,
-        status: data_proyek.status,
-        pemilik: data_proyek.pemilik
+        namaProyek: proyek.namaProyek,
+        kodeJobOrder: proyek.kodeJobOrder,
+        status: proyek.status,
+        pemilik: proyek.pemilik
     })
 
-    const handleSubmit: FormEventHandler = async (e) => {
+    const handleEdit: FormEventHandler = async (e) => {
         e.preventDefault()
-        await put('/proyek/edit/' + data_proyek.id, {
+        await put('/proyek/edit/' + proyek.id, {
             onSuccess: () => {
                 Swal.fire({
                     title: 'Data Berhasil Diupdate!',
@@ -54,21 +54,21 @@ export default function Edit() {
     return (
         <Fragment>
             <Head title='edit Proyek' />
-            <form className='mt-5' onSubmit={handleSubmit}>
-                    <div>
-                        <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="namaProyek">Nama Proyek:</Label>
-                            <Input
-                                id="namaProyek"
-                                placeholder='Edit Nama Proyek'
-                                name='namaProyek'
-                                value={data.namaProyek}
-                                onChange={(e) => setData('namaProyek', e.target.value)}
-                                 className='focus-visible:ring-0 focus:border-blue-600'
-                            />
-                        </div>
+            <form className='mt-5' onSubmit={handleEdit}>
+                <div>
+                    <div className="flex flex-col space-y-1.5">
+                        <Label htmlFor="namaProyek">Nama Proyek:</Label>
+                        <Input
+                            id="namaProyek"
+                            placeholder='Edit Nama Proyek'
+                            name='namaProyek'
+                            value={data.namaProyek}
+                            onChange={(e) => setData('namaProyek', e.target.value)}
+                            className='focus-visible:ring-0 focus:border-blue-600'
+                        />
+                    </div>
 
-                        <div className=" md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+                    <div className=" md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="kodeJobOrder">Kode Proyek:</Label>
                                 <Input
@@ -113,10 +113,10 @@ export default function Edit() {
                             </div>
 
                         </div>
-                    </div>
+                </div>
 
-                    <Button className='bg-blue-600 hover:bg-blue-500 mt-2' type="submit">Update</Button>
-                </form>
+                <Button className='bg-blue-600 hover:bg-blue-500 mt-2' type="submit">Update</Button>
+            </form>
         </Fragment>
     )
 }

@@ -13,7 +13,7 @@ import { Dialog, DialogContent, DialogHeader, DialogOverlay, DialogTitle, Dialog
 import Create from './create'
 import Edit from './edit'
 
-export default function IndexProyek() {
+export default function IndexProyek({}) {
     const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
     const tableRef = useRef(null);
     const [modalEdit, setModalEdit] = useState(false); // State untuk modal edit
@@ -38,9 +38,9 @@ export default function IndexProyek() {
         }
     };
 
-    const handleEdit = async (proyek: Proyek) => {
-        setSelectedProyek(proyek); 
+    const handleEdit = async (proyek: any) => {
         setModalEdit(true);
+        setSelectedProyek(proyek); 
     };
 
     const columnHelper = createColumnHelper<Proyek>();
@@ -83,20 +83,9 @@ export default function IndexProyek() {
                     <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
                         <IconTrash size={18} />
                     </span>
-
-                    <Dialog open={modalEdit} onOpenChange={setModalEdit} >
-                        <DialogOverlay className="bg-white/10 backdrop-blur-sm" />
-
-                        <DialogTrigger asChild>
-                            <IconEdit size={18} className='cursor-pointer' onClick={() => handleEdit(info.row.original)} />
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-[425px] shadow-none">
-                            <DialogHeader>
-                                <DialogTitle>Edit Proyek</DialogTitle>
-                            </DialogHeader>
-                            <Edit proyek={selectedProyek} />
-                        </DialogContent>
-                    </Dialog>
+                    <span className='cursor-pointer' onClick={() => handleEdit(info.row.original)}>
+                    <IconEdit size={18}  />
+                    </span>
                 </div>
             ),
             footer: info => info.column.id,
@@ -154,6 +143,16 @@ export default function IndexProyek() {
                     </div>
                 </div>
             </Card>
+
+            <Dialog open={modalEdit} onOpenChange={setModalEdit} >
+                <DialogOverlay className="bg-white/10 backdrop-blur-sm" />
+                <DialogContent className="sm:max-w-[425px] shadow-none">
+                    <DialogHeader>
+                        <DialogTitle>Edit Proyek</DialogTitle>
+                    </DialogHeader>
+                   {selectedProyek ? <Edit proyek={selectedProyek} onSuccess={() => setModalEdit(false)} /> : null}
+                </DialogContent>
+            </Dialog>
         </Admin>
     );
 }

@@ -8,22 +8,19 @@ import toast from 'react-hot-toast';
 
 
 export default function Create({ onSuccess, }: { onSuccess: () => void }) {
-
-    const statuses = [
-        { value: "Selesai", label: "Selesai" },
-        { value: "Tidak-Selesai", label: "Tidak-Selesai" }
-    ];
-
     const { data, setData, post, processing } = useForm({
         namaProyek: '',
         kodeJobOrder: '',
         status: '',
         pemilik: ''
     });
-    const [show, setShow] = useState(false);
-
     const [errors, setErrors] = useState({});
 
+    const statuses = [
+        { value: "Selesai", label: "Selesai" },
+        { value: "Tidak-Selesai", label: "Tidak-Selesai" }
+    ];
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
