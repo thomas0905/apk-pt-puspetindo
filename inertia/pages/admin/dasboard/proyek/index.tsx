@@ -16,9 +16,9 @@ import Edit from './edit'
 export default function IndexProyek() {
     const { data_proyek } = usePage<{ data_proyek: Proyek[] }>().props
     const tableRef = useRef(null);
-    const [modalCreate, setModalCreate] = useState(false);
     const [modalEdit, setModalEdit] = useState(false); // State untuk modal edit
     const [selectedProyek, setSelectedProyek] = useState(null); // State untuk proyek yang dipilih
+    const [open, setOpen] = useState(false);
 
     const handleDelete = async (id: any) => {
         const swalInstance = Swal.fire({
@@ -116,7 +116,7 @@ export default function IndexProyek() {
                             <h6 className='text-gray-600 text-lg font-bold'>Proyek</h6>
                         </div>
                         <div>
-                            <Dialog>
+                            <Dialog open={open} onOpenChange={(value) => setOpen(value)}>
                                 <DialogTrigger asChild>
                                     <Button
                                         className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
@@ -130,7 +130,7 @@ export default function IndexProyek() {
                                     <DialogHeader>
                                         <DialogTitle>Tambah Proyek</DialogTitle>
                                     </DialogHeader>
-                                    <Create onSuccess={() => setModalCreate(false)} />
+                                    <Create onSuccess={() => setOpen(false)} />
                                 </DialogContent>
                             </Dialog>
                         </div>

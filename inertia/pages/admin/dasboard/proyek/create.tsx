@@ -4,7 +4,8 @@ import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
 import { Fragment, useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
+
 
 export default function Create({ onSuccess, }: { onSuccess: () => void }) {
 
@@ -54,7 +55,7 @@ export default function Create({ onSuccess, }: { onSuccess: () => void }) {
         if (isValid) {
             post('/proyek/create', {
                 onSuccess: () => {
-                    toast.success('Proyek berhasil di simpan')
+                    toast.success('Proyek berhasil di simpan');
                     onSuccess()
                 },
                 onError: (errorMessages) => {
@@ -66,7 +67,6 @@ export default function Create({ onSuccess, }: { onSuccess: () => void }) {
 
     return (
         <Fragment>
-            <Toaster position="top-center" reverseOrder={false} />
             <Head title='Tambah Proyek' />
             <form onSubmit={handleSubmit}>
                 <div className="gap-4 py-4">

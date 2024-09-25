@@ -5,24 +5,16 @@ import { Button } from '~/components/ui/button';
 import { Card, CardContent } from '~/components/ui/card';
 import Admin from '~/layout/admin';
 import ReactToPrint from 'react-to-print';
-import Swal from 'sweetalert2';
-
 export default function Laporan() {
-  const { data_tiketing } = usePage().props;
+  const { data_tiketing, data_karyawan } = usePage().props;
+  console.log(data_karyawan);
+
   const componentRef = useRef(null);
 
   // Sort data by ID
   const sortedData = data_tiketing.sort((a, b) => a.id - b.id);
 
-  // Function to show alert when report is added
-  const handlePrint = () => {
-    Swal.fire({
-      title: 'Laporan Tiketing Berhasil Disubmit!',
-      text: 'Data berhasil dicetak',
-      icon: 'success',
-      confirmButtonText: 'Oke',
-    });
-  };
+ 
 
   return (
     <Admin>
@@ -30,8 +22,10 @@ export default function Laporan() {
         <title>Laporan Tiketing</title>
       </Head>
       <Card className="p-5">
+      {/* {data_karyawan.map((data) => (
+        <p className="font-semibold text-md">Karyawan: {data.nama}</p>
+      ))} */}
         <p className="font-semibold text-md">Laporan Tiketing</p>
-        {/* Wrap the content that needs to be printed inside a ref */}
         <div ref={componentRef}>
           <div className="grid grid-cols-2 mt-2 gap-3">
             {sortedData.map((data) => (

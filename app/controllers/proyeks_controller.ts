@@ -48,10 +48,9 @@ export default class ProyeksController {
     }
 
     async edit({ inertia, params }: HttpContext) {
-        console.log(params.id);
         const proyek = await Proyek.find(params.id)
         return inertia.render('admin/dasboard/proyek/edit', {
-            proyek: proyek
+            proyek_data: proyek
         });
     }
 

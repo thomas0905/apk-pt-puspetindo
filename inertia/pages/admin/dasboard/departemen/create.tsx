@@ -1,11 +1,12 @@
 import { useForm } from '@inertiajs/react';
 import React, { FormEventHandler, Fragment, useState } from 'react';
+import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 
-export default function Create() {
+export default function Create({ onSuccess, }: { onSuccess: () => void }) {
     const { data, setData, post, processing } = useForm({
         namaDepartemen: '',
         namaPegawai: ''
@@ -29,13 +30,8 @@ export default function Create() {
         if (isValid) {
             post('/departemen/create', {
                 onSuccess: () => {
-                    Swal.fire({
-                        title: 'Data Berhasil Ditambahkan!',
-                        icon: 'success',
-                        confirmButtonText: 'Oke',
-                    }).then(() => {
-                        window.location.href = '/departemen';
-                    });
+                    toast.success('Proyek berhasil di simpan');
+                    onSuccess()
                 }
             });
         }

@@ -1,5 +1,5 @@
-import { Head, Link, router, usePage } from '@inertiajs/react'
-import { IconBook, IconFolder, IconFolders, IconHome } from '@tabler/icons-react'
+import { Head, Link, usePage } from '@inertiajs/react'
+import { IconBook, IconFolders, IconHome } from '@tabler/icons-react'
 import { AlertDialogHeader } from '~/components/ui/alert-dialog'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
@@ -9,31 +9,10 @@ import Create from './create'
 import Ppwi from '#models/ppwi'
 import { createColumnHelper } from '@tanstack/react-table'
 import DataTable from '~/components/dataTable/dataTable'
-import Swal from 'sweetalert2'
-
+import { useState } from 'react'
 export default function Index() {
   const { data_ppwi } = usePage().props
-  // console.log(data_ppwi);
-
-  // const [open,setOpen] = useState(false)
-
-  const handleDelete = async (id: any) => {
-    const swalInstance = Swal.fire({
-      title: 'Ingin Hapus Data?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Ya!',
-      cancelButtonText: 'Tidak!',
-      allowOutsideClick: false,
-    });
-    const result = await swalInstance;
-    if (result.isConfirmed) {
-      await router.delete('/ppwi/delete/' + id);
-      Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
-    } else {
-      Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
-    }
-  };
+  const [open,setOpen] = useState(false)
 
   const columnHelper = createColumnHelper<Ppwi>();
 
@@ -91,7 +70,7 @@ export default function Index() {
               <Link href='/judul'>
                 <Button className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white">Data Judul</Button>
               </Link>
-              <Dialog>
+              <Dialog open={open} onOpenChange={(value) => setOpen(value)}>
                 <DialogTrigger asChild>
                   <Button
                     className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
@@ -105,7 +84,7 @@ export default function Index() {
                   <AlertDialogHeader>
                     <DialogTitle>Tambah PPWI</DialogTitle>
                   </AlertDialogHeader>
-                  <Create />
+                  <Create  onSuccess={() => setOpen(false)} />
                 </DialogContent>
               </Dialog>
             </div>

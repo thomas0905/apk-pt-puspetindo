@@ -5,7 +5,7 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function CreateJudul() {
+export default function CreateJudul({ onSuccess, }: { onSuccess: () => void }) {
   const { data, setData, post, processing } = useForm({
     judul: ''
   })
@@ -29,7 +29,8 @@ export default function CreateJudul() {
 if(isValid){
   post('/judul/create',{
     onSuccess: () => {
-      toast.success('Proyek berhasil di simpan')
+      toast.success('Judul berhasil di simpan')
+      onSuccess()
   },
   onError: (errorMessages) => {
       setErrors(errorMessages);
@@ -40,7 +41,6 @@ if(isValid){
   }
   return (
     <div>
-      <Toaster position="top-center" reverseOrder={false} />
       <form onSubmit={handleSubmit} className="">
         <div>
           <Label>Judul</Label>

@@ -15,7 +15,7 @@ export default function Indexjudul() {
     const { data_judul } = usePage().props;
     console.log(data_judul);
 
-    // const {open,setOpen} =useState(true)
+    const [open, setOpen] = useState(false);
 
     const handleDelete = async (id: any) => {
         const swalInstance = Swal.fire({
@@ -57,20 +57,6 @@ export default function Indexjudul() {
                     <span onClick={() => handleDelete(info.row.original.id)} className="text-red-900 cursor-pointer">
                         <IconTrash size={18} />
                     </span>
-
-                    {/* <Dialog open={modalEdit} onOpenChange={setModalEdit} >
-                        <DialogOverlay className="bg-white/10 backdrop-blur-sm" />
-
-                        <DialogTrigger asChild>
-                            <IconEdit size={18} className='cursor-pointer' onClick={() => handleEdit(info.row.original)} />
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-[425px] shadow-none">
-                            <DialogHeader>
-                                <DialogTitle>Edit Proyek</DialogTitle>
-                            </DialogHeader>
-                            <Edit proyek={selectedProyek} />
-                        </DialogContent>
-                    </Dialog> */}
                 </div>
             ),
             footer: info => info.column.id,
@@ -97,7 +83,7 @@ export default function Indexjudul() {
                             <h6 className='text-gray-600 text-lg font-bold'>Menu Judul</h6>
                         </div>
 
-                        <Dialog>
+                        <Dialog  open={open} onOpenChange={(value) => setOpen(value)}>
                             <DialogTrigger asChild>
                                 <Button
                                     className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
@@ -111,7 +97,7 @@ export default function Indexjudul() {
                                 <AlertDialogHeader>
                                     <DialogTitle>Judul</DialogTitle>
                                 </AlertDialogHeader>
-                                <CreateJudul />
+                                <CreateJudul onSuccess={() => setOpen(false)} />
                             </DialogContent>
                         </Dialog>
                     </div>

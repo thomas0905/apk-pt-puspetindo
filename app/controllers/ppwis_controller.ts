@@ -7,19 +7,7 @@ import app from '@adonisjs/core/services/app'
 export default class PpwisController {
 
 
-    async index({ inertia,auth,response }: HttpContext) {
-        const user = auth.user;
-
-        if (!user) {
-            return response.redirect('/login');
-        }
-
-
-        const karyawan = await Karyawan.query().where('user_id', user.id).first();
-        if (!karyawan || karyawan.jabatan !== 'IT Software') {
-            return inertia.render('admin/error/404');
-        }
-
+    async index({ inertia}: HttpContext) {
         const judul = await JudulPpwi.all()
         const ppwi = await Ppwi.query().preload('judulPpwi')
         const uniquePpwi = Object.values(

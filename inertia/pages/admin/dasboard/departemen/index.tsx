@@ -13,7 +13,7 @@ import Departemen from '#models/departemen';
 
 export default function Index({}) {
     const { data_departemen } = usePage().props;
-    const [modalEdit, setModalEdit] = useState(false); // State untuk modal edit
+    const [open, setOpen] = useState(false);
     const [selectedDepartemen, setSelectedDepartemen] = useState(null); // State untuk departemen yang dipilih
 
     const handleDelete = async (id) => {
@@ -56,7 +56,7 @@ export default function Index({}) {
                             <h6 className='text-gray-600 text-lg font-bold'>Menu Departemen</h6>
                         </div>
 
-                        <Dialog>
+                        <Dialog  open={open} onOpenChange={(value) => setOpen(value)}>
                             <DialogTrigger asChild>
                                 <Button
                                     className="bg-blue-600 hover:bg-blue-500 text-white btn-small gap-2 hover:text-white"
@@ -70,7 +70,7 @@ export default function Index({}) {
                                 <DialogHeader>
                                     <DialogTitle>Tambah Departemen</DialogTitle>
                                 </DialogHeader>
-                                <Create />
+                                <Create  onSuccess={() => setOpen(false)} />
                             </DialogContent>
                         </Dialog>
                     </div>
@@ -98,7 +98,7 @@ export default function Index({}) {
                                         />
 
                                         {/* Modal Edit */}
-                                        <Dialog open={modalEdit} onOpenChange={setModalEdit}>
+                                        <Dialog >
                                             <DialogContent className="sm:max-w-[425px]">
                                                 <DialogHeader>
                                                     <DialogTitle>Edit Departemen</DialogTitle>

@@ -1,4 +1,4 @@
-import { Head, useForm } from '@inertiajs/react'
+import { Head, useForm, usePage } from '@inertiajs/react'
 import React, { FormEventHandler, Fragment } from 'react'
 import Swal from 'sweetalert2'
 import { Button } from '~/components/ui/button'
@@ -6,18 +6,19 @@ import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 
-export default function Edit({proyek}) {
-    console.log(proyek)
+export default function Edit() {
+    const {data_proyek} = usePage().props
+    console.log(data_proyek)
     const { data, setData, put } = useForm({
-        namaProyek: proyek.namaProyek,
-        kodeJobOrder: proyek.kodeJobOrder,
-        status: proyek.status,
-        pemilik: proyek.pemilik
+        namaProyek: data_proyek.namaProyek,
+        kodeJobOrder: data_proyek.kodeJobOrder,
+        status: data_proyek.status,
+        pemilik: data_proyek.pemilik
     })
 
     const handleSubmit: FormEventHandler = async (e) => {
         e.preventDefault()
-        await put('/proyek/edit/' + proyek.id, {
+        await put('/proyek/edit/' + data_proyek.id, {
             onSuccess: () => {
                 Swal.fire({
                     title: 'Data Berhasil Diupdate!',

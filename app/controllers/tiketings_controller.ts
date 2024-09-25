@@ -1,6 +1,7 @@
 import  Karyawan  from '#models/karyawan';
 import type { HttpContext } from '@adonisjs/core/http'
 import Tiketing from '#models/tiketing';
+import { DateTime } from 'luxon';
 
 export default class TiketingsController {
     async index({ inertia }: HttpContext) {
@@ -24,7 +25,8 @@ export default class TiketingsController {
         }
         const tiketing = await Tiketing.query()
         return inertia.render('admin/dasboard/tiketing/laporan',{
-            data_tiketing:tiketing
+            data_tiketing:tiketing,
+            data_karyawan:karyawan
         })
     }
 
@@ -36,7 +38,7 @@ export default class TiketingsController {
         const tiketing = new Tiketing();
 
         tiketing.problem = request.input('problem');
-        tiketing.tanggal = request.input('tanggal').toISOString();;
+        tiketing.tanggal = DateTime.now();
         tiketing.keterangan = request.input('keterangan');
 
         await tiketing.save();
