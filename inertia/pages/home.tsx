@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Head, usePage } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { IconBriefcase, IconBuildingStore, IconHome, IconReceipt, IconShoppingBag, IconUser, IconUsers } from '@tabler/icons-react';
 import Admin from '~/layout/admin';
 import 'animate.css';
@@ -48,39 +48,45 @@ export default function Index() {
         </div>
         <div className="grid grid-cols-3 gap-2 mt-2">
           <div>
-            <Card className="relative border-solid border-2 border-sky-500">
-              <CardHeader>
-                <div className='flex items-center gap-2'>
-                  <IconBriefcase size={40} />
-                  <CardTitle className="text-xl">Data Proyek</CardTitle>
-                </div>
-                <CardDescription>Kamu dapat membuat Proyek secara otomatis.</CardDescription>
-              </CardHeader>
-            </Card>
+            <Link href="/proyek">
+              <Card className="relative border-solid border-2 border-sky-500">
+                <CardHeader>
+                  <div className='flex items-center gap-2'>
+                    <IconBriefcase size={40} />
+                    <CardTitle className="text-xl">Data Proyek</CardTitle>
+                  </div>
+                  <CardDescription>Kamu dapat membuat Proyek secara otomatis.</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
           </div>
 
           <div>
-            <Card className="relative border-solid border-2 border-green-500">
-              <CardHeader>
-                <div className='flex items-center gap-2'>
-                  <IconUsers size={40} />
-                  <CardTitle className="text-xl">Data Karyawan</CardTitle>
-                </div>
-                <CardDescription>Kamu dapat Melihat Data Karyawan secara otomatis.</CardDescription>
-              </CardHeader>
-            </Card>
+            <Link href="/karyawan">
+              <Card className="relative border-solid border-2 border-green-500">
+                <CardHeader>
+                  <div className='flex items-center gap-2'>
+                    <IconUsers size={40} />
+                    <CardTitle className="text-xl">Data Karyawan</CardTitle>
+                  </div>
+                  <CardDescription>Kamu dapat Melihat Data Karyawan secara otomatis.</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
           </div>
 
           <div>
-            <Card className="relative border-solid border-2 border-yellow-200">
-              <CardHeader>
-                <div className='flex items-center gap-2'>
-                  <IconReceipt size={40} />
-                  <CardTitle className="text-xl">Laporan Manhours</CardTitle>
-                </div>
-                <CardDescription>Kamu dapat melihat rekap Laporan secara otomatis.</CardDescription>
-              </CardHeader>
-            </Card>
+            <Link href="/management/laporan">
+              <Card className="relative border-solid border-2 border-yellow-200">
+                <CardHeader>
+                  <div className='flex items-center gap-2'>
+                    <IconReceipt size={40} />
+                    <CardTitle className="text-xl">Laporan Manhours</CardTitle>
+                  </div>
+                  <CardDescription>Kamu dapat melihat rekap Laporan secara otomatis.</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
           </div>
 
         </div>
