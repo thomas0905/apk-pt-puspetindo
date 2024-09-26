@@ -1,14 +1,23 @@
-import { Head, useForm, usePage } from '@inertiajs/react'
+import { Head, useForm } from '@inertiajs/react'
 import React, { FormEventHandler, Fragment } from 'react'
-import Swal from 'sweetalert2'
+import toast from 'react-hot-toast'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 
-export default function Edit({proyek}: any) {
-    console.log(proyek);
-    
+interface ProyekProps {
+    onSuccess: () => void;
+    proyek: {
+        id: number;
+        namaProyek: string;
+        kodeJobOrder: string;
+        status: string;
+        pemilik: string;
+    };
+}
+
+export default function Edit({ onSuccess, proyek }: ProyekProps) {
     const { data, setData, put } = useForm({
         namaProyek: proyek.namaProyek,
         kodeJobOrder: proyek.kodeJobOrder,
@@ -20,11 +29,8 @@ export default function Edit({proyek}: any) {
         e.preventDefault()
         await put('/proyek/edit/' + proyek.id, {
             onSuccess: () => {
-                Swal.fire({
-                    title: 'Data Berhasil Diupdate!',
-                    icon: 'success',
-                    confirmButtonText: 'Okee',
-                });
+               toast.success('Data Berhasil Diupdate!');
+               onSuccess();
             }
         });
     }
@@ -47,13 +53,13 @@ export default function Edit({proyek}: any) {
         },
         {
             value: "Tidak-Selesai",
-            label: "Tidak-Selesai",
+            label: "Tidak Selesai",
         }
     ]
 
     return (
         <Fragment>
-            <Head title='edit Proyek' />
+            <Head title='Edit Proyek' />
             <form className='mt-5' onSubmit={handleEdit}>
                 <div>
                     <div className="flex flex-col space-y-1.5">
