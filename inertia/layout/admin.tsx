@@ -19,7 +19,7 @@ export default function Admin({ children }) {
 
       <div className={`grid min-h-screen  ${isSidebarHidden ? 'grid-cols-[64px_1fr]' : 'md:grid-cols-[220px_1fr]'} lg:grid-cols-[230px_1fr]`}>
         <div className="hidden text-slate-800 md:block">
-          <div className="flex md:max-w-[220px] lg:max-w-[260px] w-[227px] fixed h-full max-h-screen flex-col gap-2">
+          <div className="flex z-10 md:max-w-[220px] lg:max-w-[260px] w-[227px] fixed h-full max-h-screen flex-col gap-2">
             <Sidebar isSidebarHidden={isSidebarHidden} toggleSidebar={toggleSidebar} />
           </div>
         </div>

@@ -5,7 +5,6 @@ export default class MenuProfilsController {
         // const user = auth.user;
         // const karyawan = await Karyawan.query().where('user_id', user.id).first();
         return inertia.render('admin/users/menuProfil', {
-            // data_user: user,
             // data_karyawan: karyawan,
         });
     }
