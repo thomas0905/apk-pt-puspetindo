@@ -19,7 +19,7 @@ export default class Tiketing extends BaseModel {
   declare keterangan: string
 
   @column()
-  declare tanggal: Date
+  declare tanggal: DateTime
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

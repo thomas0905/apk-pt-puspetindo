@@ -7,7 +7,7 @@ import app from '@adonisjs/core/services/app'
 export default class PpwisController {
 
 
-    async index({ inertia}: HttpContext) {
+    async index({ inertia }: HttpContext) {
         const judul = await JudulPpwi.all()
         const ppwi = await Ppwi.query().preload('judulPpwi')
         const uniquePpwi = Object.values(
@@ -26,37 +26,37 @@ export default class PpwisController {
     }
 
 
-async detail({ params, inertia }: HttpContext) {
-    try {
-        // Ambil data ppwi yang sesuai dengan id
-        const ppwi = await Ppwi.query()
-            .where('id', params.id)
-            .preload('judulPpwi')
-            .first();
+    async detail({ params, inertia }: HttpContext) {
+        try {
+            // Ambil data ppwi yang sesuai dengan id
+            const ppwi = await Ppwi.query()
+                .where('id', params.id)
+                .preload('judulPpwi')
+                .first();
 
-        // Jika data tidak ditemukan, tampilkan halaman error
-        if (!ppwi) {
+            // Jika data tidak ditemukan, tampilkan halaman error
+            if (!ppwi) {
+                return inertia.render('errors/not_found', { message: 'Data not found' });
+            }
+
+            // Ambil semua data terkait dengan judul yang sama
+            const relatedPpwi = await Ppwi.query()
+                .where('judulId', ppwi.judulId)  // Mengambil semua data berdasarkan judulId yang sama
+                .preload('judulPpwi');           // Memuat relasi 'judulPpwi'
+
+            // Render halaman inertia dengan data yang sudah diambil
+            return inertia.render('admin/users/ppwi/detail', {
+                data_ppwi: relatedPpwi,  // Mengirimkan semua data yang sesuai dengan judul
+            });
+
+        } catch (error) {
+
             return inertia.render('errors/not_found', { message: 'Data not found' });
         }
-
-        // Ambil semua data terkait dengan judul yang sama
-        const relatedPpwi = await Ppwi.query()
-            .where('judulId', ppwi.judulId)  // Mengambil semua data berdasarkan judulId yang sama
-            .preload('judulPpwi');           // Memuat relasi 'judulPpwi'
-
-        // Render halaman inertia dengan data yang sudah diambil
-        return inertia.render('admin/users/ppwi/detail', {
-            data_ppwi: relatedPpwi,  // Mengirimkan semua data yang sesuai dengan judul
-        });
-
-    } catch (error) {
- 
-        return inertia.render('errors/not_found', { message: 'Data not found' });
     }
-}
 
-    
-    
+
+
     public async store({ request, response }: HttpContext) {
         const ppwi = new Ppwi()
         ppwi.judulId = request.input('judulId')

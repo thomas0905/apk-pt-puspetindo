@@ -1,5 +1,5 @@
 import { useForm } from '@inertiajs/react'
-import React, { FormEventHandler, useState } from 'react'
+import React, { FormEventHandler, useState, useEffect } from 'react'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
@@ -10,20 +10,36 @@ export default function Create() {
     const { data, setData, post, processing } = useForm({
         problem: '',
         keterangan: '',
-        tanggal: ''
+        tanggal: '' // Tidak ada input, tanggal otomatis akan di-set
     });
 
     // State untuk validasi error
     const [errors, setErrors] = useState({
         problem: '',
-        keterangan: '',
-        tanggal: ''
+        keterangan: ''
     });
+
+    // Fungsi untuk mendapatkan tanggal dan waktu saat ini dalam format YYYY-MM-DD HH:MM:SS
+    const getCurrentDateTime = () => {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    };
+
+    // Set tanggal otomatis saat komponen dimuat pertama kali
+    useEffect(() => {
+        setData('tanggal', getCurrentDateTime());
+    }, []);
 
     // Validasi input
     const validate = () => {
         let valid = true;
-        let newErrors = { problem: '', keterangan: '', tanggal: '' };
+        let newErrors = { problem: '', keterangan: '' };
 
         if (!data.problem) {
             newErrors.problem = 'Problem harus diisi';
@@ -31,10 +47,6 @@ export default function Create() {
         }
         if (!data.keterangan) {
             newErrors.keterangan = 'Keterangan harus diisi';
-            valid = false;
-        }
-        if (!data.tanggal) {
-            newErrors.tanggal = 'Tanggal harus diisi';
             valid = false;
         }
 
@@ -58,7 +70,7 @@ export default function Create() {
         <div>
             <Toaster position="top-center" reverseOrder={false} />
             <form onSubmit={handleSubmit}>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 gap-2">
                     {/* Input for Problem */}
                     <div className="flex flex-col space-y-1.5 mt-3">
                         <Label>Problem:</Label>
@@ -73,18 +85,6 @@ export default function Create() {
                         {errors.problem && <span className="text-red-600 text-sm">{errors.problem}</span>}
                     </div>
 
-                    {/* Input for Tanggal */}
-                    <div className="flex flex-col space-y-1.5 mt-3">
-                        <Label>Tanggal:</Label>
-                        <Input
-                            type='date'
-                            name='tanggal'
-                            value={data.tanggal}
-                            onChange={(e) => setData('tanggal', e.target.value)}
-                            className="resize-none border p-3 shadow-none focus-visible:ring-0 focus:border-blue-600"
-                        />
-                        {errors.tanggal && <span className="text-red-600 text-sm">{errors.tanggal}</span>}
-                    </div>
                 </div>
 
                 {/* Textarea for Keterangan */}

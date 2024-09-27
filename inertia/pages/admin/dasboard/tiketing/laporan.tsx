@@ -35,7 +35,7 @@ export default function Laporan() {
                     </div>
                   ))}
                   <p>Problem: {data.problem}</p>
-                  <p className="pb-4">Keterangan: {data.keterangan}</p>
+                  <p className="pb-6">Keterangan: {data.keterangan}</p>
                   <p className="absolute bottom-2 right-3 text-end">
                     {new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' }).format(new Date(data.tanggal))}
                   </p>
