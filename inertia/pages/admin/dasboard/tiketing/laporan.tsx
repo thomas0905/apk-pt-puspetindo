@@ -14,7 +14,7 @@ export default function Laporan() {
   // Sort data by ID
   const sortedData = data_tiketing.sort((a, b) => a.id - b.id);
 
- 
+
 
   return (
     <Admin>
@@ -22,15 +22,18 @@ export default function Laporan() {
         <title>Laporan Tiketing</title>
       </Head>
       <Card className="p-5">
-      {/* {data_karyawan.map((data) => (
-        <p className="font-semibold text-md">Karyawan: {data.nama}</p>
-      ))} */}
+
         <p className="font-semibold text-md">Laporan Tiketing</p>
         <div ref={componentRef}>
           <div className="grid grid-cols-2 mt-2 gap-3">
             {sortedData.map((data) => (
               <Card key={data.id} className="rounded-sm relative">
                 <CardContent className="mt-6">
+                  {data_karyawan.map((data) => (
+                    <div key={data.id}>
+                      <p className="font-semibold text-xl text-center mb-4"> {data.nama}</p>
+                    </div>
+                  ))}
                   <p>Problem: {data.problem}</p>
                   <p className="pb-4">Keterangan: {data.keterangan}</p>
                   <p className="absolute bottom-2 right-3 text-end">
