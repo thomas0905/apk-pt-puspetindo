@@ -145,7 +145,7 @@ export default function dataTable({ data, columns }) {
 
             </div>
 
-            <Card className='mt-2 overflow-x '>
+            <Card className='mt-2 overflow-x w-[1280px]'>
                 <Table>
                     <TableHeader className='bg-slate-100'>
                         {table.getHeaderGroups().map(headerGroup => (
