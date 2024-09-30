@@ -5,6 +5,7 @@ import { Button } from '~/components/ui/button';
 import { Card, CardContent } from '~/components/ui/card';
 import Admin from '~/layout/admin';
 import ReactToPrint from 'react-to-print';
+
 export default function Laporan() {
   const { data_tiketing, data_karyawan } = usePage().props;
   console.log(data_karyawan);
@@ -14,7 +15,14 @@ export default function Laporan() {
   // Sort data by ID
   const sortedData = data_tiketing.sort((a, b) => a.id - b.id);
 
-
+  // Function to format date and time
+  const formatDate = (date) => {
+    const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const formattedDate = new Date(date).toLocaleDateString('id-ID', dateOptions);
+    const formattedTime = new Date(date).toLocaleTimeString('id-ID', timeOptions);
+    return `${formattedDate} ${formattedTime}`;
+  };
 
   return (
     <Admin>
@@ -22,22 +30,22 @@ export default function Laporan() {
         <title>Laporan Tiketing</title>
       </Head>
       <Card className="p-5">
-
         <p className="font-semibold text-md">Laporan Tiketing</p>
         <div ref={componentRef}>
           <div className="grid grid-cols-2 mt-2 gap-3">
             {sortedData.map((data) => (
               <Card key={data.id} className="rounded-sm relative">
                 <CardContent className="mt-6">
-                  {data_karyawan.map((data) => (
-                    <div key={data.id}>
-                      <p className="font-semibold text-xl text-center mb-4"> {data.nama}</p>
+                  {data_karyawan.map((karyawan) => (
+                    <div key={karyawan.id}>
+                      <p className="font-semibold text-xl text-center mb-4"> {karyawan.nama}</p>
                     </div>
                   ))}
                   <p>Problem: {data.problem}</p>
                   <p className="pb-6">Keterangan: {data.keterangan}</p>
+                  {/* Displaying formatted date and time */}
                   <p className="absolute bottom-2 right-3 text-end">
-                    {new Intl.DateTimeFormat('id-ID', { dateStyle: 'long' }).format(new Date(data.tanggal))}
+                    {formatDate(data.tanggal)}
                   </p>
                 </CardContent>
               </Card>
