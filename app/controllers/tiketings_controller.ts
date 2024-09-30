@@ -32,7 +32,7 @@ export default class TiketingsController {
         return inertia.render('admin/dasboard/tiketing/create')
     }
 
-    async store({inertia,request}:HttpContext){
+    async store({response,request}:HttpContext){
         const tiketing = new Tiketing();
 
         tiketing.problem = request.input('problem');
@@ -40,6 +40,6 @@ export default class TiketingsController {
 
         await tiketing.save();
 
-        return inertia.render('/create')
+        return response.redirect('/tiketing')
     }
 }

@@ -19,7 +19,6 @@ export default function Index() {
     'Software yang digunakan error, coba perbarui ke versi terbaru.',
     'File yang dicari hilang, mungkin ada di recycle bin atau backup terakhir.',
   ]
-
   const getRandomProblem = () => {
     const randomIndex = Math.floor(Math.random() * problems.length)
     return problems[randomIndex]
