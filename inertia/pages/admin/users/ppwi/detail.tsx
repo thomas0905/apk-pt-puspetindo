@@ -121,7 +121,7 @@ export default function Detail({ data_ppwi }: any) {
                   <p className="mt-2">{data.namaFile}</p>
                 </div>
               </CardContent>
-              <div className="absolute w-full flex justify-between mt-36 p-1">
+              <div className="absolute w-full flex justify-between mt-28 p-1">
                 {/* Icon di kiri (Checkbox untuk memilih item) */}
                 <div className="flex items-center  mx-1">
                   <Input
@@ -157,7 +157,7 @@ export default function Detail({ data_ppwi }: any) {
 
       {/* Tombol Hapus yang muncul ketika ada item yang dipilih */}
       {selectedItems.length > 0 && (
-        <div className="mt-4">
+        <div >
           <Button
             className="bg-red-600 text-white text-sm rounded hover:bg-red-700"
             onClick={handleDelete}
