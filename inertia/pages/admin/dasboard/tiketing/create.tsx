@@ -85,18 +85,18 @@ export default function Create() {
     return (
         <div>
             <Toaster position="top-center" reverseOrder={false} />
-            
+
             {/* Tampilkan animasi loading saat isLoading bernilai true */}
             {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/50">
-          <div className="flex flex-col items-center">
-            <IconLoader className="h-12 w-12 animate-spin text-white" />
-            <p className="text-white mt-2">Laporan Dikirim...</p>
-          </div>
-        </div>
-      )}
+                <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/50">
+                    <div className="flex flex-col items-center">
+                        <IconLoader className="h-12 w-12 animate-spin text-white" />
+                        <p className="text-white mt-2">Laporan Dikirim...</p>
+                    </div>
+                </div>
+            )}
             <form onSubmit={handleSubmit}>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 gap-2">
                     {/* Input for Problem */}
                     <div className="flex flex-col space-y-1.5 mt-3">
                         <Label>Problem:</Label>
@@ -112,7 +112,7 @@ export default function Create() {
                     </div>
 
                     {/* Input for Tanggal */}
-                    <div className="flex flex-col space-y-1.5 mt-3">
+                    {/* <div className="flex flex-col space-y-1.5 mt-3 hidden">
                         <Label>Tanggal:</Label>
                         <Input
                             type='datetime-local'
@@ -122,7 +122,7 @@ export default function Create() {
                             className="resize-none border p-3 shadow-none focus-visible:ring-0 focus:border-blue-600"
                         />
                         {errors.tanggal && <span className="text-red-600 text-sm">{errors.tanggal}</span>}
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Textarea for Keterangan */}

@@ -36,6 +36,7 @@ export default class TiketingsController {
         const tiketing = new Tiketing();
 
         tiketing.problem = request.input('problem');
+        tiketing.tanggal = request.input('tanggal');
         tiketing.keterangan = request.input('keterangan');
 
         await tiketing.save();
