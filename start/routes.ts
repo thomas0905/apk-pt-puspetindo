@@ -9,6 +9,7 @@ const AuthController = () => import('#controllers/auth_controller')
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 import MenuProfilsController from '#controllers/menu_profils_controller'
+import app from '@adonisjs/core/services/app'
 const TiketingsController =() => import ('#controllers/tiketings_controller')
 const PpwisController = () => import ('#controllers/ppwis_controller')
 const JudulPpwisController =() => import ('#controllers/judul_ppwis_controller')
@@ -60,6 +61,7 @@ router.group(() => {
     router.get('detail/:id' ,[PpwisController,'detail'])
     router.post('create',[PpwisController,'store'])
     router.post('delete/:id',[PpwisController,'delete'])
+    router.get('download/:file',[PpwisController,'download'])
 }).prefix('/ppwi/').use(middleware.auth())
 
 router.group(() => {

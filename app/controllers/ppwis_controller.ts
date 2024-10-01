@@ -55,6 +55,16 @@ export default class PpwisController {
         }
     }
 
+    public async download({ response, params }: HttpContext) {
+        const filePath = app.makePath(`storage/uploads/${params.file}`);
+        try {
+            return response.download(filePath);
+        } catch (error) {
+            console.error('Error saat mengunduh file:', error);
+            return response.status(404).send('File tidak ditemukan');
+        }
+    }
+    
 
 
     public async store({ request, response }: HttpContext) {
@@ -66,9 +76,9 @@ export default class PpwisController {
             size: '2mb',
             extnames: ['pdf', 'doc', 'docx'],
         });
-        await dokumen.move(app.makePath('storage/uploads'));
-        const pathFile = `/uploads/${request.input('namaFile')}`
-        ppwi.link = pathFile
+        // await dokumen.move(app.makePath('storage/uploads'));
+        // const pathFile = `/uploads/${request.input('namaFile')}`
+        // ppwi.link = pathFile
         await ppwi.save()
         return response.redirect('/ppwi')
     }
