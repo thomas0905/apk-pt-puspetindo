@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-// import './login.css';
 import {
     Card,
     CardContent,
@@ -16,8 +15,9 @@ import logoLogin from '../../../img/logo-puspetindo.png';
 import 'animate.css';
 import { Head, useForm } from '@inertiajs/react';
 import favIcon from '../../../img/logo-kecil.png'
+
 export default function Login() {
-    const { data, setData, post, processing } = useForm({
+    const { data, setData, post, processing, errors: serverErrors } = useForm({
         email: '',
         password: '',
     });
@@ -49,7 +49,12 @@ export default function Login() {
         setErrors(validationErrors);
 
         if (isValid) {
-            post('/auth/login');
+            post('/auth/login', {
+                onError: (formErrors) => {
+                    // Setel pesan error dari server jika login gagal
+                    setErrors(formErrors);
+                },
+            });
         }
     };
 
@@ -113,17 +118,17 @@ export default function Login() {
                                 </button>
                                 {errors.password && <small className="text-red-600">{errors.password}</small>}
                             </div>
-
-                            {/* <a href=""><small className='text-blue-600 outline='>Forget to Password??</small></a> */}
                         </div>
+                        {/* {serverErrors && <small className="text-red-600">Login gagal, silakan periksa email atau password Anda.</small>} */}
                     </CardContent>
                     <CardFooter>
                         <Button
                             className="w-full bg-blue-500 hover:bg-blue-400"
                             type="submit"
                             disabled={processing}
+                            onClick={handleSubmit} // Ini memastikan saat tombol diklik, form dikirim
                         >
-                            Login
+                            {processing ? 'Sedang Memproses...' : 'Login'}
                         </Button>
                     </CardFooter>
                 </form>

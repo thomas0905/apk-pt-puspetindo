@@ -1,4 +1,4 @@
-import { IconCloudDownload, IconFileTypePdf, IconHome, IconTrash } from '@tabler/icons-react';
+import { IconCloudDownload, IconFileTypePdf, IconHome } from '@tabler/icons-react';
 import { Card, CardContent } from '~/components/ui/card';
 import Admin from '~/layout/admin';
 import { Head, Link, useForm } from '@inertiajs/react';
@@ -21,11 +21,9 @@ export default function Detail({ data_ppwi }: any) {
     document.body.removeChild(link);
   };
 
-  // Fungsi untuk menghapus item
   const { delete: destroy } = useForm();
   const handleDelete = () => {
     if (confirm('Anda yakin ingin menghapus file yang dipilih?')) {
-      // Loop untuk menghapus setiap item
       Promise.all(
         selectedItems.map((id) =>
           destroy(`/ppwi/delete/${id}`, {

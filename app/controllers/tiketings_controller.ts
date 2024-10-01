@@ -17,7 +17,7 @@ export default class TiketingsController {
             return response.redirect('/login');
         }
         const karyawan = await Karyawan.query().where('user_id', user.id).first();
-        if (!karyawan || karyawan.jabatan !== 'IT Software') {
+        if (!karyawan || karyawan.jabatan !== 'IT Softwware') {
             return inertia.render('admin/error/404');
         }
         const tiketing = await Tiketing.query();

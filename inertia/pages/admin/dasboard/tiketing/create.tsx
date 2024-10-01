@@ -91,7 +91,7 @@ export default function Create() {
                 <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/50">
                     <div className="flex flex-col items-center">
                         <IconLoader className="h-12 w-12 animate-spin text-white" />
-                        <p className="text-white mt-2">Laporan Dikirim...</p>
+                        <p className="text-white mt-2">Laporan sedang Dikirim...</p>
                     </div>
                 </div>
             )}
