@@ -67,6 +67,8 @@ export default function Laporan() {
     )
   }
 
+  
+
   return (
     <Admin>
       <Head title='Laporan' />
@@ -132,7 +134,7 @@ export default function Laporan() {
                         <TableCell>{data.departemen}</TableCell>
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
                         <TableCell>{data.total_jam} jam</TableCell>
-                        <TableCell>{data.total_jam} jam</TableCell>
+                        <TableCell>{data.total_lembur} jam</TableCell>
                         <TableCell>{data.total_persentase.toFixed(1)}%</TableCell>
                         <TableCell>
                           <Button

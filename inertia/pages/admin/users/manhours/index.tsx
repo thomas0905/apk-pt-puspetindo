@@ -1,16 +1,14 @@
 import { Head, Link, router, usePage } from '@inertiajs/react';
 import { IconBriefcase, IconHome, IconTrash } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '~/components/ui/button';
-import { Card } from '~/components/ui/card';
 import Admin from '~/layout/admin';
 import DataTable from '~/components/dataTable/dataTable';
 import { createColumnHelper } from '@tanstack/react-table';
 import Swal from 'sweetalert2';
 
-export default function Index({ }) {
-  const { data_manHours, data_proyek } = usePage().props;
-
+export default function Index() {
+  const { data_manHours } = usePage().props;
 
   const columnHelper = createColumnHelper<any>();
 
@@ -32,6 +30,11 @@ export default function Index({ }) {
     }
   };
 
+  const verifikasi = [
+    { value: "Diterima", label: "Diterima" },
+    { value: "Ditolak", label: "Ditolak" }
+  ];
+
   const columns = [
     columnHelper.accessor('id', {
       header: () => 'No',
@@ -49,7 +52,6 @@ export default function Index({ }) {
         return `${namaProyek} (${kodeProyek})`;
       },
     }),
-    
     columnHelper.accessor('tanggal', {
       header: () => 'Tanggal',
       cell: info => new Date(info.getValue()).toLocaleDateString(),
@@ -61,6 +63,15 @@ export default function Index({ }) {
     columnHelper.accessor('jamLembur', {
       header: () => 'Jam Lembur',
       cell: info => `${info.getValue()} jam`,
+    }),
+    // Kolom untuk status verifikasi
+    columnHelper.accessor('verifikasi', {
+      header: () => 'Verifikasi',
+      cell: info => {
+        const status = info.getValue();
+        const statusClass = status === 'Diterima' ? 'text-green-600' : 'text-red-600';
+        return <span className={statusClass}>{status}</span>;
+      },
     }),
     columnHelper.display({
       id: 'aksi',
@@ -105,4 +116,3 @@ export default function Index({ }) {
     </Admin>
   );
 }
-
