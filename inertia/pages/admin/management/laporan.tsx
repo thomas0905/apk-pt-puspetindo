@@ -71,7 +71,7 @@ export default function Laporan() {
     <Admin>
       <Head title='Laporan' />
       <div ref={componentRef}>
-        <Card className="p-5">
+        <>
           <div className="border-b border-gray-200 pb-4">
             <div className='flex justify-center'>
               <img src={logoPuspetindo} alt="Logo Puspetindo" />
@@ -117,6 +117,7 @@ export default function Laporan() {
                   <TableHead>Departemen</TableHead>
                   <TableHead>Tanggal</TableHead>
                   <TableHead>Total</TableHead>
+                  <TableHead>Total Jam Lembur</TableHead>
                   <TableHead>Total Persentase</TableHead>
                   <TableHead>Detail</TableHead>
                 </TableRow>
@@ -130,6 +131,7 @@ export default function Laporan() {
                         <TableCell>{data.nama_karyawan}</TableCell>
                         <TableCell>{data.departemen}</TableCell>
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
+                        <TableCell>{data.total_jam} jam</TableCell>
                         <TableCell>{data.total_jam} jam</TableCell>
                         <TableCell>{data.total_persentase.toFixed(1)}%</TableCell>
                         <TableCell>
@@ -154,6 +156,7 @@ export default function Laporan() {
                                     <TableHead>Tanggal</TableHead>
                                     <TableHead>No JE</TableHead>
                                     <TableHead>Jam Kerja</TableHead>
+                                    <TableHead>Jam Lembur</TableHead>
                                     {/* <TableHead>Persentase</TableHead> */}
                                   </TableRow>
                                 </TableHeader>
@@ -166,6 +169,7 @@ export default function Laporan() {
                                       <TableCell>{formatDate(detail.tanggal)}</TableCell>
                                       <TableCell>{detail.kodeJobOrder}</TableCell>
                                       <TableCell>{detail.jam_kerja} jam</TableCell>
+                                      <TableCell>{detail.jam_lembur} jam</TableCell>                                    
                                       {/* <TableCell>{detail.total_persentase.toFixed(1)}%</TableCell> */}
                                     </TableRow>
                                   ))}
@@ -209,7 +213,7 @@ export default function Laporan() {
               pageStyle="print"
             />
           </div>
-        </Card>
+        </>
       </div>
     </Admin>
   )

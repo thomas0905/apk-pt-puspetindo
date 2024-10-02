@@ -56,7 +56,7 @@ export default function Index() {
       <Head>
         <title>PPWI</title>
       </Head>
-      <Card className="p-5">
+      <div>
         <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
             <div>
@@ -96,7 +96,7 @@ export default function Index() {
           <DataTable data={data_ppwi} columns={columns} />
         </div>
 
-      </Card>
+      </div>
     </Admin>
   )
 }

@@ -53,6 +53,7 @@ export default class LaporansController {
                         departemen: item.karyawan.departemen.namaDepartemen,
                         kodeJobOrder: item.proyek.kodeJobOrder,
                         jam_kerja: item.jam_kerja,
+                        jam_lembur: item.jam_lembur,
                         karyawan: item.karyawan,
                         total_persentase: (item.jam_kerja / 173) * 100
                     };

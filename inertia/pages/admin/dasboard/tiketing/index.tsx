@@ -45,7 +45,7 @@ export default function Index() {
       <Head>
         <title>tiketing</title>
       </Head>
-      <Card className="p-5 ">
+      <div>
         <div>
           <div className='mt-5'>
             <h1 className='text-2xl text-slate-500 font-bold'>Ada Problem apa hari ini ?
@@ -88,7 +88,7 @@ export default function Index() {
 
           </div>
         </div>
-      </Card>
+      </div>
     </Admin>
   )
 }

@@ -18,6 +18,7 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
     proyek_id: '',
     tanggal: '',
     jam_kerja: '',
+    jam_lembur: '',
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -48,6 +49,11 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
       isValid = false;
     }
 
+    if (!data.jam_lembur.trim()) {
+      validationErrors.jam_lembur = 'Jam lembur harus diisi';
+      isValid = false;
+    }
+
     setErrors(validationErrors);
 
     if (isValid) {
@@ -68,7 +74,7 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
       <Head>
         <title>create</title>
       </Head>
-      <Card className='p-5'>
+      <div>
         <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
             <div>
@@ -160,6 +166,21 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
               )}
             </div>
 
+            <div className="flex flex-col space-y-1.5">
+              <Label>Jam Lembur:</Label>
+              <Input
+                type="text"
+                placeholder="Jam Lembur"
+                name="jam_lembur"
+                value={data.jam_lembur}
+                onChange={(e) => setData('jam_lembur', e.target.value)}
+                className="w-full"
+              />
+              {errors.jam_kerja && (
+                <small className="text-red-600">{errors.jam_kerja}</small>
+              )}
+            </div>
+
           </div>
 
           {/* Button Simpan */}
@@ -172,7 +193,7 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
           </Button>
         </form>
 
-      </Card>
+      </div>
     </Admin>
   );
 }

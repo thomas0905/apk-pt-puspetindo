@@ -67,7 +67,7 @@ export default function Indexjudul() {
             <Head>
                 <title>judul</title>
             </Head>
-            <Card className="p-5">
+            <div>
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
                         <div >
@@ -104,7 +104,7 @@ export default function Indexjudul() {
                 </div>
 
                 <DataTable data={data_judul} columns={columns} />
-            </Card>
+            </div>
         </Admin>
     )
 }

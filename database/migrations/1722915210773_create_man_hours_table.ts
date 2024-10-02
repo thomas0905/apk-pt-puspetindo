@@ -10,6 +10,7 @@ export default class extends BaseSchema {
       table.integer('proyek_id').unsigned().references('proyeks.id')
       table.date('tanggal')
       table.integer('jam_kerja')
+      table.integer('jam_lembur')
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })

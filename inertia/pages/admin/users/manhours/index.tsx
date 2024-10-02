@@ -42,15 +42,24 @@ export default function Index({ }) {
       cell: info => info.row.original?.karyawan?.nama || 'data tidak ada'
     }),
     columnHelper.accessor('proyek.namaProyek', {
-      header: () => 'Nama Proyek',
-      cell: info => info.row.original?.proyek?.namaProyek || 'data tidak ada',
+      header: () => 'Nama Proyek (Kode Proyek)',
+      cell: info => {
+        const namaProyek = info.row.original?.proyek?.namaProyek || 'data tidak ada';
+        const kodeProyek = info.row.original?.proyek?.kodeJobOrder || 'kode tidak ada';
+        return `${namaProyek} (${kodeProyek})`;
+      },
     }),
+    
     columnHelper.accessor('tanggal', {
       header: () => 'Tanggal',
       cell: info => new Date(info.getValue()).toLocaleDateString(),
     }),
     columnHelper.accessor('jamKerja', {
       header: () => 'Jam Kerja',
+      cell: info => `${info.getValue()} jam`,
+    }),
+    columnHelper.accessor('jamLembur', {
+      header: () => 'Jam Lembur',
       cell: info => `${info.getValue()} jam`,
     }),
     columnHelper.display({
@@ -69,7 +78,7 @@ export default function Index({ }) {
   return (
     <Admin>
       <Head title='Man Hours' />
-      <Card className="p-5 ">
+      <div>
         <div className="border-b border-gray-200 pb-4">
           <div className='flex justify-between'>
             <div>
@@ -92,7 +101,7 @@ export default function Index({ }) {
           </div>
         </div>
         <DataTable data={data_manHours} columns={columns} />
-      </Card>
+      </div>
     </Admin>
   );
 }

@@ -13,7 +13,7 @@ export default function MenuProfil() {
   return (
     <Admin>
       <Head title='menu-profil' />
-      <Card className='p-2 bg-gray-100 shadow-md'>
+      <div className=' bg-gray-100 shadow-md'>
         <Card className='relative bg-blue-600 p-4 h-40 sm:h-64'>
           <span className='absolute top-2 right-2'>
             <IconEdit className='text-white cursor-pointer' />
@@ -44,7 +44,7 @@ export default function MenuProfil() {
             Halo, nama saya Muhammad Rois. Saya seorang Junior Front-End Programmer dengan keahlian dalam pengembangan menggunakan bahasa pemrograman seperti JavaScript, Bootstrap, dan ReactJS. Saya juga memiliki pengalaman dalam merancang dan mengimplementasikan basis data, serta mengintegrasikan sistem dengan layanan pihak ketiga seperti API dan platform lainnya.
           </p>
         </div>
-      </Card>
+      </div>
     </Admin>
   )
 }

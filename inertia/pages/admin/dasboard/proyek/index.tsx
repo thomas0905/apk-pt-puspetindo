@@ -95,7 +95,7 @@ export default function IndexProyek({}) {
     return (
         <Admin>
             <Head title="proyek" />
-            <Card className="p-5">
+            <div>
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
                         <div>
@@ -142,7 +142,7 @@ export default function IndexProyek({}) {
                         </DownloadTableExcel>
                     </div>
                 </div>
-            </Card>
+            </div>
 
             <Dialog open={modalEdit} onOpenChange={setModalEdit} >
                 <DialogOverlay className="bg-white/10 backdrop-blur-sm" />

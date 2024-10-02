@@ -4,6 +4,7 @@ import Navbar from '~/components/navbar'
 import Sidebar from '~/components/sidebar'
 import favIcon from '../img/logo-kecil.png'
 import toast, { Toaster } from 'react-hot-toast';
+import { Card } from '~/components/ui/card'
 
 export default function Admin({ children }) {
   const [isSidebarHidden, setSidebarHidden] = useState(false);
@@ -26,7 +27,9 @@ export default function Admin({ children }) {
         <div className="flex flex-col">
           <Navbar isSidebarHidden={isSidebarHidden} />
           <main className={`flex flex-1 bg-gray-200 overflow-x-hidden flex-col gap-4 p-4  lg:gap-6 lg:p-4 w-full transition-all duration-300 ${isSidebarHidden ? 'pl-8' : 'pl-64 lg:pl-22'}`}>
-            {children}
+    <Card className="p-5">
+    {children}
+    </Card>
           </main>
         </div>
       </div>

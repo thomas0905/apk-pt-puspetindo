@@ -29,7 +29,7 @@ export default function Laporan() {
       <Head>
         <title>Laporan Tiketing</title>
       </Head>
-      <Card className="p-5">
+      <div>
         <p className="font-semibold text-md">Laporan Tiketing</p>
         <div ref={componentRef}>
           <div className="grid grid-cols-2 mt-2 gap-3">
@@ -64,7 +64,7 @@ export default function Laporan() {
           documentTitle="Laporan Tiketing"
           pageStyle="@media print { body { -webkit-print-color-adjust: exact; } }" // Optional: adjust print styling
         />
-      </Card>
+      </div>
     </Admin>
   );
 }

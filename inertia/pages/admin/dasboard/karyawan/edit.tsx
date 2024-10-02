@@ -71,7 +71,7 @@ export default function EditPengguna() {
     return (
         <Admin>
             <Head title="Edit Pengguna" />
-            <Card className="p-5">
+            <div>
                 <div className="border-b border-gray-200 pb-4">
                     <div className="flex justify-between">
                         <div>
@@ -284,7 +284,7 @@ export default function EditPengguna() {
 
                     <Button type="submit" className='bg-blue-600 hover:bg-blue-500'>Update</Button>
                 </form>
-            </Card>
+            </div>
         </Admin>
     );
 }

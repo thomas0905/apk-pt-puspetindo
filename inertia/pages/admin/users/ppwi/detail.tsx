@@ -1,4 +1,4 @@
-import { IconCloudDownload, IconFileTypePdf, IconHome } from '@tabler/icons-react';
+import { IconCloudDownload, IconFileTypePdf, IconHome, IconTrash } from '@tabler/icons-react';
 import { Card, CardContent } from '~/components/ui/card';
 import Admin from '~/layout/admin';
 import { Head, Link, useForm } from '@inertiajs/react';
@@ -7,15 +7,29 @@ import React, { useState } from 'react';
 import { Button } from '~/components/ui/button';
 
 export default function Detail({ data_ppwi }: any) {
-  console.log(
-    data_ppwi
-  );
-  
+  console.log(data_ppwi);
+
   const [searchQuery, setSearchQuery] = useState(''); // State untuk pencarian
 
+  // State untuk menyimpan item yang tersaring
   const filteredPpwi = data_ppwi.filter((ppwi: any) =>
     ppwi.namaFile.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const { delete: destroy } = useForm();
+
+  // Fungsi untuk menghapus file
+  const handleDelete = (namaFile: number) => {
+    if (confirm('Apakah Anda yakin ingin menghapus file ini?')) {
+      // Mengirim permintaan delete menggunakan Inertia.js
+      destroy(`/ppwi/delete/${namaFile}`, {
+        onSuccess: () => {
+          // Aksi setelah berhasil menghapus, bisa berupa reload data atau notifikasi
+          alert('File berhasil dihapus!');
+        },
+      });
+    }
+  };
 
   return (
     <Admin>
@@ -45,7 +59,7 @@ export default function Detail({ data_ppwi }: any) {
       </div>
 
       {/* Tombol Pilih Semua */}
-      <div className="-mt-8">
+      <div className="-mt-2">
         <label className="flex items-center space-x-2">
           <Input
             className="text-blue-600 hover:bg-gray-100 duration-300 border rounded-sm w-4 border-slate-200 hover:text-blue-800 cursor-pointer"
@@ -55,7 +69,7 @@ export default function Detail({ data_ppwi }: any) {
         </label>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 -mt-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {filteredPpwi.length > 0 ? (
           filteredPpwi.map((data: any) => (
             <Card
@@ -75,15 +89,20 @@ export default function Detail({ data_ppwi }: any) {
                 </div>
 
                 {/* Icon di kanan (Download Icon dengan link dinamis sesuai ID) */}
-                <div className="flex items-center">
+                <div className="flex items-center space-x-2">
                   <a href={`/ppwi/download/${data.namaFile}`}>
                     <IconCloudDownload
                       size={24}
                       className="text-blue-600 hover:bg-gray-100 duration-300 border rounded-sm w-8 border-slate-200 hover:text-blue-800 cursor-pointer"
                     />
                   </a>
+                  {/* Tombol Delete */}
+                  <IconTrash
+                    size={24}
+                    className="text-red-600 hover:bg-gray-100 duration-300 border rounded-sm w-8 border-slate-200 hover:text-red-800 cursor-pointer"
+                    onClick={() => handleDelete(data.namaFile)}
+                  />
                 </div>
-
               </div>
             </Card>
           ))

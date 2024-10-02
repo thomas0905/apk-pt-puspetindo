@@ -199,7 +199,7 @@ export default function Create() {
         <Admin>
             <Head title='add-karyawan' />
 
-            <Card className="p-5">
+            <div>
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between'>
                         <div>
@@ -460,7 +460,7 @@ export default function Create() {
 
                     <Button className='bg-blue-600 hover:bg-blue-500' type="submit" disabled={processing}>Simpan</Button>
                 </form>
-            </Card>
+            </div>
         </Admin>
     )
 }

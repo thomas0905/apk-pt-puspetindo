@@ -85,7 +85,7 @@ export default class PpwisController {
 
 
     async delete({ params, response }: HttpContext) {
-        const ppwi = await Ppwi.findOrFail(params.id)
+        const ppwi = await Ppwi.findOrFail(params.namaFile)
         await ppwi.delete()
         return response.redirect('/ppwi')
     }
