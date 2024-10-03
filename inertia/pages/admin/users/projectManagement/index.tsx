@@ -63,7 +63,7 @@ export default function Index() {
       </Head>
       <div>
         <h6 className="text-gray-600 text-center text-3xl font-bold">
-          Project Management (PM)
+          Kost Control
         </h6>
 
         <div className="mt-3">

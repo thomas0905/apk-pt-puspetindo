@@ -28,25 +28,19 @@ export default class PpwisController {
 
     async detail({ params, inertia }: HttpContext) {
         try {
-            // Ambil data ppwi yang sesuai dengan id
             const ppwi = await Ppwi.query()
                 .where('id', params.id)
                 .preload('judulPpwi')
                 .first();
-
-            // Jika data tidak ditemukan, tampilkan halaman error
             if (!ppwi) {
                 return inertia.render('errors/not_found', { message: 'Data not found' });
             }
-
-            // Ambil semua data terkait dengan judul yang sama
             const relatedPpwi = await Ppwi.query()
-                .where('judulId', ppwi.judulId)  // Mengambil semua data berdasarkan judulId yang sama
-                .preload('judulPpwi');           // Memuat relasi 'judulPpwi'
+                .where('judulId', ppwi.judulId) 
+                .preload('judulPpwi');
 
-            // Render halaman inertia dengan data yang sudah diambil
             return inertia.render('admin/users/ppwi/detail', {
-                data_ppwi: relatedPpwi,  // Mengirimkan semua data yang sesuai dengan judul
+                data_ppwi: relatedPpwi,
             });
 
         } catch (error) {
@@ -76,9 +70,6 @@ export default class PpwisController {
             size: '2mb',
             extnames: ['pdf', 'doc', 'docx'],
         });
-        // await dokumen.move(app.makePath('storage/uploads'));
-        // const pathFile = `/uploads/${request.input('namaFile')}`
-        // ppwi.link = pathFile
         await ppwi.save()
         return response.redirect('/ppwi')
     }
