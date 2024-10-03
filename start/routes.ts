@@ -58,6 +58,7 @@ router.group(() => {
 
 router.group(() => {
     router.get('/', [ProjectManagementsController, 'index'])
+    router.put('/manhours/verify/:id', [ProjectManagementsController,'verify'])
 }).prefix('/project/').use(middleware.auth())
 
 router.group(() => {

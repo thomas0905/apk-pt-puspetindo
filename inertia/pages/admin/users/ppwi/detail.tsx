@@ -5,29 +5,50 @@ import { Head, Link, useForm } from '@inertiajs/react';
 import { Input } from '~/components/ui/input';
 import React, { useState } from 'react';
 import { Button } from '~/components/ui/button';
+import Swal from 'sweetalert2';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export default function Detail({ data_ppwi }: any) {
   console.log(data_ppwi);
 
-  const [searchQuery, setSearchQuery] = useState(''); // State untuk pencarian
+  const [searchQuery, setSearchQuery] = useState(''); 
+  const [open, setOpen] = useState(false); 
+  const [fileToDelete, setFileToDelete] = useState<number | null>(null);
 
-  // State untuk menyimpan item yang tersaring
   const filteredPpwi = data_ppwi.filter((ppwi: any) =>
     ppwi.namaFile.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const { delete: destroy } = useForm();
 
-  // Fungsi untuk menghapus file
   const handleDelete = (namaFile: number) => {
-    if (confirm('Apakah Anda yakin ingin menghapus file ini?')) {
-      // Mengirim permintaan delete menggunakan Inertia.js
-      destroy(`/ppwi/delete/${namaFile}`, {
+    setFileToDelete(namaFile); 
+    setOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    if (fileToDelete !== null) {
+      destroy(`/ppwi/delete/${fileToDelete}`, {
         onSuccess: () => {
-          // Aksi setelah berhasil menghapus, bisa berupa reload data atau notifikasi
-          alert('File berhasil dihapus!');
+          Swal.fire(
+            'Deleted!',
+            'File berhasil dihapus!',
+            'success'
+          );
         },
       });
+      setOpen(false); // Tutup AlertDialog setelah konfirmasi
+      setFileToDelete(null); // Reset fileToDelete
     }
   };
 
@@ -74,7 +95,7 @@ export default function Detail({ data_ppwi }: any) {
           filteredPpwi.map((data: any) => (
             <Card
               key={data.id}
-              className="relative rounded-sm p-5 flex items-center justify-center"
+              className="relative rounded-sm p-6 flex items-center justify-center"
             >
               <CardContent className="p-3 flex flex-col items-center justify-center relative">
                 <div className="flex flex-col items-center justify-center">
@@ -82,11 +103,11 @@ export default function Detail({ data_ppwi }: any) {
                   <p className="mt-2">{data.namaFile}</p>
                 </div>
               </CardContent>
-              <div className="absolute w-full flex justify-between mt-28 p-1">
+              <div className="absolute w-full flex justify-end mt-28 p-2">
                 {/* Icon di kiri (Checkbox untuk memilih item) */}
-                <div className="flex items-center  mx-1">
+                {/* <div className="flex items-center mx-1">
                   <Input className="cursor-pointer w-4" type="checkbox" />
-                </div>
+                </div> */}
 
                 {/* Icon di kanan (Download Icon dengan link dinamis sesuai ID) */}
                 <div className="flex items-center space-x-2">
@@ -112,6 +133,25 @@ export default function Detail({ data_ppwi }: any) {
           </div>
         )}
       </div>
+
+      {/* AlertDialog untuk konfirmasi penghapusan */}
+      <AlertDialog open={open} onOpenChange={setOpen} >
+        <AlertDialogTrigger asChild>
+          <Button style={{ display: 'none' }}>Trigger</Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent className='h-44'>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Apakah anda yakin ingin menghapus file ini?</AlertDialogTitle>
+            <AlertDialogDescription>
+              File yang di hapus tidak dapat dikembalikan
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setOpen(false)} >Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleConfirmDelete} className='bg-blue-600 hover:bg-blue-500 text-white'>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Admin>
   );
 }

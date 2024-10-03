@@ -1,5 +1,5 @@
+import { useState } from 'react';
 import { Head, Link, usePage, router } from '@inertiajs/react';
-import React, { useState } from 'react';
 import Admin from '~/layout/admin';
 import {
   Table,
@@ -43,6 +43,18 @@ export default function Index() {
     router.get('/project', params);
   };
 
+  // Fungsi untuk handle perubahan checkbox
+  const handleVerificationChange = (id, isChecked) => {
+    // Kirim request PUT ke backend untuk memperbarui status verifikasi
+    router.put(`/manhours/verify/${id}`, { verifikasi: isChecked }, {
+      onSuccess: () => {
+        console.log('Verifikasi berhasil diperbarui');
+      },
+      onError: (error) => {
+        console.error('Error updating verification', error);
+      }
+    });
+  };
 
   return (
     <Admin>
@@ -121,7 +133,12 @@ export default function Index() {
                       <TableCell>{data.proyek.kodeJobOrder}</TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end mx-6">
-                          <Input type="checkbox" className='w-5 h-5' />
+                          <Input 
+                            type="checkbox" 
+                            className='w-4 h-4' 
+                            defaultChecked={data.verifikasi} 
+                            onChange={(e) => handleVerificationChange(data.id, e.target.checked)} 
+                          />
                         </div>
                       </TableCell>
                     </TableRow>

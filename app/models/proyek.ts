@@ -7,10 +7,7 @@ export default class Proyek extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  @belongsTo(() => ManHour,{
-    localKey:'id'
-  })
-  declare manHour: BelongsTo<typeof ManHour>
+ lapor
 
   @column()
   declare namaProyek: string

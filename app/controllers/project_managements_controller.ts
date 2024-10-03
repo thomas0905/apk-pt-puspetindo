@@ -73,4 +73,23 @@ export default class ProjectManagementsController {
             data_manhours: manhour,
         });
     }
+
+    public async verify({ params, request, response }: HttpContext) {
+        try {
+          const manhour = await ManHour.findOrFail(params.id)
+          const verifikasi = request.input('verifikasi')
+          manhour.verifikasi = verifikasi
+          
+          await manhour.save()
+          return response.json({
+            message: 'Status verifikasi berhasil diperbarui',
+            manhour,
+          })
+        } catch (error) {
+          return response.status(500).json({
+            message: 'Gagal memperbarui status verifikasi',
+            error: error.message,
+          })
+        }
+      }
 }
