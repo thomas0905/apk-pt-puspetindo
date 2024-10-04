@@ -28,7 +28,11 @@ export default class LaporansController {
                 .preload('karyawan', (Karyawan) => {
                     Karyawan.preload('departemen');
                 })
-                .preload('proyek')
+                .if(request.input('kodeJobOrder') != null, (query) => {
+                    query.whereHas('proyek', (Proyek) => {
+                        Proyek.where('kode_job_order', request.input('kodeJobOrder') || '');
+                    })
+                })
                 .if(request.input('departemen') !== null, (query) => {
                     query.whereHas('karyawan', (karyawanQuery) => {
                         karyawanQuery.where('departemen_id', request.input('departemen') || '');
@@ -47,7 +51,8 @@ export default class LaporansController {
             let reports = [];
 
             man_hours.forEach(karyawan => {
-                let laporan = all_man_hours.filter(item => item.karyawan_id === karyawan.karyawan_id).map(item => {
+                let laporan = all_man_hours.filter(item => item.karyawan_id === karyawan.karyawan_id && 
+                    (request.input('kodeJobOrder') == null || item.proyek.kodeJobOrder === request.input('kodeJobOrder'))).map(item => {
                     return {
                         proyek: item.proyek.namaProyek,
                         tanggal: item.tanggal,
@@ -65,6 +70,8 @@ export default class LaporansController {
                 }, 0);
 
 
+
+
                 reports.push({
                     id: karyawan.id,
                     nama_karyawan: karyawan.karyawan.nama,
@@ -80,7 +87,6 @@ export default class LaporansController {
 
 
         } else {
-            
             man_hours = await ManHour.query()
                 .preload('karyawan', (Karyawan) => {
                     Karyawan.preload('departemen');

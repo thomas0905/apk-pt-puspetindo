@@ -31,6 +31,7 @@ export default function Laporan() {
   const tableRef = useRef(null);
   const [departemen,setDepartemen] = useState('');
   const [proyek,setProyek] = useState('');
+  const [kodeJobOrder, setKodeJobOrder] = useState('');
 
   const karyawanList = Array.isArray(data_karyawan) ? data_karyawan : [];
   console.log(data_karyawan);
@@ -45,7 +46,7 @@ export default function Laporan() {
   }
   const formatDate = (date) => {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' }
-    return new Date(date).toLocaleDateString('id-ID', options)
+    return new Date(date).toLocaleDateString('id-ID', options).toString(date)
   }
   const handleFilter = () => {
     const params = {};
@@ -60,6 +61,10 @@ export default function Laporan() {
   
     if (departemen) {
       params.departemen = departemen;
+    }
+
+    if(kodeJobOrder){
+      params.kodeJobOrder = kodeJobOrder;
     }
   
     router.get('/management/laporan', params);
@@ -113,7 +118,7 @@ export default function Laporan() {
                 </Select>
               </div>
               <div className="w-75">
-                <Select value={proyek} onValueChange={(value) => setProyek(value)}>
+                <Select value={kodeJobOrder} onValueChange={(value) => setKodeJobOrder(value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Pilih Kode Proyek" />
                   </SelectTrigger>
