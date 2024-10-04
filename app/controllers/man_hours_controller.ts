@@ -35,6 +35,7 @@ export default class ManHoursController {
         manhours.tanggal = request.input('tanggal')
         manhours.jam_kerja = request.input('jam_kerja')
         manhours.jam_lembur = request.input('jam_lembur')
+        manhours.verifikasi = request.input('verifikasi')
 
         await manhours.save()
 
@@ -49,22 +50,22 @@ export default class ManHoursController {
         return response.redirect('/manhours')
     }
 
-    async edit({ inertia, params }: HttpContext) {
-        console.log(params.id);
-        const manhours = await ManHour.query().preload('karyawan').find(params.id)
-        return inertia.render('admin/users/manhours/edit', {
-            manhours: manhours
-        });
-    }
+    // async edit({ inertia, params }: HttpContext) {
+    //     console.log(params.id);
+    //     const manhours = await ManHour.query().preload('karyawan').find(params.id)
+    //     return inertia.render('admin/users/manhours/edit', {
+    //         manhours: manhours
+    //     });
+    // }
 
-    async update({ request, params, response }: HttpContext) {
-        const manhours = await ManHour.findByOrFail(params.id)
-        manhours.karyawan_id = request.input('karyawan_id')
-        manhours.proyek_id = request.input('proyek_id')
-        manhours.jam_kerja = request.input('jam_kerja')
-        manhours.jam_lembur = request.input('jam_lembur')    
-        manhours.save()
-        return response.redirect('/manhours')
-    }
+    // async update({ request, params, response }: HttpContext) {
+    //     const manhours = await ManHour.findByOrFail(params.id)
+    //     manhours.karyawan_id = request.input('karyawan_id')
+    //     manhours.proyek_id = request.input('proyek_id')
+    //     manhours.jam_kerja = request.input('jam_kerja')
+    //     manhours.jam_lembur = request.input('jam_lembur')    
+    //     manhours.save()
+    //     return response.redirect('/manhours')
+    // }
 
 }

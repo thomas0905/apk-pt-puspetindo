@@ -67,7 +67,20 @@ export default function Create({ onSuccess, }: { onSuccess: () => void }) {
             <Head title='Tambah Proyek' />
             <form onSubmit={handleSubmit}>
                 <div className="gap-4 py-4">
-                    <div className="flex flex-col space-y-1.5">
+
+                <div className="flex flex-col space-y-1.5 ">
+                        <Label htmlFor="kodeJobOrder">Kode Proyek:</Label>
+                        <Input
+                            className='focus-visible:ring-0 focus:border-blue-600'
+                            id="kodeJobOrder"
+                            placeholder="Masukkan Kode"
+                            value={data.kodeJobOrder}
+                            onChange={(e) => setData('kodeJobOrder', e.target.value)}
+                        />
+                        {errors.kodeJobOrder && <small className="text-red-600">{errors.kodeJobOrder}</small>}
+                    </div>
+
+                    <div className="flex flex-col space-y-1.5 mt-3">
                         <Label htmlFor="namaProyek">Nama Proyek:</Label>
                         <Input
                             className='focus-visible:ring-0 focus:border-blue-600'
@@ -79,17 +92,7 @@ export default function Create({ onSuccess, }: { onSuccess: () => void }) {
                         {errors.namaProyek && <small className="text-red-600">{errors.namaProyek}</small>}
                     </div>
 
-                    <div className="flex flex-col space-y-1.5 mt-3">
-                        <Label htmlFor="kodeJobOrder">Kode Job Order:</Label>
-                        <Input
-                            className='focus-visible:ring-0 focus:border-blue-600'
-                            id="kodeJobOrder"
-                            placeholder="Masukkan Kode"
-                            value={data.kodeJobOrder}
-                            onChange={(e) => setData('kodeJobOrder', e.target.value)}
-                        />
-                        {errors.kodeJobOrder && <small className="text-red-600">{errors.kodeJobOrder}</small>}
-                    </div>
+               
 
                     <div className="flex flex-col space-y-1.5 mt-3">
                         <Label htmlFor="status">Status:</Label>

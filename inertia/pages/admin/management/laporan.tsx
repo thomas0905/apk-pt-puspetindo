@@ -20,8 +20,8 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 
 export default function Laporan() {
-  const { data_manhours,data_karyawan } = usePage().props
-  console.log(data_manhours);
+  const { data_manhours,data_karyawan,data_proyek } = usePage().props
+  console.log(data_proyek);
 
   const componentRef = useRef(null)
   const [startDate, setStartDate] = useState('')
@@ -30,8 +30,11 @@ export default function Laporan() {
   const [expandedRows, setExpandedRows] = useState([])
   const tableRef = useRef(null);
   const [departemen,setDepartemen] = useState('');
+  const [proyek,setProyek] = useState('');
 
   const karyawanList = Array.isArray(data_karyawan) ? data_karyawan : [];
+  console.log(data_karyawan);
+  
 
   const handlePrint = () => {
     Swal.fire({
@@ -109,6 +112,20 @@ export default function Laporan() {
                   </SelectContent>
                 </Select>
               </div>
+              <div className="w-75">
+                <Select value={proyek} onValueChange={(value) => setProyek(value)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Pilih Kode Proyek" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {data_proyek.map((data,index) => (
+                      <SelectItem key={index} value={data.kodeJobOrder}>
+                        {data.kodeJobOrder}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
               <Button className='bg-blue-600 text-white hover:bg-blue-500 text-xs py-1.5 rounded-sm px-3' onClick={handleFilter}>Pilih</Button>
             </div>
             <Table className='mt-2 bg-slate-50' ref={tableRef}>
@@ -135,6 +152,7 @@ export default function Laporan() {
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
                         <TableCell>{data.total_jam} jam</TableCell>
                         <TableCell>{data.total_lembur} jam</TableCell>
+                        
                         <TableCell>{data.total_persentase.toFixed(1)}%</TableCell>
                         <TableCell>
                           <Button

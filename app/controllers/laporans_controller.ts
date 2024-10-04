@@ -1,6 +1,7 @@
 import Departeman from '#models/departemen';
 import Karyawan from '#models/karyawan';
 import ManHour from '#models/man_hour';
+import Proyek from '#models/proyek';
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class LaporansController {
@@ -140,9 +141,11 @@ export default class LaporansController {
         }
 
         const departemen = await Karyawan.query().preload('departemen').distinct('departemen_id')
+        const proyek = await Proyek.query().distinct('kode_job_order')
         return inertia.render('admin/management/laporan', {
             data_manhours: man_hours,
-            data_karyawan:departemen
+            data_karyawan:departemen,
+            data_proyek:proyek
         });
     }
 }

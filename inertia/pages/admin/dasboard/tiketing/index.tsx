@@ -61,7 +61,7 @@ export default function Index() {
           </div>
 
           <div className='mt-5'>
-            <p className='font-semibold'>Histori laporan</p>
+            <p className='font-semibold'>Histori Help Desk</p>
             <Card className="mt-3">
               <Table className="container">
                 {/* Header Tabel */}

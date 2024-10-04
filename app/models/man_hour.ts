@@ -36,6 +36,10 @@ export default class ManHour extends BaseModel {
   @column()
   declare jam_lembur: string
 
+
+  @column()
+  declare verifikasi: string
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

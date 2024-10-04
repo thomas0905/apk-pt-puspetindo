@@ -49,10 +49,6 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
       isValid = false;
     }
 
-    if (!data.jam_lembur.trim()) {
-      validationErrors.jam_lembur = 'Jam lembur harus diisi';
-      isValid = false;
-    }
 
     setErrors(validationErrors);
 
@@ -94,25 +90,6 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
         </div>
         <form onSubmit={handleSubmit} className="mt-5">
           <div className="grid grid-cols-2 gap-4">
-            {/* Pilih Karyawan */}
-            <div className="flex flex-col space-y-1.5">
-              <Label>Pilih Karyawan:</Label>
-              <Select onValueChange={(value) => setData('karyawan_id', value)}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Pilih Karyawan" />
-                </SelectTrigger>
-                <SelectContent>
-                  {data_karyawan.map((data) => (
-                    <SelectItem key={data.id} value={data.id.toString()}>
-                      {data.nama}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.karyawan_id && (
-                <small className="text-red-600">{errors.karyawan_id}</small>
-              )}
-            </div>
 
             {/* Pilih Proyek */}
             <div className="flex flex-col space-y-1.5">
@@ -134,6 +111,28 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
                 <small className="text-red-600">{errors.proyek_id}</small>
               )}
             </div>
+
+            {/* Pilih Karyawan */}
+            <div className="flex flex-col space-y-1.5">
+              <Label>Pilih Karyawan:</Label>
+              <Select onValueChange={(value) => setData('karyawan_id', value)}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Pilih Karyawan" />
+                </SelectTrigger>
+                <SelectContent>
+                  {data_karyawan.map((data) => (
+                    <SelectItem key={data.id} value={data.id.toString()}>
+                      {data.nama}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.karyawan_id && (
+                <small className="text-red-600">{errors.karyawan_id}</small>
+              )}
+            </div>
+
+
 
             {/* Tanggal */}
             <div className="flex flex-col space-y-1.5">
@@ -176,9 +175,6 @@ export default function Create({ onSuccess }: { onSuccess: () => void }) {
                 onChange={(e) => setData('jam_lembur', e.target.value)}
                 className="w-full"
               />
-              {errors.jam_kerja && (
-                <small className="text-red-600">{errors.jam_kerja}</small>
-              )}
             </div>
 
           </div>

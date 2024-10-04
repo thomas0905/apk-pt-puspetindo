@@ -11,6 +11,7 @@ export default class extends BaseSchema {
       table.date('tanggal')
       table.integer('jam_kerja')
       table.integer('jam_lembur')
+      table.string('verifikasi')
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })

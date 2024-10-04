@@ -51,13 +51,13 @@ export default function IndexProyek({}) {
             cell: info => info.row.index + 1,
             footer: info => info.column.id,
         }),
-        columnHelper.accessor('namaProyek', {
-            header: () => 'Nama Proyek',
+        columnHelper.accessor('kodeJobOrder', {
+            header: () => 'Kode Proyek',
             cell: info => info.renderValue(),
             footer: info => info.column.id,
         }),
-        columnHelper.accessor('kodeJobOrder', {
-            header: () => 'Kode Job Order',
+        columnHelper.accessor('namaProyek', {
+            header: () => 'Nama Proyek',
             cell: info => info.renderValue(),
             footer: info => info.column.id,
         }),

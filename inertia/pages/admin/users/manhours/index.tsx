@@ -6,6 +6,8 @@ import Admin from '~/layout/admin';
 import DataTable from '~/components/dataTable/dataTable';
 import { createColumnHelper } from '@tanstack/react-table';
 import Swal from 'sweetalert2';
+import { Input } from '~/components/ui/input';
+import { Select, SelectContent, SelectTrigger, SelectValue } from '~/components/ui/select';
 
 export default function Index() {
   const { data_manHours } = usePage().props;
@@ -40,10 +42,7 @@ export default function Index() {
       header: () => 'No',
       cell: info => info.row.index + 1,
     }),
-    columnHelper.accessor('karyawan.nama', {
-      header: () => 'Nama Karyawan',
-      cell: info => info.row.original?.karyawan?.nama || 'data tidak ada'
-    }),
+
     columnHelper.accessor('proyek.namaProyek', {
       header: () => 'Nama Proyek (Kode Proyek)',
       cell: info => {
@@ -52,6 +51,11 @@ export default function Index() {
         return `${namaProyek} (${kodeProyek})`;
       },
     }),
+    columnHelper.accessor('karyawan.nama', {
+      header: () => 'Nama Karyawan',
+      cell: info => info.row.original?.karyawan?.nama || 'data tidak ada'
+    }),
+ 
     columnHelper.accessor('tanggal', {
       header: () => 'Tanggal',
       cell: info => new Date(info.getValue()).toLocaleDateString(),
@@ -111,6 +115,55 @@ export default function Index() {
             </div>
           </div>
         </div>
+        <div className="flex items-center mt-2 gap-2">
+              <h6 className="text-gray-700 text-md font-semibold">Tanggal</h6>
+              <div className="flex items-center mx-1 space-x-2">
+                <Input
+                  type="date"
+                  // value={startDate}
+                  // onChange={(e) => setStartDate(e.target.value)}
+                  className="border rounded-sm p-0.5 text-sm"
+                />
+                <span className="text-xs">sampai</span>
+                <Input
+                  type="date"
+                // value={endDate}
+                  // onChange={(e) => setEndDate(e.target.value)}
+                  className="border rounded-sm p-0.5 text-sm"
+                />
+              </div>
+              <div className="w-75">
+              {/* value={departemen} onValueChange={(value) => setDepartemen(value)} */}
+                <Select >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Pilih Departemen" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {/* {karyawanList.map((data,index) => (
+                      <SelectItem key={index} value={data.departemen.id}>
+                        {data.departemen.namaDepartemen}
+                      </SelectItem>
+                    ))} */}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="w-75">
+              {/* value={departemen} onValueChange={(value) => setDepartemen(value)} */}
+                <Select >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Pilih Kode Proyek" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {/* {karyawanList.map((data,index) => (
+                      <SelectItem key={index} value={data.departemen.id}>
+                        {data.departemen.namaDepartemen}
+                      </SelectItem>
+                    ))} */}
+                  </SelectContent>
+                </Select>
+              </div>
+              <Button className='bg-blue-600 text-white hover:bg-blue-500 text-xs py-1.5 rounded-sm px-3' >Pilih</Button>
+            </div>
         <DataTable data={data_manHours} columns={columns} />
       </div>
     </Admin>
