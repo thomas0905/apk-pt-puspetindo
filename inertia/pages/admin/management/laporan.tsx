@@ -20,62 +20,62 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 
 export default function Laporan() {
-  const { data_manhours,data_karyawan,data_proyek } = usePage().props
+  const { data_manhours, data_karyawan, data_proyek } = usePage().props;
   console.log(data_proyek);
 
-  const componentRef = useRef(null)
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
-  const [filteredData, setFilteredData] = useState(data_manhours)
-  const [expandedRows, setExpandedRows] = useState([])
+  const componentRef = useRef(null);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [filteredData, setFilteredData] = useState(data_manhours);
+  const [expandedRows, setExpandedRows] = useState([]);
   const tableRef = useRef(null);
-  const [departemen,setDepartemen] = useState('');
-  const [proyek,setProyek] = useState('');
+  const [departemen, setDepartemen] = useState('');
+  const [proyek, setProyek] = useState('');
   const [kodeJobOrder, setKodeJobOrder] = useState('');
 
   const karyawanList = Array.isArray(data_karyawan) ? data_karyawan : [];
   console.log(data_karyawan);
-  
 
   const handlePrint = () => {
     Swal.fire({
       title: 'Data Berhasil Di Tambah!',
       icon: 'success',
       confirmButtonText: 'Okee',
-    })
-  }
+    });
+  };
+
   const formatDate = (date) => {
-    const options = { day: '2-digit', month: '2-digit', year: 'numeric' }
-    return new Date(date).toLocaleDateString('id-ID', options).toString(date)
-  }
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return new Date(date).toLocaleDateString('id-ID', options).toString(date);
+  };
+
   const handleFilter = () => {
     const params = {};
-  
+
     if (startDate) {
       params.start_date = startDate;
     }
-  
+
     if (endDate) {
       params.end_date = endDate;
     }
-  
+
     if (departemen) {
       params.departemen = departemen;
     }
 
-    if(kodeJobOrder){
+    if (kodeJobOrder) {
       params.kodeJobOrder = kodeJobOrder;
     }
-  
-    router.get('/management/laporan', params);
-  }
-  const toggleRow = (rowId) => {
-    setExpandedRows(prev =>
-      prev.includes(rowId) ? prev.filter(id => id !== rowId) : [...prev, rowId]
-    )
-  }
 
-  
+    router.get('/management/laporan', params);
+  };
+
+  const toggleRow = (rowId) => {
+    setExpandedRows((prev) =>
+      prev.includes(rowId) ? prev.filter((id) => id !== rowId) : [...prev, rowId]
+    );
+  };
 
   return (
     <Admin>
@@ -109,7 +109,7 @@ export default function Laporan() {
                     <SelectValue placeholder="Pilih Departemen" />
                   </SelectTrigger>
                   <SelectContent>
-                    {karyawanList.map((data,index) => (
+                    {karyawanList.map((data, index) => (
                       <SelectItem key={index} value={data.departemen.id}>
                         {data.departemen.namaDepartemen}
                       </SelectItem>
@@ -123,7 +123,7 @@ export default function Laporan() {
                     <SelectValue placeholder="Pilih Kode Proyek" />
                   </SelectTrigger>
                   <SelectContent>
-                    {data_proyek.map((data,index) => (
+                    {data_proyek.map((data, index) => (
                       <SelectItem key={index} value={data.kodeJobOrder}>
                         {data.kodeJobOrder}
                       </SelectItem>
@@ -157,7 +157,6 @@ export default function Laporan() {
                         <TableCell>{formatDate(data.tanggal)}</TableCell>
                         <TableCell>{data.total_jam} jam</TableCell>
                         <TableCell>{data.total_lembur} jam</TableCell>
-                        
                         <TableCell>{data.total_persentase.toFixed(1)}%</TableCell>
                         <TableCell>
                           <Button
@@ -182,7 +181,6 @@ export default function Laporan() {
                                     <TableHead>No JE</TableHead>
                                     <TableHead>Jam Kerja</TableHead>
                                     <TableHead>Jam Lembur</TableHead>
-                                    {/* <TableHead>Persentase</TableHead> */}
                                   </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -194,8 +192,7 @@ export default function Laporan() {
                                       <TableCell>{formatDate(detail.tanggal)}</TableCell>
                                       <TableCell>{detail.kodeJobOrder}</TableCell>
                                       <TableCell>{detail.jam_kerja} jam</TableCell>
-                                      <TableCell>{detail.jam_lembur} jam</TableCell>                                    
-                                      {/* <TableCell>{detail.total_persentase.toFixed(1)}%</TableCell> */}
+                                      <TableCell>{detail.jam_lembur} jam</TableCell>
                                     </TableRow>
                                   ))}
                                 </TableBody>
@@ -220,8 +217,7 @@ export default function Laporan() {
               sheet="users"
               currentTableRef={tableRef.current}
             >
-              <Button
-                className='bg-green-600 flex gap-2 hover:bg-green-500'>
+              <Button className='bg-green-600 flex gap-2 hover:bg-green-500'>
                 <IconFileDownload className='gap-2' />
                 Export
               </Button>
@@ -234,13 +230,12 @@ export default function Laporan() {
                 </Button>
               )}
               content={() => componentRef.current}
-              documentTitle='Laporan Puspetindo'
-              pageStyle="print"
             />
           </div>
         </>
       </div>
     </Admin>
-  )
+  );
 }
+
 

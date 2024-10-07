@@ -41,6 +41,7 @@ export default class KaryawansKontroller {
 
         karyawan.user_id = users.id;
         karyawan.nama = request.input('nama');
+        karyawan.nik = request.input('nik');
         karyawan.departemen_Id = request.input('departemen_Id');
         karyawan.jabatan = request.input('jabatan');
         karyawan.tempat_lahir = request.input('tempat_lahir');
@@ -82,6 +83,7 @@ export default class KaryawansKontroller {
         const karyawan = await Karyawan.findOrFail(params.id)
 
         karyawan.nama = request.input('nama')
+        karyawan.nik = request.input('nik')
         karyawan.departemen_Id = request.input('departemen_Id')
         karyawan.jabatan = request.input('jabatan')
         karyawan.tempat_lahir = request.input('tempatLahir');

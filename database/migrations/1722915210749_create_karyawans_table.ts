@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table.integer('departemen_id').unsigned().references('departemen.id').onDelete('CASCADE')
       table.integer('user_id').unsigned().references('users.id').onDelete('CASCADE')
       table.string('nama').unique()
+      table.string('nik').unique()
       table.string('jabatan')
       table.string('tempat_lahir')
       table.date('tanggal_lahir')

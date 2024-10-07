@@ -59,6 +59,7 @@ export default function Create() {
 
     const { data, setData, post, processing } = useForm({
         nama: '',
+        nik: '',
         departemen_Id: '',
         jabatan: '',
         tempat_lahir: '',
@@ -85,6 +86,11 @@ export default function Create() {
 
         if (data.nama.trim() === '') {
             validationErrors.nama = 'Nama harus diisi';
+            isValid = false;
+        }
+
+        if (data.nik.trim() === '') {
+            validationErrors.nik = 'NIK harus diisi';
             isValid = false;
         }
 
@@ -223,7 +229,7 @@ export default function Create() {
                     <ToastContainer />
                     <div className='my-5'>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3 mt-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="nama">Nama:</Label>
                                 <Input
@@ -236,6 +242,20 @@ export default function Create() {
                                 />
                                 {errors.nama && <small className="text-red-600">{errors.nama}</small>}
                             </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="nik">NIK:</Label>
+                                <Input
+                                    id="nik"
+                                    placeholder="Masukkan NIK"
+                                    onChange={(e) => setData('nik', e.target.value)}
+                                    name='nik'
+                                    value={data.nik}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
+                                {errors.nik && <small className="text-red-600">{errors.nik}</small>}
+                            </div>
+
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Pilih Departemen:</Label>
                                 <Select

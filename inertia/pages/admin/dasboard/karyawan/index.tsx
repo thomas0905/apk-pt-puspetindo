@@ -50,6 +50,12 @@ export default function Index() {
             cell: info => info.getValue(),
             footer: info => info.column.id,
         }),
+
+        columnHelper.accessor('nik', {
+            header: 'NIK',
+            cell: info => info.getValue(),
+            footer: info => info.column.id,
+        }),
         columnHelper.accessor('departemen', {
             header: 'Departemen',
             cell: info => info.row.original?.departemen?.namaDepartemen,
