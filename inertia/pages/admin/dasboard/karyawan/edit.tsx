@@ -22,6 +22,7 @@ export default function EditPengguna() {
 
     const { data, setData, put } = useForm({
         nama: data_karyawan.nama,
+        nik: data_karyawan.nik,
         departemen: data_karyawan.departemen.namaDepartemen,
         jabatan: data_karyawan.jabatan,
         status: data_karyawan.status,
@@ -94,7 +95,7 @@ export default function EditPengguna() {
                 </div>
                 <form className="mt-5" onSubmit={handleSubmit}>
                     <div className="my-5">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3 mt-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">Name:</Label>
                                 <Input
@@ -103,6 +104,18 @@ export default function EditPengguna() {
                                     placeholder="Masukkan Nama"
                                     value={data.nama}
                                     onChange={(e) => setData('nama', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
+                            </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="nik">NIK:</Label>
+                                <Input
+                                    id="nik"
+                                    name="nik"
+                                    placeholder="Masukkan NIK"
+                                    value={data.nik}
+                                    onChange={(e) => setData('nik', e.target.value)}
                                     className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
@@ -168,6 +181,7 @@ export default function EditPengguna() {
                                     className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
+
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Tanggal Lahir</Label>
                                 <Input
@@ -218,6 +232,7 @@ export default function EditPengguna() {
                                     className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
+
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Jurusan</Label>
                                 <Input
@@ -254,7 +269,6 @@ export default function EditPengguna() {
                                 />
                             </div>
 
-
                             <div className="flex flex-col space-y-1.5">
                                 <Label>No Rekening</Label>
                                 <Input
@@ -266,7 +280,6 @@ export default function EditPengguna() {
                                     className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
-
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Nama Bank</Label>
