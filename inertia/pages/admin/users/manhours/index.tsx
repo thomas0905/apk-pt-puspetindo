@@ -10,8 +10,8 @@ import { Input } from '~/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
 
 export default function Index() {
-  const { data_manHours, data_karyawan, data_proyek,user } = usePage().props;
-  console.log(data_karyawan);
+  const { data_manHours,user ,data_karyawan,data_proyek} = usePage().props;
+  console.log(data_manHours);
 
   const columnHelper = createColumnHelper<any>();
 
@@ -178,7 +178,7 @@ export default function Index() {
               <SelectContent>
               {data_proyek.map((data, index) => (
                 <SelectItem key={index} value={data.kodeJobOrder}>
-                  {data.namaProyek}-{data.kodeJobOrder}
+               {data.kodeJobOrder}
                 </SelectItem>
               ))}
               </SelectContent>

@@ -68,9 +68,10 @@ export default class ProjectManagementsController {
 
         } 
 
-        const manhour = await ManHour.query().preload('proyek').preload('karyawan').distinct('proyek_id').distinct('karyawan_id')
+      
+        const all_man_hours = await ManHour.query().preload('karyawan').preload('proyek')
         return inertia.render('admin/users/projectManagement/index', {
-            data_manhours: manhour,
+            data_all_manhours: all_man_hours,
         });
     }
 

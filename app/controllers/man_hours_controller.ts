@@ -4,7 +4,7 @@ import Proyek from '#models/proyek';
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ManHoursController {
-    async index({ inertia, auth,request }: HttpContext) {
+    async index({ inertia, auth, request }: HttpContext) {
         const user = auth.user
         if (!user) {
             return inertia.render('admin/error/404')
@@ -12,7 +12,7 @@ export default class ManHoursController {
         const manhours = await ManHour.query().preload('karyawan').preload('proyek')
 
 
-        if (request.input('start_date') != null ) {
+        if (request.input('start_date') != null) {
             man_hours = await ManHour.query()
                 .whereBetween('tanggal',
                     [request.input('start_date'),
@@ -27,7 +27,7 @@ export default class ManHoursController {
                     });
                 })
                 .groupBy('karyawan_id')
-               
+
 
             const all_man_hours = await ManHour.query()
                 .whereBetween('tanggal', [request.input('start_date'), request.input('end_date')])
@@ -72,12 +72,13 @@ export default class ManHoursController {
 
 
         }
-        const departemen = await Karyawan.query().preload('departemen').distinct('departemen_id')
-        const proyek = await Proyek.query().distinct('kode_job_order').distinct('nama_proyek')
 
+        const all_man_hours = await ManHour.query().preload('karyawan').preload('proyek')
+        const karyawan = await Karyawan.query().preload('departemen').distinct('departemen_id')
+        const proyek = await Proyek.all()
         return inertia.render('admin/users/manhours/index', {
-            data_manHours: manhours,
-            data_karyawan:departemen,
+            data_manHours: all_man_hours,
+            data_karyawan: karyawan,
             data_proyek:proyek
         })
     }
@@ -89,8 +90,8 @@ export default class ManHoursController {
         const karyawan = await Karyawan.query()
         const proyek = await Proyek.query()
         return inertia.render('admin/users/manhours/create', {
-          data_karyawan:karyawan,
-          data_proyek:proyek
+            data_karyawan: karyawan,
+            data_proyek: proyek
         })
     }
     async store({ request, response, session }: HttpContext) {

@@ -16,7 +16,7 @@ import { Button } from '~/components/ui/button';
 
 export default function Index() {
   const { data_manhours, data_all_manhours } = usePage().props;
-  console.log(data_manhours);
+  console.log(data_all_manhours);
 
   // State untuk handling form input
   const [startDate, setStartDate] = useState('');
@@ -38,14 +38,10 @@ export default function Index() {
     if (proyek) {
       params.proyek = proyek;
     }
-
-    // Panggilan routing untuk menampilkan data berdasarkan filter
     router.get('/project', params);
   };
 
-  // Fungsi untuk handle perubahan checkbox
   const handleVerificationChange = (id, isChecked) => {
-    // Kirim request PUT ke backend untuk memperbarui status verifikasi
     router.put(`/manhours/verify/${id}`, { verifikasi: isChecked }, {
       onSuccess: () => {
         console.log('Verifikasi berhasil diperbarui');
@@ -55,6 +51,11 @@ export default function Index() {
       }
     });
   };
+
+  const formatDate = (date) => {
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' }
+    return new Date(date).toLocaleDateString('id-ID', options)
+  }
 
   return (
     <Admin>
@@ -90,7 +91,7 @@ export default function Index() {
                   <SelectValue placeholder="Pilih Proyek & No JE" />
                 </SelectTrigger>
                 <SelectContent>
-                  {data_manhours.map((data, index) => (
+                  {data_all_manhours.map((data, index) => (
                     <SelectItem key={index} value={index}>
                       {data.proyek.namaProyek} - {data.proyek.kodeJobOrder}
                     </SelectItem>
@@ -112,7 +113,7 @@ export default function Index() {
                 <TableRow>
                   <TableHead className="w-[100px]">No</TableHead>
                   <TableHead>Nama</TableHead>
-                  <TableHead>No JE</TableHead>
+                  <TableHead>Proyek & No JE</TableHead>
                   <TableHead>Jam Kerja</TableHead>
                   <TableHead>Tanggal</TableHead>
                   <TableHead className="text-right">
@@ -121,23 +122,23 @@ export default function Index() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {data_manhours.length > 0 ? (
-                  data_manhours.map((data, index) => (
+                {data_all_manhours.length > 0 ? (
+                  data_all_manhours.map((data, index) => (
                     <TableRow key={data.id}>
                       <TableCell className="font-medium">{index + 1}</TableCell>
                       <TableCell className="font-medium">
                         {data.karyawan.nama}
                       </TableCell>
-                      <TableCell>{data.proyek.kodeJobOrder}</TableCell>
-                      <TableCell>{data.proyek.kodeJobOrder}</TableCell>
-                      <TableCell>{data.proyek.kodeJobOrder}</TableCell>
+                      <TableCell>{data.proyek.namaProyek}-{data.proyek.kodeJobOrder}</TableCell>
+                      <TableCell>{data.jamKerja} Jam</TableCell>
+                      <TableCell>{formatDate(data.tanggal)}</TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end mx-6">
-                          <Input 
-                            type="checkbox" 
-                            className='w-4 h-4' 
-                            defaultChecked={data.verifikasi} 
-                            onChange={(e) => handleVerificationChange(data.id, e.target.checked)} 
+                          <Input
+                            type="checkbox"
+                            className='w-4 h-4'
+                            defaultChecked={data.verifikasi}
+                            onChange={(e) => handleVerificationChange(data.id, e.target.checked)}
                           />
                         </div>
                       </TableCell>
