@@ -57,6 +57,7 @@ export default class LaporansController {
                         proyek: item.proyek.namaProyek,
                         tanggal: item.tanggal,
                         departemen: item.karyawan.departemen.namaDepartemen,
+                        namaProyek: item.proyek.namaProyek,
                         kodeJobOrder: item.proyek.kodeJobOrder,
                         jam_kerja: item.jam_kerja,
                         jam_lembur: item.jam_lembur,
@@ -147,7 +148,7 @@ export default class LaporansController {
         }
 
         const departemen = await Karyawan.query().preload('departemen').distinct('departemen_id')
-        const proyek = await Proyek.query().distinct('kode_job_order')
+        const proyek = await Proyek.query().distinct('kode_job_order').distinct('nama_proyek')
         return inertia.render('admin/management/laporan', {
             data_manhours: man_hours,
             data_karyawan:departemen,

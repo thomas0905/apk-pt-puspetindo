@@ -73,16 +73,18 @@ export default class ManHoursController {
 
         }
         const departemen = await Karyawan.query().preload('departemen').distinct('departemen_id')
+        const proyek = await Proyek.query().distinct('kode_job_order').distinct('nama_proyek')
+
         return inertia.render('admin/users/manhours/index', {
             data_manHours: manhours,
-            data_karyawan:departemen
+            data_karyawan:departemen,
+            data_proyek:proyek
         })
     }
 
     async menuProfil({ inertia }: HttpContext) {
         return inertia.render('admin/users/menuProfil')
     }
-
     async create({ inertia }: HttpContext) {
         const karyawan = await Karyawan.query()
         const proyek = await Proyek.query()
@@ -91,7 +93,6 @@ export default class ManHoursController {
           data_proyek:proyek
         })
     }
-
     async store({ request, response, session }: HttpContext) {
         const manhours = new ManHour()
         manhours.karyawan_id = request.input('karyawan_id')
@@ -106,8 +107,6 @@ export default class ManHoursController {
         session.flash({ notification: 'Data Berhasil Disimpan!' });
         return response.redirect('/manhours')
     }
-
-
     async delete({ params, response }: HttpContext) {
         const manhours = await ManHour.findOrFail(params.id)
         await manhours.delete()

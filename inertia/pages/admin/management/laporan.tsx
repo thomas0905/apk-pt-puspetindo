@@ -49,7 +49,10 @@ export default function Laporan() {
     return new Date(date).toLocaleDateString('id-ID', options).toString(date);
   };
 
-  const handleFilter = () => {
+
+
+  const handleFilter = (e) => {
+    e.preventDefault()
     const params = {};
 
     if (startDate) {
@@ -67,7 +70,7 @@ export default function Laporan() {
     if (kodeJobOrder) {
       params.kodeJobOrder = kodeJobOrder;
     }
-
+ 
     router.get('/management/laporan', params);
   };
 
@@ -100,7 +103,7 @@ export default function Laporan() {
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  className="border rounded-sm p-0.5 text-sm"
+                  className="border rounded-sm p-0.5 text-sm" 
                 />
               </div>
               <div className="w-75">
@@ -117,7 +120,7 @@ export default function Laporan() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="w-75">
+              <div className="w">
                 <Select value={kodeJobOrder} onValueChange={(value) => setKodeJobOrder(value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Pilih Kode Proyek" />
@@ -125,14 +128,15 @@ export default function Laporan() {
                   <SelectContent>
                     {data_proyek.map((data, index) => (
                       <SelectItem key={index} value={data.kodeJobOrder}>
-                        {data.kodeJobOrder}
+                        {data.kodeJobOrder} - {data.namaProyek}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
-              <Button className='bg-blue-600 text-white hover:bg-blue-500 text-xs py-1.5 rounded-sm px-3' onClick={handleFilter}>Pilih</Button>
+              <Button type='submit' className='bg-blue-600 text-white hover:bg-blue-500 text-xs py-1.5 rounded-sm px-3' onClick={handleFilter}>Pilih</Button>
             </div>
+
             <Table className='mt-2 bg-slate-50' ref={tableRef}>
               <TableHeader className='bg-blue-300'>
                 <TableRow className='border-t'>

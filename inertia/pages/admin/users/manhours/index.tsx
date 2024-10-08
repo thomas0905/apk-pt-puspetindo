@@ -10,7 +10,7 @@ import { Input } from '~/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
 
 export default function Index() {
-  const { data_manHours, data_karyawan, user } = usePage().props;
+  const { data_manHours, data_karyawan, data_proyek,user } = usePage().props;
   console.log(data_karyawan);
 
   const columnHelper = createColumnHelper<any>();
@@ -36,6 +36,7 @@ export default function Index() {
   const verifikasi = [
     { value: 'Diterima', label: 'Diterima' },
     { value: 'Ditolak', label: 'Ditolak' },
+    { value: 'Pending', label: 'Pending' },
   ];
 
   const columns = [
@@ -43,7 +44,7 @@ export default function Index() {
       header: () => 'No',
       cell: (info) => info.row.index + 1,
     }),
-
+  
     columnHelper.accessor('proyek.namaProyek', {
       header: () => 'Nama Proyek (Kode Proyek)',
       cell: (info) => {
@@ -52,23 +53,33 @@ export default function Index() {
         return `${namaProyek} (${kodeProyek})`;
       },
     }),
+  
     columnHelper.accessor('karyawan.nama', {
       header: () => 'Nama Karyawan',
       cell: (info) => info.row.original?.karyawan?.nama || 'data tidak ada',
     }),
-
+  
+    columnHelper.accessor('departemen.namaDepartemen', {
+      header: 'Departemen',
+      cell: (info) => info.row.original?.departemen?.namaDepartemen || 'Data tidak ada',
+      footer: (info) => info.column.id,
+    }),
+  
     columnHelper.accessor('tanggal', {
       header: () => 'Tanggal',
       cell: (info) => new Date(info.getValue()).toLocaleDateString(),
     }),
+  
     columnHelper.accessor('jamKerja', {
       header: () => 'Jam Kerja',
       cell: (info) => `${info.getValue()} jam`,
     }),
+  
     columnHelper.accessor('jamLembur', {
       header: () => 'Jam Lembur',
       cell: (info) => `${info.getValue()} jam`,
     }),
+  
     columnHelper.accessor('verifikasi', {
       header: () => 'Verifikasi',
       cell: (info) => {
@@ -77,6 +88,7 @@ export default function Index() {
         return <span className={statusClass}>{status}</span>;
       },
     }),
+  
     columnHelper.display({
       id: 'aksi',
       header: () => 'Aksi',
@@ -89,6 +101,7 @@ export default function Index() {
       ),
     }),
   ];
+  
 
   return (
     <Admin>
@@ -125,7 +138,7 @@ export default function Index() {
           </div>
 
         
-          {user?.jabatan === 'IT Software' && (
+          {/* {user?.jabatan === 'IT Software' && (
             <div className="w-75">
               <Select>
                 <SelectTrigger>
@@ -140,7 +153,21 @@ export default function Index() {
                 </SelectContent>
               </Select>
             </div>
-          )}
+          )} */}
+           <div className="w-75">
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Pilih Departemen" />
+                </SelectTrigger>
+                <SelectContent>
+                  {data_karyawan.map((data, index) => (
+                    <SelectItem key={index} value={data.departemen.id}>
+                      {data.departemen.namaDepartemen}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
 
           <div className="w-75">
@@ -149,7 +176,11 @@ export default function Index() {
                 <SelectValue placeholder="Pilih Kode Proyek" />
               </SelectTrigger>
               <SelectContent>
-                {/* Isi opsi Kode Proyek */}
+              {data_proyek.map((data, index) => (
+                <SelectItem key={index} value={data.kodeJobOrder}>
+                  {data.namaProyek}-{data.kodeJobOrder}
+                </SelectItem>
+              ))}
               </SelectContent>
             </Select>
           </div>
