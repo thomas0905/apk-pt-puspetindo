@@ -1,5 +1,5 @@
 import { Head, Link, usePage } from '@inertiajs/react'
-import { IconEye, IconEyeOff, IconHome } from '@tabler/icons-react'
+import { IconCheck, IconEye, IconEyeOff, IconHome, IconX } from '@tabler/icons-react'
 import React, { FormEventHandler, useEffect, useState } from 'react'
 import { useForm } from '@inertiajs/react'
 import { Button } from '~/components/ui/button'
@@ -76,10 +76,31 @@ const pendidikan = [
     },
 ]
 
-export default function Create() {
-    const { data_departemen, data_karyawan } = usePage().props
-    console.log(data_karyawan);
+const nama_bank = [
+    {
+        value: "BRI",
+        label: "BRI",
+    },
+    {
+        value: "BCA",
+        label: "BCA",
+    },
+    {
+        value: "BNI",
+        label: "BNI",
+    },
+    {
+        value: "Mandiri",
+        label: "Mandiri",
+    },
+    {
+        value: "Bank Jatim",
+        label: "Bank Jatim",
+    },
+]
 
+export default function Create() {
+    const { data_departemen, data_karyawan ,nik } = usePage().props
     const { data, setData, post, processing } = useForm({
         nama: '',
         nik: '',
@@ -99,11 +120,11 @@ export default function Create() {
         email: '',
         password: ''
     })
-    const [errors, setErrors] = useState({});
     const [isDuplicateEmail, setIsDuplicateEmail] = useState(false);
-    const [searchTerm, setSearchTerm] = useState(""); // Menyimpan nilai pencarian
+    const [searchTerm, setSearchTerm] = useState("");
     const [filteredKaryawan, setFilteredKaryawan] = useState(data_karyawan);
-
+    const [errors, setErrors] = useState({ nik: "" });
+    const [nikExists, setNikExists] = useState(false);
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
 
@@ -205,6 +226,8 @@ export default function Create() {
             isValid = false;
         }
 
+    
+        
 
         setErrors(validationErrors);
 
@@ -226,15 +249,25 @@ export default function Create() {
         setShowPassword(!showPassword);
     };
 
-    // const handleSearch = (e) => {
-    //     const searchValue = e.target.value;
-    //     setSearchTerm(searchValue);
-    //     const filteredData = data_karyawan.filter((karyawan) =>
-    //         karyawan.nama.toLowerCase().includes(searchValue.toLowerCase())
-    //     );
-    //     setFilteredKaryawan(filteredData);
-    // };
-
+    
+    const handleNikChange = (e) => {
+        const newNik = e.target.value.trim(); // Ambil input NIK
+        setData({ ...data, nik: newNik });
+    
+        // Cek apakah NIK duplikat
+        if (checkNikDuplicate(newNik, data_karyawan)) {
+          setNikExists(true); // Tandai sebagai duplikat
+          setErrors({ ...errors, nik: "NIK sudah terdaftar" });
+        } else {
+          setNikExists(false); // Tidak ada duplikat
+          setErrors({ ...errors, nik: "" }); // Hapus pesan error
+        }
+      };
+    
+      const checkNikDuplicate = (nik, data_karyawan) => {
+        return data_karyawan.some((karyawan) => karyawan.nik === nik);
+      };
+    
     return (
         <Admin>
             <Head title='add-karyawan' />
@@ -267,14 +300,27 @@ export default function Create() {
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="nik">NIK:</Label>
-                                <Input
-                                    id="nik"
-                                    placeholder="Masukkan NIK"
-                                    onChange={(e) => setData('nik', e.target.value)}
-                                    name='nik'
-                                    value={data.nik}
-                                    className='focus-visible:ring-0 focus:border-blue-600'
-                                />
+                                <div className="relative">
+                                    <Input
+                                        id="nik"
+                                        placeholder="Masukkan NIK"
+                                        onChange={handleNikChange}
+                                        name="nik"
+                                        value={data.nik}
+                                        className="focus-visible:ring-0 focus:border-blue-600"
+                                    />
+                                    {/* Menampilkan ikon X merah atau centang hijau berdasarkan validasi */}
+                                    {data.nik && (
+                                        <span className="absolute right-3 top-2.5">
+                                            {nikExists ? (
+                                                <IconX  className="text-red-600" size={20} />
+                                            ) : (
+                                                <IconCheck className="text-green-600" size={20} />
+                                            )}
+                                        </span>
+                                    )}
+                                </div>
+                                {/* Pesan error jika NIK sudah ada */}
                                 {errors.nik && <small className="text-red-600">{errors.nik}</small>}
                             </div>
 
@@ -291,7 +337,6 @@ export default function Create() {
                                 />
                                 {errors.nama && <small className="text-red-600">{errors.nama}</small>}
                             </div>
-
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Pilih Departemen:</Label>
@@ -401,7 +446,7 @@ export default function Create() {
                                 <Label> Pendidikan</Label>
                                 <Select onValueChange={(value) => setData('pendidikan', value)}>
                                     <SelectTrigger className="w-full focus:ring-0 focus:border-blue-600 focus:outline-none">
-                                        <SelectValue placeholder="Pilih Jenis Kelamin" />
+                                        <SelectValue placeholder="Pilih Pendidikan" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         {pendidikan.map((data) => (
@@ -448,7 +493,6 @@ export default function Create() {
                                 {errors.bpjs_kesehatan && <small className="text-red-600">{errors.bpjs_kesehatan}</small>}
                             </div>
 
-
                             <div className="flex flex-col space-y-1.5">
                                 <Label> No. Rekening</Label>
                                 <Input
@@ -461,15 +505,18 @@ export default function Create() {
                                 {errors.no_rekening && <small className="text-red-600">{errors.no_rekening}</small>}
                             </div>
 
-
                             <div className="flex flex-col space-y-1.5">
                                 <Label> Nama Bank</Label>
-                                <Input
-                                    onChange={(e) => setData('nama_bank', e.target.value)}
-                                    name='nama_bank'
-                                    value={data.nama_bank}
-                                    type='text' placeholder='Nama Bank Rekening Anda'
-                                    className='focus-visible:ring-0 focus:border-blue-600' />
+                                <Select onValueChange={(value) => setData('nama_bank', value)}>
+                                    <SelectTrigger className="w-full focus:ring-0 focus:border-blue-600 focus:outline-none">
+                                        <SelectValue placeholder="Pilih Bank" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {nama_bank.map((data) => (
+                                            <SelectItem key={data.value} value={data.value}>{data.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                                 {errors.nama_bank && <small className="text-red-600">{errors.nama_bank}</small>}
                             </div>
 

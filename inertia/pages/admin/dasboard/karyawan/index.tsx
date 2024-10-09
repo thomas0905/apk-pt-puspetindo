@@ -155,7 +155,7 @@ export default function Index() {
     return (
         <Admin>
             <Head title="karyawan" />
-            <div className='lg:w-[1280px]'>
+            <div className='lg:w-[1120px]'>
                 <div className="border-b border-gray-200 pb-4">
                     <div className='flex justify-between '>
                         <div>

@@ -12,7 +12,7 @@ import Admin from '~/layout/admin';
 export default function EditPengguna() {
     const { data_karyawan } = usePage().props;
     console.log(data_karyawan);
-    
+
 
 
     const formatTanggalLahir = (dateString) => {
@@ -69,6 +69,52 @@ export default function EditPengguna() {
         { value: 'Perempuan', label: 'Perempuan' },
     ];
 
+    const pendidikan = [
+        {
+            value: "SMA",
+            label: "SMA",
+        },
+        {
+            value: "SMK",
+            label: "SMK",
+        },
+        {
+            value: "S1",
+            label: "S1",
+        },
+        {
+            value: "S2",
+            label: "S2",
+        },
+        {
+            value: "S3",
+            label: "S3",
+        },
+    ]
+    
+    const nama_bank = [
+        {
+            value: "BRI",
+            label: "BRI",
+        },
+        {
+            value: "BCA",
+            label: "BCA",
+        },
+        {
+            value: "BNI",
+            label: "BNI",
+        },
+        {
+            value: "Mandiri",
+            label: "Mandiri",
+        },
+        {
+            value: "Bank Jatim",
+            label: "Bank Jatim",
+        },
+    ]
+
     return (
         <Admin>
             <Head title="Edit Pengguna" />
@@ -96,17 +142,6 @@ export default function EditPengguna() {
                 <form className="mt-5" onSubmit={handleSubmit}>
                     <div className="my-5">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="name">Name:</Label>
-                                <Input
-                                    id="name"
-                                    name="nama"
-                                    placeholder="Masukkan Nama"
-                                    value={data.nama}
-                                    onChange={(e) => setData('nama', e.target.value)}
-                                    className='focus-visible:ring-0 focus:border-blue-600'
-                                />
-                            </div>
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="nik">NIK:</Label>
@@ -119,6 +154,19 @@ export default function EditPengguna() {
                                     className='focus-visible:ring-0 focus:border-blue-600'
                                 />
                             </div>
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="name">Name:</Label>
+                                <Input
+                                    id="name"
+                                    name="nama"
+                                    placeholder="Masukkan Nama"
+                                    value={data.nama}
+                                    onChange={(e) => setData('nama', e.target.value)}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
+                            </div>
+
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="departemen_Id">Departemen:</Label>
                                 <Input
@@ -207,7 +255,7 @@ export default function EditPengguna() {
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="status">Pilih Jenis Kelamin:</Label>
+                                <Label htmlFor="status">Pilih Jenis :</Label>
                                 <Select onValueChange={(value) => setData('jenisKelamin', value)}
                                     value={data.jenisKelamin}>
                                     <SelectTrigger className="w-full">
@@ -222,15 +270,18 @@ export default function EditPengguna() {
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
-                                <Label>Pendidikan</Label>
-                                <Input
-                                    type='text'
-                                    placeholder='Masukkan Pendidikan Anda'
-                                    name='pendidikan'
-                                    value={data.pendidikan}
-                                    onChange={(e) => setData('pendidikan', e.target.value)}
-                                    className='focus-visible:ring-0 focus:border-blue-600'
-                                />
+                            <Label htmlFor="status">Pilih Pendidikan :</Label>
+                            <Select onValueChange={(value) => setData('pendidikan', value)}
+                                    value={data.pendidikan}>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Pilih Pendidikan" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {pendidikan.map((data) => (
+                                            <SelectItem key={data.value} value={data.value}>{data.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
@@ -283,14 +334,17 @@ export default function EditPengguna() {
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Nama Bank</Label>
-                                <Input
-                                    type='text'
-                                    placeholder='Masukkan Jurusan Anda'
-                                    name='namaBank'
-                                    value={data.namaBank}
-                                    onChange={(e) => setData('namaBank', e.target.value)}
-                                    className='focus-visible:ring-0 focus:border-blue-600'
-                                />
+                                <Select onValueChange={(value) => setData('namaBank', value)}
+                                    value={data.namaBank}>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Pilih Bank" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {nama_bank.map((data) => (
+                                            <SelectItem key={data.value} value={data.value}>{data.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
                     </div>

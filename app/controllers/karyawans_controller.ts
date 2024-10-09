@@ -36,8 +36,7 @@ export default class KaryawansKontroller {
         users.fullName = request.input('fullName');
         users.email = request.input('email');
         users.password = request.input('password');
-        await users.save();
-
+   
         const karyawan = new Karyawan();
         console.log(request.all());
 
