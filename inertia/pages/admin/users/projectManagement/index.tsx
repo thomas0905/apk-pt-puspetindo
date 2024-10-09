@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Head, Link, usePage, router } from '@inertiajs/react';
+import { FormEventHandler, useEffect, useState } from 'react';
+import { Head, Link, usePage, router, useForm } from '@inertiajs/react';
 import Admin from '~/layout/admin';
 import {
   Table,
@@ -16,14 +16,11 @@ import { Button } from '~/components/ui/button';
 
 export default function Index() {
   const { data_manhours, data_all_manhours } = usePage().props;
-  console.log(data_all_manhours);
-
-  // State untuk handling form input
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [proyek, setProyek] = useState('');
-
-  // Fungsi untuk menyaring data berdasarkan form input
+  const [verify, setVerify] = useState([]);
+  const [data,setData,post,processing] = useForm({verify: [],})
   const handleFilter = () => {
     const params: any = {};
 
@@ -41,21 +38,32 @@ export default function Index() {
     router.get('/project', params);
   };
 
-  const handleVerificationChange = (id, isChecked) => {
-    router.put(`/manhours/verify/${id}`, { verifikasi: isChecked }, {
-      onSuccess: () => {
-        console.log('Verifikasi berhasil diperbarui');
-      },
-      onError: (error) => {
-        console.error('Error updating verification', error);
-      }
-    });
+  const handleVerify = (e, row) => {
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setVerify([...verify, row.id]);
+    } else {
+      setVerify(verify.filter((r) => row.id !== e.id));
+    }
   };
 
+  useEffect(() => {
+    console.log(verify)
+  }, [verify]);
+
+  // const handleSubmit : FormEventHandler = async (e) => {
+  //   e.preventDefault();
+ 
+  //     const response = await router.post("/", {
+  //       verify, 
+  //     });
+  // }
+
   const formatDate = (date) => {
-    const options = { day: '2-digit', month: '2-digit', year: 'numeric' }
-    return new Date(date).toLocaleDateString('id-ID', options)
-  }
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return new Date(date).toLocaleDateString('id-ID', options);
+  };
+
 
   return (
     <Admin>
@@ -116,7 +124,7 @@ export default function Index() {
                   <TableHead>Proyek & No JE</TableHead>
                   <TableHead>Jam Kerja</TableHead>
                   <TableHead>Tanggal</TableHead>
-                  <TableHead className="text-right">
+                  <TableHead className="text-right" onClick={handleSubmit}>
                     <p className='bg-blue-600 inline-block hover:bg-blue-500 cursor-pointer text-white text-xs py-1.5 rounded-sm px-3'>Verifikasi</p>
                   </TableHead>
                 </TableRow>
@@ -129,7 +137,7 @@ export default function Index() {
                       <TableCell className="font-medium">
                         {data.karyawan.nama}
                       </TableCell>
-                      <TableCell>{data.proyek.namaProyek}-{data.proyek.kodeJobOrder}</TableCell>
+                      <TableCell>{data.proyek.namaProyek} - {data.proyek.kodeJobOrder}</TableCell>
                       <TableCell>{data.jamKerja} Jam</TableCell>
                       <TableCell>{formatDate(data.tanggal)}</TableCell>
                       <TableCell className="text-right">
@@ -137,8 +145,7 @@ export default function Index() {
                           <Input
                             type="checkbox"
                             className='w-4 h-4'
-                            defaultChecked={data.verifikasi}
-                            onChange={(e) => handleVerificationChange(data.id, e.target.checked)}
+                            onChange={(e) => handleVerify(e, data)}
                           />
                         </div>
                       </TableCell>

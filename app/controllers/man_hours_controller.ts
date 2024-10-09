@@ -9,8 +9,6 @@ export default class ManHoursController {
         if (!user) {
             return inertia.render('admin/error/404')
         }
-        const manhours = await ManHour.query().preload('karyawan').preload('proyek')
-
 
         if (request.input('start_date') != null) {
             man_hours = await ManHour.query()

@@ -1,7 +1,7 @@
 import { IconCloudDownload, IconFileTypePdf, IconHome, IconTrash } from '@tabler/icons-react';
 import { Card, CardContent } from '~/components/ui/card';
 import Admin from '~/layout/admin';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, router, useForm } from '@inertiajs/react';
 import { Input } from '~/components/ui/input';
 import React, { useState } from 'react';
 import { Button } from '~/components/ui/button';
@@ -22,35 +22,30 @@ export default function Detail({ data_ppwi }: any) {
   console.log(data_ppwi);
 
   const [searchQuery, setSearchQuery] = useState(''); 
-  const [open, setOpen] = useState(false); 
-  const [fileToDelete, setFileToDelete] = useState<number | null>(null);
 
   const filteredPpwi = data_ppwi.filter((ppwi: any) =>
     ppwi.namaFile.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const { delete: destroy } = useForm();
-
-  const handleDelete = (namaFile: number) => {
-    setFileToDelete(namaFile); 
-    setOpen(true);
-  };
-
-  const handleConfirmDelete = () => {
-    if (fileToDelete !== null) {
-      destroy(`/ppwi/delete/${fileToDelete}`, {
-        onSuccess: () => {
-          Swal.fire(
-            'Deleted!',
-            'File berhasil dihapus!',
-            'success'
-          );
-        },
-      });
-      setOpen(false); // Tutup AlertDialog setelah konfirmasi
-      setFileToDelete(null); // Reset fileToDelete
+  const handleDelete = async (namaFile: any) => {
+    const swalInstance = Swal.fire({
+        title: 'Ingin Hapus Data?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Ya!',
+        cancelButtonText: 'Tidak!',
+        allowOutsideClick: false,
+    });
+    const result = await swalInstance;
+    if (result.isConfirmed) {
+        await router.delete('/ppwi/delete/' + namaFile);
+        Swal.fire('Deleted!', 'Data berhasil dihapus.', 'success');
+    } else {
+        Swal.fire('Cancelled', 'Data tidak dihapus.', 'error');
     }
-  };
+};
+
+
 
   return (
     <Admin>
@@ -104,12 +99,7 @@ export default function Detail({ data_ppwi }: any) {
                 </div>
               </CardContent>
               <div className="absolute w-full flex justify-end mt-28 p-2">
-                {/* Icon di kiri (Checkbox untuk memilih item) */}
-                {/* <div className="flex items-center mx-1">
-                  <Input className="cursor-pointer w-4" type="checkbox" />
-                </div> */}
 
-                {/* Icon di kanan (Download Icon dengan link dinamis sesuai ID) */}
                 <div className="flex items-center space-x-2">
                   <a href={`/ppwi/download/${data.namaFile}`}>
                     <IconCloudDownload
@@ -117,7 +107,6 @@ export default function Detail({ data_ppwi }: any) {
                       className="text-blue-600 hover:bg-gray-100 duration-300 border rounded-sm w-8 border-slate-200 hover:text-blue-800 cursor-pointer"
                     />
                   </a>
-                  {/* Tombol Delete */}
                   <IconTrash
                     size={24}
                     className="text-red-600 hover:bg-gray-100 duration-300 border rounded-sm w-8 border-slate-200 hover:text-red-800 cursor-pointer"
@@ -135,7 +124,7 @@ export default function Detail({ data_ppwi }: any) {
       </div>
 
       {/* AlertDialog untuk konfirmasi penghapusan */}
-      <AlertDialog open={open} onOpenChange={setOpen} >
+      {/* <AlertDialog open={open} onOpenChange={setOpen} >
         <AlertDialogTrigger asChild>
           <Button style={{ display: 'none' }}>Trigger</Button>
         </AlertDialogTrigger>
@@ -151,7 +140,7 @@ export default function Detail({ data_ppwi }: any) {
             <AlertDialogAction onClick={handleConfirmDelete} className='bg-blue-600 hover:bg-blue-500 text-white'>Continue</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
-      </AlertDialog>
+      </AlertDialog> */}
     </Admin>
   );
 }

@@ -121,7 +121,7 @@ export default function Laporan() {
                 </Select>
               </div>
               <div className="w">
-                <Select value={kodeJobOrder} onValueChange={(value) => setKodeJobOrder(value)}>
+                <Select value={kodeJobOrder} onValueChange={(e) => setKodeJobOrder(e.target.value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Pilih Kode Proyek" />
                   </SelectTrigger>

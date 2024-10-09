@@ -1,5 +1,4 @@
 import JudulPpwi from '#models/judul_ppwi'
-import Karyawan from '#models/karyawan';
 import Ppwi from '#models/ppwi'
 import type { HttpContext } from '@adonisjs/core/http'
 import app from '@adonisjs/core/services/app'

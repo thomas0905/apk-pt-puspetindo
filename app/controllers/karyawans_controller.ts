@@ -17,14 +17,16 @@ export default class KaryawansKontroller {
         const semuaUser = await User.all();
         return inertia.render('admin/dasboard/karyawan/index', {
             data_karyawan: semuaKaryawan,
-            data_user: semuaUser
+            data_user: semuaUser,
         });
     }
 
     async create({ inertia }: HttpContext) {
-        const departemen = await Departeman.all()
+        const departemen = await Departeman.all()   ;   
+        const karyawan = await Karyawan.all();
         return inertia.render('admin/dasboard/karyawan/create', {
-            data_departemen: departemen
+            data_departemen: departemen,
+            data_karyawan: karyawan
         });
     }
 

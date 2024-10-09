@@ -53,9 +53,32 @@ const jabatans = [
     }
 ]
 
+const pendidikan = [
+    {
+        value: "SMA",
+        label: "SMA",
+    },
+    {
+        value: "SMK",
+        label: "SMK",
+    },
+    {
+        value: "S1",
+        label: "S1",
+    },
+    {
+        value: "S2",
+        label: "S2",
+    },
+    {
+        value: "S3",
+        label: "S3",
+    },
+]
+
 export default function Create() {
-    const { data_departemen } = usePage().props
-    console.log(data_departemen);
+    const { data_departemen, data_karyawan } = usePage().props
+    console.log(data_karyawan);
 
     const { data, setData, post, processing } = useForm({
         nama: '',
@@ -78,6 +101,9 @@ export default function Create() {
     })
     const [errors, setErrors] = useState({});
     const [isDuplicateEmail, setIsDuplicateEmail] = useState(false);
+    const [searchTerm, setSearchTerm] = useState(""); // Menyimpan nilai pencarian
+    const [filteredKaryawan, setFilteredKaryawan] = useState(data_karyawan);
+
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
 
@@ -196,10 +222,18 @@ export default function Create() {
     }
     const [showPassword, setShowPassword] = useState(false);
 
-
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
     };
+
+    // const handleSearch = (e) => {
+    //     const searchValue = e.target.value;
+    //     setSearchTerm(searchValue);
+    //     const filteredData = data_karyawan.filter((karyawan) =>
+    //         karyawan.nama.toLowerCase().includes(searchValue.toLowerCase())
+    //     );
+    //     setFilteredKaryawan(filteredData);
+    // };
 
     return (
         <Admin>
@@ -230,18 +264,6 @@ export default function Create() {
                     <div className='my-5'>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="nama">Nama:</Label>
-                                <Input
-                                    id="nama"
-                                    placeholder="Masukkan Nama"
-                                    onChange={(e) => setData('nama', e.target.value)}
-                                    name='nama'
-                                    value={data.nama}
-                                    className='focus-visible:ring-0 focus:border-blue-600'
-                                />
-                                {errors.nama && <small className="text-red-600">{errors.nama}</small>}
-                            </div>
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="nik">NIK:</Label>
@@ -255,6 +277,21 @@ export default function Create() {
                                 />
                                 {errors.nik && <small className="text-red-600">{errors.nik}</small>}
                             </div>
+
+
+                            <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="nama">Nama:</Label>
+                                <Input
+                                    id="nama"
+                                    placeholder="Masukkan Nama"
+                                    onChange={(e) => setData('nama', e.target.value)}
+                                    name='nama'
+                                    value={data.nama}
+                                    className='focus-visible:ring-0 focus:border-blue-600'
+                                />
+                                {errors.nama && <small className="text-red-600">{errors.nama}</small>}
+                            </div>
+
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label>Pilih Departemen:</Label>
@@ -362,13 +399,16 @@ export default function Create() {
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label> Pendidikan</Label>
-                                <Input
-                                    onChange={(e) => setData('pendidikan', e.target.value)}
-                                    name='pendidikan'
-                                    value={data.pendidikan}
-                                    type='text' placeholder='Pendidikan Anda'
-                                    className='focus-visible:ring-0 focus:border-blue-600'
-                                />
+                                <Select onValueChange={(value) => setData('pendidikan', value)}>
+                                    <SelectTrigger className="w-full focus:ring-0 focus:border-blue-600 focus:outline-none">
+                                        <SelectValue placeholder="Pilih Jenis Kelamin" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {pendidikan.map((data) => (
+                                            <SelectItem key={data.value} value={data.value}>{data.label}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
                                 {errors.pendidikan && <small className="text-red-600">{errors.pendidikan}</small>}
                             </div>
 
@@ -437,7 +477,7 @@ export default function Create() {
                         <div className='mt-2'>
                             <h6 className='text-gray-600 text-md font-bold'>Data Pengguna</h6>
                             <div className="flex flex-col space-y-1.5 mt-3">
-                                <Label htmlFor="jabatan">Email:</Label>
+                                <Label htmlFor="email">Email:</Label>
                                 <Input
                                     type='email'
                                     placeholder='Masukkan Alamat Email'
