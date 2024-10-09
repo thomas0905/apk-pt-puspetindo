@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import Admin from '~/layout/admin';
 
 export default function EditPengguna() {
-    const { data_karyawan } = usePage().props;
+    const { data_karyawan,data_departemen } = usePage().props;
     console.log(data_karyawan);
 
 
@@ -91,7 +91,7 @@ export default function EditPengguna() {
             label: "S3",
         },
     ]
-    
+
     const nama_bank = [
         {
             value: "BRI",
@@ -169,14 +169,25 @@ export default function EditPengguna() {
 
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="departemen_Id">Departemen:</Label>
-                                <Input
-                                    id="departemen"
-                                    placeholder="Masukkan Nama Departemen"
-                                    name="departemen"
+                                <Select
+                                    onValueChange={(value) => setData('departemen', value)}
                                     value={data.departemen}
-                                    onChange={(e) => setData('departemen', e.target.value)}
-                                    className='focus-visible:ring-0 focus:border-blue-600'
-                                />
+                                >
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Pilih Jabatan" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {Array.isArray(data_departemen) && data_departemen.length > 0 ? (
+                                            data_departemen.map((data) => (
+                                                <SelectItem key={data.id} value={data.id.toString()}>
+                                                    {data.namaDepartemen}
+                                                </SelectItem>
+                                            ))
+                                        ) : (
+                                            <div className="px-2 py-1 text-gray-500">Tidak ada karyawan ditemukan</div>
+                                        )}
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
@@ -270,8 +281,8 @@ export default function EditPengguna() {
                             </div>
 
                             <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="status">Pilih Pendidikan :</Label>
-                            <Select onValueChange={(value) => setData('pendidikan', value)}
+                                <Label htmlFor="status">Pilih Pendidikan :</Label>
+                                <Select onValueChange={(value) => setData('pendidikan', value)}
                                     value={data.pendidikan}>
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Pilih Pendidikan" />

@@ -75,8 +75,10 @@ export default class KaryawansKontroller {
             .preload('departemen')
             .where('id', params.id)
             .first();
+            const departemen = await Departeman.all()
         return inertia.render('admin/dasboard/karyawan/edit', {
-            data_karyawan: karyawan
+            data_karyawan: karyawan,
+            data_departemen:departemen
         });
     }
 
