@@ -40,9 +40,18 @@ export default class KaryawansKontroller {
         const karyawan = new Karyawan();
         console.log(request.all());
 
+        const nik = request.input('nik');
+        const existingKaryawan = await Karyawan.query().where('nik', nik).first();
+    
+        if (existingKaryawan) {
+            session.flash({ error: 'NIK sudah terdaftar!' });
+            return response.redirect('/karyawan/create');
+        }
+    
+
         karyawan.user_id = users.id;
         karyawan.nama = request.input('nama');
-        karyawan.nik = request.input('nik');
+        karyawan.nik = nik;
         karyawan.departemen_Id = request.input('departemen_Id');
         karyawan.jabatan = request.input('jabatan');
         karyawan.tempat_lahir = request.input('tempat_lahir');

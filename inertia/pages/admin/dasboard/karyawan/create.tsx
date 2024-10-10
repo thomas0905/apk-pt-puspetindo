@@ -99,7 +99,7 @@ const nama_bank = [
     },
 ]
 
-export default function Create() {
+export default function Create({flash}) {
     const { data_departemen, data_karyawan ,nik } = usePage().props
     const { data, setData, post, processing } = useForm({
         nama: '',
@@ -125,7 +125,8 @@ export default function Create() {
     const [filteredKaryawan, setFilteredKaryawan] = useState(data_karyawan);
     const [errors, setErrors] = useState({ nik: "" });
     const [nikExists, setNikExists] = useState(false);
-    const handleSubmit: FormEventHandler = (e) => {
+    const [errorMessage, setErrorMessage] = useState('');
+    const handleSubmit: FormEventHandler =async (e) => {
         e.preventDefault()
 
         const validationErrors: any = {};
@@ -232,16 +233,25 @@ export default function Create() {
         setErrors(validationErrors);
 
         if (isValid) {
-            post('/karyawan/create', {
+            try {
+              const response = await post('/karyawan/create', {}, {
                 onSuccess: () => {
-                    Swal.fire({
-                        title: 'Data Berhasil Di Tambah!',
-                        icon: 'success',
-                        confirmButtonText: 'Okee',
-                    });
+                  Swal.fire({
+                    title: 'Data Berhasil Ditambah!',
+                    icon: 'success',
+                    confirmButtonText: 'Oke',
+                  });
                 }
-            });
-        }
+              });
+            } catch (error) {
+              if (error.response && error.response.data) {
+                setErrorMessage(error.response.data.error); 
+              } else {
+                setErrorMessage('An unexpected error occurred.'); // Default error message if no specific error is returned
+              }
+            }
+          }
+          
     }
     const [showPassword, setShowPassword] = useState(false);
 
@@ -249,25 +259,7 @@ export default function Create() {
         setShowPassword(!showPassword);
     };
 
-    
-    const handleNikChange = (e) => {
-        const newNik = e.target.value.trim(); // Ambil input NIK
-        setData({ ...data, nik: newNik });
-    
-        // Cek apakah NIK duplikat
-        if (checkNikDuplicate(newNik, data_karyawan)) {
-          setNikExists(true); // Tandai sebagai duplikat
-          setErrors({ ...errors, nik: "NIK sudah terdaftar" });
-        } else {
-          setNikExists(false); // Tidak ada duplikat
-          setErrors({ ...errors, nik: "" }); // Hapus pesan error
-        }
-      };
-    
-      const checkNikDuplicate = (nik, data_karyawan) => {
-        return data_karyawan.some((karyawan) => karyawan.nik === nik);
-      };
-    
+  
     return (
         <Admin>
             <Head title='add-karyawan' />
@@ -304,8 +296,8 @@ export default function Create() {
                                     <Input
                                         id="nik"
                                         placeholder="Masukkan NIK"
-                                        onChange={handleNikChange}
                                         name="nik"
+                                        onChange={(e) => setData({ ...data, nik: e.target.value })}
                                         value={data.nik}
                                         className="focus-visible:ring-0 focus:border-blue-600"
                                     />
@@ -320,7 +312,7 @@ export default function Create() {
                                         </span>
                                     )}
                                 </div>
-                                {/* Pesan error jika NIK sudah ada */}
+                                {errorMessage && <div className="error-message">{errorMessage}</div>}
                                 {errors.nik && <small className="text-red-600">{errors.nik}</small>}
                             </div>
 
