@@ -31,12 +31,12 @@ export default class KaryawansKontroller {
     }
 
 
-    async store({ request, response, session }: HttpContext) {
+    async store({ request, response, session,inertia }: HttpContext) {
         const users = new User()
         users.fullName = request.input('fullName');
         users.email = request.input('email');
         users.password = request.input('password');
-   
+        await users.save()
         const karyawan = new Karyawan();
         console.log(request.all());
 
@@ -45,7 +45,7 @@ export default class KaryawansKontroller {
     
         if (existingKaryawan) {
             session.flash({ error: 'NIK sudah terdaftar!' });
-            return response.redirect('/karyawan/create');
+            return inertia.render('/karyawan/create');
         }
 
         karyawan.user_id = users.id;

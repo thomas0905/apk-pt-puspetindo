@@ -126,7 +126,7 @@ export default function Create({flash}) {
     const [errors, setErrors] = useState({ nik: "" });
     const [nikExists, setNikExists] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    const handleSubmit: FormEventHandler =async (e) => {
+    const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
 
         const validationErrors: any = {};
@@ -158,18 +158,17 @@ export default function Create({flash}) {
         }
 
         if (data.tempat_lahir.trim() === '') {
-            validationErrors.tempat_lahir = 'Tempat Lahir harus Di isi';
+            validationErrors.tempat_lahir = 'Tempat Lahir harus di isi';
             isValid = false;
         }
 
-
         if (data.tanggal_lahir.trim() === '') {
-            validationErrors.tanggal_lahir = 'Tanggal Lahir harus Di isi';
+            validationErrors.tanggal_lahir = 'Tanggal Lahir harus di isi';
             isValid = false;
         }
 
         if (data.usia.trim() === '') {
-            validationErrors.usia = 'Usia harus diisi';
+            validationErrors.usia = 'Usia harus di isi';
             isValid = false;
         } else if (isNaN(Number(data.usia))) {
             validationErrors.usia = 'Usia harus berupa angka';
@@ -182,32 +181,32 @@ export default function Create({flash}) {
         }
 
         if (data.pendidikan.trim() === '') {
-            validationErrors.pendidikan = 'Pendidikan harus Di isi';
+            validationErrors.pendidikan = 'Pendidikan harus di isi';
             isValid = false;
         }
 
         if (data.jurusan.trim() === '') {
-            validationErrors.jurusan = 'Jurusan harus Di isi';
+            validationErrors.jurusan = 'Jurusan harus di isi';
             isValid = false;
         }
 
         if (data.bpjs_kk.trim() === '') {
-            validationErrors.bpjs_kk = 'bpjs harus Di isi';
+            validationErrors.bpjs_kk = 'bpjs harus di isi';
             isValid = false;
         }
 
         if (data.bpjs_kesehatan.trim() === '') {
-            validationErrors.bpjs_kesehatan = 'BPJS kesehatan harus Di isi';
+            validationErrors.bpjs_kesehatan = 'BPJS kesehatan harus di isi';
             isValid = false;
         }
 
         if (data.no_rekening.trim() === '') {
-            validationErrors.no_rekening = 'Nomor Rekening harus Di isi';
+            validationErrors.no_rekening = 'Nomor Rekening harus di isi';
             isValid = false;
         }
 
         if (data.nama_bank.trim() === '') {
-            validationErrors.nama_bank = 'Nama Bank harus Di isi';
+            validationErrors.nama_bank = 'Nama Bank harus di isi';
             isValid = false;
         }
 
@@ -233,25 +232,17 @@ export default function Create({flash}) {
         setErrors(validationErrors);
 
         if (isValid) {
-            try {
-              const response = await post('/karyawan/create', {}, {
+            post('/karyawan/create', {
                 onSuccess: () => {
-                  Swal.fire({
-                    title: 'Data Berhasil Ditambah!',
-                    icon: 'success',
-                    confirmButtonText: 'Oke',
-                  });
+                    Swal.fire({
+                        title: 'Data Berhasil Di Tambah!',
+                        icon: 'success',
+                        confirmButtonText: 'Okee',
+                    });
                 }
-              });
-            } catch (error) {
-              if (error.response && error.response.data) {
-                setErrorMessage(error.response.data.error); 
-              } else {
-                setErrorMessage('An unexpected error occurred.'); // Default error message if no specific error is returned
-              }
-            }
-          }
-          
+            });
+            
+        }
     }
     const [showPassword, setShowPassword] = useState(false);
 
@@ -297,7 +288,7 @@ export default function Create({flash}) {
                                         id="nik"
                                         placeholder="Masukkan NIK"
                                         name="nik"
-                                        onChange={(e) => setData({ ...data, nik: e.target.value })}
+                                        onChange={(e) => setData('nik', e.target.value)}
                                         value={data.nik}
                                         className="focus-visible:ring-0 focus:border-blue-600"
                                     />
@@ -312,7 +303,7 @@ export default function Create({flash}) {
                                         </span>
                                     )}
                                 </div>
-                                {errorMessage && <div className="error-message">{errorMessage}</div>}
+                                {/* Pesan error jika NIK sudah ada */}
                                 {errors.nik && <small className="text-red-600">{errors.nik}</small>}
                             </div>
 

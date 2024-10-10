@@ -9,15 +9,15 @@ export default class ManHoursController {
         if (!user) {
             return inertia.render('admin/error/404')
         }
-
+        
         if (request.input('start_date') != null) {
             man_hours = await ManHour.query()
-                .whereBetween('tanggal',
-                    [request.input('start_date'),
+            .whereBetween('tanggal',
+                [request.input('start_date'),
                     request.input('end_date')])
-                .preload('karyawan', (Karyawan) => {
-                    Karyawan.preload('departemen');
-                })
+                    .preload('karyawan', (Karyawan) => {
+                        Karyawan.preload('departemen');
+                    })
                 .preload('proyek').where('kodeJobOrder', request.input('proyek') || '')
                 .if(request.input('departemen') !== null, (query) => {
                     query.whereHas('karyawan', (karyawanQuery) => {
@@ -71,15 +71,26 @@ export default class ManHoursController {
 
         }
 
-        const all_man_hours = await ManHour.query().preload('karyawan').preload('proyek')
-        const karyawan = await Karyawan.query().preload('departemen').distinct('departemen_id')
-        const proyek = await Proyek.all()
+        const karyawan = await Karyawan.query().preload('departemen').preload('user').where('user_id', user.id).first(); 
+        if (!karyawan) {
+          return inertia.render('admin/users/manhours/index', {
+            data_karyawan: null,
+            message: 'Karyawan tidak ditemukan',
+          });
+        }
+    
+        const allManHours = await ManHour.query()
+          .preload('proyek')
+          .preload('karyawan')
+          .where('karyawan_Id', karyawan.id);
+    
+        
         return inertia.render('admin/users/manhours/index', {
-            data_manHours: all_man_hours,
-            data_karyawan: karyawan,
-            data_proyek:proyek
-        })
+          data_karyawan: karyawan,
+          data_manHours: allManHours,
+        });
     }
+
 
     async menuProfil({ inertia }: HttpContext) {
         return inertia.render('admin/users/menuProfil')

@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 
 export default function Index() {
   const { data_manHours,user ,data_karyawan,data_proyek} = usePage().props;
-  console.log(data_manHours);
+  console.log(data_karyawan);
 
   const columnHelper = createColumnHelper<any>();
 
@@ -54,14 +54,14 @@ export default function Index() {
       },
     }),
   
-    columnHelper.accessor('karyawan.nama', {
+    columnHelper.accessor('nama', {
       header: () => 'Nama Karyawan',
       cell: (info) => info.row.original?.karyawan?.nama || 'data tidak ada',
     }),
   
     columnHelper.accessor('departemen.namaDepartemen', {
       header: 'Departemen',
-      cell: (info) => info.row.original?.departemen?.namaDepartemen || 'Data tidak ada',
+      cell: (info) => info.row.original?.departemen?.namaDepartemen || '-',
       footer: (info) => info.column.id,
     }),
   
@@ -77,7 +77,10 @@ export default function Index() {
   
     columnHelper.accessor('jamLembur', {
       header: () => 'Jam Lembur',
-      cell: (info) => `${info.getValue()} jam`,
+      cell: (info) => {
+        const jamLembur = info.getValue();
+        return jamLembur && jamLembur > 0 ? `${jamLembur} jam` : 'Tidak Ada kerja lembur';
+      },
     }),
   
     columnHelper.accessor('verifikasi', {
@@ -160,11 +163,11 @@ export default function Index() {
                   <SelectValue placeholder="Pilih Departemen" />
                 </SelectTrigger>
                 <SelectContent>
-                  {data_karyawan.map((data, index) => (
+                  {/* {data_karyawan.map((data, index) => (
                     <SelectItem key={index} value={data.departemen.id}>
                       {data.departemen.namaDepartemen}
                     </SelectItem>
-                  ))}
+                  ))} */}
                 </SelectContent>
               </Select>
             </div>
@@ -176,11 +179,11 @@ export default function Index() {
                 <SelectValue placeholder="Pilih Kode Proyek" />
               </SelectTrigger>
               <SelectContent>
-              {data_proyek.map((data, index) => (
+              {/* {data_proyek.map((data, index) => (
                 <SelectItem key={index} value={data.kodeJobOrder}>
                {data.kodeJobOrder}
                 </SelectItem>
-              ))}
+              ))} */}
               </SelectContent>
             </Select>
           </div>
