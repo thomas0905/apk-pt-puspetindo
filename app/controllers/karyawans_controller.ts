@@ -47,7 +47,6 @@ export default class KaryawansKontroller {
             session.flash({ error: 'NIK sudah terdaftar!' });
             return response.redirect('/karyawan/create');
         }
-    
 
         karyawan.user_id = users.id;
         karyawan.nama = request.input('nama');
