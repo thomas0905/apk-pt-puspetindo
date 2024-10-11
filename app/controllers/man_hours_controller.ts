@@ -102,11 +102,6 @@ export default class ManHoursController {
         }
         
     }
-
-
-    async menuProfil({ inertia }: HttpContext) {
-        return inertia.render('admin/users/menuProfil')
-    }
     async create({ inertia }: HttpContext) {
         const karyawan = await Karyawan.query()
         const proyek = await Proyek.query()

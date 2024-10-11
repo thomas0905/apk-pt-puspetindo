@@ -27,19 +27,47 @@ export default class TiketingsController {
         });
     }
     
-    async create({inertia}:HttpContext){
-        return inertia.render('admin/dasboard/tiketing/create')
+    async create({ inertia, auth }: HttpContext) {
+        const user = auth.user;
+    
+  
+        const karyawan = await Karyawan.query().where('user_id', user.id).preload('user').first();
+    
+        return inertia.render('admin/dasboard/tiketing/create', {
+            data_karyawan: karyawan,
+        });
     }
+    
 
-    async store({response,request}:HttpContext){
+    async store({ response, request, auth }: HttpContext) {
+        // Ambil user yang sedang login
+        const user = auth.user;
+    
+        // Ambil data karyawan terkait user yang login
+        const karyawan = await Karyawan.query().where('user_id', user.id).first();
+    
+        if (!karyawan) {
+            return response.redirect('/tiketing/create', {
+                error: 'Karyawan tidak ditemukan.',
+            });
+        }
+    
+        // Buat instance baru dari Tiketing
         const tiketing = new Tiketing();
-
+    
+        // Isi data dari request input
         tiketing.problem = request.input('problem');
         tiketing.tanggal = request.input('tanggal');
         tiketing.keterangan = request.input('keterangan');
-
+    
+        // Kaitkan tiket dengan karyawan yang login
+        tiketing.karyawan_id = karyawan.id;
+    
+        // Simpan data tiket ke database
         await tiketing.save();
-
-        return response.redirect('/tiketing')
+    
+        // Redirect setelah penyimpanan berhasil
+        return response.redirect('/tiketing');
     }
+    
 }
