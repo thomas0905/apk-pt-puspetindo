@@ -20,7 +20,9 @@ export default function Index() {
   const [endDate, setEndDate] = useState('');
   const [proyek, setProyek] = useState('');
   const [verify, setVerify] = useState([]);
-  const [data,setData,post,processing] = useForm({verify: [],})
+  const { data, setData, post, processing } = useForm({ verify: [] });
+
+  // Fungsi untuk memfilter data berdasarkan proyek, tanggal mulai, dan tanggal akhir
   const handleFilter = () => {
     const params: any = {};
 
@@ -35,35 +37,42 @@ export default function Index() {
     if (proyek) {
       params.proyek = proyek;
     }
-    router.get('/project', params);
+    router.get('/project', params); // Redirect ke URL dengan query parameter
   };
 
+  // Fungsi untuk mengelola verifikasi (checkbox)
   const handleVerify = (e, row) => {
     const isChecked = e.target.checked;
     if (isChecked) {
       setVerify([...verify, row.id]);
     } else {
-      setVerify(verify.filter((r) => row.id !== e.id));
+      setVerify(verify.filter((r) => r !== row.id));
     }
   };
 
   useEffect(() => {
-    console.log(verify)
+    console.log(verify);
+    setData("verify", verify); 
   }, [verify]);
 
-  // const handleSubmit : FormEventHandler = async (e) => {
-  //   e.preventDefault();
- 
-  //     const response = await router.post("/", {
-  //       verify, 
-  //     });
-  // }
+  // Fungsi submit untuk mengirim data verifikasi
+  const handleSubmit: FormEventHandler = (e,id) => {
+    e.preventDefault();
+
+    post('/project/manhours/verify' + id, { // Kirim data ke backend (sesuaikan URL-nya)
+      onSuccess: () => {
+        console.log("Verifikasi berhasil dikirim!");
+      },
+      onError: (error) => {
+        console.log("Gagal melakukan verifikasi", error);
+      }
+    });
+  };
 
   const formatDate = (date) => {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
     return new Date(date).toLocaleDateString('id-ID', options);
   };
-
 
   return (
     <Admin>
@@ -124,8 +133,13 @@ export default function Index() {
                   <TableHead>Proyek & No JE</TableHead>
                   <TableHead>Jam Kerja</TableHead>
                   <TableHead>Tanggal</TableHead>
-                  <TableHead className="text-right" onClick={handleSubmit}>
-                    <p className='bg-blue-600 inline-block hover:bg-blue-500 cursor-pointer text-white text-xs py-1.5 rounded-sm px-3'>Verifikasi</p>
+                  <TableHead className="text-right">
+                    <p
+                      onClick={handleSubmit}
+                      className="bg-blue-600 inline-block hover:bg-blue-500 cursor-pointer text-white text-xs py-1.5 rounded-sm px-3"
+                    >
+                      Verifikasi
+                    </p>
                   </TableHead>
                 </TableRow>
               </TableHeader>
@@ -144,7 +158,7 @@ export default function Index() {
                         <div className="flex items-center justify-end mx-6">
                           <Input
                             type="checkbox"
-                            className='w-4 h-4'
+                            className="w-4 h-4"
                             onChange={(e) => handleVerify(e, data)}
                           />
                         </div>
