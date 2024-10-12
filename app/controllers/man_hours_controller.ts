@@ -72,7 +72,7 @@ export default class ManHoursController {
         }
 
 
-
+        const all_karyawan= await Karyawan.all()
         const karyawan = await Karyawan.query().preload('departemen').preload('user').where('user_id', user.id).first();
         if (!karyawan) {
             return inertia.render('admin/users/manhours/index', {
@@ -81,7 +81,7 @@ export default class ManHoursController {
             });
         }
         
-        // Jika jabatan karyawan bukan 'IT Software', tampilkan data yang sesuai dengan login
+
         if (karyawan.jabatan !== 'IT Software') {
             const manHours = await ManHour.query()
                 .preload('karyawan')

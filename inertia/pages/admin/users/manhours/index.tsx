@@ -10,7 +10,7 @@ import { Input } from '~/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
 
 export default function Index() {
-  const { data_manHours,user ,data_karyawan,data_proyek} = usePage().props;
+  const { data_manHours,user ,data_karyawan} = usePage().props;
   console.log(data_karyawan);
 
   const columnHelper = createColumnHelper<any>();
