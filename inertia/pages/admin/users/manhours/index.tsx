@@ -86,9 +86,15 @@ export default function Index() {
     columnHelper.accessor('verifikasi', {
       header: () => 'Verifikasi',
       cell: (info) => {
-        const status = info.getValue();
-        const statusClass = status === 'Diterima' ? 'text-green-600' : 'text-red-600';
-        return <span className={statusClass}>{status}</span>;
+        if(info.row.original.verifikasi === '' || info.row.original.verifikasi === null){
+          const status = 'Pending';
+          const statusClass = 'text-red-600';
+          return <span className={statusClass}>{status}</span>;
+        }{
+          const status = info.getValue();
+          const statusClass = status === 'Diterima' ? 'text-green-600' : 'text-red-600';
+          return <span className={statusClass}>{status}</span>;
+        }
       },
     }),
   

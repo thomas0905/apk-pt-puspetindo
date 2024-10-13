@@ -13,6 +13,7 @@ import { Card } from '~/components/ui/card';
 import { Input } from '~/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
 import { Button } from '~/components/ui/button';
+import { toast } from 'sonner';
 
 export default function Index() {
   const { data_manhours, data_all_manhours } = usePage().props;
@@ -56,16 +57,16 @@ export default function Index() {
   }, [verify]);
 
   // Fungsi submit untuk mengirim data verifikasi
-  const handleSubmit: FormEventHandler = (e,id) => {
-    e.preventDefault();
-
-    post('/project/manhours/verify' + id, { // Kirim data ke backend (sesuaikan URL-nya)
+  const handleSubmit = () => {
+    router.post('/project/manhours/verify', { // Kirim data ke backend (sesuaikan URL-nya)
+      data: verify,
+    }, {
       onSuccess: () => {
-        console.log("Verifikasi berhasil dikirim!");
+        toast.success('Data Berhasil Diupdate!');
       },
-      onError: (error) => {
-        console.log("Gagal melakukan verifikasi", error);
-      }
+      onError: () => {
+        toast.error('Data Gagal Diupdate!');
+      } 
     });
   };
 

@@ -1,3 +1,4 @@
+import { Redirect } from '@adonisjs/core/http';
 import Karyawan from '#models/karyawan'
 import ManHour from '#models/man_hour';
 import type { HttpContext } from '@adonisjs/core/http'
@@ -22,16 +23,11 @@ export default class ProjectManagementsController {
 
     public async verify({ params, request, response }: HttpContext) {
         try {
-            const manhour = await ManHour.query().where('id', params.id).firstOrFail();
-            const verifikasi = request.input('verifikasi');
-            if (typeof verifikasi !== 'boolean') {
-                return response.badRequest({ message: 'Verifikasi harus berupa nilai boolean (true atau false).' });
-            }
+            const mainHours = await ManHour.query().whereIn('id', request.input('data')).update({
+                verifikasi: 'Diterima'
+            });
 
-            manhour.verifikasi = verifikasi;
-            await manhour.save();
-    
-            return response.redirect('/project');
+            return response.redirect('/manhours');
         } catch (error) {
             return response.internalServerError({ message: 'Terjadi kesalahan saat memverifikasi data.' });
         }
