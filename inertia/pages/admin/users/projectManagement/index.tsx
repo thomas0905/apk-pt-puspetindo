@@ -56,9 +56,8 @@ export default function Index() {
     setData("verify", verify); 
   }, [verify]);
 
-  // Fungsi submit untuk mengirim data verifikasi
   const handleSubmit = () => {
-    router.post('/project/manhours/verify', { // Kirim data ke backend (sesuaikan URL-nya)
+    router.post('/project/manhours/verify', { 
       data: verify,
     }, {
       onSuccess: () => {
@@ -134,13 +133,21 @@ export default function Index() {
                   <TableHead>Proyek & No JE</TableHead>
                   <TableHead>Jam Kerja</TableHead>
                   <TableHead>Tanggal</TableHead>
-                  <TableHead className="text-right">
+                  <TableHead className="text-right gap-2">
+                  <p
+                      onClick={handleSubmit}
+                      className="bg-red-600 inline-block mx-2 hover:bg-red-500 cursor-pointer text-white text-xs py-1.5 rounded-sm px-3"
+                    >
+                      Tolak
+                    </p>
+
                     <p
                       onClick={handleSubmit}
                       className="bg-blue-600 inline-block hover:bg-blue-500 cursor-pointer text-white text-xs py-1.5 rounded-sm px-3"
                     >
-                      Verifikasi
+                      Konfirmasi
                     </p>
+                    
                   </TableHead>
                 </TableRow>
               </TableHeader>
