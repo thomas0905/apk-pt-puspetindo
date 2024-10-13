@@ -88,11 +88,11 @@ export default function Index() {
       cell: (info) => {
         if(info.row.original.verifikasi === '' || info.row.original.verifikasi === null){
           const status = 'Pending';
-          const statusClass = 'text-red-600';
+          const statusClass = 'text-red-600 bg-red-100 py-1 px-2 rounded';
           return <span className={statusClass}>{status}</span>;
         }{
           const status = info.getValue();
-          const statusClass = status === 'Diterima' ? 'text-green-600' : 'text-red-600';
+          const statusClass = status === 'Diterima' ? 'text-green-600 bg-green-100 py-1 px-2 rounded' : 'text-red-600 bg-red-100 py-1 px-2 rounded';
           return <span className={statusClass}>{status}</span>;
         }
       },
