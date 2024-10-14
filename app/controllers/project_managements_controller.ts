@@ -23,7 +23,7 @@ export default class ProjectManagementsController {
 
     public async verify({ params, request, response }: HttpContext) {
         try {
-            const mainHours = await ManHour.query().whereIn('id', request.input('data')).update({
+            const manHours = await ManHour.query().whereIn('id', request.input('data')).update({
                 verifikasi: 'Diterima'
             });
 
